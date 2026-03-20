@@ -9,7 +9,15 @@
   <title>URHEIM</title>
 
   <!-- Popis stránky pro SEO / vyhledávače -->
-  <meta name="description" content="Official website of URHEIM." />
+  <meta
+    name="description"
+    content="Official website of URHEIM, URHEIM, Urheim, Adrian, Adrian Urheim, ADRIAN URHEIM, Čech, Český zpěvák, Skladatel, Hudebník, Czech, Czech artist."
+  />
+
+  <!-- Lepší načítání připojení -->
+  <link rel="dns-prefetch" href="//fonts.googleapis.com">
+  <link rel="dns-prefetch" href="//fonts.gstatic.com">
+  <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
 
   <!-- Ikonka stránky / favicon ve více velikostech -->
   <link rel="icon" type="image/png" sizes="32x32" href="assets/Favicon.png">
@@ -21,6 +29,7 @@
   <!-- Přednačtení Google fontů -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 
   <!-- Font Cinzel = dekorativní / luxusní, Inter = běžný text -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -64,6 +73,9 @@
       overflow-x:hidden;
       position:relative;
       isolation:isolate;
+      text-rendering:optimizeLegibility;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
 
     /* Jemné světelné částečky přes celé pozadí */
@@ -120,11 +132,11 @@
       top:0;
       z-index:50;
       backdrop-filter: blur(10px);
-      background:linear-gradient(180deg, rgba(8,5,3,.92), rgba(8,5,3,.72));
-      border-bottom:1px solid rgba(244,199,111,.16);
+      background:rgba(0,0,0,.42);
+      border-bottom:1px solid rgba(244,199,111,.12);
       box-shadow:
-        inset 0 -1px 0 rgba(244,199,111,.32),
-        0 8px 30px rgba(0,0,0,.2);
+        inset 0 -1px 0 rgba(244,199,111,.22),
+        0 8px 30px rgba(0,0,0,.18);
     }
 
     .nav{
@@ -153,13 +165,14 @@
 
     .nav-links a{
       color:var(--muted);
-      transition:.25s ease;
+      transition:.2s ease;
       position:relative;
+      will-change:transform, color;
     }
 
     .nav-links a:hover{
       color:var(--gold);
-      text-shadow:0 0 20px rgba(255,182,74,.35);
+      text-shadow:0 0 20px rgba(255,182,74,.25);
     }
 
     .nav-links a::after{
@@ -170,7 +183,7 @@
       width:0;
       height:1px;
       background:var(--gold);
-      transition:width .25s ease;
+      transition:width .2s ease;
     }
 
     .nav-links a:hover::after{width:100%}
@@ -178,7 +191,7 @@
     .mobile-toggle{
       display:none;
       border:1px solid rgba(244,199,111,.25);
-      background:rgba(14,9,6,.8);
+      background:rgba(0,0,0,.45);
       color:var(--gold);
       width:46px;
       height:46px;
@@ -200,7 +213,7 @@
         inset 0 1px 0 rgba(244,199,111,.28),
         inset 0 -1px 0 rgba(244,199,111,.28);
       background:
-        linear-gradient(rgba(5,3,2,0.72), rgba(5,3,2,0.86)),
+        linear-gradient(rgba(0,0,0,.82), rgba(0,0,0,.90)),
         url("assets/Background Profile Web.png") center center / cover no-repeat;
     }
 
@@ -209,8 +222,8 @@
       position:absolute;
       inset:0;
       background:
-        radial-gradient(circle at 50% 35%, rgba(255,183,70,.06), transparent 24%),
-        linear-gradient(180deg, rgba(255,168,58,.015), transparent 40%);
+        radial-gradient(circle at 50% 35%, rgba(255,183,70,.035), transparent 24%),
+        linear-gradient(180deg, rgba(255,168,58,.008), transparent 40%);
       z-index:-1;
     }
 
@@ -237,10 +250,10 @@
       font-family:Cinzel, serif;
       text-transform:uppercase;
       letter-spacing:.18em;
-      color:#8e7247;
+      color:#564327;
       font-size:.78rem;
       text-shadow:none;
-      opacity:.92;
+      opacity:.95;
     }
 
     .hero-watermark{
@@ -305,7 +318,8 @@
       letter-spacing:.03em;
       background: linear-gradient(180deg, #f0cb76 0%, #dca441 52%, #9d631f 100%);
       box-shadow: inset 0 1px 0 rgba(255,243,215,.55), 0 12px 30px rgba(0,0,0,.28), 0 0 18px rgba(255,178,60,.16);
-      transition:transform .25s ease, box-shadow .25s ease;
+      transition:transform .2s ease, box-shadow .2s ease;
+      will-change:transform;
     }
 
     .btn:hover{
@@ -313,7 +327,11 @@
       box-shadow: inset 0 1px 0 rgba(255,243,215,.55), 0 16px 36px rgba(0,0,0,.35), 0 0 26px rgba(255,178,60,.2);
     }
 
-    section{padding:44px 0;}
+    section{
+      padding:44px 0;
+      content-visibility:auto;
+      contain-intrinsic-size: 900px;
+    }
 
     .section-title{
       display:flex;
@@ -431,6 +449,7 @@
       cursor:pointer;
       appearance:none;
       -webkit-appearance:none;
+      transition:transform .2s ease;
     }
 
     .play:hover{
@@ -693,8 +712,8 @@
         gap:18px;
         padding:20px;
         border-radius:22px;
-        background:rgba(10,6,4,.95);
-        border:1px solid rgba(244,199,111,.15);
+        background:rgba(0,0,0,.72);
+        border:1px solid rgba(244,199,111,.12);
         box-shadow:var(--shadow);
         font-size:1.08rem;
       }
@@ -754,7 +773,7 @@
   <header class="frame-line">
     <div class="container nav">
       <nav class="nav-links" id="navLinks">
-        <a href="https://www.imurheimofficial.com">Home</a>
+        <a href="https://www.imurheimofficial.com" rel="noopener">Home</a>
         <a href="#bio">Bio</a>
         <a href="#music">Music</a>
         <a href="#videos">Video</a>
@@ -775,7 +794,12 @@
           <div class="eyebrow">Official Artist Website</div>
 
           <div class="hero-watermark">
-            <img src="assets/Watermark 1536x1024.png" alt="URHEIM Watermark">
+            <img
+              src="assets/Watermark 1536x1024.png"
+              alt="URHEIM Watermark"
+              decoding="async"
+              fetchpriority="high"
+            >
           </div>
 
           <div class="headline-rule"></div>
