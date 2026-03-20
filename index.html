@@ -50,6 +50,7 @@
 
     /* ======================================================
        BODY = HLAVNÍ POZADÍ A ZÁKLAD STRÁNKY
+       Tohle je spodní celkové pozadí webu
     ====================================================== */
     body{
       margin:0;
@@ -218,12 +219,16 @@
 
     /* ======================================================
        HERO SEKCE = HLAVNÍ ÚVOD WEBU
+       Tady už je vložený tvůj background obrázek
     ====================================================== */
     .hero{
       position:relative;
       padding:64px 0 48px;
       min-height:860px;
       isolation:isolate;
+      background:
+        linear-gradient(rgba(5,3,2,0.45), rgba(5,3,2,0.72)),
+        url("assets/Background Profile Web.png") center center / cover no-repeat;
     }
 
     /* Dodatečný světelný efekt hero sekce */
