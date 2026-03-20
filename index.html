@@ -71,8 +71,8 @@
         radial-gradient(circle, rgba(255,213,128,.8) 0 1px, transparent 1.4px),
         radial-gradient(circle, rgba(255,182,74,.35) 0 1px, transparent 1.2px),
         radial-gradient(circle, rgba(255,221,158,.25) 0 2px, transparent 2.8px);
-      background-size: 160px 160px, 220px 220px, 320px 320px;
-      background-position: 0 0, 40px 70px, 120px 30px;
+      background-size:160px 160px, 220px 220px, 320px 320px;
+      background-position:0 0, 40px 70px, 120px 30px;
       opacity:.22;
       mix-blend-mode:screen;
     }
@@ -82,7 +82,7 @@
 
     .container{
       width:min(var(--container), calc(100% - 32px));
-      margin-inline:auto
+      margin-inline:auto;
     }
 
     /* ======================================================
@@ -119,53 +119,31 @@
       box-shadow:0 8px 30px rgba(0,0,0,.2);
     }
 
+    /* Menu je teď vystředěné */
     .nav{
       min-height:86px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:24px;
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:16px;
-      font-family:Cinzel, serif;
-      letter-spacing:.06em;
-    }
-
-    .brand-mark{
-      width:58px;
-      height:58px;
-      border-radius:50%;
       display:grid;
-      place-items:center;
-      border:2px solid rgba(244,199,111,.55);
-      background:
-        radial-gradient(circle at 30% 30%, rgba(255,184,77,.2), transparent 30%),
-        linear-gradient(180deg, rgba(29,18,10,.95), rgba(8,5,2,.95));
-      color:var(--gold);
-      box-shadow: inset 0 0 20px rgba(255,180,52,.1), 0 0 18px rgba(255,180,52,.12);
-      font-size:1.8rem;
+      grid-template-columns:1fr auto;
+      align-items:center;
+      position:relative;
     }
 
-    .brand-title{
-      display:flex;
-      flex-direction:column;
-      line-height:1.1;
+    /* Levá brand část je úplně pryč */
+    .brand{
+      display:none;
     }
 
-    .brand-title strong{font-size:1.12rem}
-    .brand-title span{font-size:.74rem;color:var(--muted)}
-
+    /* Menu uprostřed a větší */
     .nav-links{
       display:flex;
       align-items:center;
-      gap:28px;
+      justify-content:center;
+      gap:42px;
       font-family:Cinzel, serif;
-      font-size:1rem;
-      letter-spacing:.04em;
+      font-size:1.28rem;
+      letter-spacing:.05em;
+      width:100%;
+      grid-column:1 / -1;
     }
 
     .nav-links a{
@@ -200,124 +178,50 @@
       width:46px;
       height:46px;
       border-radius:14px;
+      justify-self:end;
     }
 
     /* ======================================================
        HERO
+       ZKRÁCENÁ HERO SEKCE + background obrázek
     ====================================================== */
     .hero{
       position:relative;
-      padding:64px 0 48px;
-      min-height:860px;
+      padding:34px 0 24px;
+      min-height:430px;
       isolation:isolate;
       background:
         linear-gradient(rgba(5,3,2,0.45), rgba(5,3,2,0.72)),
         url("assets/Background Profile Web.png") center center / cover no-repeat;
     }
 
+    /* Jemný overlay navíc */
     .hero::before{
       content:"";
       position:absolute;
-      inset:24px 0 0;
+      inset:0;
       background:
-        radial-gradient(circle at 50% 22%, rgba(255,183,70,.22), transparent 20%),
-        linear-gradient(180deg, rgba(255,168,58,.04), transparent 35%);
-      z-index:-2;
+        radial-gradient(circle at 50% 35%, rgba(255,183,70,.12), transparent 24%),
+        linear-gradient(180deg, rgba(255,168,58,.03), transparent 40%);
+      z-index:-1;
     }
 
     .hero-grid{
       display:grid;
-      gap:32px;
+      gap:18px;
       align-items:center;
       justify-items:center;
       text-align:center;
       position:relative;
     }
 
+    /* Dekorace slunce/pyramidy jsou úplně pryč */
     .solar-stage{
-      width:min(100%, 1120px);
-      min-height:430px;
-      position:relative;
-      display:grid;
-      place-items:center;
-      padding-top:26px;
-    }
-
-    .eclipse{
-      position:absolute;
-      top:12px;
-      left:50%;
-      transform:translateX(-50%);
-      width:220px;
-      height:220px;
-      border-radius:50%;
-      background: radial-gradient(circle at 44% 40%, #1d120c 0 35%, #090604 62%, #050302 100%);
-      box-shadow:
-        0 0 0 10px rgba(255,187,78,.15),
-        0 0 26px 8px rgba(255,171,57,.42),
-        0 0 90px 12px rgba(255,155,42,.32),
-        inset -22px -18px 26px rgba(255,226,167,.06);
-    }
-
-    .eclipse::before{
-      content:"";
-      position:absolute;
-      inset:-16px;
-      border-radius:50%;
-      background: radial-gradient(circle, rgba(255,205,119,.95) 59%, rgba(255,174,49,.55) 68%, rgba(255,174,49,.18) 79%, transparent 87%);
-      filter:blur(4px);
-      z-index:-1;
-    }
-
-    .solar-stage::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(circle at 50% 24%, rgba(255,165,52,.18), transparent 18%),
-        radial-gradient(circle at 18% 34%, rgba(255,185,100,.11), transparent 19%),
-        radial-gradient(circle at 84% 38%, rgba(255,185,100,.12), transparent 18%);
-      filter:blur(8px);
-    }
-
-    .pyramid{
-      position:absolute;
-      bottom:40px;
-      width:290px;
-      height:255px;
-      background:
-        linear-gradient(145deg, rgba(255,201,110,.26), rgba(85,49,16,.1) 34%, rgba(8,5,2,.15) 55%),
-        linear-gradient(90deg, rgba(30,18,9,.95), rgba(83,51,20,.95));
-      clip-path:polygon(50% 0, 0 100%, 100% 100%);
-      border:1px solid rgba(244,199,111,.18);
-      box-shadow: var(--glow);
-      opacity:.95;
-    }
-
-    .pyramid::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        repeating-linear-gradient(180deg, rgba(255,218,158,.08) 0 2px, rgba(0,0,0,0) 2px 12px),
-        linear-gradient(90deg, rgba(255,223,164,.16), transparent 46%, rgba(0,0,0,.18) 48%, rgba(0,0,0,.22) 100%);
-      mix-blend-mode:screen;
-      opacity:.85;
-    }
-
-    .pyramid.left{left:30px; transform:scale(1.02)}
-    .pyramid.right{right:30px; width:315px;height:278px}
-    .pyramid.small{
-      left:210px;
-      bottom:76px;
-      width:180px;
-      height:155px;
-      opacity:.74;
-      filter:brightness(.82);
+      display:none;
     }
 
     .hero-copy{
-      margin-top:230px;
+      margin-top:12px;
       width:min(100%, 900px);
       padding:0 8px;
     }
@@ -327,13 +231,13 @@
       text-transform:uppercase;
       letter-spacing:.18em;
       color:var(--muted);
-      font-size:.8rem;
+      font-size:.78rem;
     }
 
-    /* Místo textu URHEIM je teď watermark obrázek */
+    /* Watermark místo textu URHEIM */
     .hero-watermark{
-      width:min(760px, 92%);
-      margin:8px auto 8px;
+      width:min(620px, 90%);
+      margin:6px auto 6px;
       filter:
         drop-shadow(0 2px 0 rgba(140,99,47,.85))
         drop-shadow(0 6px 30px rgba(255,170,56,.16))
@@ -349,7 +253,7 @@
     .headline-rule{
       width:min(420px, 82%);
       height:2px;
-      margin:16px auto 18px;
+      margin:10px auto 12px;
       background:linear-gradient(90deg, transparent, rgba(244,199,111,.3), rgba(244,199,111,.95), rgba(244,199,111,.3), transparent);
       border-radius:999px;
       box-shadow:0 0 18px rgba(255,174,49,.22);
@@ -358,17 +262,17 @@
     .subtitle{
       margin:0;
       font-family:Cinzel, serif;
-      font-size:clamp(1.05rem, 2.5vw, 2rem);
+      font-size:clamp(1rem, 2vw, 1.7rem);
       color:#f0d4a0;
       letter-spacing:.12em;
     }
 
     .hero-text{
-      width:min(720px, 100%);
-      margin:18px auto 0;
+      width:min(680px, 100%);
+      margin:14px auto 0;
       color:var(--muted);
-      font-size:1rem;
-      line-height:1.75;
+      font-size:.98rem;
+      line-height:1.7;
     }
 
     .cta-row{
@@ -376,7 +280,7 @@
       justify-content:center;
       gap:16px;
       flex-wrap:wrap;
-      margin-top:26px;
+      margin-top:22px;
     }
 
     .btn{
@@ -384,7 +288,7 @@
       align-items:center;
       justify-content:center;
       gap:10px;
-      min-height:54px;
+      min-height:52px;
       padding:0 24px;
       border-radius:14px;
       border:1px solid rgba(244,199,111,.32);
@@ -671,10 +575,17 @@
       gap:22px;
     }
 
-    .video-card{overflow:hidden;}
+    .video-card{
+      overflow:hidden;
+    }
 
+    /* Play ikona uprostřed, text dole */
     .video-thumb{
+      position:relative;
       aspect-ratio:16/9;
+      display:flex;
+      align-items:center;
+      justify-content:center;
       background-image:
         linear-gradient(180deg, rgba(255,174,49,.05), rgba(0,0,0,.5)),
         linear-gradient(135deg, rgba(0,0,0,.06), rgba(0,0,0,.48)),
@@ -702,8 +613,8 @@
       position:absolute;
       inset:0;
       background:
-        radial-gradient(circle at 50% 45%, rgba(255,203,112,.45), transparent 18%),
-        linear-gradient(180deg, rgba(255,213,148,.04), rgba(0,0,0,.2) 60%, rgba(0,0,0,.42));
+        radial-gradient(circle at 50% 45%, rgba(255,203,112,.30), transparent 20%),
+        linear-gradient(180deg, rgba(255,213,148,.03), rgba(0,0,0,.18) 60%, rgba(0,0,0,.55));
     }
 
     .play-large{
@@ -714,23 +625,30 @@
       color:#f6d9a5;
       font-size:3rem;
       text-shadow:0 8px 18px rgba(0,0,0,.5);
+      z-index:2;
     }
 
+    /* Text je teď dole */
     .video-info{
-      padding:18px 18px 20px;
+      padding:16px 18px 18px;
+      text-align:center;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      min-height:86px;
     }
 
     .video-info h4{
-      margin:0 0 8px;
+      margin:0 0 6px;
       font-family:Cinzel, serif;
-      font-size:1.35rem;
+      font-size:1.28rem;
     }
 
     .video-info p{
       margin:0;
       color:var(--muted);
-      line-height:1.7;
-      font-size:.97rem;
+      line-height:1.6;
+      font-size:.95rem;
     }
 
     /* ======================================================
@@ -808,19 +726,21 @@
         right:16px;
         display:none;
         flex-direction:column;
-        align-items:flex-start;
+        align-items:center;
+        justify-content:center;
         gap:18px;
         padding:20px;
         border-radius:22px;
         background:rgba(10,6,4,.95);
         border:1px solid rgba(244,199,111,.15);
         box-shadow:var(--shadow);
+        font-size:1.08rem;
       }
 
       .nav-links.open{display:flex}
       .mobile-toggle{display:grid;place-items:center}
-      .hero{padding-top:44px; min-height:auto}
-      .hero-copy{margin-top:270px}
+      .hero{padding-top:28px; min-height:auto}
+      .hero-copy{margin-top:8px}
 
       .release-card,
       .about-grid,
@@ -836,9 +756,6 @@
         margin-inline:auto;
       }
 
-      .pyramid.left{left:-10px;width:220px;height:190px}
-      .pyramid.right{right:-10px;width:240px;height:210px}
-      .pyramid.small{left:118px; bottom:90px;width:120px;height:110px}
       .about-image{min-height:280px}
     }
 
@@ -848,25 +765,26 @@
     @media (max-width: 640px){
       .container{width:min(100% - 20px, var(--container))}
       .nav{min-height:78px}
-      .brand-mark{width:50px;height:50px;font-size:1.55rem}
-      .hero{padding-bottom:24px}
-      .solar-stage{min-height:300px}
-      .eclipse{width:150px;height:150px;top:8px}
-      .hero-copy{margin-top:160px}
 
-      /* Watermark bude menší na mobilu */
+      .hero{
+        padding:24px 0 18px;
+      }
+
       .hero-watermark{
-        width:min(96%, 520px);
+        width:min(96%, 470px);
       }
 
       .subtitle{letter-spacing:.08em}
       .hero-text{font-size:.95rem}
       .btn{width:100%}
       .section-title{font-size:1.5rem}
+
       .release-meta h3,
       .about-copy h3{font-size:1.8rem}
+
       .platforms{display:grid;grid-template-columns:1fr 1fr}
       .platform{justify-content:center}
+
       .social{width:48px;height:48px}
       .video-info h4{font-size:1.15rem}
       .media-cover::after{font-size:1.35rem}
@@ -876,19 +794,12 @@
 
 <body>
   <!-- ====================================================
-       HEADER = horní menu + logo
+       HEADER = horní menu
   ===================================================== -->
   <header class="frame-line">
     <div class="container nav">
-      <a href="#top" class="brand" aria-label="URHEIM domů">
-        <div class="brand-mark">☥</div>
-        <div class="brand-title">
-          <strong>URHEIM</strong>
-          <span>Official Artist Website</span>
-        </div>
-      </a>
-
       <nav class="nav-links" id="navLinks">
+        <a href="#top">Home</a>
         <a href="#bio">Bio</a>
         <a href="#music">Music</a>
         <a href="#videos">Video</a>
@@ -908,26 +819,18 @@
     =================================================== -->
     <section class="hero frame-line">
       <div class="container hero-grid">
-        <div class="solar-stage" aria-hidden="true">
-          <div class="eclipse"></div>
-          <div class="pyramid left"></div>
-          <div class="pyramid small"></div>
-          <div class="pyramid right"></div>
-        </div>
-
         <div class="hero-copy">
           <div class="eyebrow">Epic • Cinematic • Dark Ethnic • Electronic</div>
 
-          <!-- Místo textu URHEIM je zde obrázek watermarku -->
+          <!-- Watermark místo textu URHEIM -->
           <div class="hero-watermark">
             <img src="assets/Watermark 1536x1024.png" alt="URHEIM Watermark">
           </div>
 
           <div class="headline-rule"></div>
-          <p class="subtitle">Music of the Eternal</p>
+          <p class="subtitle">Echoes of the Unspoken</p>
           <p class="hero-text">
-            Temná filmová atmosféra, egyptská symbolika, monumentální energie a zvuk, který má působit jako skutečný svět značky.
-            Tahle verze je připravená jako silný základ pro GitHub Pages a dá se dál upravit přesně podle tvého vizuálu.
+            Ancient echoes, hidden signs, and a sound that moves through worlds—shaped by mystery, driven by emotion, and unconstrained by genre.
           </p>
 
           <div class="cta-row">
