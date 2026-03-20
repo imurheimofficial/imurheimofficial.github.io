@@ -24,7 +24,6 @@
   <style>
     /* ======================================================
        GLOBÁLNÍ CSS PROMĚNNÉ
-       Tady jsou hlavní barvy, stíny a základní nastavení
     ====================================================== */
     :root{
       --bg:#090603;
@@ -44,13 +43,11 @@
       --container:1180px;
     }
 
-    /* Reset a základní chování */
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
 
     /* ======================================================
        BODY = HLAVNÍ POZADÍ A ZÁKLAD STRÁNKY
-       Tohle je spodní celkové pozadí webu
     ====================================================== */
     body{
       margin:0;
@@ -65,7 +62,6 @@
       overflow-x:hidden;
     }
 
-    /* Jemné světelné částečky přes celé pozadí */
     body::before{
       content:"";
       position:fixed;
@@ -81,11 +77,9 @@
       mix-blend-mode:screen;
     }
 
-    /* Výchozí styl odkazů a obrázků */
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block}
 
-    /* Kontejner na centrování obsahu */
     .container{
       width:min(var(--container), calc(100% - 32px));
       margin-inline:auto
@@ -93,7 +87,6 @@
 
     /* ======================================================
        OZDOBNÉ HORNÍ A DOLNÍ LINKY
-       Používá se např. na header a hero sekci
     ====================================================== */
     .frame-line{
       position:relative;
@@ -114,7 +107,7 @@
     .frame-line::after{bottom:0}
 
     /* ======================================================
-       HEADER = HORNÍ LIŠTA WEBU
+       HEADER
     ====================================================== */
     header{
       position:sticky;
@@ -126,7 +119,6 @@
       box-shadow:0 8px 30px rgba(0,0,0,.2);
     }
 
-    /* Vnitřní rozložení horní lišty */
     .nav{
       min-height:86px;
       display:flex;
@@ -135,7 +127,6 @@
       gap:24px;
     }
 
-    /* Levá část headeru = logo + text */
     .brand{
       display:flex;
       align-items:center;
@@ -144,7 +135,6 @@
       letter-spacing:.06em;
     }
 
-    /* Kruh s ikonou vlevo nahoře */
     .brand-mark{
       width:58px;
       height:58px;
@@ -160,7 +150,6 @@
       font-size:1.8rem;
     }
 
-    /* Text vedle ikonky */
     .brand-title{
       display:flex;
       flex-direction:column;
@@ -170,7 +159,6 @@
     .brand-title strong{font-size:1.12rem}
     .brand-title span{font-size:.74rem;color:var(--muted)}
 
-    /* Menu vpravo nahoře */
     .nav-links{
       display:flex;
       align-items:center;
@@ -180,7 +168,6 @@
       letter-spacing:.04em;
     }
 
-    /* Jednotlivé odkazy menu */
     .nav-links a{
       color:var(--muted);
       transition:.25s ease;
@@ -192,7 +179,6 @@
       text-shadow:0 0 20px rgba(255,182,74,.35);
     }
 
-    /* Zlatá linka pod položkou při hoveru */
     .nav-links a::after{
       content:"";
       position:absolute;
@@ -206,7 +192,6 @@
 
     .nav-links a:hover::after{width:100%}
 
-    /* Hamburger tlačítko pro mobil */
     .mobile-toggle{
       display:none;
       border:1px solid rgba(244,199,111,.25);
@@ -218,8 +203,7 @@
     }
 
     /* ======================================================
-       HERO SEKCE = HLAVNÍ ÚVOD WEBU
-       Tady už je vložený tvůj background obrázek
+       HERO
     ====================================================== */
     .hero{
       position:relative;
@@ -231,18 +215,16 @@
         url("assets/Background Profile Web.png") center center / cover no-repeat;
     }
 
-    /* Dodatečný světelný efekt hero sekce */
     .hero::before{
       content:"";
       position:absolute;
       inset:24px 0 0;
       background:
-        radial-gradient(circle at 50% 22%, rgba(255,183,70,.30), transparent 20%),
-        linear-gradient(180deg, rgba(255,168,58,.06), transparent 35%);
+        radial-gradient(circle at 50% 22%, rgba(255,183,70,.22), transparent 20%),
+        linear-gradient(180deg, rgba(255,168,58,.04), transparent 35%);
       z-index:-2;
     }
 
-    /* Grid pro obsah hero */
     .hero-grid{
       display:grid;
       gap:32px;
@@ -252,7 +234,6 @@
       position:relative;
     }
 
-    /* Prostor pro dekorativní objekt nahoře */
     .solar-stage{
       width:min(100%, 1120px);
       min-height:430px;
@@ -262,7 +243,6 @@
       padding-top:26px;
     }
 
-    /* Hlavní kruh / eclipse */
     .eclipse{
       position:absolute;
       top:12px;
@@ -279,7 +259,6 @@
         inset -22px -18px 26px rgba(255,226,167,.06);
     }
 
-    /* Zářivý halo efekt kolem eclipse */
     .eclipse::before{
       content:"";
       position:absolute;
@@ -290,7 +269,6 @@
       z-index:-1;
     }
 
-    /* Jemné glow skvrny kolem */
     .solar-stage::before{
       content:"";
       position:absolute;
@@ -302,7 +280,6 @@
       filter:blur(8px);
     }
 
-    /* Pyramida - dekorativní trojúhelník */
     .pyramid{
       position:absolute;
       bottom:40px;
@@ -339,14 +316,12 @@
       filter:brightness(.82);
     }
 
-    /* Textový blok v hero */
     .hero-copy{
       margin-top:230px;
       width:min(100%, 900px);
       padding:0 8px;
     }
 
-    /* Malý horní text */
     .eyebrow{
       font-family:Cinzel, serif;
       text-transform:uppercase;
@@ -355,21 +330,22 @@
       font-size:.8rem;
     }
 
-    /* Hlavní velký nadpis */
-    h1{
-      margin:8px 0 8px;
-      font-family:Cinzel, serif;
-      font-size:clamp(3.4rem, 9vw, 6.8rem);
-      line-height:.95;
-      font-weight:800;
-      color:#f4d6a0;
-      text-shadow:
-        0 1px 0 #8c632f,
-        0 6px 30px rgba(255,170,56,.18),
-        0 10px 50px rgba(0,0,0,.55);
+    /* Místo textu URHEIM je teď watermark obrázek */
+    .hero-watermark{
+      width:min(760px, 92%);
+      margin:8px auto 8px;
+      filter:
+        drop-shadow(0 2px 0 rgba(140,99,47,.85))
+        drop-shadow(0 6px 30px rgba(255,170,56,.16))
+        drop-shadow(0 10px 50px rgba(0,0,0,.55));
     }
 
-    /* Zlatá linka pod názvem */
+    .hero-watermark img{
+      width:100%;
+      height:auto;
+      object-fit:contain;
+    }
+
     .headline-rule{
       width:min(420px, 82%);
       height:2px;
@@ -379,7 +355,6 @@
       box-shadow:0 0 18px rgba(255,174,49,.22);
     }
 
-    /* Podtitulek */
     .subtitle{
       margin:0;
       font-family:Cinzel, serif;
@@ -388,7 +363,6 @@
       letter-spacing:.12em;
     }
 
-    /* Delší text hero sekce */
     .hero-text{
       width:min(720px, 100%);
       margin:18px auto 0;
@@ -397,7 +371,6 @@
       line-height:1.75;
     }
 
-    /* Tlačítka v hero */
     .cta-row{
       display:flex;
       justify-content:center;
@@ -406,7 +379,6 @@
       margin-top:26px;
     }
 
-    /* Hlavní tlačítko */
     .btn{
       display:inline-flex;
       align-items:center;
@@ -429,7 +401,6 @@
       box-shadow: inset 0 1px 0 rgba(255,243,215,.55), 0 16px 36px rgba(0,0,0,.35), 0 0 26px rgba(255,178,60,.2);
     }
 
-    /* Sekundární tlačítko */
     .btn.secondary{
       color:var(--gold);
       background:linear-gradient(180deg, rgba(31,19,10,.8), rgba(14,9,5,.94));
@@ -466,7 +437,6 @@
       background:linear-gradient(90deg, var(--gold-soft), transparent);
     }
 
-    /* Obecný panel / box */
     .panel{
       position:relative;
       background: linear-gradient(180deg, rgba(24,15,9,.8), rgba(10,6,4,.9));
@@ -487,7 +457,7 @@
     }
 
     /* ======================================================
-       RELEASE SEKCE
+       RELEASE
     ====================================================== */
     .release-card{
       display:grid;
@@ -497,7 +467,6 @@
       padding:24px;
     }
 
-    /* Sdílený styl boxů s obrázkem */
     .media-cover,
     .about-image,
     .video-thumb{
@@ -513,7 +482,6 @@
       isolation:isolate;
     }
 
-    /* Cover alba */
     .media-cover{
       aspect-ratio:1/1;
       background-image:
@@ -550,7 +518,6 @@
       text-shadow:0 6px 18px rgba(0,0,0,.55);
     }
 
-    /* Pravá část release sekce */
     .release-meta h3{
       margin:0 0 10px;
       font-family:Cinzel, serif;
@@ -563,7 +530,6 @@
       line-height:1.7;
     }
 
-    /* Fake player */
     .audio-bar{
       display:flex;
       align-items:center;
@@ -619,7 +585,6 @@
       box-shadow:0 0 16px rgba(255,184,77,.18);
     }
 
-    /* Platform tlačítka */
     .platforms{
       display:flex;
       flex-wrap:wrap;
@@ -647,7 +612,7 @@
     }
 
     /* ======================================================
-       ABOUT SEKCE
+       ABOUT
     ====================================================== */
     .about-grid{
       display:grid;
@@ -698,7 +663,7 @@
     }
 
     /* ======================================================
-       VIDEO SEKCE
+       VIDEO
     ====================================================== */
     .video-grid{
       display:grid;
@@ -821,7 +786,6 @@
       letter-spacing:.06em;
     }
 
-    /* Informační poznámkový box */
     .note-box{
       margin-top:28px;
       padding:18px 20px;
@@ -889,6 +853,12 @@
       .solar-stage{min-height:300px}
       .eclipse{width:150px;height:150px;top:8px}
       .hero-copy{margin-top:160px}
+
+      /* Watermark bude menší na mobilu */
+      .hero-watermark{
+        width:min(96%, 520px);
+      }
+
       .subtitle{letter-spacing:.08em}
       .hero-text{font-size:.95rem}
       .btn{width:100%}
@@ -947,7 +917,12 @@
 
         <div class="hero-copy">
           <div class="eyebrow">Epic • Cinematic • Dark Ethnic • Electronic</div>
-          <h1>URHEIM</h1>
+
+          <!-- Místo textu URHEIM je zde obrázek watermarku -->
+          <div class="hero-watermark">
+            <img src="assets/Watermark 1536x1024.png" alt="URHEIM Watermark">
+          </div>
+
           <div class="headline-rule"></div>
           <p class="subtitle">Music of the Eternal</p>
           <p class="hero-text">
