@@ -1,40 +1,31 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <!-- Základní nastavení znakové sady a responzivity -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Název stránky v záložce -->
   <title>URHEIM</title>
 
-  <!-- Popis stránky pro SEO / vyhledávače -->
   <meta
     name="description"
-    content="Official website of URHEIM, URHEIM, Urheim, Adrian, Adrian Urheim, ADRIAN URHEIM, Čech, Český zpěvák, Skladatel, Hudebník, Czech, Czech artist."
+    content="Official website of URHEIM. URHEIM, Urheim, Adrian, Adrian Urheim, ADRIAN URHEIM, Czech artist."
   />
 
-  <!-- Lepší načítání připojení -->
   <link rel="dns-prefetch" href="//fonts.googleapis.com">
   <link rel="dns-prefetch" href="//fonts.gstatic.com">
   <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
 
-  <!-- Ikonka stránky / favicon ve více velikostech -->
   <link rel="icon" type="image/png" sizes="32x32" href="assets/Favicon.png">
   <link rel="icon" type="image/png" sizes="192x192" href="assets/Favicon.png">
   <link rel="icon" type="image/png" sizes="512x512" href="assets/Favicon.png">
   <link rel="shortcut icon" href="assets/Favicon.png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/Favicon.png">
 
-  <!-- Přednačtení Google fontů -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 
-  <!-- Font Cinzel = dekorativní / luxusní, Inter = běžný text -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- Ikony z Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
   <style>
@@ -49,6 +40,7 @@
       --line:rgba(244,199,111,.38);
       --text:#f7e0b4;
       --muted:#d2b586;
+      --muted-dark:#b89661;
       --shadow:0 0 0 1px rgba(244,199,111,.18), 0 18px 50px rgba(0,0,0,.45);
       --glow:0 0 20px rgba(255,174,49,.28), 0 0 50px rgba(255,174,49,.14);
       --radius:24px;
@@ -78,7 +70,6 @@
       -moz-osx-font-smoothing:grayscale;
     }
 
-    /* Jemné světelné částečky přes celé pozadí */
     body::before{
       content:"";
       position:fixed;
@@ -95,7 +86,6 @@
       mix-blend-mode:screen;
     }
 
-    /* Spodní background vrstva při velkém oddálení */
     body::after{
       content:"";
       position:fixed;
@@ -117,22 +107,18 @@
       margin-inline:auto;
     }
 
-    /* Původní blikající linky vypnuty */
     .frame-line::before,
     .frame-line::after{
       content:none !important;
       display:none !important;
     }
 
-    /* ======================================================
-       HEADER
-    ====================================================== */
     header{
       position:sticky;
       top:0;
       z-index:50;
       backdrop-filter: blur(10px);
-      background:rgba(0,0,0,.42);
+      background:rgba(0,0,0,.16);
       border-bottom:1px solid rgba(244,199,111,.12);
       box-shadow:
         inset 0 -1px 0 rgba(244,199,111,.22),
@@ -155,24 +141,37 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      gap:42px;
+      gap:18px;
       font-family:Cinzel, serif;
       font-size:1.28rem;
       letter-spacing:.05em;
       width:100%;
       grid-column:1 / -1;
+      background:rgba(0,0,0,.82);
+      border:1px solid rgba(244,199,111,.08);
+      border-radius:18px;
+      padding:14px 22px;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.02),
+        0 10px 24px rgba(0,0,0,.28);
     }
 
     .nav-links a{
       color:var(--muted);
-      transition:.2s ease;
+      transition:.18s ease;
       position:relative;
-      will-change:transform, color;
+      will-change:transform, color, text-shadow;
+      padding:4px 6px;
+      border-radius:8px;
     }
 
     .nav-links a:hover{
-      color:var(--gold);
-      text-shadow:0 0 20px rgba(255,182,74,.25);
+      color:#ffe4b3;
+      text-shadow:
+        0 0 10px rgba(255,196,102,.55),
+        0 0 22px rgba(255,174,49,.65),
+        0 0 34px rgba(255,174,49,.45);
+      transform:translateY(-1px);
     }
 
     .nav-links a::after{
@@ -183,7 +182,8 @@
       width:0;
       height:1px;
       background:var(--gold);
-      transition:width .2s ease;
+      transition:width .18s ease;
+      box-shadow:0 0 10px rgba(255,174,49,.65);
     }
 
     .nav-links a:hover::after{width:100%}
@@ -191,7 +191,7 @@
     .mobile-toggle{
       display:none;
       border:1px solid rgba(244,199,111,.25);
-      background:rgba(0,0,0,.45);
+      background:rgba(0,0,0,.82);
       color:var(--gold);
       width:46px;
       height:46px;
@@ -199,9 +199,6 @@
       justify-self:end;
     }
 
-    /* ======================================================
-       HERO
-    ====================================================== */
     .hero{
       position:relative;
       padding:34px 0 24px;
@@ -250,7 +247,7 @@
       font-family:Cinzel, serif;
       text-transform:uppercase;
       letter-spacing:.18em;
-      color:#564327;
+      color:#d5b27b;
       font-size:.78rem;
       text-shadow:none;
       opacity:.95;
@@ -378,9 +375,6 @@
       pointer-events:none;
     }
 
-    /* ======================================================
-       RELEASE
-    ====================================================== */
     .release-card{
       display:grid;
       grid-template-columns:280px 1fr;
@@ -524,9 +518,6 @@
       border-color:rgba(244,199,111,.32);
     }
 
-    /* ======================================================
-       ABOUT
-    ====================================================== */
     .about-grid{
       display:grid;
       grid-template-columns:1.02fr .98fr;
@@ -568,14 +559,11 @@
     }
 
     .about-copy p{
-      color:var(--muted);
+      color:var(--muted-dark);
       line-height:1.85;
       margin:0 0 24px;
     }
 
-    /* ======================================================
-       VIDEO
-    ====================================================== */
     .video-grid{
       display:grid;
       grid-template-columns:repeat(3, 1fr);
@@ -638,9 +626,6 @@
       display:none;
     }
 
-    /* ======================================================
-       CONNECT / SOCIÁLNÍ IKONY
-    ====================================================== */
     .socials{
       display:flex;
       justify-content:center;
@@ -670,9 +655,6 @@
       box-shadow:inset 0 0 12px rgba(255,184,77,.12), 0 12px 28px rgba(0,0,0,.32), 0 0 18px rgba(255,174,49,.12);
     }
 
-    /* ======================================================
-       FOOTER
-    ====================================================== */
     footer{
       padding:24px 0 56px;
       text-align:center;
@@ -712,7 +694,7 @@
         gap:18px;
         padding:20px;
         border-radius:22px;
-        background:rgba(0,0,0,.72);
+        background:rgba(0,0,0,.88);
         border:1px solid rgba(244,199,111,.12);
         box-shadow:var(--shadow);
         font-size:1.08rem;
@@ -872,7 +854,7 @@
               <h3>About URHEIM</h3>
               <div class="about-tags">Pop / Rock / Ethnic / Electronic / Dance</div>
               <p>
-                URHEIM creates music across multiple genres, with a strong love for pop at the core, while often exploring rock influences, EDM energy, rap elements, and stripped-back arrangements built around guitar or piano. Deeply inspired by Arabic, Egyptian, and other ethnic instruments, he blends these influences into a broader musical identity. URHEIM represents a multi-genre artistic vision where emotion, atmosphere, rhythm, and cultural texture come together in a distinctive and constantly evolving sound.
+                Creates music across multiple genres, with a strong love for pop at the core, while often exploring rock influences, EDM energy, rap elements, and stripped-back arrangements built around guitar or piano. Deeply inspired by Arabic, Egyptian, and other ethnic instruments, he blends these influences into a broader musical identity. URHEIM represents a multi-genre artistic vision where emotion, atmosphere, rhythm, and cultural texture come together in a distinctive and constantly evolving sound.
               </p>
               <a class="btn" href="#videos"><i class="fa-solid fa-book-open"></i> Read More</a>
             </div>
