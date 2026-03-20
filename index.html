@@ -54,19 +54,15 @@
         radial-gradient(circle, rgba(255,213,128,.8) 0 1px, transparent 1.4px),
         radial-gradient(circle, rgba(255,182,74,.35) 0 1px, transparent 1.2px),
         radial-gradient(circle, rgba(255,221,158,.25) 0 2px, transparent 2.8px);
-      background-size:160px 160px, 220px 220px, 320px 320px;
-      background-position:0 0, 40px 70px, 120px 30px;
+      background-size: 160px 160px, 220px 220px, 320px 320px;
+      background-position: 0 0, 40px 70px, 120px 30px;
       opacity:.22;
       mix-blend-mode:screen;
     }
 
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block}
-
-    .container{
-      width:min(var(--container), calc(100% - 32px));
-      margin-inline:auto;
-    }
+    .container{width:min(var(--container), calc(100% - 32px));margin-inline:auto}
 
     .frame-line{
       position:relative;
@@ -90,7 +86,7 @@
       position:sticky;
       top:0;
       z-index:50;
-      backdrop-filter:blur(10px);
+      backdrop-filter: blur(10px);
       background:linear-gradient(180deg, rgba(8,5,3,.92), rgba(8,5,3,.72));
       border-bottom:1px solid rgba(244,199,111,.16);
       box-shadow:0 8px 30px rgba(0,0,0,.2);
@@ -98,22 +94,51 @@
 
     .nav{
       min-height:86px;
-      display:grid;
-      grid-template-columns:1fr auto;
+      display:flex;
       align-items:center;
-      position:relative;
+      justify-content:space-between;
+      gap:24px;
     }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      font-family:Cinzel, serif;
+      letter-spacing:.06em;
+    }
+
+    .brand-mark{
+      width:58px;
+      height:58px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      border:2px solid rgba(244,199,111,.55);
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,184,77,.2), transparent 30%),
+        linear-gradient(180deg, rgba(29,18,10,.95), rgba(8,5,2,.95));
+      color:var(--gold);
+      box-shadow: inset 0 0 20px rgba(255,180,52,.1), 0 0 18px rgba(255,180,52,.12);
+      font-size:1.8rem;
+    }
+
+    .brand-title{
+      display:flex;
+      flex-direction:column;
+      line-height:1.1;
+    }
+
+    .brand-title strong{font-size:1.12rem}
+    .brand-title span{font-size:.74rem;color:var(--muted)}
 
     .nav-links{
       display:flex;
       align-items:center;
-      justify-content:center;
-      gap:44px;
+      gap:28px;
       font-family:Cinzel, serif;
-      font-size:1.22rem;
-      letter-spacing:.05em;
-      width:100%;
-      grid-column:1 / -1;
+      font-size:1rem;
+      letter-spacing:.04em;
     }
 
     .nav-links a{
@@ -138,9 +163,7 @@
       transition:width .25s ease;
     }
 
-    .nav-links a:hover::after{
-      width:100%;
-    }
+    .nav-links a:hover::after{width:100%}
 
     .mobile-toggle{
       display:none;
@@ -150,7 +173,6 @@
       width:46px;
       height:46px;
       border-radius:14px;
-      justify-self:end;
     }
 
     .hero{
@@ -196,8 +218,7 @@
       width:220px;
       height:220px;
       border-radius:50%;
-      background:
-        radial-gradient(circle at 44% 40%, #1d120c 0 35%, #090604 62%, #050302 100%);
+      background: radial-gradient(circle at 44% 40%, #1d120c 0 35%, #090604 62%, #050302 100%);
       box-shadow:
         0 0 0 10px rgba(255,187,78,.15),
         0 0 26px 8px rgba(255,171,57,.42),
@@ -210,8 +231,7 @@
       position:absolute;
       inset:-16px;
       border-radius:50%;
-      background:
-        radial-gradient(circle, rgba(255,205,119,.95) 59%, rgba(255,174,49,.55) 68%, rgba(255,174,49,.18) 79%, transparent 87%);
+      background: radial-gradient(circle, rgba(255,205,119,.95) 59%, rgba(255,174,49,.55) 68%, rgba(255,174,49,.18) 79%, transparent 87%);
       filter:blur(4px);
       z-index:-1;
     }
@@ -237,7 +257,7 @@
         linear-gradient(90deg, rgba(30,18,9,.95), rgba(83,51,20,.95));
       clip-path:polygon(50% 0, 0 100%, 100% 100%);
       border:1px solid rgba(244,199,111,.18);
-      box-shadow:var(--glow);
+      box-shadow: var(--glow);
       opacity:.95;
     }
 
@@ -253,7 +273,7 @@
     }
 
     .pyramid.left{left:30px; transform:scale(1.02)}
-    .pyramid.right{right:30px; width:315px; height:278px}
+    .pyramid.right{right:30px; width:315px;height:278px}
     .pyramid.small{
       left:210px;
       bottom:76px;
@@ -335,8 +355,7 @@
       color:#2a1503;
       font-weight:700;
       letter-spacing:.03em;
-      background:
-        linear-gradient(180deg, #f0cb76 0%, #dca441 52%, #9d631f 100%);
+      background: linear-gradient(180deg, #f0cb76 0%, #dca441 52%, #9d631f 100%);
       box-shadow:
         inset 0 1px 0 rgba(255,243,215,.55),
         0 12px 30px rgba(0,0,0,.28),
@@ -357,9 +376,7 @@
       background:linear-gradient(180deg, rgba(31,19,10,.8), rgba(14,9,5,.94));
     }
 
-    section{
-      padding:44px 0;
-    }
+    section{padding:44px 0;}
 
     .section-title{
       display:flex;
@@ -389,11 +406,10 @@
 
     .panel{
       position:relative;
-      background:
-        linear-gradient(180deg, rgba(24,15,9,.8), rgba(10,6,4,.9));
+      background: linear-gradient(180deg, rgba(24,15,9,.8), rgba(10,6,4,.9));
       border:1px solid rgba(244,199,111,.18);
       border-radius:var(--radius);
-      box-shadow:var(--shadow);
+      box-shadow: var(--shadow);
       overflow:hidden;
     }
 
@@ -498,9 +514,7 @@
       box-shadow:0 0 18px rgba(255,178,60,.12);
     }
 
-    .track{
-      flex:1;
-    }
+    .track{flex:1;}
 
     .track-title{
       display:flex;
@@ -588,9 +602,7 @@
       mix-blend-mode:screen;
     }
 
-    .about-copy{
-      padding:8px 4px 8px 0;
-    }
+    .about-copy{padding:8px 4px 8px 0;}
 
     .about-copy h3{
       margin:0 0 16px;
@@ -617,9 +629,7 @@
       gap:22px;
     }
 
-    .video-card{
-      overflow:hidden;
-    }
+    .video-card{overflow:hidden;}
 
     .video-thumb{
       aspect-ratio:16/9;
@@ -747,34 +757,19 @@
         right:16px;
         display:none;
         flex-direction:column;
-        align-items:center;
-        justify-content:center;
+        align-items:flex-start;
         gap:18px;
         padding:20px;
         border-radius:22px;
         background:rgba(10,6,4,.95);
         border:1px solid rgba(244,199,111,.15);
         box-shadow:var(--shadow);
-        font-size:1.1rem;
       }
 
-      .nav-links.open{
-        display:flex;
-      }
-
-      .mobile-toggle{
-        display:grid;
-        place-items:center;
-      }
-
-      .hero{
-        padding-top:44px;
-        min-height:auto;
-      }
-
-      .hero-copy{
-        margin-top:270px;
-      }
+      .nav-links.open{display:flex}
+      .mobile-toggle{display:grid;place-items:center}
+      .hero{padding-top:44px; min-height:auto}
+      .hero-copy{margin-top:270px}
 
       .release-card,
       .about-grid,
@@ -782,9 +777,7 @@
         grid-template-columns:1fr;
       }
 
-      .release-card{
-        padding:18px;
-      }
+      .release-card{padding:18px}
 
       .media-cover{
         max-width:360px;
@@ -792,99 +785,31 @@
         margin-inline:auto;
       }
 
-      .pyramid.left{
-        left:-10px;
-        width:220px;
-        height:190px;
-      }
-
-      .pyramid.right{
-        right:-10px;
-        width:240px;
-        height:210px;
-      }
-
-      .pyramid.small{
-        left:118px;
-        bottom:90px;
-        width:120px;
-        height:110px;
-      }
-
-      .about-image{
-        min-height:280px;
-      }
+      .pyramid.left{left:-10px;width:220px;height:190px}
+      .pyramid.right{right:-10px;width:240px;height:210px}
+      .pyramid.small{left:118px; bottom:90px;width:120px;height:110px}
+      .about-image{min-height:280px}
     }
 
     @media (max-width: 640px){
-      .container{
-        width:min(100% - 20px, var(--container));
-      }
-
-      .nav{
-        min-height:78px;
-      }
-
-      .hero{
-        padding-bottom:24px;
-      }
-
-      .solar-stage{
-        min-height:300px;
-      }
-
-      .eclipse{
-        width:150px;
-        height:150px;
-        top:8px;
-      }
-
-      .hero-copy{
-        margin-top:160px;
-      }
-
-      .subtitle{
-        letter-spacing:.08em;
-      }
-
-      .hero-text{
-        font-size:.95rem;
-      }
-
-      .btn{
-        width:100%;
-      }
-
-      .section-title{
-        font-size:1.5rem;
-      }
-
+      .container{width:min(100% - 20px, var(--container))}
+      .nav{min-height:78px}
+      .brand-mark{width:50px;height:50px;font-size:1.55rem}
+      .hero{padding-bottom:24px}
+      .solar-stage{min-height:300px}
+      .eclipse{width:150px;height:150px;top:8px}
+      .hero-copy{margin-top:160px}
+      .subtitle{letter-spacing:.08em}
+      .hero-text{font-size:.95rem}
+      .btn{width:100%}
+      .section-title{font-size:1.5rem}
       .release-meta h3,
-      .about-copy h3{
-        font-size:1.8rem;
-      }
-
-      .platforms{
-        display:grid;
-        grid-template-columns:1fr 1fr;
-      }
-
-      .platform{
-        justify-content:center;
-      }
-
-      .social{
-        width:48px;
-        height:48px;
-      }
-
-      .video-info h4{
-        font-size:1.15rem;
-      }
-
-      .media-cover::after{
-        font-size:1.35rem;
-      }
+      .about-copy h3{font-size:1.8rem}
+      .platforms{display:grid;grid-template-columns:1fr 1fr}
+      .platform{justify-content:center}
+      .social{width:48px;height:48px}
+      .video-info h4{font-size:1.15rem}
+      .media-cover::after{font-size:1.35rem}
     }
   </style>
 </head>
@@ -892,6 +817,14 @@
 <body>
   <header class="frame-line">
     <div class="container nav">
+      <a href="#top" class="brand" aria-label="URHEIM domů">
+        <div class="brand-mark">☥</div>
+        <div class="brand-title">
+          <strong>URHEIM</strong>
+          <span>Official Artist Website</span>
+        </div>
+      </a>
+
       <nav class="nav-links" id="navLinks">
         <a href="#bio">Bio</a>
         <a href="#music">Music</a>
@@ -921,7 +854,6 @@
           <h1>URHEIM</h1>
           <div class="headline-rule"></div>
           <p class="subtitle">Music of the Eternal</p>
-
           <p class="hero-text">
             Temná filmová atmosféra, egyptská symbolika, monumentální energie a zvuk, který má působit jako skutečný svět značky.
             Tahle verze je připravená jako silný základ pro GitHub Pages a dá se dál upravit přesně podle tvého vizuálu.
@@ -951,7 +883,6 @@
 
             <div class="audio-bar">
               <div class="play"><i class="fa-solid fa-play"></i></div>
-
               <div class="track">
                 <div class="track-title">
                   <span>Preview Track</span>
