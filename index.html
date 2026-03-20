@@ -1,16 +1,31 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
+  <!-- Základní nastavení znakové sady a responzivity -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Název stránky v záložce -->
   <title>URHEIM — Official Artist Website</title>
+
+  <!-- Popis stránky pro SEO / vyhledávače -->
   <meta name="description" content="Oficiální web URHEIM — cinematic / dark ethnic / electronic." />
+
+  <!-- Přednačtení Google fontů -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Font Cinzel = dekorativní / luxusní, Inter = běžný text -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Ikony z Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
   <style>
+    /* ======================================================
+       GLOBÁLNÍ CSS PROMĚNNÉ
+       Tady jsou hlavní barvy, stíny a základní nastavení
+    ====================================================== */
     :root{
       --bg:#090603;
       --bg-2:#140d07;
@@ -29,9 +44,13 @@
       --container:1180px;
     }
 
+    /* Reset a základní chování */
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
 
+    /* ======================================================
+       BODY = HLAVNÍ POZADÍ A ZÁKLAD STRÁNKY
+    ====================================================== */
     body{
       margin:0;
       color:var(--text);
@@ -45,6 +64,7 @@
       overflow-x:hidden;
     }
 
+    /* Jemné světelné částečky přes celé pozadí */
     body::before{
       content:"";
       position:fixed;
@@ -60,10 +80,20 @@
       mix-blend-mode:screen;
     }
 
+    /* Výchozí styl odkazů a obrázků */
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block}
-    .container{width:min(var(--container), calc(100% - 32px));margin-inline:auto}
 
+    /* Kontejner na centrování obsahu */
+    .container{
+      width:min(var(--container), calc(100% - 32px));
+      margin-inline:auto
+    }
+
+    /* ======================================================
+       OZDOBNÉ HORNÍ A DOLNÍ LINKY
+       Používá se např. na header a hero sekci
+    ====================================================== */
     .frame-line{
       position:relative;
     }
@@ -82,6 +112,9 @@
     .frame-line::before{top:0}
     .frame-line::after{bottom:0}
 
+    /* ======================================================
+       HEADER = HORNÍ LIŠTA WEBU
+    ====================================================== */
     header{
       position:sticky;
       top:0;
@@ -92,6 +125,7 @@
       box-shadow:0 8px 30px rgba(0,0,0,.2);
     }
 
+    /* Vnitřní rozložení horní lišty */
     .nav{
       min-height:86px;
       display:flex;
@@ -100,6 +134,7 @@
       gap:24px;
     }
 
+    /* Levá část headeru = logo + text */
     .brand{
       display:flex;
       align-items:center;
@@ -108,6 +143,7 @@
       letter-spacing:.06em;
     }
 
+    /* Kruh s ikonou vlevo nahoře */
     .brand-mark{
       width:58px;
       height:58px;
@@ -123,6 +159,7 @@
       font-size:1.8rem;
     }
 
+    /* Text vedle ikonky */
     .brand-title{
       display:flex;
       flex-direction:column;
@@ -132,6 +169,7 @@
     .brand-title strong{font-size:1.12rem}
     .brand-title span{font-size:.74rem;color:var(--muted)}
 
+    /* Menu vpravo nahoře */
     .nav-links{
       display:flex;
       align-items:center;
@@ -141,6 +179,7 @@
       letter-spacing:.04em;
     }
 
+    /* Jednotlivé odkazy menu */
     .nav-links a{
       color:var(--muted);
       transition:.25s ease;
@@ -152,6 +191,7 @@
       text-shadow:0 0 20px rgba(255,182,74,.35);
     }
 
+    /* Zlatá linka pod položkou při hoveru */
     .nav-links a::after{
       content:"";
       position:absolute;
@@ -165,6 +205,7 @@
 
     .nav-links a:hover::after{width:100%}
 
+    /* Hamburger tlačítko pro mobil */
     .mobile-toggle{
       display:none;
       border:1px solid rgba(244,199,111,.25);
@@ -175,6 +216,9 @@
       border-radius:14px;
     }
 
+    /* ======================================================
+       HERO SEKCE = HLAVNÍ ÚVOD WEBU
+    ====================================================== */
     .hero{
       position:relative;
       padding:64px 0 48px;
@@ -182,6 +226,7 @@
       isolation:isolate;
     }
 
+    /* Dodatečný světelný efekt hero sekce */
     .hero::before{
       content:"";
       position:absolute;
@@ -192,6 +237,7 @@
       z-index:-2;
     }
 
+    /* Grid pro obsah hero */
     .hero-grid{
       display:grid;
       gap:32px;
@@ -201,6 +247,7 @@
       position:relative;
     }
 
+    /* Prostor pro dekorativní objekt nahoře */
     .solar-stage{
       width:min(100%, 1120px);
       min-height:430px;
@@ -210,6 +257,7 @@
       padding-top:26px;
     }
 
+    /* Hlavní kruh / eclipse */
     .eclipse{
       position:absolute;
       top:12px;
@@ -226,6 +274,7 @@
         inset -22px -18px 26px rgba(255,226,167,.06);
     }
 
+    /* Zářivý halo efekt kolem eclipse */
     .eclipse::before{
       content:"";
       position:absolute;
@@ -236,6 +285,7 @@
       z-index:-1;
     }
 
+    /* Jemné glow skvrny kolem */
     .solar-stage::before{
       content:"";
       position:absolute;
@@ -247,6 +297,7 @@
       filter:blur(8px);
     }
 
+    /* Pyramida - dekorativní trojúhelník */
     .pyramid{
       position:absolute;
       bottom:40px;
@@ -283,12 +334,14 @@
       filter:brightness(.82);
     }
 
+    /* Textový blok v hero */
     .hero-copy{
       margin-top:230px;
       width:min(100%, 900px);
       padding:0 8px;
     }
 
+    /* Malý horní text */
     .eyebrow{
       font-family:Cinzel, serif;
       text-transform:uppercase;
@@ -297,6 +350,7 @@
       font-size:.8rem;
     }
 
+    /* Hlavní velký nadpis */
     h1{
       margin:8px 0 8px;
       font-family:Cinzel, serif;
@@ -310,6 +364,7 @@
         0 10px 50px rgba(0,0,0,.55);
     }
 
+    /* Zlatá linka pod názvem */
     .headline-rule{
       width:min(420px, 82%);
       height:2px;
@@ -319,6 +374,7 @@
       box-shadow:0 0 18px rgba(255,174,49,.22);
     }
 
+    /* Podtitulek */
     .subtitle{
       margin:0;
       font-family:Cinzel, serif;
@@ -327,6 +383,7 @@
       letter-spacing:.12em;
     }
 
+    /* Delší text hero sekce */
     .hero-text{
       width:min(720px, 100%);
       margin:18px auto 0;
@@ -335,6 +392,7 @@
       line-height:1.75;
     }
 
+    /* Tlačítka v hero */
     .cta-row{
       display:flex;
       justify-content:center;
@@ -343,6 +401,7 @@
       margin-top:26px;
     }
 
+    /* Hlavní tlačítko */
     .btn{
       display:inline-flex;
       align-items:center;
@@ -356,26 +415,24 @@
       font-weight:700;
       letter-spacing:.03em;
       background: linear-gradient(180deg, #f0cb76 0%, #dca441 52%, #9d631f 100%);
-      box-shadow:
-        inset 0 1px 0 rgba(255,243,215,.55),
-        0 12px 30px rgba(0,0,0,.28),
-        0 0 18px rgba(255,178,60,.16);
+      box-shadow: inset 0 1px 0 rgba(255,243,215,.55), 0 12px 30px rgba(0,0,0,.28), 0 0 18px rgba(255,178,60,.16);
       transition:transform .25s ease, box-shadow .25s ease;
     }
 
     .btn:hover{
       transform:translateY(-2px);
-      box-shadow:
-        inset 0 1px 0 rgba(255,243,215,.55),
-        0 16px 36px rgba(0,0,0,.35),
-        0 0 26px rgba(255,178,60,.2);
+      box-shadow: inset 0 1px 0 rgba(255,243,215,.55), 0 16px 36px rgba(0,0,0,.35), 0 0 26px rgba(255,178,60,.2);
     }
 
+    /* Sekundární tlačítko */
     .btn.secondary{
       color:var(--gold);
       background:linear-gradient(180deg, rgba(31,19,10,.8), rgba(14,9,5,.94));
     }
 
+    /* ======================================================
+       SPOLEČNÉ STYLY PRO SEKCE
+    ====================================================== */
     section{padding:44px 0;}
 
     .section-title{
@@ -404,6 +461,7 @@
       background:linear-gradient(90deg, var(--gold-soft), transparent);
     }
 
+    /* Obecný panel / box */
     .panel{
       position:relative;
       background: linear-gradient(180deg, rgba(24,15,9,.8), rgba(10,6,4,.9));
@@ -423,6 +481,9 @@
       pointer-events:none;
     }
 
+    /* ======================================================
+       RELEASE SEKCE
+    ====================================================== */
     .release-card{
       display:grid;
       grid-template-columns:280px 1fr;
@@ -431,6 +492,7 @@
       padding:24px;
     }
 
+    /* Sdílený styl boxů s obrázkem */
     .media-cover,
     .about-image,
     .video-thumb{
@@ -446,6 +508,7 @@
       isolation:isolate;
     }
 
+    /* Cover alba */
     .media-cover{
       aspect-ratio:1/1;
       background-image:
@@ -482,6 +545,7 @@
       text-shadow:0 6px 18px rgba(0,0,0,.55);
     }
 
+    /* Pravá část release sekce */
     .release-meta h3{
       margin:0 0 10px;
       font-family:Cinzel, serif;
@@ -494,6 +558,7 @@
       line-height:1.7;
     }
 
+    /* Fake player */
     .audio-bar{
       display:flex;
       align-items:center;
@@ -549,6 +614,7 @@
       box-shadow:0 0 16px rgba(255,184,77,.18);
     }
 
+    /* Platform tlačítka */
     .platforms{
       display:flex;
       flex-wrap:wrap;
@@ -575,6 +641,9 @@
       border-color:rgba(244,199,111,.32);
     }
 
+    /* ======================================================
+       ABOUT SEKCE
+    ====================================================== */
     .about-grid{
       display:grid;
       grid-template-columns:1.02fr .98fr;
@@ -623,6 +692,9 @@
       margin:0 0 24px;
     }
 
+    /* ======================================================
+       VIDEO SEKCE
+    ====================================================== */
     .video-grid{
       display:grid;
       grid-template-columns:repeat(3, 1fr);
@@ -691,6 +763,9 @@
       font-size:.97rem;
     }
 
+    /* ======================================================
+       CONNECT / SOCIÁLNÍ IKONY
+    ====================================================== */
     .socials{
       display:flex;
       justify-content:center;
@@ -720,6 +795,9 @@
       box-shadow:inset 0 0 12px rgba(255,184,77,.12), 0 12px 28px rgba(0,0,0,.32), 0 0 18px rgba(255,174,49,.12);
     }
 
+    /* ======================================================
+       FOOTER
+    ====================================================== */
     footer{
       padding:24px 0 56px;
       text-align:center;
@@ -738,6 +816,7 @@
       letter-spacing:.06em;
     }
 
+    /* Informační poznámkový box */
     .note-box{
       margin-top:28px;
       padding:18px 20px;
@@ -749,6 +828,9 @@
       background:rgba(13,8,5,.58);
     }
 
+    /* ======================================================
+       TABLET / MENŠÍ DISPLEJE
+    ====================================================== */
     @media (max-width: 980px){
       .nav-links{
         position:absolute;
@@ -791,6 +873,9 @@
       .about-image{min-height:280px}
     }
 
+    /* ======================================================
+       MOBIL
+    ====================================================== */
     @media (max-width: 640px){
       .container{width:min(100% - 20px, var(--container))}
       .nav{min-height:78px}
@@ -815,6 +900,9 @@
 </head>
 
 <body>
+  <!-- ====================================================
+       HEADER = horní menu + logo
+  ===================================================== -->
   <header class="frame-line">
     <div class="container nav">
       <a href="#top" class="brand" aria-label="URHEIM domů">
@@ -840,6 +928,9 @@
   </header>
 
   <main id="top">
+    <!-- ==================================================
+         HERO SEKCE = úvodní vršek stránky
+    =================================================== -->
     <section class="hero frame-line">
       <div class="container hero-grid">
         <div class="solar-stage" aria-hidden="true">
@@ -867,6 +958,9 @@
       </div>
     </section>
 
+    <!-- ==================================================
+         MUSIC / LATEST RELEASE
+    =================================================== -->
     <section id="music">
       <div class="container">
         <h2 class="section-title">Latest Release</h2>
@@ -913,6 +1007,9 @@
       </div>
     </section>
 
+    <!-- ==================================================
+         BIO / ABOUT
+    =================================================== -->
     <section id="bio">
       <div class="container">
         <div class="panel" style="padding:28px;">
@@ -934,6 +1031,9 @@
       </div>
     </section>
 
+    <!-- ==================================================
+         VIDEOS
+    =================================================== -->
     <section id="videos">
       <div class="container">
         <h2 class="section-title">Videos</h2>
@@ -972,6 +1072,9 @@
       </div>
     </section>
 
+    <!-- ==================================================
+         CONTACT / CONNECT
+    =================================================== -->
     <section id="contact">
       <div class="container">
         <div class="panel" style="padding:30px 24px;">
@@ -1000,6 +1103,9 @@
     </section>
   </main>
 
+  <!-- ====================================================
+       FOOTER
+  ===================================================== -->
   <footer>
     <div class="container">
       <div class="footer-line"></div>
@@ -1008,6 +1114,7 @@
   </footer>
 
   <script>
+    /* Mobilní menu - otevření / zavření */
     const toggle = document.getElementById('mobileToggle');
     const navLinks = document.getElementById('navLinks');
 
@@ -1016,11 +1123,13 @@
         navLinks.classList.toggle('open');
       });
 
+      /* Po kliknutí na odkaz v mobilu se menu zase zavře */
       navLinks.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => navLinks.classList.remove('open'));
       });
     }
 
+    /* Automatické doplnění aktuálního roku do footeru */
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
