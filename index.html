@@ -89,9 +89,9 @@
 
     .nav{
       min-height:86px;
-      display:flex;
+      display:grid;
+      grid-template-columns:auto 1fr auto;
       align-items:center;
-      justify-content:space-between;
       gap:24px;
     }
 
@@ -101,6 +101,7 @@
       gap:16px;
       font-family:Cinzel, serif;
       letter-spacing:.06em;
+      justify-self:start;
     }
 
     .brand-mark{
@@ -117,19 +118,23 @@
 
     .brand-title{
       display:flex;
-      flex-direction:column;
+      align-items:center;
       line-height:1.1;
     }
-    .brand-title strong{font-size:1.12rem}
-    .brand-title span{font-size:.74rem;color:var(--muted)}
+    .brand-title strong{
+      font-size:1.18rem;
+    }
 
     .nav-links{
       display:flex;
       align-items:center;
-      gap:28px;
+      justify-content:center;
+      gap:36px;
       font-family:Cinzel, serif;
-      font-size:1rem;
-      letter-spacing:.04em;
+      font-size:1.12rem;
+      letter-spacing:.05em;
+      width:100%;
+      justify-self:center;
     }
 
     .nav-links a{
@@ -157,6 +162,7 @@
       background:rgba(14,9,6,.8);
       color:var(--gold);
       width:46px;height:46px;border-radius:14px;
+      justify-self:end;
     }
 
     .hero{
@@ -696,6 +702,12 @@
     }
 
     @media (max-width: 980px){
+      .nav{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+      }
+
       .nav-links{
         position:absolute;
         top:86px;
@@ -703,12 +715,14 @@
         display:none;
         flex-direction:column;
         align-items:flex-start;
+        justify-content:flex-start;
         gap:18px;
         padding:20px;
         border-radius:22px;
         background:rgba(10,6,4,.95);
         border:1px solid rgba(244,199,111,.15);
         box-shadow:var(--shadow);
+        font-size:1.08rem;
       }
       .nav-links.open{display:flex}
       .mobile-toggle{display:grid;place-items:center}
@@ -755,7 +769,6 @@
         <div class="brand-mark">☥</div>
         <div class="brand-title">
           <strong>URHEIM</strong>
-          <span>Official Artist Website</span>
         </div>
       </a>
 
