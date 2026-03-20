@@ -23,9 +23,7 @@
       --muted:#d2b586;
       --shadow:0 0 0 1px rgba(244,199,111,.18), 0 18px 50px rgba(0,0,0,.45);
       --glow:0 0 20px rgba(255,174,49,.28), 0 0 50px rgba(255,174,49,.14);
-      --radius:24px;
-      --radius-sm:16px;
-      --container:1180px;
+      --container:1120px;
     }
 
     *{box-sizing:border-box}
@@ -52,567 +50,490 @@
         radial-gradient(circle, rgba(255,213,128,.8) 0 1px, transparent 1.4px),
         radial-gradient(circle, rgba(255,182,74,.35) 0 1px, transparent 1.2px),
         radial-gradient(circle, rgba(255,221,158,.25) 0 2px, transparent 2.8px);
-      background-size: 160px 160px, 220px 220px, 320px 320px;
-      background-position: 0 0, 40px 70px, 120px 30px;
+      background-size:160px 160px, 220px 220px, 320px 320px;
+      background-position:0 0, 40px 70px, 120px 30px;
       opacity:.22;
       mix-blend-mode:screen;
     }
 
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block}
-    .container{width:min(var(--container), calc(100% - 32px));margin-inline:auto}
+    .container{width:min(var(--container), calc(100% - 40px));margin-inline:auto}
 
-    .frame-line{
+    .gold-line{
       position:relative;
     }
-    .frame-line::before,
-    .frame-line::after{
+    .gold-line::before,
+    .gold-line::after{
       content:"";
       position:absolute;
-      left:0; right:0;
+      left:0;right:0;
       height:1px;
-      background:linear-gradient(90deg, transparent 0, var(--line) 12%, var(--gold-soft) 50%, var(--line) 88%, transparent 100%);
-      opacity:.9;
+      background:linear-gradient(90deg, transparent 0, rgba(244,199,111,.45) 12%, rgba(244,199,111,.9) 50%, rgba(244,199,111,.45) 88%, transparent 100%);
+      opacity:.85;
     }
-    .frame-line::before{top:0}
-    .frame-line::after{bottom:0}
+    .gold-line::before{top:0}
+    .gold-line::after{bottom:0}
 
     header{
       position:sticky;
       top:0;
       z-index:50;
-      backdrop-filter: blur(10px);
+      backdrop-filter:blur(10px);
       background:linear-gradient(180deg, rgba(8,5,3,.92), rgba(8,5,3,.72));
-      border-bottom:1px solid rgba(244,199,111,.16);
-      box-shadow:0 8px 30px rgba(0,0,0,.2);
+      border-bottom:1px solid rgba(244,199,111,.12);
     }
 
     .nav{
-      min-height:86px;
-      display:grid;
-      grid-template-columns:auto 1fr auto;
+      min-height:78px;
+      display:flex;
       align-items:center;
-      gap:24px;
+      gap:26px;
     }
 
     .brand{
       display:flex;
       align-items:center;
-      gap:16px;
+      gap:14px;
+      flex:0 0 auto;
       font-family:Cinzel, serif;
-      letter-spacing:.06em;
-      justify-self:start;
+      letter-spacing:.05em;
     }
 
     .brand-mark{
-      width:58px;height:58px;border-radius:50%;
+      width:54px;height:54px;border-radius:50%;
       display:grid;place-items:center;
       border:2px solid rgba(244,199,111,.55);
       background:
-        radial-gradient(circle at 30% 30%, rgba(255,184,77,.2), transparent 30%),
+        radial-gradient(circle at 30% 30%, rgba(255,184,77,.18), transparent 30%),
         linear-gradient(180deg, rgba(29,18,10,.95), rgba(8,5,2,.95));
       color:var(--gold);
-      box-shadow: inset 0 0 20px rgba(255,180,52,.1), 0 0 18px rgba(255,180,52,.12);
-      font-size:1.8rem;
+      box-shadow:inset 0 0 20px rgba(255,180,52,.08), 0 0 18px rgba(255,180,52,.10);
+      font-size:1.7rem;
     }
 
-    .brand-title{
-      display:flex;
-      align-items:center;
-      line-height:1.1;
-    }
-    .brand-title strong{
-      font-size:1.18rem;
+    .brand strong{
+      font-size:1.08rem;
+      line-height:1;
     }
 
     .nav-links{
       display:flex;
       align-items:center;
-      justify-content:center;
-      gap:36px;
+      gap:34px;
       font-family:Cinzel, serif;
-      font-size:1.12rem;
+      font-size:1.02rem;
       letter-spacing:.05em;
-      width:100%;
-      justify-self:center;
+      margin-left:18px;
     }
 
     .nav-links a{
-      color:var(--muted);
-      transition:.25s ease;
+      color:#e1bf85;
       position:relative;
+      transition:.2s ease;
     }
     .nav-links a:hover{
-      color:var(--gold);
-      text-shadow:0 0 20px rgba(255,182,74,.35);
+      color:#ffe0a6;
+      text-shadow:0 0 18px rgba(255,183,70,.35);
     }
-    .nav-links a::after{
-      content:"";
-      position:absolute;
-      left:0; bottom:-8px;
-      width:0; height:1px;
-      background:var(--gold);
-      transition:width .25s ease;
-    }
-    .nav-links a:hover::after{width:100%}
 
     .mobile-toggle{
+      margin-left:auto;
       display:none;
-      border:1px solid rgba(244,199,111,.25);
+      border:1px solid rgba(244,199,111,.22);
       background:rgba(14,9,6,.8);
       color:var(--gold);
       width:46px;height:46px;border-radius:14px;
-      justify-self:end;
     }
 
     .hero{
       position:relative;
-      padding:64px 0 48px;
-      min-height:860px;
-      isolation:isolate;
-    }
-
-    .hero::before{
-      content:"";
-      position:absolute;
-      inset:24px 0 0;
-      background:
-        radial-gradient(circle at 50% 22%, rgba(255,183,70,.30), transparent 20%),
-        linear-gradient(180deg, rgba(255,168,58,.06), transparent 35%);
-      z-index:-2;
-    }
-
-    .hero-grid{
-      display:grid;
-      gap:32px;
-      align-items:center;
-      justify-items:center;
+      padding:28px 0 34px;
+      min-height:760px;
       text-align:center;
-      position:relative;
     }
 
-    .solar-stage{
-      width:min(100%, 1120px);
-      min-height:430px;
+    .hero-stage{
       position:relative;
-      display:grid;
-      place-items:center;
-      padding-top:26px;
+      min-height:420px;
+      width:100%;
+      margin:0 auto;
     }
 
     .eclipse{
       position:absolute;
-      top:12px;
+      top:18px;
       left:50%;
       transform:translateX(-50%);
-      width:220px;height:220px;border-radius:50%;
-      background:
-        radial-gradient(circle at 44% 40%, #1d120c 0 35%, #090604 62%, #050302 100%);
+      width:185px;height:185px;border-radius:50%;
+      background:radial-gradient(circle at 44% 40%, #1d120c 0 35%, #090604 62%, #050302 100%);
       box-shadow:
-        0 0 0 10px rgba(255,187,78,.15),
-        0 0 26px 8px rgba(255,171,57,.42),
-        0 0 90px 12px rgba(255,155,42,.32),
-        inset -22px -18px 26px rgba(255,226,167,.06);
+        0 0 0 9px rgba(255,187,78,.14),
+        0 0 22px 8px rgba(255,171,57,.40),
+        0 0 70px 10px rgba(255,155,42,.26),
+        inset -18px -16px 22px rgba(255,226,167,.05);
     }
-
     .eclipse::before{
       content:"";
-      position:absolute; inset:-16px;
+      position:absolute; inset:-13px;
       border-radius:50%;
-      background:
-        radial-gradient(circle, rgba(255,205,119,.95) 59%, rgba(255,174,49,.55) 68%, rgba(255,174,49,.18) 79%, transparent 87%);
-      filter:blur(4px);
+      background:radial-gradient(circle, rgba(255,205,119,.95) 59%, rgba(255,174,49,.55) 69%, rgba(255,174,49,.16) 80%, transparent 88%);
+      filter:blur(3px);
       z-index:-1;
-    }
-
-    .solar-stage::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(circle at 50% 24%, rgba(255,165,52,.18), transparent 18%),
-        radial-gradient(circle at 18% 34%, rgba(255,185,100,.11), transparent 19%),
-        radial-gradient(circle at 84% 38%, rgba(255,185,100,.12), transparent 18%);
-      filter:blur(8px);
     }
 
     .pyramid{
       position:absolute;
-      bottom:40px;
-      width:290px;height:255px;
+      bottom:32px;
       background:
-        linear-gradient(145deg, rgba(255,201,110,.26), rgba(85,49,16,.1) 34%, rgba(8,5,2,.15) 55%),
+        linear-gradient(145deg, rgba(255,201,110,.22), rgba(85,49,16,.08) 34%, rgba(8,5,2,.14) 55%),
         linear-gradient(90deg, rgba(30,18,9,.95), rgba(83,51,20,.95));
       clip-path:polygon(50% 0, 0 100%, 100% 100%);
-      border:1px solid rgba(244,199,111,.18);
-      box-shadow: var(--glow);
-      opacity:.95;
+      border:1px solid rgba(244,199,111,.14);
+      box-shadow:var(--glow);
+      opacity:.9;
     }
     .pyramid::after{
       content:"";
       position:absolute; inset:0;
       background:
-        repeating-linear-gradient(180deg, rgba(255,218,158,.08) 0 2px, rgba(0,0,0,0) 2px 12px),
-        linear-gradient(90deg, rgba(255,223,164,.16), transparent 46%, rgba(0,0,0,.18) 48%, rgba(0,0,0,.22) 100%);
+        repeating-linear-gradient(180deg, rgba(255,218,158,.06) 0 2px, rgba(0,0,0,0) 2px 12px),
+        linear-gradient(90deg, rgba(255,223,164,.12), transparent 46%, rgba(0,0,0,.18) 48%, rgba(0,0,0,.22) 100%);
       mix-blend-mode:screen;
-      opacity:.85;
+      opacity:.8;
     }
-    .pyramid.left{left:30px; transform:scale(1.02)}
-    .pyramid.right{right:30px; width:315px;height:278px}
-    .pyramid.small{
-      left:210px;
-      bottom:76px;
-      width:180px;height:155px;
-      opacity:.74;
-      filter:brightness(.82);
-    }
+    .pyramid.left{left:60px;width:230px;height:205px}
+    .pyramid.right{right:62px;width:250px;height:222px}
+    .pyramid.small{left:220px;bottom:62px;width:135px;height:118px;opacity:.65}
 
     .hero-copy{
-      margin-top:230px;
-      width:min(100%, 900px);
-      padding:0 8px;
+      margin-top:205px;
+      width:min(820px, 100%);
+      margin-inline:auto;
     }
 
-    .eyebrow{
+    .hero-copy h1{
+      margin:0;
       font-family:Cinzel, serif;
-      text-transform:uppercase;
-      letter-spacing:.18em;
-      color:var(--muted);
-      font-size:.8rem;
-    }
-
-    h1{
-      margin:8px 0 8px;
-      font-family:Cinzel, serif;
-      font-size:clamp(3.4rem, 9vw, 6.8rem);
-      line-height:.95;
+      font-size:clamp(3.8rem, 8vw, 6.4rem);
+      line-height:.92;
       font-weight:800;
       color:#f4d6a0;
       text-shadow:
         0 1px 0 #8c632f,
-        0 6px 30px rgba(255,170,56,.18),
+        0 6px 26px rgba(255,170,56,.14),
         0 10px 50px rgba(0,0,0,.55);
     }
 
-    .headline-rule{
-      width:min(420px, 82%);
+    .hero-rule{
+      width:min(365px, 78%);
       height:2px;
-      margin:16px auto 18px;
-      background:linear-gradient(90deg, transparent, rgba(244,199,111,.3), rgba(244,199,111,.95), rgba(244,199,111,.3), transparent);
+      margin:10px auto 14px;
+      background:linear-gradient(90deg, transparent, rgba(244,199,111,.3), rgba(244,199,111,.92), rgba(244,199,111,.3), transparent);
       border-radius:999px;
-      box-shadow:0 0 18px rgba(255,174,49,.22);
+      box-shadow:0 0 16px rgba(255,174,49,.18);
     }
 
     .subtitle{
       margin:0;
       font-family:Cinzel, serif;
-      font-size:clamp(1.05rem, 2.5vw, 2rem);
+      font-size:clamp(1rem, 2vw, 1.6rem);
       color:#f0d4a0;
-      letter-spacing:.12em;
+      letter-spacing:.1em;
     }
 
-    .hero-text{
-      width:min(720px, 100%);
-      margin:18px auto 0;
-      color:var(--muted);
-      font-size:1rem;
-      line-height:1.75;
+    .hero-button-wrap{
+      margin-top:18px;
     }
 
-    .cta-row{
-      display:flex;
-      justify-content:center;
-      gap:16px;
-      flex-wrap:wrap;
-      margin-top:26px;
-    }
-
-    .btn{
+    .btn-gold{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      gap:10px;
-      min-height:54px;
-      padding:0 24px;
-      border-radius:14px;
-      border:1px solid rgba(244,199,111,.32);
-      color:#2a1503;
+      min-height:52px;
+      padding:0 34px;
+      border:1px solid rgba(118,68,16,.85);
+      color:#5b3408;
+      font-family:Cinzel, serif;
       font-weight:700;
-      letter-spacing:.03em;
-      background:
-        linear-gradient(180deg, #f0cb76 0%, #dca441 52%, #9d631f 100%);
-      box-shadow: inset 0 1px 0 rgba(255,243,215,.55), 0 12px 30px rgba(0,0,0,.28), 0 0 18px rgba(255,178,60,.16);
-      transition:transform .25s ease, box-shadow .25s ease;
+      font-size:1.05rem;
+      letter-spacing:.04em;
+      background:linear-gradient(180deg, #f0cb76 0%, #dca441 52%, #9d631f 100%);
+      box-shadow:
+        inset 0 1px 0 rgba(255,243,215,.5),
+        0 8px 18px rgba(0,0,0,.22);
     }
-    .btn:hover{
-      transform:translateY(-2px);
-      box-shadow: inset 0 1px 0 rgba(255,243,215,.55), 0 16px 36px rgba(0,0,0,.35), 0 0 26px rgba(255,178,60,.2);
-    }
-
-    .btn.secondary{
-      color:var(--gold);
-      background:linear-gradient(180deg, rgba(31,19,10,.8), rgba(14,9,5,.94));
-    }
+    .btn-gold:hover{filter:brightness(1.05)}
 
     section{
-      padding:44px 0;
+      padding:24px 0;
     }
 
-    .section-title{
+    .section-heading{
       display:flex;
       align-items:center;
       justify-content:center;
       gap:16px;
-      margin:0 0 26px;
+      margin:0 0 16px;
       font-family:Cinzel, serif;
-      font-weight:700;
-      font-size:clamp(1.5rem, 3vw, 2.5rem);
-      letter-spacing:.05em;
-      text-align:center;
+      font-size:clamp(1.6rem, 3vw, 2.4rem);
+      letter-spacing:.04em;
     }
-    .section-title::before,
-    .section-title::after{
+    .section-heading::before,
+    .section-heading::after{
       content:"";
-      width:min(16vw, 150px);
+      width:min(110px, 15vw);
       height:1px;
-      background:linear-gradient(90deg, transparent, var(--gold-soft));
-      opacity:.7;
+      background:linear-gradient(90deg, transparent, rgba(244,199,111,.7));
     }
-    .section-title::after{
-      background:linear-gradient(90deg, var(--gold-soft), transparent);
-    }
-
-    .panel{
-      position:relative;
-      background:
-        linear-gradient(180deg, rgba(24,15,9,.8), rgba(10,6,4,.9));
-      border:1px solid rgba(244,199,111,.18);
-      border-radius:var(--radius);
-      box-shadow: var(--shadow);
-      overflow:hidden;
+    .section-heading::after{
+      background:linear-gradient(90deg, rgba(244,199,111,.7), transparent);
     }
 
-    .panel::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(circle at 15% 20%, rgba(255,174,49,.08), transparent 24%),
-        radial-gradient(circle at 85% 80%, rgba(255,174,49,.05), transparent 20%);
-      pointer-events:none;
-    }
-
-    .release-card{
+    .release-wrap{
       display:grid;
-      grid-template-columns:280px 1fr;
-      gap:28px;
-      align-items:center;
-      padding:24px;
+      grid-template-columns:230px 1fr;
+      gap:18px;
+      align-items:start;
     }
 
-    .media-cover,
+    .cover-box,
     .about-image,
     .video-thumb{
       position:relative;
-      border-radius:20px;
-      overflow:hidden;
-      border:1px solid rgba(244,199,111,.2);
+      border:1px solid rgba(244,199,111,.22);
       background:
-        linear-gradient(180deg, rgba(255,174,49,.08), rgba(10,6,3,.75)),
-        radial-gradient(circle at 50% 20%, rgba(255,193,92,.24), transparent 30%),
+        linear-gradient(180deg, rgba(255,174,49,.07), rgba(10,6,3,.62)),
         linear-gradient(135deg, #180f09 0%, #3a220c 35%, #0d0805 100%);
-      box-shadow: inset 0 0 0 1px rgba(255,211,139,.06), 0 12px 28px rgba(0,0,0,.28);
-      isolation:isolate;
+      box-shadow: inset 0 0 0 1px rgba(255,211,139,.05), 0 10px 24px rgba(0,0,0,.18);
+      overflow:hidden;
     }
 
-    .media-cover{
+    .cover-box{
       aspect-ratio:1/1;
       background-image:
-        linear-gradient(180deg, rgba(255,174,49,.08), rgba(10,6,3,.75)),
-        linear-gradient(135deg, rgba(0,0,0,.12), rgba(0,0,0,.6)),
+        linear-gradient(180deg, rgba(255,174,49,.07), rgba(10,6,3,.62)),
+        linear-gradient(135deg, rgba(0,0,0,.08), rgba(0,0,0,.5)),
         url('assets/release-cover.jpg');
       background-size:cover;
       background-position:center;
     }
-
-    .media-cover::before{
+    .cover-box::before{
       content:"";
-      position:absolute;
-      inset:0;
+      position:absolute; inset:0;
       background:
-        radial-gradient(circle at 50% 28%, rgba(255,221,155,.8), transparent 12%),
-        radial-gradient(circle at 50% 28%, rgba(255,174,49,.42), transparent 22%),
-        linear-gradient(180deg, transparent 0, rgba(0,0,0,.24) 75%, rgba(0,0,0,.55) 100%);
+        radial-gradient(circle at 50% 28%, rgba(255,221,155,.75), transparent 12%),
+        radial-gradient(circle at 50% 28%, rgba(255,174,49,.34), transparent 22%),
+        linear-gradient(180deg, transparent 0, rgba(0,0,0,.22) 76%, rgba(0,0,0,.48) 100%);
     }
-
-    .media-cover::after{
+    .cover-box::after{
       content:"DIVINE\A AWAKENING";
       white-space:pre;
       position:absolute;
-      left:20px; right:20px; bottom:18px;
+      left:12px;right:12px;bottom:12px;
       text-align:center;
       font-family:Cinzel, serif;
+      font-size:1rem;
       font-weight:700;
-      font-size:1.7rem;
       line-height:1.1;
       color:#f4d6a0;
-      text-shadow:0 6px 18px rgba(0,0,0,.55);
+      text-shadow:0 4px 14px rgba(0,0,0,.55);
     }
 
-    .release-meta h3{
-      margin:0 0 10px;
-      font-family:Cinzel, serif;
-      font-size:2rem;
-    }
-    .release-meta p{
-      margin:0 0 18px;
-      color:var(--muted);
-      line-height:1.7;
+    .release-panel{
+      min-height:166px;
+      border:1px solid rgba(244,199,111,.22);
+      background:
+        linear-gradient(180deg, rgba(24,15,9,.64), rgba(10,6,4,.76));
+      box-shadow:0 0 0 1px rgba(244,199,111,.08), 0 12px 34px rgba(0,0,0,.18);
+      padding:18px 18px 16px;
     }
 
-    .audio-bar{
+    .track-row{
       display:flex;
       align-items:center;
-      gap:16px;
-      margin:18px 0;
-    }
-    .play{
-      width:54px;height:54px;border-radius:50%;
-      display:grid;place-items:center;
-      flex:0 0 auto;
-      border:1px solid rgba(244,199,111,.28);
-      background:linear-gradient(180deg, rgba(255,203,112,.15), rgba(10,6,3,.85));
-      color:var(--gold);
-      box-shadow:0 0 18px rgba(255,178,60,.12);
-    }
-
-    .track{
-      flex:1;
-    }
-    .track-title{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:16px;
-      margin-bottom:10px;
-      font-weight:700;
-    }
-    .track-icons{
-      display:flex;
       gap:14px;
-      color:#bea06d;
+      margin-bottom:10px;
     }
+
+    .play-btn{
+      width:34px;height:34px;border-radius:50%;
+      display:grid;place-items:center;
+      border:1px solid rgba(244,199,111,.25);
+      background:linear-gradient(180deg, rgba(255,203,112,.16), rgba(10,6,3,.88));
+      color:var(--gold);
+      font-size:.92rem;
+      flex:0 0 auto;
+    }
+
+    .track-main{
+      flex:1;
+      min-width:0;
+    }
+
+    .track-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:8px;
+    }
+
+    .track-name{
+      font-family:Cinzel, serif;
+      font-size:1rem;
+      color:#f4d6a0;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .track-actions{
+      display:flex;
+      gap:16px;
+      color:#c8a56f;
+      flex:0 0 auto;
+    }
+
     .progress{
       position:relative;
-      height:8px;
+      height:6px;
       border-radius:999px;
       background:rgba(255,245,219,.08);
+      border:1px solid rgba(244,199,111,.10);
       overflow:hidden;
-      border:1px solid rgba(244,199,111,.12);
     }
+
     .progress span{
-      position:absolute; inset:0 auto 0 0;
+      position:absolute;
+      inset:0 auto 0 0;
       width:42%;
-      border-radius:999px;
-      background:linear-gradient(90deg, rgba(255,217,148,.95), rgba(219,150,54,.95));
-      box-shadow:0 0 16px rgba(255,184,77,.18);
+      background:linear-gradient(90deg, rgba(255,217,148,.92), rgba(219,150,54,.92));
+      box-shadow:0 0 12px rgba(255,184,77,.16);
     }
 
     .platforms{
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px;
-      margin-top:22px;
-    }
-    .platform{
-      display:inline-flex;
-      align-items:center;
+      display:grid;
+      grid-template-columns:repeat(4, 1fr);
       gap:10px;
-      min-height:48px;
-      padding:0 16px;
-      border-radius:14px;
-      border:1px solid rgba(244,199,111,.16);
-      background:rgba(11,7,4,.76);
+      margin-top:16px;
+    }
+
+    .platform{
+      min-height:42px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      border:1px solid rgba(244,199,111,.18);
+      background:rgba(11,7,4,.72);
       color:#f7deb0;
       font-weight:600;
-      transition:.2s ease;
+      font-size:.92rem;
+      text-align:center;
+      padding:0 10px;
     }
-    .platform:hover{
-      transform:translateY(-2px);
-      border-color:rgba(244,199,111,.32);
+
+    .about-wrap{
+      position:relative;
+      padding-top:8px;
+      margin-top:22px;
+    }
+
+    .ornament{
+      width:100%;
+      height:22px;
+      position:relative;
+      margin:4px 0 14px;
+    }
+    .ornament::before{
+      content:"";
+      position:absolute;
+      left:0;right:0;top:10px;
+      height:1px;
+      background:linear-gradient(90deg, transparent, rgba(244,199,111,.35), rgba(244,199,111,.8), rgba(244,199,111,.35), transparent);
+    }
+    .ornament span{
+      position:absolute;
+      left:50%;
+      top:0;
+      transform:translateX(-50%);
+      color:#d7a148;
+      font-size:1rem;
+      letter-spacing:.2em;
+      background:transparent;
+      padding:0 8px;
     }
 
     .about-grid{
       display:grid;
-      grid-template-columns:1.02fr .98fr;
+      grid-template-columns:1.08fr .92fr;
       gap:30px;
       align-items:center;
     }
 
     .about-image{
-      min-height:340px;
+      min-height:235px;
       background-image:
-        linear-gradient(180deg, rgba(255,174,49,.06), rgba(0,0,0,.52)),
-        linear-gradient(135deg, rgba(0,0,0,.08), rgba(0,0,0,.48)),
+        linear-gradient(180deg, rgba(255,174,49,.04), rgba(0,0,0,.48)),
+        linear-gradient(135deg, rgba(0,0,0,.06), rgba(0,0,0,.42)),
         url('assets/about-image.jpg');
       background-size:cover;
       background-position:center;
     }
-    .about-image::before{
-      content:"";
-      position:absolute; inset:0;
-      background:
-        radial-gradient(circle at 58% 28%, rgba(255,203,112,.75), transparent 14%),
-        linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.36) 70%, rgba(0,0,0,.58));
-      mix-blend-mode:screen;
-    }
 
-    .about-copy{
-      padding:8px 4px 8px 0;
-    }
     .about-copy h3{
-      margin:0 0 16px;
+      margin:0 0 14px;
       font-family:Cinzel, serif;
-      font-size:2.35rem;
+      font-size:2rem;
     }
     .about-tags{
+      margin:0 0 14px;
       color:#f0d4a0;
-      font-size:1.1rem;
-      margin-bottom:18px;
-      line-height:1.8;
+      font-family:Cinzel, serif;
+      font-size:1.02rem;
+      line-height:1.6;
     }
     .about-copy p{
-      color:var(--muted);
-      line-height:1.85;
-      margin:0 0 24px;
+      margin:0 0 18px;
+      color:var(--text);
+      line-height:1.7;
+      font-size:1rem;
+    }
+
+    .videos{
+      margin-top:10px;
     }
 
     .video-grid{
       display:grid;
       grid-template-columns:repeat(3, 1fr);
-      gap:22px;
+      gap:16px;
     }
 
     .video-card{
-      overflow:hidden;
+      position:relative;
     }
+
     .video-thumb{
-      aspect-ratio:16/9;
+      aspect-ratio:16/6.8;
       background-image:
-        linear-gradient(180deg, rgba(255,174,49,.05), rgba(0,0,0,.5)),
-        linear-gradient(135deg, rgba(0,0,0,.06), rgba(0,0,0,.48)),
+        linear-gradient(180deg, rgba(255,174,49,.05), rgba(0,0,0,.45)),
+        linear-gradient(135deg, rgba(0,0,0,.04), rgba(0,0,0,.42)),
         url('assets/video-1.jpg');
       background-size:cover;
       background-position:center;
     }
-    .video-card:nth-child(2) .video-thumb{background-image:
-        linear-gradient(180deg, rgba(255,174,49,.05), rgba(0,0,0,.5)),
-        linear-gradient(135deg, rgba(0,0,0,.06), rgba(0,0,0,.48)),
+    .video-card:nth-child(2) .video-thumb{
+      background-image:
+        linear-gradient(180deg, rgba(255,174,49,.05), rgba(0,0,0,.45)),
+        linear-gradient(135deg, rgba(0,0,0,.04), rgba(0,0,0,.42)),
         url('assets/video-2.jpg');
     }
-    .video-card:nth-child(3) .video-thumb{background-image:
-        linear-gradient(180deg, rgba(255,174,49,.05), rgba(0,0,0,.5)),
-        linear-gradient(135deg, rgba(0,0,0,.06), rgba(0,0,0,.48)),
+    .video-card:nth-child(3) .video-thumb{
+      background-image:
+        linear-gradient(180deg, rgba(255,174,49,.05), rgba(0,0,0,.45)),
+        linear-gradient(135deg, rgba(0,0,0,.04), rgba(0,0,0,.42)),
         url('assets/video-3.jpg');
     }
 
@@ -620,8 +541,8 @@
       content:"";
       position:absolute; inset:0;
       background:
-        radial-gradient(circle at 50% 45%, rgba(255,203,112,.45), transparent 18%),
-        linear-gradient(180deg, rgba(255,213,148,.04), rgba(0,0,0,.2) 60%, rgba(0,0,0,.42));
+        radial-gradient(circle at 50% 42%, rgba(255,203,112,.35), transparent 16%),
+        linear-gradient(180deg, rgba(255,213,148,.03), rgba(0,0,0,.16) 60%, rgba(0,0,0,.38));
     }
 
     .play-large{
@@ -629,148 +550,122 @@
       inset:0;
       display:grid;
       place-items:center;
-      color:#f6d9a5;
-      font-size:3rem;
+      color:#f3d7a4;
+      font-size:3.2rem;
       text-shadow:0 8px 18px rgba(0,0,0,.5);
     }
 
-    .video-info{
-      padding:18px 18px 20px;
-    }
-    .video-info h4{
-      margin:0 0 8px;
+    .video-caption{
+      position:absolute;
+      left:0;right:0;bottom:8px;
+      text-align:center;
       font-family:Cinzel, serif;
-      font-size:1.35rem;
+      font-size:1rem;
+      color:#f4d6a0;
+      text-shadow:0 4px 12px rgba(0,0,0,.55);
+      z-index:2;
+      pointer-events:none;
     }
-    .video-info p{
-      margin:0;
-      color:var(--muted);
-      line-height:1.7;
-      font-size:.97rem;
+
+    .social-band{
+      margin-top:18px;
+      padding:18px 0 6px;
+      border-top:1px solid rgba(244,199,111,.16);
     }
 
     .socials{
       display:flex;
       justify-content:center;
-      gap:14px;
+      gap:12px;
       flex-wrap:wrap;
-      padding:10px 0 4px;
     }
 
     .social{
-      width:54px;height:54px;border-radius:50%;
+      width:42px;height:42px;border-radius:50%;
       display:grid;place-items:center;
-      border:1px solid rgba(244,199,111,.2);
-      background:
-        linear-gradient(180deg, rgba(35,22,12,.85), rgba(10,6,4,.95));
+      border:1px solid rgba(244,199,111,.22);
+      background:linear-gradient(180deg, rgba(35,22,12,.82), rgba(10,6,4,.94));
       color:var(--gold);
-      box-shadow:inset 0 0 12px rgba(255,184,77,.06), 0 8px 20px rgba(0,0,0,.25);
-      transition:.22s ease;
-      font-size:1.15rem;
-    }
-    .social:hover{
-      transform:translateY(-2px);
-      color:#ffe2af;
-      box-shadow:inset 0 0 12px rgba(255,184,77,.12), 0 12px 28px rgba(0,0,0,.32), 0 0 18px rgba(255,174,49,.12);
+      box-shadow:inset 0 0 10px rgba(255,184,77,.05), 0 6px 16px rgba(0,0,0,.22);
+      font-size:1rem;
     }
 
     footer{
-      padding:24px 0 56px;
+      padding:10px 0 38px;
       text-align:center;
       color:#d5b27b;
     }
-    .footer-line{
-      width:min(920px, 100%);
-      margin:0 auto 28px;
-      height:1px;
-      background:linear-gradient(90deg, transparent, rgba(244,199,111,.3), rgba(244,199,111,.8), rgba(244,199,111,.3), transparent);
-    }
     .footer-copy{
       font-family:Cinzel, serif;
-      letter-spacing:.06em;
-    }
-
-    .note-box{
-      margin-top:28px;
-      padding:18px 20px;
-      border-radius:18px;
-      border:1px dashed rgba(244,199,111,.22);
-      color:#c9a86f;
+      letter-spacing:.05em;
       font-size:.96rem;
-      line-height:1.7;
-      background:rgba(13,8,5,.58);
     }
 
     @media (max-width: 980px){
+      .mobile-toggle{display:grid;place-items:center}
       .nav{
-        display:flex;
-        align-items:center;
         justify-content:space-between;
       }
-
       .nav-links{
         position:absolute;
-        top:86px;
+        top:78px;
         left:16px; right:16px;
         display:none;
         flex-direction:column;
         align-items:flex-start;
-        justify-content:flex-start;
         gap:18px;
         padding:20px;
         border-radius:22px;
         background:rgba(10,6,4,.95);
         border:1px solid rgba(244,199,111,.15);
         box-shadow:var(--shadow);
-        font-size:1.08rem;
+        margin-left:0;
       }
       .nav-links.open{display:flex}
-      .mobile-toggle{display:grid;place-items:center}
-      .hero{padding-top:44px; min-height:auto}
-      .hero-copy{margin-top:270px}
-      .release-card,
+      .hero{min-height:auto}
+      .hero-copy{margin-top:200px}
+      .release-wrap,
       .about-grid,
       .video-grid{
         grid-template-columns:1fr;
       }
-      .release-card{padding:18px}
-      .media-cover{max-width:360px;width:100%;margin-inline:auto}
-      .pyramid.left{left:-10px;width:220px;height:190px}
-      .pyramid.right{right:-10px;width:240px;height:210px}
-      .pyramid.small{left:118px; bottom:90px;width:120px;height:110px}
-      .about-image{min-height:280px}
+      .cover-box{max-width:260px;width:100%}
+      .platforms{grid-template-columns:1fr 1fr}
+      .pyramid.left{left:0;width:190px;height:170px}
+      .pyramid.right{right:0;width:200px;height:178px}
+      .pyramid.small{left:120px;bottom:56px;width:100px;height:88px}
     }
 
     @media (max-width: 640px){
-      .container{width:min(100% - 20px, var(--container))}
-      .nav{min-height:78px}
-      .brand-mark{width:50px;height:50px;font-size:1.55rem}
-      .hero{padding-bottom:24px}
-      .solar-stage{min-height:300px}
-      .eclipse{width:150px;height:150px;top:8px}
-      .hero-copy{margin-top:160px}
-      .subtitle{letter-spacing:.08em}
-      .hero-text{font-size:.95rem}
-      .btn{width:100%}
-      .section-title{font-size:1.5rem}
-      .release-meta h3, .about-copy h3{font-size:1.8rem}
-      .platforms{display:grid;grid-template-columns:1fr 1fr}
-      .platform{justify-content:center}
-      .social{width:48px;height:48px}
-      .video-info h4{font-size:1.15rem}
-      .media-cover::after{font-size:1.35rem}
+      .container{width:min(var(--container), calc(100% - 22px))}
+      .brand-mark{width:48px;height:48px;font-size:1.5rem}
+      .hero-stage{min-height:320px}
+      .eclipse{width:138px;height:138px;top:22px}
+      .hero-copy{margin-top:150px}
+      .hero-copy h1{font-size:3.3rem}
+      .subtitle{font-size:1rem}
+      .btn-gold{width:100%}
+      .section-heading{font-size:1.5rem}
+      .about-copy h3{font-size:1.7rem}
+      .video-caption{font-size:.92rem}
+      .social{width:40px;height:40px}
     }
   </style>
 </head>
 <body>
-  <header class="frame-line">
+  <header class="gold-line">
     <div class="container nav">
+      <a href="#top" class="brand" aria-label="URHEIM domů">
+        <div class="brand-mark">☥</div>
+      </a>
+
       <nav class="nav-links" id="navLinks">
-        <a href="#bio">Bio</a>
-        <a href="#music">Music</a>
-        <a href="#videos">Video</a>
-        <a href="#collabs">Collabs</a>
-        <a href="#contact">Contact</a>
+        <a href="#top">HOME</a>
+        <a href="#bio">BIO</a>
+        <a href="#music">MUSIC</a>
+        <a href="#videos">VIDEO</a>
+        <a href="#collabs">COLABS</a>
+        <a href="#contact">CONTACT</a>
       </nav>
 
       <button class="mobile-toggle" id="mobileToggle" aria-label="Otevřít menu">
@@ -780,9 +675,9 @@
   </header>
 
   <main id="top">
-    <section class="hero frame-line">
-      <div class="container hero-grid">
-        <div class="solar-stage" aria-hidden="true">
+    <section class="hero">
+      <div class="container">
+        <div class="hero-stage" aria-hidden="true">
           <div class="eclipse"></div>
           <div class="pyramid left"></div>
           <div class="pyramid small"></div>
@@ -790,18 +685,11 @@
         </div>
 
         <div class="hero-copy">
-          <div class="eyebrow">Epic • Cinematic • Dark Ethnic • Electronic</div>
           <h1>URHEIM</h1>
-          <div class="headline-rule"></div>
-          <p class="subtitle">Music of the Eternal</p>
-          <p class="hero-text">
-            Temná filmová atmosféra, egyptská symbolika, monumentální energie a zvuk, který má působit jako skutečný svět značky.
-            Tahle verze je připravená jako silný základ pro GitHub Pages a dá se dál upravit přesně podle tvého vizuálu.
-          </p>
-
-          <div class="cta-row">
-            <a class="btn" href="#music"><i class="fa-solid fa-play"></i> Listen Now</a>
-            <a class="btn secondary" href="#bio"><i class="fa-solid fa-book-open"></i> Read More</a>
+          <div class="hero-rule"></div>
+          <p class="subtitle">- MUSIC OF THE ETERNAL -</p>
+          <div class="hero-button-wrap">
+            <a class="btn-gold" href="#music">LISTEN NOW</a>
           </div>
         </div>
       </div>
@@ -809,26 +697,20 @@
 
     <section id="music">
       <div class="container">
-        <h2 class="section-title">Latest Release</h2>
+        <h2 class="section-heading">LATEST RELEASE</h2>
 
-        <article class="panel release-card">
-          <div class="media-cover" aria-label="Obal alba"></div>
+        <div class="release-wrap">
+          <div class="cover-box" aria-label="Obal alba"></div>
 
-          <div class="release-meta">
-            <h3>Divine Awakening</h3>
-            <p>
-              Ukázka release panelu přesně v duchu reference: velký cover, přehrávač, tlačítka na streaming platformy a luxusní tmavě-zlatý vzhled.
-              Stačí vyměnit text, odkazy a vlastní cover.
-            </p>
+          <div class="release-panel">
+            <div class="track-row">
+              <div class="play-btn"><i class="fa-solid fa-play"></i></div>
 
-            <div class="audio-bar">
-              <div class="play"><i class="fa-solid fa-play"></i></div>
-
-              <div class="track">
-                <div class="track-title">
-                  <span>Preview Track</span>
-                  <div class="track-icons">
-                    <i class="fa-regular fa-heart"></i>
+              <div class="track-main">
+                <div class="track-top">
+                  <div class="track-name">Divine Awakening</div>
+                  <div class="track-actions">
+                    <i class="fa-solid fa-heart"></i>
                     <i class="fa-solid fa-sliders"></i>
                   </div>
                 </div>
@@ -838,90 +720,64 @@
 
             <div class="platforms">
               <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-spotify"></i> Spotify</a>
-              <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-apple"></i> Apple Music</a>
+              <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-apple"></i> PIEEKA</a>
+              <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-apple"></i> Music</a>
               <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i> YouTube</a>
-              <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-solid fa-music"></i> Deezer / další</a>
-            </div>
-
-            <div class="note-box">
-              <strong>Kde měnit obsah:</strong><br>
-              release-cover.jpg = cover art<br>
-              text „Divine Awakening“ = název release<br>
-              tlačítka nahoře = odkazy na platformy
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section id="bio">
-      <div class="container">
-        <div class="panel" style="padding:28px;">
-          <div class="about-grid">
-            <div class="about-image" aria-label="Promo image"></div>
-
-            <div class="about-copy">
-              <h3>About URHEIM</h3>
-              <div class="about-tags">Epic Cinematic / Dark Ethnic / Electronic</div>
-              <p>
-                Journey through the realms of the divine and eternal.
-                Tady patří tvůj skutečný oficiální text — kdo jsi, co tvoříš, jaký má URHEIM zvuk a jaký svět má tvůj projekt reprezentovat.
-                Stylově je to postavené tak, aby to působilo prémiově, temně a filmově.
-              </p>
-              <a class="btn" href="#contact"><i class="fa-solid fa-envelope"></i> Contact</a>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="videos">
+    <section id="bio" class="about-wrap">
       <div class="container">
-        <h2 class="section-title">Videos</h2>
+        <div class="ornament"><span>✦</span></div>
+
+        <div class="about-grid">
+          <div class="about-image" aria-label="Promo image"></div>
+
+          <div class="about-copy">
+            <h3>ABOUT URHEIM</h3>
+            <div class="about-tags">Epic Cinematic / Dark Ethnic / Electronic</div>
+            <p>Journey through the realms of the divine and eternal.</p>
+            <a class="btn-gold" href="#contact">READ MORE</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="videos" class="videos">
+      <div class="container">
+        <h2 class="section-heading">VIDEOS</h2>
 
         <div class="video-grid">
-          <article class="panel video-card">
+          <article class="video-card">
             <a href="#" class="video-thumb">
               <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
+              <div class="video-caption">Official Video</div>
             </a>
-            <div class="video-info">
-              <h4>Official Video</h4>
-              <p>Hlavní klip nebo cinematic visualizer.</p>
-            </div>
           </article>
 
-          <article class="panel video-card">
+          <article class="video-card">
             <a href="#" class="video-thumb">
               <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
+              <div class="video-caption">Live Performance</div>
             </a>
-            <div class="video-info">
-              <h4>Live Performance</h4>
-              <p>Živá performance, studio session nebo behind the scenes.</p>
-            </div>
           </article>
 
-          <article class="panel video-card" id="collabs">
+          <article class="video-card" id="collabs">
             <a href="#" class="video-thumb">
               <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
+              <div class="video-caption">Collab Project</div>
             </a>
-            <div class="video-info">
-              <h4>Collab Project</h4>
-              <p>Spolupráce, hosté, projekty nebo featured vystoupení.</p>
-            </div>
           </article>
         </div>
-      </div>
-    </section>
 
-    <section id="contact">
-      <div class="container">
-        <div class="panel" style="padding:30px 24px;">
-          <h2 class="section-title" style="margin-top:0;">Connect</h2>
-
+        <div id="contact" class="social-band">
           <div class="socials">
             <a class="social" href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
             <a class="social" href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-            <a class="social" href="#" aria-label="Threads"><i class="fa-brands fa-threads"></i></a>
+            <a class="social" href="#" aria-label="Messenger"><i class="fa-brands fa-facebook-messenger"></i></a>
             <a class="social" href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
             <a class="social" href="#" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
             <a class="social" href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
@@ -929,12 +785,7 @@
             <a class="social" href="#" aria-label="SoundCloud"><i class="fa-brands fa-soundcloud"></i></a>
             <a class="social" href="#" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
             <a class="social" href="mailto:official@example.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
-          </div>
-
-          <div class="note-box" style="max-width:840px; margin-inline:auto; text-align:center;">
-            Pro naprosto přesný 1:1 výsledek jako na obrázku budeš potřebovat dodat vlastní assety:
-            <strong>logo, cover art, promo obrázky, background, texty a odkazy.</strong>
-            Layout, styl, struktura a GitHub-ready základ už jsou připravené.
+            <a class="social" href="#" aria-label="Steam"><i class="fa-brands fa-steam"></i></a>
           </div>
         </div>
       </div>
@@ -943,8 +794,7 @@
 
   <footer>
     <div class="container">
-      <div class="footer-line"></div>
-      <div class="footer-copy">© <span id="year"></span> URHEIM — Official Artist Website</div>
+      <div class="footer-copy">© 2021 URHEIM</div>
     </div>
   </footer>
 
@@ -961,8 +811,6 @@
         link.addEventListener('click', () => navLinks.classList.remove('open'));
       });
     }
-
-    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
