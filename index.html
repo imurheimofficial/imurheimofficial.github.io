@@ -29,13 +29,13 @@
       --container:1180px;
     }
 
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
 
     body{
       margin:0;
       color:var(--text);
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       background:
         radial-gradient(circle at 50% 14%, rgba(255,167,39,.24), transparent 16%),
         radial-gradient(circle at 20% 22%, rgba(255,140,40,.13), transparent 14%),
@@ -60,8 +60,8 @@
       mix-blend-mode:screen;
     }
 
-    a{color:inherit;text-decoration:none}
-    img{max-width:100%;display:block}
+    a { color:inherit; text-decoration:none; }
+    img { max-width:100%; display:block; }
 
     .container{
       width:min(var(--container), calc(100% - 32px));
@@ -79,12 +79,19 @@
       left:0;
       right:0;
       height:1px;
-      background:linear-gradient(90deg, transparent 0, var(--line) 12%, var(--gold-soft) 50%, var(--line) 88%, transparent 100%);
+      background:linear-gradient(
+        90deg,
+        transparent 0,
+        var(--line) 12%,
+        var(--gold-soft) 50%,
+        var(--line) 88%,
+        transparent 100%
+      );
       opacity:.9;
     }
 
-    .frame-line::before{top:0}
-    .frame-line::after{bottom:0}
+    .frame-line::before { top:0; }
+    .frame-line::after { bottom:0; }
 
     header{
       position:sticky;
@@ -98,22 +105,54 @@
 
     .nav{
       min-height:86px;
-      display:grid;
-      grid-template-columns:1fr auto;
+      display:flex;
       align-items:center;
-      position:relative;
+      justify-content:space-between;
+      gap:24px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      font-family:Cinzel, serif;
+      letter-spacing:.06em;
+    }
+
+    .brand-mark{
+      width:58px;
+      height:58px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      border:2px solid rgba(244,199,111,.55);
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,184,77,.2), transparent 30%),
+        linear-gradient(180deg, rgba(29,18,10,.95), rgba(8,5,2,.95));
+      color:var(--gold);
+      box-shadow: inset 0 0 20px rgba(255,180,52,.1), 0 0 18px rgba(255,180,52,.12);
+      font-size:1.8rem;
+    }
+
+    .brand-title{
+      display:flex;
+      flex-direction:column;
+      line-height:1.1;
+    }
+
+    .brand-title strong { font-size:1.12rem; }
+    .brand-title span{
+      font-size:.74rem;
+      color:var(--muted);
     }
 
     .nav-links{
       display:flex;
       align-items:center;
-      justify-content:center;
-      gap:44px;
+      gap:28px;
       font-family:Cinzel, serif;
-      font-size:1.22rem;
-      letter-spacing:.05em;
-      width:100%;
-      grid-column:1 / -1;
+      font-size:1rem;
+      letter-spacing:.04em;
     }
 
     .nav-links a{
@@ -150,7 +189,6 @@
       width:46px;
       height:46px;
       border-radius:14px;
-      justify-self:end;
     }
 
     .hero{
@@ -252,8 +290,17 @@
       opacity:.85;
     }
 
-    .pyramid.left{left:30px; transform:scale(1.02)}
-    .pyramid.right{right:30px; width:315px; height:278px}
+    .pyramid.left{
+      left:30px;
+      transform:scale(1.02);
+    }
+
+    .pyramid.right{
+      right:30px;
+      width:315px;
+      height:278px;
+    }
+
     .pyramid.small{
       left:210px;
       bottom:76px;
@@ -747,15 +794,13 @@
         right:16px;
         display:none;
         flex-direction:column;
-        align-items:center;
-        justify-content:center;
+        align-items:flex-start;
         gap:18px;
         padding:20px;
         border-radius:22px;
         background:rgba(10,6,4,.95);
         border:1px solid rgba(244,199,111,.15);
         box-shadow:var(--shadow);
-        font-size:1.1rem;
       }
 
       .nav-links.open{
@@ -825,6 +870,12 @@
         min-height:78px;
       }
 
+      .brand-mark{
+        width:50px;
+        height:50px;
+        font-size:1.55rem;
+      }
+
       .hero{
         padding-bottom:24px;
       }
@@ -892,6 +943,14 @@
 <body>
   <header class="frame-line">
     <div class="container nav">
+      <a href="#top" class="brand" aria-label="URHEIM domů">
+        <div class="brand-mark">☥</div>
+        <div class="brand-title">
+          <strong>URHEIM</strong>
+          <span>Official Artist Website</span>
+        </div>
+      </a>
+
       <nav class="nav-links" id="navLinks">
         <a href="#bio">Bio</a>
         <a href="#music">Music</a>
