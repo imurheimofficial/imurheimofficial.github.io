@@ -1,31 +1,16 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <!-- Základní nastavení stránky -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- Název stránky v záložce prohlížeče -->
   <title>URHEIM — Official Artist Website</title>
-
-  <!-- Popis stránky pro SEO -->
   <meta name="description" content="Oficiální web URHEIM — cinematic / dark ethnic / electronic." />
-
-  <!-- Přednačtení Google Fonts pro rychlejší načtení -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <!-- Fonty: Cinzel pro luxusní serif vzhled, Inter pro běžný text -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- Ikony z Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
   <style>
-    /* =========================================================
-       GLOBÁLNÍ PROMĚNNÉ
-       Sem si můžeš sáhnout, když chceš měnit barvy a základní styl
-    ========================================================= */
     :root{
       --bg:#090603;
       --bg-2:#140d07;
@@ -44,14 +29,9 @@
       --container:1180px;
     }
 
-    /* Reset základních věcí */
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
 
-    /* =========================================================
-       BODY = CELÉ POZADÍ STRÁNKY
-       Tady máš svůj background, ten jsem nechal
-    ========================================================= */
     body{
       margin:0;
       color:var(--text);
@@ -65,7 +45,6 @@
       overflow-x:hidden;
     }
 
-    /* Jemné světelné částečky přes celé pozadí */
     body::before{
       content:"";
       position:fixed;
@@ -81,20 +60,14 @@
       mix-blend-mode:screen;
     }
 
-    /* Základní chování odkazů a obrázků */
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block}
 
-    /* Centrování obsahu stránky */
     .container{
       width:min(var(--container), calc(100% - 32px));
       margin-inline:auto;
     }
 
-    /* =========================================================
-       ZLATÉ LINKY HORNÍ A DOLNÍ
-       Používají se třeba na header a hero oddělení
-    ========================================================= */
     .frame-line{
       position:relative;
     }
@@ -113,9 +86,6 @@
     .frame-line::before{top:0}
     .frame-line::after{bottom:0}
 
-    /* =========================================================
-       HEADER = HORNÍ LIŠTA
-    ========================================================= */
     header{
       position:sticky;
       top:0;
@@ -126,7 +96,6 @@
       box-shadow:0 8px 30px rgba(0,0,0,.2);
     }
 
-    /* Vnitřní layout headeru */
     .nav{
       min-height:86px;
       display:grid;
@@ -135,7 +104,6 @@
       position:relative;
     }
 
-    /* Menu nahoře - je vystředěné */
     .nav-links{
       display:flex;
       align-items:center;
@@ -148,7 +116,6 @@
       grid-column:1 / -1;
     }
 
-    /* Odkazy v menu */
     .nav-links a{
       color:var(--muted);
       transition:.25s ease;
@@ -160,7 +127,6 @@
       text-shadow:0 0 20px rgba(255,182,74,.35);
     }
 
-    /* Zlatá linka pod odkazem při hoveru */
     .nav-links a::after{
       content:"";
       position:absolute;
@@ -176,7 +142,6 @@
       width:100%;
     }
 
-    /* Hamburger tlačítko pro mobil */
     .mobile-toggle{
       display:none;
       border:1px solid rgba(244,199,111,.25);
@@ -188,9 +153,6 @@
       justify-self:end;
     }
 
-    /* =========================================================
-       HERO SEKCE = HORNÍ HLAVNÍ ČÁST STRÁNKY
-    ========================================================= */
     .hero{
       position:relative;
       padding:64px 0 48px;
@@ -198,7 +160,6 @@
       isolation:isolate;
     }
 
-    /* Jemný světelný efekt v hero sekci */
     .hero::before{
       content:"";
       position:absolute;
@@ -209,7 +170,6 @@
       z-index:-2;
     }
 
-    /* Grid pro vnitřek hero */
     .hero-grid{
       display:grid;
       gap:32px;
@@ -219,7 +179,6 @@
       position:relative;
     }
 
-    /* Prostor pro dekorativní prvky nahoře */
     .solar-stage{
       width:min(100%, 1120px);
       min-height:430px;
@@ -229,7 +188,6 @@
       padding-top:26px;
     }
 
-    /* Sluneční / eclipse kruh */
     .eclipse{
       position:absolute;
       top:12px;
@@ -247,7 +205,6 @@
         inset -22px -18px 26px rgba(255,226,167,.06);
     }
 
-    /* Zářivý prstenec okolo eclipse */
     .eclipse::before{
       content:"";
       position:absolute;
@@ -259,7 +216,6 @@
       z-index:-1;
     }
 
-    /* Další ambient glow */
     .solar-stage::before{
       content:"";
       position:absolute;
@@ -271,7 +227,6 @@
       filter:blur(8px);
     }
 
-    /* Pyramida - dekorace vlevo/vpravo */
     .pyramid{
       position:absolute;
       bottom:40px;
@@ -308,14 +263,12 @@
       filter:brightness(.82);
     }
 
-    /* Textová část hero */
     .hero-copy{
       margin-top:230px;
       width:min(100%, 900px);
       padding:0 8px;
     }
 
-    /* Malý horní popis stylu */
     .eyebrow{
       font-family:Cinzel, serif;
       text-transform:uppercase;
@@ -324,7 +277,6 @@
       font-size:.8rem;
     }
 
-    /* Hlavní název URHEIM */
     h1{
       margin:8px 0 8px;
       font-family:Cinzel, serif;
@@ -338,7 +290,6 @@
         0 10px 50px rgba(0,0,0,.55);
     }
 
-    /* Zlatá linka pod hlavním názvem */
     .headline-rule{
       width:min(420px, 82%);
       height:2px;
@@ -348,7 +299,6 @@
       box-shadow:0 0 18px rgba(255,174,49,.22);
     }
 
-    /* Podtitulek */
     .subtitle{
       margin:0;
       font-family:Cinzel, serif;
@@ -357,7 +307,6 @@
       letter-spacing:.12em;
     }
 
-    /* Delší popis v hero */
     .hero-text{
       width:min(720px, 100%);
       margin:18px auto 0;
@@ -366,7 +315,6 @@
       line-height:1.75;
     }
 
-    /* Tlačítka pod hero textem */
     .cta-row{
       display:flex;
       justify-content:center;
@@ -375,7 +323,6 @@
       margin-top:26px;
     }
 
-    /* Zlaté tlačítko */
     .btn{
       display:inline-flex;
       align-items:center;
@@ -405,15 +352,11 @@
         0 0 26px rgba(255,178,60,.2);
     }
 
-    /* Tmavší sekundární tlačítko */
     .btn.secondary{
       color:var(--gold);
       background:linear-gradient(180deg, rgba(31,19,10,.8), rgba(14,9,5,.94));
     }
 
-    /* =========================================================
-       OBECNÉ SEKCE
-    ========================================================= */
     section{
       padding:44px 0;
     }
@@ -431,7 +374,6 @@
       text-align:center;
     }
 
-    /* Dekorativní linky po stranách nadpisů sekcí */
     .section-title::before,
     .section-title::after{
       content:"";
@@ -445,7 +387,6 @@
       background:linear-gradient(90deg, var(--gold-soft), transparent);
     }
 
-    /* Panel box */
     .panel{
       position:relative;
       background:
@@ -466,9 +407,6 @@
       pointer-events:none;
     }
 
-    /* =========================================================
-       LATEST RELEASE
-    ========================================================= */
     .release-card{
       display:grid;
       grid-template-columns:280px 1fr;
@@ -492,7 +430,6 @@
       isolation:isolate;
     }
 
-    /* Cover art vlevo */
     .media-cover{
       aspect-ratio:1/1;
       background-image:
@@ -529,7 +466,6 @@
       text-shadow:0 6px 18px rgba(0,0,0,.55);
     }
 
-    /* Text a player vpravo */
     .release-meta h3{
       margin:0 0 10px;
       font-family:Cinzel, serif;
@@ -599,7 +535,6 @@
       box-shadow:0 0 16px rgba(255,184,77,.18);
     }
 
-    /* Platformy */
     .platforms{
       display:flex;
       flex-wrap:wrap;
@@ -626,9 +561,6 @@
       border-color:rgba(244,199,111,.32);
     }
 
-    /* =========================================================
-       ABOUT URHEIM
-    ========================================================= */
     .about-grid{
       display:grid;
       grid-template-columns:1.02fr .98fr;
@@ -679,9 +611,6 @@
       margin:0 0 24px;
     }
 
-    /* =========================================================
-       VIDEOS
-    ========================================================= */
     .video-grid{
       display:grid;
       grid-template-columns:repeat(3, 1fr);
@@ -752,9 +681,6 @@
       font-size:.97rem;
     }
 
-    /* =========================================================
-       CONNECT / SOCIALS
-    ========================================================= */
     .socials{
       display:flex;
       justify-content:center;
@@ -784,9 +710,6 @@
       box-shadow:inset 0 0 12px rgba(255,184,77,.12), 0 12px 28px rgba(0,0,0,.32), 0 0 18px rgba(255,174,49,.12);
     }
 
-    /* =========================================================
-       FOOTER
-    ========================================================= */
     footer{
       padding:24px 0 56px;
       text-align:center;
@@ -805,7 +728,6 @@
       letter-spacing:.06em;
     }
 
-    /* Poznámkový box - placeholder info */
     .note-box{
       margin-top:28px;
       padding:18px 20px;
@@ -817,9 +739,6 @@
       background:rgba(13,8,5,.58);
     }
 
-    /* =========================================================
-       TABLET / MENŠÍ OBRAZOVKY
-    ========================================================= */
     @media (max-width: 980px){
       .nav-links{
         position:absolute;
@@ -897,9 +816,6 @@
       }
     }
 
-    /* =========================================================
-       MOBIL
-    ========================================================= */
     @media (max-width: 640px){
       .container{
         width:min(100% - 20px, var(--container));
@@ -974,9 +890,6 @@
 </head>
 
 <body>
-  <!-- =======================================================
-       HEADER = horní menu
-  ======================================================== -->
   <header class="frame-line">
     <div class="container nav">
       <nav class="nav-links" id="navLinks">
@@ -987,7 +900,6 @@
         <a href="#contact">Contact</a>
       </nav>
 
-      <!-- Hamburger pro mobil -->
       <button class="mobile-toggle" id="mobileToggle" aria-label="Otevřít menu">
         <i class="fa-solid fa-bars"></i>
       </button>
@@ -995,12 +907,8 @@
   </header>
 
   <main id="top">
-    <!-- =====================================================
-         HERO SEKCE
-    ====================================================== -->
     <section class="hero frame-line">
       <div class="container hero-grid">
-        <!-- Dekorativní egyptské prvky -->
         <div class="solar-stage" aria-hidden="true">
           <div class="eclipse"></div>
           <div class="pyramid left"></div>
@@ -1008,7 +916,6 @@
           <div class="pyramid right"></div>
         </div>
 
-        <!-- Hlavní text -->
         <div class="hero-copy">
           <div class="eyebrow">Epic • Cinematic • Dark Ethnic • Electronic</div>
           <h1>URHEIM</h1>
@@ -1028,18 +935,13 @@
       </div>
     </section>
 
-    <!-- =====================================================
-         LATEST RELEASE
-    ====================================================== -->
     <section id="music">
       <div class="container">
         <h2 class="section-title">Latest Release</h2>
 
         <article class="panel release-card">
-          <!-- Cover obrázek -->
           <div class="media-cover" aria-label="Obal alba"></div>
 
-          <!-- Pravá část s informacemi -->
           <div class="release-meta">
             <h3>Divine Awakening</h3>
             <p>
@@ -1047,7 +949,6 @@
               Stačí vyměnit text, odkazy a vlastní cover.
             </p>
 
-            <!-- Fake player -->
             <div class="audio-bar">
               <div class="play"><i class="fa-solid fa-play"></i></div>
 
@@ -1063,7 +964,6 @@
               </div>
             </div>
 
-            <!-- Platform tlačítka -->
             <div class="platforms">
               <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-spotify"></i> Spotify</a>
               <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-apple"></i> Apple Music</a>
@@ -1071,7 +971,6 @@
               <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-solid fa-music"></i> Deezer / další</a>
             </div>
 
-            <!-- Poznámka -->
             <div class="note-box">
               <strong>Kde měnit obsah:</strong><br>
               release-cover.jpg = cover art<br>
@@ -1083,17 +982,12 @@
       </div>
     </section>
 
-    <!-- =====================================================
-         ABOUT URHEIM
-    ====================================================== -->
     <section id="bio">
       <div class="container">
         <div class="panel" style="padding:28px;">
           <div class="about-grid">
-            <!-- Obrázek -->
             <div class="about-image" aria-label="Promo image"></div>
 
-            <!-- Text -->
             <div class="about-copy">
               <h3>About URHEIM</h3>
               <div class="about-tags">Epic Cinematic / Dark Ethnic / Electronic</div>
@@ -1109,9 +1003,6 @@
       </div>
     </section>
 
-    <!-- =====================================================
-         VIDEOS
-    ====================================================== -->
     <section id="videos">
       <div class="container">
         <h2 class="section-title">Videos</h2>
@@ -1150,9 +1041,6 @@
       </div>
     </section>
 
-    <!-- =====================================================
-         CONTACT / SOCIALS
-    ====================================================== -->
     <section id="contact">
       <div class="container">
         <div class="panel" style="padding:30px 24px;">
@@ -1181,9 +1069,6 @@
     </section>
   </main>
 
-  <!-- =======================================================
-       FOOTER
-  ======================================================== -->
   <footer>
     <div class="container">
       <div class="footer-line"></div>
@@ -1192,10 +1077,6 @@
   </footer>
 
   <script>
-    // =======================================================
-    // MOBILNÍ MENU
-    // Když klikneš na hamburger, otevře/zavře menu
-    // =======================================================
     const toggle = document.getElementById('mobileToggle');
     const navLinks = document.getElementById('navLinks');
 
@@ -1204,13 +1085,11 @@
         navLinks.classList.toggle('open');
       });
 
-      // Po kliknutí na položku menu se mobilní menu zavře
       navLinks.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => navLinks.classList.remove('open'));
       });
     }
 
-    // Automaticky nastaví aktuální rok ve footeru
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
