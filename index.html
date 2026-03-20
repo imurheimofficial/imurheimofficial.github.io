@@ -11,10 +11,12 @@
   <!-- Popis stránky pro SEO / vyhledávače -->
   <meta name="description" content="Official website of URHEIM." />
 
-  <!-- Ikonka stránky / favicon -->
-  <link rel="icon" type="image/png" href="assets/Favicon.png">
+  <!-- Ikonka stránky / favicon ve více velikostech -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/Favicon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/Favicon.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/Favicon.png">
   <link rel="shortcut icon" href="assets/Favicon.png">
-  <link rel="apple-touch-icon" href="assets/Favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/Favicon.png">
 
   <!-- Přednačtení Google fontů -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -47,6 +49,7 @@
 
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
+    html, body{min-height:100%}
 
     body{
       margin:0;
@@ -59,13 +62,17 @@
         radial-gradient(circle at 50% 72%, rgba(255,160,63,.08), transparent 20%),
         linear-gradient(180deg, #050302 0%, #0b0603 18%, #110905 44%, #070402 100%);
       overflow-x:hidden;
+      position:relative;
+      isolation:isolate;
     }
 
+    /* Jemné světelné částečky přes celé pozadí */
     body::before{
       content:"";
       position:fixed;
       inset:0;
       pointer-events:none;
+      z-index:-3;
       background-image:
         radial-gradient(circle, rgba(255,213,128,.8) 0 1px, transparent 1.4px),
         radial-gradient(circle, rgba(255,182,74,.35) 0 1px, transparent 1.2px),
@@ -76,6 +83,20 @@
       mix-blend-mode:screen;
     }
 
+    /* Spodní background vrstva při velkém oddálení */
+    body::after{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:-2;
+      background:
+        url("assets/Background Profile Web.png") center bottom / cover no-repeat;
+      opacity:.35;
+      -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,.95) 28%, rgba(0,0,0,.35) 52%, rgba(0,0,0,0) 76%);
+      mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,.95) 28%, rgba(0,0,0,.35) 52%, rgba(0,0,0,0) 76%);
+    }
+
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block}
 
@@ -84,23 +105,12 @@
       margin-inline:auto;
     }
 
-    .frame-line{
-      position:relative;
-    }
-
+    /* Původní blikající linky vypnuty */
     .frame-line::before,
     .frame-line::after{
-      content:"";
-      position:absolute;
-      left:0;
-      right:0;
-      height:1px;
-      background:linear-gradient(90deg, transparent 0, var(--line) 12%, var(--gold-soft) 50%, var(--line) 88%, transparent 100%);
-      opacity:.9;
+      content:none !important;
+      display:none !important;
     }
-
-    .frame-line::before{top:0}
-    .frame-line::after{bottom:0}
 
     /* ======================================================
        HEADER
@@ -112,7 +122,9 @@
       backdrop-filter: blur(10px);
       background:linear-gradient(180deg, rgba(8,5,3,.92), rgba(8,5,3,.72));
       border-bottom:1px solid rgba(244,199,111,.16);
-      box-shadow:0 8px 30px rgba(0,0,0,.2);
+      box-shadow:
+        inset 0 -1px 0 rgba(244,199,111,.32),
+        0 8px 30px rgba(0,0,0,.2);
     }
 
     .nav{
@@ -182,6 +194,11 @@
       padding:34px 0 24px;
       min-height:430px;
       isolation:isolate;
+      border-top:1px solid rgba(244,199,111,.18);
+      border-bottom:1px solid rgba(244,199,111,.18);
+      box-shadow:
+        inset 0 1px 0 rgba(244,199,111,.28),
+        inset 0 -1px 0 rgba(244,199,111,.28);
       background:
         linear-gradient(rgba(5,3,2,0.45), rgba(5,3,2,0.72)),
         url("assets/Background Profile Web.png") center center / cover no-repeat;
@@ -363,7 +380,6 @@
       isolation:isolate;
     }
 
-    /* Čisté černé pozadí bez světelného kruhu */
     .media-cover{
       aspect-ratio:1/1;
       background:#000;
@@ -662,9 +678,6 @@
       display:none;
     }
 
-    /* ======================================================
-       TABLET / MENŠÍ DISPLEJE
-    ====================================================== */
     @media (max-width: 980px){
       .nav-links{
         position:absolute;
@@ -706,9 +719,6 @@
       .about-image{min-height:280px}
     }
 
-    /* ======================================================
-       MOBIL
-    ====================================================== */
     @media (max-width: 640px){
       .container{width:min(100% - 20px, var(--container))}
       .nav{min-height:78px}
