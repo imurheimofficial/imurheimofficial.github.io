@@ -12,9 +12,9 @@
   <meta name="description" content="Official website of URHEIM." />
 
   <!-- Ikonka stránky / favicon -->
-  <link rel="icon" type="image/png" href="assets/Profile Picture.png">
-  <link rel="shortcut icon" href="assets/Profile Picture.png">
-  <link rel="apple-touch-icon" href="assets/Profile Picture.png">
+  <link rel="icon" type="image/png" href="assets/Profile Picture Bigger.png">
+  <link rel="shortcut icon" href="assets/Profile Picture Bigger.png">
+  <link rel="apple-touch-icon" href="assets/Profile Picture Bigger.png">
 
   <!-- Přednačtení Google fontů -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -363,24 +363,16 @@
       isolation:isolate;
     }
 
-    /* Černé pozadí pro cover, dokud tam nebude vlastní obrázek */
+    /* Čisté černé pozadí bez světelného kruhu */
     .media-cover{
       aspect-ratio:1/1;
-      background:
-        linear-gradient(180deg, rgba(0,0,0,.75), rgba(0,0,0,.95)),
-        #000;
+      background:#000;
       background-size:cover;
       background-position:center;
     }
 
     .media-cover::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(circle at 50% 28%, rgba(255,221,155,.08), transparent 12%),
-        radial-gradient(circle at 50% 28%, rgba(255,174,49,.05), transparent 22%),
-        linear-gradient(180deg, transparent 0, rgba(0,0,0,.18) 75%, rgba(0,0,0,.4) 100%);
+      content:none;
     }
 
     .media-cover::after{
@@ -505,7 +497,6 @@
       align-items:center;
     }
 
-    /* Profile picture na černém pozadí */
     .about-image{
       min-height:340px;
       background:
@@ -558,7 +549,6 @@
       overflow:hidden;
     }
 
-    /* Černé pozadí místo náhledů */
     .video-thumb{
       position:relative;
       aspect-ratio:16/9;
@@ -668,7 +658,6 @@
       display:none;
     }
 
-    /* Skryté audio pro player */
     .hidden-audio{
       display:none;
     }
@@ -821,7 +810,6 @@
               </div>
             </div>
 
-            <!-- Až budeš mít audio, stačí změnit src -->
             <audio id="releaseAudio" class="hidden-audio" preload="metadata">
               <source src="" type="audio/mpeg">
             </audio>
@@ -939,11 +927,6 @@
 
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    /* =========================================
-       AUDIO PLAYER PREP
-       Až doplníš audio soubor do <source src="">
-       bude fungovat play / pause / progress / seek
-    ========================================= */
     const audio = document.getElementById('releaseAudio');
     const playButton = document.getElementById('playButton');
     const playIcon = document.getElementById('playIcon');
