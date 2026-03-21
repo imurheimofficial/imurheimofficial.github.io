@@ -54,9 +54,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
   <style>
-    /* =====================================================
-       GLOBÁLNÍ PROMĚNNÉ
-    ====================================================== */
     :root{
       --bg:#090603;
       --bg-2:#140d07;
@@ -81,6 +78,10 @@
       --hero-bg-overlay:linear-gradient(rgba(0,0,0,.82), rgba(0,0,0,.90));
       --hero-image-filter:none;
       --hero-image-opacity:1;
+      --hero-border-top:rgba(244,199,111,.18);
+      --hero-border-bottom:rgba(244,199,111,.18);
+      --hero-inset-top:rgba(244,199,111,.28);
+      --hero-inset-bottom:rgba(244,199,111,.28);
 
       --header-bg:#000;
       --header-border:rgba(244,199,111,.12);
@@ -150,9 +151,6 @@
       --footer-line:linear-gradient(90deg, transparent, rgba(244,199,111,.3), rgba(244,199,111,.8), rgba(244,199,111,.3), transparent);
     }
 
-    /* =====================================================
-       NOČNÍ TÉMA
-    ====================================================== */
     body.theme-night{
       --bg:#03050d;
       --bg-2:#08111f;
@@ -176,7 +174,6 @@
         contrast(1.08)
         sepia(.10);
 
-      /* TADY JE HERO BACKGROUND V NOCI O TROCHU TMAVŠÍ */
       --hero-bg-overlay:linear-gradient(rgba(1,8,22,.78), rgba(2,10,24,.89));
       --hero-image-filter:
         hue-rotate(180deg)
@@ -185,21 +182,22 @@
         contrast(1.14)
         sepia(.06);
       --hero-image-opacity:1;
+      --hero-border-top:rgba(126,170,255,.16);
+      --hero-border-bottom:rgba(126,170,255,.16);
+      --hero-inset-top:rgba(126,170,255,.18);
+      --hero-inset-bottom:rgba(126,170,255,.18);
 
-      /* LIŠTA MENU: stejné pozadí, ale noční border a shadow */
       --header-bg:#000;
       --header-border:rgba(126,170,255,.14);
       --header-inset:rgba(126,170,255,.18);
       --header-shadow:0 10px 34px rgba(0,0,0,.32);
 
-      /* MOBILNÍ MENU PANEL: stejné pozadí, ale noční border a shadow */
       --mobile-menu-bg:rgba(0,0,0,.92);
       --mobile-menu-border:rgba(126,170,255,.16);
       --mobile-menu-shadow:
         0 18px 40px rgba(0,0,0,.52),
         inset 0 1px 0 rgba(255,255,255,.03);
 
-      /* HAMBURGER BUTTON: noční styl */
       --mobile-toggle-bg:rgba(4,10,20,.96);
       --mobile-toggle-border:rgba(126,170,255,.24);
       --mobile-toggle-color:#c8e4ff;
@@ -355,9 +353,7 @@
       position:relative;
     }
 
-    .brand{
-      display:none;
-    }
+    .brand{display:none;}
 
     .nav-links{
       display:flex;
@@ -449,20 +445,18 @@
         transform .18s ease;
     }
 
-    .mobile-toggle:hover{
-      transform:translateY(-1px);
-    }
+    .mobile-toggle:hover{transform:translateY(-1px);}
 
     .hero{
       position:relative;
       padding:34px 0 24px;
       min-height:430px;
       isolation:isolate;
-      border-top:1px solid rgba(244,199,111,.18);
-      border-bottom:1px solid rgba(244,199,111,.18);
+      border-top:1px solid var(--hero-border-top);
+      border-bottom:1px solid var(--hero-border-bottom);
       box-shadow:
-        inset 0 1px 0 rgba(244,199,111,.28),
-        inset 0 -1px 0 rgba(244,199,111,.28);
+        inset 0 1px 0 var(--hero-inset-top),
+        inset 0 -1px 0 var(--hero-inset-bottom);
       background:var(--hero-bg-overlay);
       transition:border-color .35s ease, box-shadow .35s ease, background .35s ease;
       overflow:hidden;
@@ -512,9 +506,7 @@
       position:relative;
     }
 
-    .solar-stage{
-      display:none;
-    }
+    .solar-stage{display:none;}
 
     .hero-copy{
       margin-top:12px;
@@ -533,9 +525,7 @@
       transition:color .35s ease;
     }
 
-    body.theme-night .eyebrow{
-      color:#b7d3f7;
-    }
+    body.theme-night .eyebrow{color:#b7d3f7;}
 
     .hero-watermark{
       width:min(1085px, 96%);
@@ -569,9 +559,7 @@
       transition:color .35s ease;
     }
 
-    body.theme-night .subtitle{
-      color:#d9ebff;
-    }
+    body.theme-night .subtitle{color:#d9ebff;}
 
     .hero-text{
       width:min(680px, 100%);
@@ -618,9 +606,7 @@
       box-shadow:var(--button-shadow-hover);
     }
 
-    body.theme-night .btn{
-      border-color:rgba(150,195,255,.28);
-    }
+    body.theme-night .btn{border-color:rgba(150,195,255,.28);}
 
     section{
       padding:44px 0;
@@ -714,14 +700,8 @@
       background-position:center;
     }
 
-    .media-cover::before{
-      content:none;
-    }
-
-    .media-cover::after{
-      content:"";
-      display:none;
-    }
+    .media-cover::before{content:none;}
+    .media-cover::after{content:"";display:none;}
 
     .release-meta h3{
       margin:0 0 10px;
@@ -766,9 +746,7 @@
         box-shadow .35s ease;
     }
 
-    .play:hover{
-      transform:translateY(-1px);
-    }
+    .play:hover{transform:translateY(-1px);}
 
     .track{flex:1;}
 
@@ -782,9 +760,7 @@
       transition:color .35s ease;
     }
 
-    .track-icons{
-      display:none;
-    }
+    .track-icons{display:none;}
 
     .progress{
       position:relative;
@@ -816,9 +792,7 @@
       transition:color .35s ease;
     }
 
-    body.theme-night .track-time{
-      color:#93b2d8;
-    }
+    body.theme-night .track-time{color:#93b2d8;}
 
     .platforms{
       display:flex;
@@ -904,9 +878,7 @@
       transition:color .35s ease;
     }
 
-    body.theme-night .about-tags{
-      color:#cfe4ff;
-    }
+    body.theme-night .about-tags{color:#cfe4ff;}
 
     .about-copy p{
       color:var(--muted-dark);
@@ -921,9 +893,7 @@
       gap:22px;
     }
 
-    .video-card{
-      overflow:hidden;
-    }
+    .video-card{overflow:hidden;}
 
     .video-thumb{
       position:relative;
@@ -979,9 +949,7 @@
       transition:color .35s ease;
     }
 
-    .video-info p{
-      display:none;
-    }
+    .video-info p{display:none;}
 
     .socials{
       display:flex;
@@ -1016,9 +984,7 @@
       box-shadow:var(--social-shadow-hover);
     }
 
-    body.theme-night .social:hover{
-      color:#eef7ff;
-    }
+    body.theme-night .social:hover{color:#eef7ff;}
 
     footer{
       padding:24px 0 56px;
@@ -1040,13 +1006,8 @@
       letter-spacing:.06em;
     }
 
-    .note-box{
-      display:none;
-    }
-
-    .hidden-audio{
-      display:none;
-    }
+    .note-box{display:none;}
+    .hidden-audio{display:none;}
 
     @media (max-width: 980px){
       .nav-links{
@@ -1134,7 +1095,7 @@
         <a href="#videos">Video</a>
         <a href="#collabs">Collabs</a>
         <a href="#contact">Contact</a>
-        <button class="theme-switch" id="themeSwitch" type="button" aria-label="Přepnout motiv">☾</button>
+        <button class="theme-switch" id="themeSwitch" type="button" aria-label="Přepnout motiv">🕒</button>
       </nav>
 
       <button class="mobile-toggle" id="mobileToggle" aria-label="Otevřít menu">
@@ -1323,12 +1284,12 @@
 
       const switchButton = document.getElementById('themeSwitch');
       if (switchButton) {
-        switchButton.textContent = theme === 'night' ? '☀️' : '☾';
+        switchButton.textContent = '🕒';
         switchButton.setAttribute(
           'aria-label',
-          theme === 'night' ? 'Přepnout na denní motiv' : 'Přepnout na noční motiv'
+          theme === 'night' ? 'Aktuálně noční motiv – klikni pro přepnutí' : 'Aktuálně denní motiv – klikni pro přepnutí'
         );
-        switchButton.title = theme === 'night' ? 'Přepnout na denní motiv' : 'Přepnout na noční motiv';
+        switchButton.title = theme === 'night' ? 'Aktuálně noční motiv – klikni pro přepnutí' : 'Aktuálně denní motiv – klikni pro přepnutí';
       }
     }
 
