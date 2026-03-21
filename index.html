@@ -180,10 +180,11 @@
         sepia(.06);
       --hero-image-opacity:1;
 
-      --header-bg:rgba(3,8,18,.92);
-      --header-border:rgba(126,170,255,.14);
-      --header-inset:rgba(126,170,255,.18);
-      --header-shadow:0 10px 34px rgba(0,0,0,.32);
+      /* LIŠTA MENU ZŮSTÁVÁ STEJNÁ JAKO VE DNI */
+      --header-bg:#000;
+      --header-border:rgba(244,199,111,.12);
+      --header-inset:rgba(244,199,111,.22);
+      --header-shadow:0 8px 30px rgba(0,0,0,.18);
 
       --particle-opacity:.18;
       --particle-filter:hue-rotate(170deg) saturate(1.15) brightness(.95);
@@ -230,11 +231,12 @@
       --social-shadow:inset 0 0 12px rgba(120,170,255,.08), 0 10px 22px rgba(0,0,0,.28);
       --social-shadow-hover:inset 0 0 12px rgba(140,190,255,.14), 0 14px 30px rgba(0,0,0,.36), 0 0 20px rgba(120,170,255,.18);
 
-      --mobile-menu-bg:rgba(4,10,20,.96);
-      --mobile-menu-border:rgba(126,170,255,.16);
+      /* I MOBILNÍ MENU PANEL ZŮSTÁVÁ STEJNÝ JAKO VE DNI */
+      --mobile-menu-bg:rgba(0,0,0,.92);
+      --mobile-menu-border:rgba(244,199,111,.14);
       --mobile-menu-shadow:
-        0 18px 40px rgba(0,0,0,.52),
-        inset 0 1px 0 rgba(255,255,255,.03);
+        0 18px 40px rgba(0,0,0,.45),
+        inset 0 1px 0 rgba(255,255,255,.02);
 
       --video-thumb-overlay:
         radial-gradient(circle at 50% 45%, rgba(135,190,255,.18), transparent 22%),
@@ -376,6 +378,7 @@
       transform:translateY(-1px);
     }
 
+    /* NOČNÍ STYL TEXTU A HOVERU ZŮSTÁVÁ */
     body.theme-night .nav-links a:hover{
       color:#eaf5ff;
       text-shadow:
@@ -396,6 +399,7 @@
       box-shadow:0 0 10px rgba(255,174,49,.65);
     }
 
+    /* NOČNÍ PODTRŽENÍ MENU ZŮSTÁVÁ MODRÉ */
     body.theme-night .nav-links a::after{
       box-shadow:0 0 10px rgba(120,170,255,.55);
     }
