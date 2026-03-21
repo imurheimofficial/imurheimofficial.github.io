@@ -176,12 +176,13 @@
         contrast(1.08)
         sepia(.10);
 
-      --hero-bg-overlay:linear-gradient(rgba(1,8,22,.70), rgba(2,10,24,.84));
+      /* TADY JE HERO BACKGROUND V NOCI O TROCHU TMAVŠÍ */
+      --hero-bg-overlay:linear-gradient(rgba(1,8,22,.78), rgba(2,10,24,.89));
       --hero-image-filter:
         hue-rotate(180deg)
         saturate(1.15)
-        brightness(.58)
-        contrast(1.12)
+        brightness(.48)
+        contrast(1.14)
         sepia(.06);
       --hero-image-opacity:1;
 
@@ -246,7 +247,7 @@
       --social-border:rgba(126,170,255,.18);
       --social-bg:linear-gradient(180deg, rgba(16,24,40,.90), rgba(4,9,18,.96));
       --social-color:#c8e4ff;
-      --social-shadow:inset 0 0 12px rgba(120,170,255,.08), 0 10px 22px rgba(0,0,0,.28);
+      --social-shadow:inset 0 0 12px rgba(120,170,255,.08), 0 10px 22px rgba(0,0,0,.28), 0 0 0 1px rgba(126,170,255,.08);
       --social-shadow-hover:inset 0 0 12px rgba(140,190,255,.14), 0 14px 30px rgba(0,0,0,.36), 0 0 20px rgba(120,170,255,.18);
 
       --video-thumb-overlay:
@@ -385,6 +386,7 @@
       background:none;
       border:none;
       cursor:pointer;
+      line-height:1;
     }
 
     .nav-links a:hover,
@@ -840,12 +842,17 @@
         transform .2s ease,
         border-color .35s ease,
         background .35s ease,
-        color .35s ease;
+        color .35s ease,
+        box-shadow .35s ease;
     }
 
     .platform:hover{
       transform:translateY(-2px);
       border-color:var(--platform-border-hover);
+    }
+
+    body.theme-night .platform{
+      box-shadow:0 0 0 1px rgba(126,170,255,.05), 0 10px 22px rgba(0,0,0,.20);
     }
 
     .about-grid{
@@ -1127,7 +1134,7 @@
         <a href="#videos">Video</a>
         <a href="#collabs">Collabs</a>
         <a href="#contact">Contact</a>
-        <button class="theme-switch" id="themeSwitch" type="button" aria-label="Přepnout motiv">Switch Theme</button>
+        <button class="theme-switch" id="themeSwitch" type="button" aria-label="Přepnout motiv">☾</button>
       </nav>
 
       <button class="mobile-toggle" id="mobileToggle" aria-label="Otevřít menu">
@@ -1316,7 +1323,12 @@
 
       const switchButton = document.getElementById('themeSwitch');
       if (switchButton) {
-        switchButton.textContent = theme === 'night' ? 'Switch to Day' : 'Switch to Night';
+        switchButton.textContent = theme === 'night' ? '☀️' : '☾';
+        switchButton.setAttribute(
+          'aria-label',
+          theme === 'night' ? 'Přepnout na denní motiv' : 'Přepnout na noční motiv'
+        );
+        switchButton.title = theme === 'night' ? 'Přepnout na denní motiv' : 'Přepnout na noční motiv';
       }
     }
 
