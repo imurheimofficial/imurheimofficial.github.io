@@ -174,14 +174,16 @@
         contrast(1.08)
         sepia(.10);
 
-      --hero-bg-overlay:linear-gradient(rgba(1,8,22,.78), rgba(2,10,24,.89));
+      /* STEJNÁ ÚROVEŇ TMAVOSTI JAKO VE DNI */
+      --hero-bg-overlay:linear-gradient(rgba(0,0,0,.82), rgba(0,0,0,.90));
       --hero-image-filter:
         hue-rotate(180deg)
         saturate(1.15)
-        brightness(.48)
+        brightness(.66)
         contrast(1.14)
         sepia(.06);
       --hero-image-opacity:1;
+
       --hero-border-top:rgba(126,170,255,.16);
       --hero-border-bottom:rgba(126,170,255,.16);
       --hero-inset-top:rgba(126,170,255,.18);
@@ -368,8 +370,7 @@
       padding:14px 0;
     }
 
-    .nav-links a,
-    .theme-switch{
+    .nav-links a{
       color:var(--muted);
       transition:.18s ease;
       position:relative;
@@ -381,12 +382,10 @@
       letter-spacing:.05em;
       background:none;
       border:none;
-      cursor:pointer;
       line-height:1;
     }
 
-    .nav-links a:hover,
-    .theme-switch:hover{
+    .nav-links a:hover{
       color:#ffe4b3;
       text-shadow:
         0 0 10px rgba(255,196,102,.55),
@@ -395,8 +394,7 @@
       transform:translateY(-1px);
     }
 
-    body.theme-night .nav-links a:hover,
-    body.theme-night .theme-switch:hover{
+    body.theme-night .nav-links a:hover{
       color:#eaf5ff;
       text-shadow:
         0 0 10px rgba(175,214,255,.48),
@@ -404,8 +402,7 @@
         0 0 34px rgba(120,170,255,.26);
     }
 
-    .nav-links a::after,
-    .theme-switch::after{
+    .nav-links a::after{
       content:"";
       position:absolute;
       left:0;
@@ -417,14 +414,80 @@
       box-shadow:0 0 10px rgba(255,174,49,.65);
     }
 
-    body.theme-night .nav-links a::after,
-    body.theme-night .theme-switch::after{
+    body.theme-night .nav-links a::after{
       box-shadow:0 0 10px rgba(120,170,255,.55);
     }
 
-    .nav-links a:hover::after,
-    .theme-switch:hover::after{
-      width:100%;
+    .nav-links a:hover::after{width:100%}
+
+    .theme-switch{
+      width:52px;
+      height:28px;
+      border-radius:999px;
+      border:1px solid rgba(244,199,111,.24);
+      background:linear-gradient(180deg, rgba(30,18,8,.92), rgba(12,8,4,.96));
+      box-shadow:
+        inset 0 1px 0 rgba(255,243,215,.10),
+        0 6px 18px rgba(0,0,0,.22);
+      position:relative;
+      cursor:pointer;
+      padding:0;
+      transition:
+        background .28s ease,
+        border-color .28s ease,
+        box-shadow .28s ease,
+        transform .18s ease;
+      flex:0 0 auto;
+      align-self:center;
+    }
+
+    .theme-switch::before{
+      content:"";
+      position:absolute;
+      top:3px;
+      left:3px;
+      width:20px;
+      height:20px;
+      border-radius:50%;
+      background:linear-gradient(180deg, #f0cb76 0%, #dca441 52%, #9d631f 100%);
+      box-shadow:
+        inset 0 1px 0 rgba(255,243,215,.45),
+        0 3px 10px rgba(0,0,0,.28);
+      transition:
+        transform .26s ease,
+        background .28s ease,
+        box-shadow .28s ease;
+    }
+
+    .theme-switch:hover{
+      transform:translateY(-1px);
+    }
+
+    body.theme-night .theme-switch{
+      border-color:rgba(126,170,255,.28);
+      background:linear-gradient(180deg, rgba(16,24,40,.94), rgba(4,9,18,.98));
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.04),
+        0 6px 18px rgba(0,0,0,.28),
+        0 0 14px rgba(120,170,255,.10);
+    }
+
+    body.theme-night .theme-switch::before{
+      transform:translateX(24px);
+      background:linear-gradient(180deg, #d8ebff 0%, #8fbaf1 52%, #4e78ab 100%);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.40),
+        0 3px 10px rgba(0,0,0,.30),
+        0 0 12px rgba(120,170,255,.16);
+    }
+
+    .theme-switch:focus-visible{
+      outline:2px solid rgba(244,199,111,.5);
+      outline-offset:3px;
+    }
+
+    body.theme-night .theme-switch:focus-visible{
+      outline:2px solid rgba(126,170,255,.5);
     }
 
     .mobile-toggle{
@@ -1029,10 +1092,7 @@
         transition:background .35s ease, border-color .35s ease, box-shadow .35s ease;
       }
 
-      .nav-links a,
-      .theme-switch{
-        font-size:1.08rem;
-      }
+      .nav-links a{font-size:1.08rem;}
 
       .nav-links.open{display:flex}
       .mobile-toggle{display:grid;place-items:center}
@@ -1095,7 +1155,7 @@
         <a href="#videos">Video</a>
         <a href="#collabs">Collabs</a>
         <a href="#contact">Contact</a>
-        <button class="theme-switch" id="themeSwitch" type="button" aria-label="Přepnout motiv">🕒</button>
+        <button class="theme-switch" id="themeSwitch" type="button" aria-label="Přepnout motiv" title="Přepnout motiv"></button>
       </nav>
 
       <button class="mobile-toggle" id="mobileToggle" aria-label="Otevřít menu">
@@ -1284,12 +1344,11 @@
 
       const switchButton = document.getElementById('themeSwitch');
       if (switchButton) {
-        switchButton.textContent = '🕒';
         switchButton.setAttribute(
           'aria-label',
-          theme === 'night' ? 'Aktuálně noční motiv – klikni pro přepnutí' : 'Aktuálně denní motiv – klikni pro přepnutí'
+          theme === 'night' ? 'Aktuálně noční motiv – páčka vpravo' : 'Aktuálně denní motiv – páčka vlevo'
         );
-        switchButton.title = theme === 'night' ? 'Aktuálně noční motiv – klikni pro přepnutí' : 'Aktuálně denní motiv – klikni pro přepnutí';
+        switchButton.title = theme === 'night' ? 'Aktuálně noční motiv – páčka vpravo' : 'Aktuálně denní motiv – páčka vlevo';
       }
     }
 
