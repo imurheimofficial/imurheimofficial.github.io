@@ -78,8 +78,9 @@
       --bg-image-opacity:.35;
       --bg-image-filter:none;
 
+      --hero-bg-overlay:linear-gradient(rgba(0,0,0,.82), rgba(0,0,0,.90));
       --hero-image-filter:none;
-      --hero-overlay:linear-gradient(rgba(0,0,0,.82), rgba(0,0,0,.90));
+      --hero-image-opacity:1;
 
       --header-bg:#000;
       --header-border:rgba(244,199,111,.12);
@@ -142,8 +143,6 @@
 
       --footer-color:#d5b27b;
       --footer-line:linear-gradient(90deg, transparent, rgba(244,199,111,.3), rgba(244,199,111,.8), rgba(244,199,111,.3), transparent);
-
-      --theme-color-meta:#000000;
     }
 
     /* =====================================================
@@ -172,15 +171,14 @@
         contrast(1.08)
         sepia(.10);
 
+      --hero-bg-overlay:linear-gradient(rgba(1,8,22,.70), rgba(2,10,24,.84));
       --hero-image-filter:
         hue-rotate(180deg)
-        saturate(1.08)
-        brightness(.42)
-        contrast(1.10)
-        sepia(.08);
-
-      --hero-overlay:
-        linear-gradient(rgba(1,8,22,.80), rgba(2,10,24,.90));
+        saturate(1.15)
+        brightness(.58)
+        contrast(1.12)
+        sepia(.06);
+      --hero-image-opacity:1;
 
       --header-bg:rgba(3,8,18,.92);
       --header-border:rgba(126,170,255,.14);
@@ -244,20 +242,12 @@
 
       --footer-color:#9eb9dc;
       --footer-line:linear-gradient(90deg, transparent, rgba(126,170,255,.24), rgba(175,214,255,.82), rgba(126,170,255,.24), transparent);
-
-      --theme-color-meta:#08101d;
     }
 
-    /* =====================================================
-       RESET
-    ====================================================== */
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     html, body{min-height:100%}
 
-    /* =====================================================
-       BODY / HLAVNÍ POZADÍ
-    ====================================================== */
     body{
       margin:0;
       color:var(--text);
@@ -274,9 +264,7 @@
       text-rendering:optimizeLegibility;
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
-      transition:
-        background .45s ease,
-        color .35s ease;
+      transition:background .45s ease, color .35s ease;
     }
 
     body.theme-night{
@@ -288,7 +276,6 @@
         linear-gradient(180deg, #01040b 0%, #07101d 18%, #0a1424 44%, #02050c 100%);
     }
 
-    /* Jemné částečky přes celé pozadí */
     body::before{
       content:"";
       position:fixed;
@@ -304,27 +291,21 @@
       opacity:var(--particle-opacity);
       mix-blend-mode:screen;
       filter:var(--particle-filter);
-      transition:
-        opacity .35s ease,
-        filter .35s ease;
+      transition:opacity .35s ease, filter .35s ease;
     }
 
-    /* Spodní background vrstva */
     body::after{
       content:"";
       position:fixed;
       inset:0;
       pointer-events:none;
       z-index:-2;
-      background:
-        url("assets/Background Profile Web.png") center bottom / cover no-repeat;
+      background:url("assets/Background Profile Web.png") center bottom / cover no-repeat;
       opacity:var(--bg-image-opacity);
       filter:var(--bg-image-filter);
       -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,.95) 28%, rgba(0,0,0,.35) 52%, rgba(0,0,0,0) 76%);
       mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,.95) 28%, rgba(0,0,0,.35) 52%, rgba(0,0,0,0) 76%);
-      transition:
-        opacity .4s ease,
-        filter .4s ease;
+      transition:opacity .4s ease, filter .4s ease;
     }
 
     a{color:inherit;text-decoration:none}
@@ -335,16 +316,12 @@
       margin-inline:auto;
     }
 
-    /* Vypnutí starých linek */
     .frame-line::before,
     .frame-line::after{
       content:none !important;
       display:none !important;
     }
 
-    /* =====================================================
-       HEADER / HORNÍ LIŠTA
-    ====================================================== */
     header{
       position:sticky;
       top:0;
@@ -352,13 +329,8 @@
       backdrop-filter: blur(10px);
       background:var(--header-bg);
       border-bottom:1px solid var(--header-border);
-      box-shadow:
-        inset 0 -1px 0 var(--header-inset),
-        var(--header-shadow);
-      transition:
-        background .35s ease,
-        border-color .35s ease,
-        box-shadow .35s ease;
+      box-shadow:inset 0 -1px 0 var(--header-inset), var(--header-shadow);
+      transition:background .35s ease, border-color .35s ease, box-shadow .35s ease;
     }
 
     .nav{
@@ -373,7 +345,6 @@
       display:none;
     }
 
-    /* Desktop menu */
     .nav-links{
       display:flex;
       align-items:center;
@@ -431,7 +402,6 @@
 
     .nav-links a:hover::after{width:100%}
 
-    /* Mobilní hamburger */
     .mobile-toggle{
       display:none;
       border:1px solid var(--play-border);
@@ -441,15 +411,9 @@
       height:46px;
       border-radius:14px;
       justify-self:end;
-      transition:
-        background .3s ease,
-        color .3s ease,
-        border-color .3s ease;
+      transition:background .3s ease, color .3s ease, border-color .3s ease;
     }
 
-    /* =====================================================
-       HERO SEKCE
-    ====================================================== */
     .hero{
       position:relative;
       padding:34px 0 24px;
@@ -460,48 +424,44 @@
       box-shadow:
         inset 0 1px 0 rgba(244,199,111,.28),
         inset 0 -1px 0 rgba(244,199,111,.28);
-      background:
-        var(--hero-overlay),
-        url("assets/Background Profile Web.png") center center / cover no-repeat;
-      transition:
-        border-color .35s ease,
-        box-shadow .35s ease;
+      background:var(--hero-bg-overlay);
+      transition:border-color .35s ease, box-shadow .35s ease, background .35s ease;
+      overflow:hidden;
     }
 
     .hero::before{
       content:"";
       position:absolute;
       inset:0;
-      background:
-        radial-gradient(circle at 50% 35%, rgba(255,183,70,.035), transparent 24%),
-        linear-gradient(180deg, rgba(255,168,58,.008), transparent 40%);
-      z-index:-1;
-      transition:background .35s ease;
-    }
-
-    body.theme-night .hero::before{
-      background:
-        linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)),
-        linear-gradient(180deg, rgba(118,170,255,.03), transparent 40%);
+      z-index:0;
+      background:url("assets/Background Profile Web.png") center center / cover no-repeat;
+      filter:var(--hero-image-filter);
+      opacity:var(--hero-image-opacity);
+      transition:filter .4s ease, opacity .4s ease;
+      pointer-events:none;
     }
 
     .hero::after{
       content:"";
       position:absolute;
       inset:0;
+      z-index:1;
       background:
-        url("assets/Background Profile Web.png") center center / cover no-repeat;
-      filter:var(--hero-image-filter);
+        radial-gradient(circle at 50% 35%, rgba(255,183,70,.035), transparent 24%),
+        linear-gradient(180deg, rgba(255,168,58,.008), transparent 40%);
+      transition:background .35s ease;
       pointer-events:none;
-      opacity:1;
-      mix-blend-mode:screen;
-      z-index:0;
-      transition:filter .4s ease;
+    }
+
+    body.theme-night .hero::after{
+      background:
+        radial-gradient(circle at 50% 35%, rgba(130,185,255,.04), transparent 24%),
+        linear-gradient(180deg, rgba(118,170,255,.03), transparent 40%);
     }
 
     .hero > *{
       position:relative;
-      z-index:1;
+      z-index:2;
     }
 
     .hero-grid{
@@ -538,7 +498,6 @@
       color:#b7d3f7;
     }
 
-    /* Hlavní watermark/logo uprostřed */
     .hero-watermark{
       width:min(1085px, 96%);
       margin:6px auto 6px;
@@ -559,9 +518,7 @@
       background:linear-gradient(90deg, transparent, var(--headline-rule-start), var(--headline-rule-mid), var(--headline-rule-start), transparent);
       border-radius:999px;
       box-shadow:var(--headline-rule-shadow);
-      transition:
-        background .35s ease,
-        box-shadow .35s ease;
+      transition:background .35s ease, box-shadow .35s ease;
     }
 
     .subtitle{
@@ -626,9 +583,6 @@
       border-color:rgba(150,195,255,.28);
     }
 
-    /* =====================================================
-       SPOLEČNÉ SEKCE
-    ====================================================== */
     section{
       padding:44px 0;
       content-visibility:auto;
@@ -670,10 +624,7 @@
       border-radius:var(--radius);
       box-shadow: var(--shadow);
       overflow:hidden;
-      transition:
-        background .35s ease,
-        border-color .35s ease,
-        box-shadow .35s ease;
+      transition:background .35s ease, border-color .35s ease, box-shadow .35s ease;
     }
 
     .panel::before{
@@ -693,9 +644,6 @@
         radial-gradient(circle at 85% 80%, rgba(120,170,255,.05), transparent 20%);
     }
 
-    /* =====================================================
-       LATEST RELEASE
-    ====================================================== */
     .release-card{
       display:grid;
       grid-template-columns:280px 1fr;
@@ -807,9 +755,7 @@
       overflow:hidden;
       border:1px solid var(--progress-border);
       cursor:pointer;
-      transition:
-        background .35s ease,
-        border-color .35s ease;
+      transition:background .35s ease, border-color .35s ease;
     }
 
     .progress span{
@@ -820,9 +766,7 @@
       background:var(--progress-fill);
       box-shadow:var(--progress-fill-shadow);
       pointer-events:none;
-      transition:
-        background .35s ease,
-        box-shadow .35s ease;
+      transition:background .35s ease, box-shadow .35s ease;
     }
 
     .track-time{
@@ -867,9 +811,6 @@
       border-color:var(--platform-border-hover);
     }
 
-    /* =====================================================
-       ABOUT
-    ====================================================== */
     .about-grid{
       display:grid;
       grid-template-columns:1.02fr .98fr;
@@ -930,9 +871,6 @@
       transition:color .35s ease;
     }
 
-    /* =====================================================
-       VIDEOS
-    ====================================================== */
     .video-grid{
       display:grid;
       grid-template-columns:repeat(3, 1fr);
@@ -973,9 +911,7 @@
       font-size:4rem;
       text-shadow:0 8px 18px rgba(0,0,0,.5);
       z-index:2;
-      transition:
-        color .35s ease,
-        text-shadow .35s ease;
+      transition:color .35s ease, text-shadow .35s ease;
     }
 
     body.theme-night .play-large{
@@ -1003,9 +939,6 @@
       display:none;
     }
 
-    /* =====================================================
-       CONNECT
-    ====================================================== */
     .socials{
       display:flex;
       justify-content:center;
@@ -1043,9 +976,6 @@
       color:#eef7ff;
     }
 
-    /* =====================================================
-       FOOTER
-    ====================================================== */
     footer{
       padding:24px 0 56px;
       text-align:center;
@@ -1074,9 +1004,6 @@
       display:none;
     }
 
-    /* =====================================================
-       TABLET / MOBIL
-    ====================================================== */
     @media (max-width: 980px){
       .nav-links{
         position:absolute;
@@ -1094,10 +1021,7 @@
         border-radius:20px;
         box-shadow:var(--mobile-menu-shadow);
         font-size:1.08rem;
-        transition:
-          background .35s ease,
-          border-color .35s ease,
-          box-shadow .35s ease;
+        transition:background .35s ease, border-color .35s ease, box-shadow .35s ease;
       }
 
       .nav-links.open{display:flex}
@@ -1152,9 +1076,6 @@
 </head>
 
 <body class="theme-day">
-  <!-- =====================================================
-       HEADER / MENU
-  ====================================================== -->
   <header class="frame-line">
     <div class="container nav">
       <nav class="nav-links" id="navLinks">
@@ -1173,9 +1094,6 @@
   </header>
 
   <main id="top">
-    <!-- =====================================================
-         HERO
-    ====================================================== -->
     <section class="hero frame-line">
       <div class="container hero-grid">
         <div class="hero-copy">
@@ -1203,9 +1121,6 @@
       </div>
     </section>
 
-    <!-- =====================================================
-         MUSIC
-    ====================================================== -->
     <section id="music">
       <div class="container">
         <h2 class="section-title">Latest Release</h2>
@@ -1253,9 +1168,6 @@
       </div>
     </section>
 
-    <!-- =====================================================
-         ABOUT
-    ====================================================== -->
     <section id="bio">
       <div class="container">
         <div class="panel" style="padding:28px;">
@@ -1275,9 +1187,6 @@
       </div>
     </section>
 
-    <!-- =====================================================
-         VIDEOS
-    ====================================================== -->
     <section id="videos">
       <div class="container">
         <h2 class="section-title">Videos</h2>
@@ -1313,9 +1222,6 @@
       </div>
     </section>
 
-    <!-- =====================================================
-         CONTACT
-    ====================================================== -->
     <section id="contact">
       <div class="container">
         <div class="panel" style="padding:30px 24px;">
@@ -1340,9 +1246,6 @@
     </section>
   </main>
 
-  <!-- =====================================================
-       FOOTER
-  ====================================================== -->
   <footer>
     <div class="container">
       <div class="footer-line"></div>
@@ -1351,7 +1254,6 @@
   </footer>
 
   <script>
-    /* Automatické přepínání denního / nočního motivu podle času */
     function applyTimeTheme() {
       const now = new Date();
       const hour = now.getHours();
@@ -1362,19 +1264,13 @@
 
       const themeMeta = document.querySelector('meta[name="theme-color"]');
       if (themeMeta) {
-        themeMeta.setAttribute(
-          'content',
-          isDayTheme ? '#000000' : '#08101d'
-        );
+        themeMeta.setAttribute('content', isDayTheme ? '#000000' : '#08101d');
       }
     }
 
     applyTimeTheme();
-
-    /* Kontrola každou minutu */
     setInterval(applyTimeTheme, 60000);
 
-    /* Mobilní menu */
     const toggle = document.getElementById('mobileToggle');
     const navLinks = document.getElementById('navLinks');
 
@@ -1388,10 +1284,8 @@
       });
     }
 
-    /* Rok ve footeru */
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    /* Audio player */
     const audio = document.getElementById('releaseAudio');
     const playButton = document.getElementById('playButton');
     const playIcon = document.getElementById('playIcon');
