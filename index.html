@@ -87,6 +87,17 @@
       --header-inset:rgba(244,199,111,.22);
       --header-shadow:0 8px 30px rgba(0,0,0,.18);
 
+      --mobile-menu-bg:rgba(0,0,0,.92);
+      --mobile-menu-border:rgba(244,199,111,.14);
+      --mobile-menu-shadow:
+        0 18px 40px rgba(0,0,0,.45),
+        inset 0 1px 0 rgba(255,255,255,.02);
+
+      --mobile-toggle-bg:#000;
+      --mobile-toggle-border:rgba(244,199,111,.25);
+      --mobile-toggle-color:var(--gold);
+      --mobile-toggle-shadow:none;
+
       --particle-opacity:.22;
       --particle-filter:none;
 
@@ -131,12 +142,6 @@
       --social-shadow:inset 0 0 12px rgba(255,184,77,.06), 0 8px 20px rgba(0,0,0,.25);
       --social-shadow-hover:inset 0 0 12px rgba(255,184,77,.12), 0 12px 28px rgba(0,0,0,.32), 0 0 18px rgba(255,174,49,.12);
 
-      --mobile-menu-bg:rgba(0,0,0,.92);
-      --mobile-menu-border:rgba(244,199,111,.14);
-      --mobile-menu-shadow:
-        0 18px 40px rgba(0,0,0,.45),
-        inset 0 1px 0 rgba(255,255,255,.02);
-
       --video-thumb-overlay:
         radial-gradient(circle at 50% 45%, rgba(255,203,112,.16), transparent 20%),
         linear-gradient(180deg, rgba(255,213,148,.02), rgba(0,0,0,.12) 60%, rgba(0,0,0,.48));
@@ -180,11 +185,24 @@
         sepia(.06);
       --hero-image-opacity:1;
 
-      /* LIŠTA MENU ZŮSTÁVÁ STEJNÁ JAKO VE DNI */
+      /* LIŠTA MENU: stejné pozadí, ale noční border a shadow */
       --header-bg:#000;
-      --header-border:rgba(244,199,111,.12);
-      --header-inset:rgba(244,199,111,.22);
-      --header-shadow:0 8px 30px rgba(0,0,0,.18);
+      --header-border:rgba(126,170,255,.14);
+      --header-inset:rgba(126,170,255,.18);
+      --header-shadow:0 10px 34px rgba(0,0,0,.32);
+
+      /* MOBILNÍ MENU PANEL: stejné pozadí, ale noční border a shadow */
+      --mobile-menu-bg:rgba(0,0,0,.92);
+      --mobile-menu-border:rgba(126,170,255,.16);
+      --mobile-menu-shadow:
+        0 18px 40px rgba(0,0,0,.52),
+        inset 0 1px 0 rgba(255,255,255,.03);
+
+      /* HAMBURGER BUTTON: noční styl */
+      --mobile-toggle-bg:rgba(4,10,20,.96);
+      --mobile-toggle-border:rgba(126,170,255,.24);
+      --mobile-toggle-color:#c8e4ff;
+      --mobile-toggle-shadow:0 0 16px rgba(120,170,255,.12);
 
       --particle-opacity:.18;
       --particle-filter:hue-rotate(170deg) saturate(1.15) brightness(.95);
@@ -230,13 +248,6 @@
       --social-color:#c8e4ff;
       --social-shadow:inset 0 0 12px rgba(120,170,255,.08), 0 10px 22px rgba(0,0,0,.28);
       --social-shadow-hover:inset 0 0 12px rgba(140,190,255,.14), 0 14px 30px rgba(0,0,0,.36), 0 0 20px rgba(120,170,255,.18);
-
-      /* I MOBILNÍ MENU PANEL ZŮSTÁVÁ STEJNÝ JAKO VE DNI */
-      --mobile-menu-bg:rgba(0,0,0,.92);
-      --mobile-menu-border:rgba(244,199,111,.14);
-      --mobile-menu-shadow:
-        0 18px 40px rgba(0,0,0,.45),
-        inset 0 1px 0 rgba(255,255,255,.02);
 
       --video-thumb-overlay:
         radial-gradient(circle at 50% 45%, rgba(135,190,255,.18), transparent 22%),
@@ -360,16 +371,24 @@
       padding:14px 0;
     }
 
-    .nav-links a{
+    .nav-links a,
+    .theme-switch{
       color:var(--muted);
       transition:.18s ease;
       position:relative;
       will-change:transform, color, text-shadow;
       padding:4px 6px;
       border-radius:8px;
+      font-family:Cinzel, serif;
+      font-size:1.28rem;
+      letter-spacing:.05em;
+      background:none;
+      border:none;
+      cursor:pointer;
     }
 
-    .nav-links a:hover{
+    .nav-links a:hover,
+    .theme-switch:hover{
       color:#ffe4b3;
       text-shadow:
         0 0 10px rgba(255,196,102,.55),
@@ -378,8 +397,8 @@
       transform:translateY(-1px);
     }
 
-    /* NOČNÍ STYL TEXTU A HOVERU ZŮSTÁVÁ */
-    body.theme-night .nav-links a:hover{
+    body.theme-night .nav-links a:hover,
+    body.theme-night .theme-switch:hover{
       color:#eaf5ff;
       text-shadow:
         0 0 10px rgba(175,214,255,.48),
@@ -387,7 +406,8 @@
         0 0 34px rgba(120,170,255,.26);
     }
 
-    .nav-links a::after{
+    .nav-links a::after,
+    .theme-switch::after{
       content:"";
       position:absolute;
       left:0;
@@ -399,23 +419,36 @@
       box-shadow:0 0 10px rgba(255,174,49,.65);
     }
 
-    /* NOČNÍ PODTRŽENÍ MENU ZŮSTÁVÁ MODRÉ */
-    body.theme-night .nav-links a::after{
+    body.theme-night .nav-links a::after,
+    body.theme-night .theme-switch::after{
       box-shadow:0 0 10px rgba(120,170,255,.55);
     }
 
-    .nav-links a:hover::after{width:100%}
+    .nav-links a:hover::after,
+    .theme-switch:hover::after{
+      width:100%;
+    }
 
     .mobile-toggle{
       display:none;
-      border:1px solid var(--play-border);
-      background:var(--header-bg);
-      color:var(--gold);
+      border:1px solid var(--mobile-toggle-border);
+      background:var(--mobile-toggle-bg);
+      color:var(--mobile-toggle-color);
       width:46px;
       height:46px;
       border-radius:14px;
       justify-self:end;
-      transition:background .3s ease, color .3s ease, border-color .3s ease;
+      box-shadow:var(--mobile-toggle-shadow);
+      transition:
+        background .3s ease,
+        color .3s ease,
+        border-color .3s ease,
+        box-shadow .3s ease,
+        transform .18s ease;
+    }
+
+    .mobile-toggle:hover{
+      transform:translateY(-1px);
     }
 
     .hero{
@@ -1028,6 +1061,11 @@
         transition:background .35s ease, border-color .35s ease, box-shadow .35s ease;
       }
 
+      .nav-links a,
+      .theme-switch{
+        font-size:1.08rem;
+      }
+
       .nav-links.open{display:flex}
       .mobile-toggle{display:grid;place-items:center}
       .hero{padding-top:28px; min-height:auto}
@@ -1089,6 +1127,7 @@
         <a href="#videos">Video</a>
         <a href="#collabs">Collabs</a>
         <a href="#contact">Contact</a>
+        <button class="theme-switch" id="themeSwitch" type="button" aria-label="Přepnout motiv">Switch Theme</button>
       </nav>
 
       <button class="mobile-toggle" id="mobileToggle" aria-label="Otevřít menu">
@@ -1258,25 +1297,57 @@
   </footer>
 
   <script>
-    function applyTimeTheme() {
+    const STORAGE_KEY = 'urheim-theme-mode';
+
+    function getAutoTheme() {
       const now = new Date();
       const hour = now.getHours();
-      const isDayTheme = hour >= 5 && hour < 17;
+      return (hour >= 5 && hour < 17) ? 'day' : 'night';
+    }
 
+    function setTheme(theme) {
       document.body.classList.remove('theme-day', 'theme-night');
-      document.body.classList.add(isDayTheme ? 'theme-day' : 'theme-night');
+      document.body.classList.add(theme === 'night' ? 'theme-night' : 'theme-day');
 
       const themeMeta = document.querySelector('meta[name="theme-color"]');
       if (themeMeta) {
-        themeMeta.setAttribute('content', isDayTheme ? '#000000' : '#08101d');
+        themeMeta.setAttribute('content', theme === 'night' ? '#08101d' : '#000000');
+      }
+
+      const switchButton = document.getElementById('themeSwitch');
+      if (switchButton) {
+        switchButton.textContent = theme === 'night' ? 'Switch to Day' : 'Switch to Night';
       }
     }
 
-    applyTimeTheme();
-    setInterval(applyTimeTheme, 60000);
+    function applySavedOrAutoTheme() {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved === 'day' || saved === 'night') {
+        setTheme(saved);
+      } else {
+        setTheme(getAutoTheme());
+      }
+    }
+
+    function toggleThemeManually() {
+      const isNight = document.body.classList.contains('theme-night');
+      const nextTheme = isNight ? 'day' : 'night';
+      localStorage.setItem(STORAGE_KEY, nextTheme);
+      setTheme(nextTheme);
+    }
+
+    applySavedOrAutoTheme();
+
+    setInterval(() => {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (!saved) {
+        setTheme(getAutoTheme());
+      }
+    }, 60000);
 
     const toggle = document.getElementById('mobileToggle');
     const navLinks = document.getElementById('navLinks');
+    const themeSwitch = document.getElementById('themeSwitch');
 
     if (toggle && navLinks) {
       toggle.addEventListener('click', () => {
@@ -1285,6 +1356,12 @@
 
       navLinks.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => navLinks.classList.remove('open'));
+      });
+    }
+
+    if (themeSwitch) {
+      themeSwitch.addEventListener('click', () => {
+        toggleThemeManually();
       });
     }
 
