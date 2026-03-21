@@ -1,35 +1,65 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
+  <!-- =====================================================
+       ZÁKLADNÍ NASTAVENÍ STRÁNKY
+  ====================================================== -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!-- Název stránky v záložce -->
   <title>URHEIM</title>
 
+  <!-- Popis stránky pro SEO -->
   <meta
     name="description"
     content="Official website of URHEIM, URHEIM, Czech, Urheim, Adrian, Adrian Urheim, ADRIAN URHEIM, Czech artist."
   />
 
+  <!-- Barva UI v mobilních prohlížečích -->
+  <meta name="theme-color" content="#000000" />
+
+  <!-- =====================================================
+       ZRYCHLENÍ NAČÍTÁNÍ EXTERNÍCH ZDROJŮ
+  ====================================================== -->
   <link rel="dns-prefetch" href="//fonts.googleapis.com">
   <link rel="dns-prefetch" href="//fonts.gstatic.com">
   <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
-
-  <!-- Ikona stránky -->
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/Profile Picture.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="assets/Profile Picture.png">
-  <link rel="icon" type="image/png" sizes="512x512" href="assets/Profile Picture.png">
-  <link rel="shortcut icon" href="assets/Profile Picture.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/Profile Picture.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 
+  <!-- =====================================================
+       FAVICON / IKONA STRÁNKY
+       Tady je změněno zpět na Favicon.png
+       Používá se ve více velikostech, aby ji prohlížeče
+       braly co nejlépe.
+  ====================================================== -->
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/Favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/Favicon.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="assets/Favicon.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/Favicon.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="assets/Favicon.png">
+  <link rel="icon" type="image/png" sizes="180x180" href="assets/Favicon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/Favicon.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/Favicon.png">
+  <link rel="shortcut icon" href="assets/Favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/Favicon.png">
+
+  <!-- Mask icon fallback -->
+  <link rel="mask-icon" href="assets/Favicon.png" color="#f4c76f">
+
+  <!-- =====================================================
+       FONTY A IKONY
+  ====================================================== -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
   <style>
+    /* =====================================================
+       GLOBÁLNÍ PROMĚNNÉ
+    ====================================================== */
     :root{
       --bg:#090603;
       --bg-2:#140d07;
@@ -49,10 +79,16 @@
       --container:1180px;
     }
 
+    /* =====================================================
+       RESET
+    ====================================================== */
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     html, body{min-height:100%}
 
+    /* =====================================================
+       BODY / HLAVNÍ POZADÍ
+    ====================================================== */
     body{
       margin:0;
       color:var(--text);
@@ -71,6 +107,7 @@
       -moz-osx-font-smoothing:grayscale;
     }
 
+    /* Jemné částečky přes celé pozadí */
     body::before{
       content:"";
       position:fixed;
@@ -87,6 +124,7 @@
       mix-blend-mode:screen;
     }
 
+    /* Spodní background vrstva */
     body::after{
       content:"";
       position:fixed;
@@ -108,12 +146,16 @@
       margin-inline:auto;
     }
 
+    /* Vypnutí starých linek */
     .frame-line::before,
     .frame-line::after{
       content:none !important;
       display:none !important;
     }
 
+    /* =====================================================
+       HEADER / HORNÍ LIŠTA
+    ====================================================== */
     header{
       position:sticky;
       top:0;
@@ -138,6 +180,7 @@
       display:none;
     }
 
+    /* Desktop menu */
     .nav-links{
       display:flex;
       align-items:center;
@@ -183,6 +226,7 @@
 
     .nav-links a:hover::after{width:100%}
 
+    /* Mobilní hamburger */
     .mobile-toggle{
       display:none;
       border:1px solid rgba(244,199,111,.25);
@@ -194,6 +238,9 @@
       justify-self:end;
     }
 
+    /* =====================================================
+       HERO SEKCE
+    ====================================================== */
     .hero{
       position:relative;
       padding:34px 0 24px;
@@ -248,6 +295,7 @@
       opacity:.95;
     }
 
+    /* Hlavní watermark/logo uprostřed */
     .hero-watermark{
       width:min(1085px, 96%);
       margin:6px auto 6px;
@@ -319,6 +367,9 @@
       box-shadow: inset 0 1px 0 rgba(255,243,215,.55), 0 16px 36px rgba(0,0,0,.35), 0 0 26px rgba(255,178,60,.2);
     }
 
+    /* =====================================================
+       SPOLEČNÉ SEKCE
+    ====================================================== */
     section{
       padding:44px 0;
       content-visibility:auto;
@@ -370,6 +421,9 @@
       pointer-events:none;
     }
 
+    /* =====================================================
+       LATEST RELEASE
+    ====================================================== */
     .release-card{
       display:grid;
       grid-template-columns:280px 1fr;
@@ -513,6 +567,9 @@
       border-color:rgba(244,199,111,.32);
     }
 
+    /* =====================================================
+       ABOUT
+    ====================================================== */
     .about-grid{
       display:grid;
       grid-template-columns:1.02fr .98fr;
@@ -559,6 +616,9 @@
       margin:0 0 24px;
     }
 
+    /* =====================================================
+       VIDEOS
+    ====================================================== */
     .video-grid{
       display:grid;
       grid-template-columns:repeat(3, 1fr);
@@ -621,6 +681,9 @@
       display:none;
     }
 
+    /* =====================================================
+       CONNECT
+    ====================================================== */
     .socials{
       display:flex;
       justify-content:center;
@@ -650,6 +713,9 @@
       box-shadow:inset 0 0 12px rgba(255,184,77,.12), 0 12px 28px rgba(0,0,0,.32), 0 0 18px rgba(255,174,49,.12);
     }
 
+    /* =====================================================
+       FOOTER
+    ====================================================== */
     footer{
       padding:24px 0 56px;
       text-align:center;
@@ -676,6 +742,9 @@
       display:none;
     }
 
+    /* =====================================================
+       TABLET / MOBIL
+    ====================================================== */
     @media (max-width: 980px){
       .nav-links{
         position:absolute;
@@ -749,6 +818,9 @@
 </head>
 
 <body>
+  <!-- =====================================================
+       HEADER / MENU
+  ====================================================== -->
   <header class="frame-line">
     <div class="container nav">
       <nav class="nav-links" id="navLinks">
@@ -767,6 +839,9 @@
   </header>
 
   <main id="top">
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
     <section class="hero frame-line">
       <div class="container hero-grid">
         <div class="hero-copy">
@@ -794,6 +869,9 @@
       </div>
     </section>
 
+    <!-- =====================================================
+         MUSIC
+    ====================================================== -->
     <section id="music">
       <div class="container">
         <h2 class="section-title">Latest Release</h2>
@@ -841,6 +919,9 @@
       </div>
     </section>
 
+    <!-- =====================================================
+         ABOUT
+    ====================================================== -->
     <section id="bio">
       <div class="container">
         <div class="panel" style="padding:28px;">
@@ -860,6 +941,9 @@
       </div>
     </section>
 
+    <!-- =====================================================
+         VIDEOS
+    ====================================================== -->
     <section id="videos">
       <div class="container">
         <h2 class="section-title">Videos</h2>
@@ -895,6 +979,9 @@
       </div>
     </section>
 
+    <!-- =====================================================
+         CONTACT
+    ====================================================== -->
     <section id="contact">
       <div class="container">
         <div class="panel" style="padding:30px 24px;">
@@ -919,6 +1006,9 @@
     </section>
   </main>
 
+  <!-- =====================================================
+       FOOTER
+  ====================================================== -->
   <footer>
     <div class="container">
       <div class="footer-line"></div>
@@ -927,6 +1017,7 @@
   </footer>
 
   <script>
+    /* Mobilní menu */
     const toggle = document.getElementById('mobileToggle');
     const navLinks = document.getElementById('navLinks');
 
@@ -940,8 +1031,10 @@
       });
     }
 
+    /* Rok ve footeru */
     document.getElementById('year').textContent = new Date().getFullYear();
 
+    /* Audio player */
     const audio = document.getElementById('releaseAudio');
     const playButton = document.getElementById('playButton');
     const playIcon = document.getElementById('playIcon');
