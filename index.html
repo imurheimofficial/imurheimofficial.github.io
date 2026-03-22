@@ -428,7 +428,6 @@
       min-height:18px;
       padding:0;
       margin:0;
-      border-radius:0;
       border:none;
       background:transparent;
       color:var(--clock-color);
@@ -437,7 +436,7 @@
       text-align:right;
       box-shadow:none;
       white-space:nowrap;
-      transition:color .24s ease, text-shadow .24s ease;
+      transition:color .24s ease;
       font-variant-numeric:tabular-nums;
       letter-spacing:.01em;
     }
@@ -521,8 +520,6 @@
       text-align:center;
       position:relative;
     }
-
-    .solar-stage{display:none;}
 
     .hero-copy{
       margin-top:6px;
@@ -714,9 +711,6 @@
       background-position:center;
     }
 
-    .media-cover::before{content:none;}
-    .media-cover::after{content:"";display:none;}
-
     .release-meta h3{
       margin:0 0 10px;
       font-family:Cinzel, serif;
@@ -773,8 +767,6 @@
       font-weight:700;
       transition:color .24s ease;
     }
-
-    .track-icons{display:none;}
 
     .progress{
       position:relative;
@@ -870,6 +862,7 @@
       mix-blend-mode:screen;
       transition:background .24s ease;
       pointer-events:none;
+      z-index:0;
     }
 
     body.theme-night .about-image::before{
@@ -878,15 +871,18 @@
         linear-gradient(180deg, rgba(0,0,0,.04), rgba(0,0,0,.12) 70%, rgba(0,0,0,.22));
     }
 
-    .about-image::after{
-      content:"";
-      width:100%;
-      height:100%;
-      background:url('assets/URHEIM GOLDEN PROFILE.png') center center / contain no-repeat;
-      filter:var(--profile-image-filter);
-      transition:filter .24s ease;
+    .about-profile-img{
       position:relative;
       z-index:1;
+      width:100%;
+      height:100%;
+      max-width:100%;
+      max-height:100%;
+      object-fit:contain;
+      filter:var(--profile-image-filter);
+      transition:filter .24s ease;
+      pointer-events:none;
+      user-select:none;
     }
 
     .about-copy{padding:8px 4px 8px 0;}
@@ -977,8 +973,6 @@
       transition:color .24s ease;
     }
 
-    .video-info p{display:none;}
-
     .socials{
       display:flex;
       justify-content:center;
@@ -1034,7 +1028,6 @@
       letter-spacing:.06em;
     }
 
-    .note-box{display:none;}
     .hidden-audio{display:none;}
 
     @media (max-width: 1100px){
@@ -1232,7 +1225,16 @@
       <div class="container">
         <div class="panel" style="padding:28px;">
           <div class="about-grid">
-            <div class="about-image" aria-label="Profile Picture"></div>
+            <div class="about-image" aria-label="Profile Picture">
+              <img
+                class="about-profile-img"
+                src="assets/URHEIM GOLDEN PROFILE.png"
+                alt="URHEIM Golden Profile"
+                decoding="async"
+                loading="eager"
+                fetchpriority="high"
+              >
+            </div>
 
             <div class="about-copy">
               <h3>About URHEIM</h3>
