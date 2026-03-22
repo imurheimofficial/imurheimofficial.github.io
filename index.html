@@ -105,9 +105,9 @@
       --progress-fill:linear-gradient(90deg, rgba(255,217,148,.95), rgba(219,150,54,.95));
 
       --platform-border:rgba(244,199,111,.16);
-      --platform-bg:rgba(11,7,4,.76);
-      --platform-color:#f7deb0;
-      --platform-border-hover:rgba(244,199,111,.32);
+      --platform-bg:linear-gradient(180deg, #f0cb76 0%, #dca441 52%, #9d631f 100%);
+      --platform-color:#2a1503;
+      --platform-border-hover:rgba(244,199,111,.46);
 
       --social-border:rgba(244,199,111,.2);
       --social-bg:linear-gradient(180deg, rgba(35,22,12,.85), rgba(10,6,4,.95));
@@ -211,9 +211,9 @@
       --progress-fill:linear-gradient(90deg, rgba(204,231,255,.96), rgba(108,163,238,.96));
 
       --platform-border:rgba(126,170,255,.16);
-      --platform-bg:rgba(7,12,24,.80);
-      --platform-color:#e4f1ff;
-      --platform-border-hover:rgba(155,196,255,.34);
+      --platform-bg:linear-gradient(180deg, #d8ebff 0%, #8fbaf1 52%, #4e78ab 100%);
+      --platform-color:#071423;
+      --platform-border-hover:rgba(155,196,255,.44);
 
       --social-border:rgba(126,170,255,.18);
       --social-bg:linear-gradient(180deg, rgba(16,24,40,.90), rgba(4,9,18,.96));
@@ -646,7 +646,7 @@
 
     .release-card{
       display:grid;
-      grid-template-columns:280px 1fr;
+      grid-template-columns:340px 1fr;
       gap:28px;
       align-items:start;
       padding:22px;
@@ -656,7 +656,11 @@
     .video-thumb,
     .subpage-card,
     .contact-subpage,
-    .youtube-channel-cover{
+    .youtube-channel-cover,
+    .video-channel-panel,
+    .video-channel-iconbox,
+    .video-channel-mainbtn,
+    .video-channel-subs{
       position:relative;
       border-radius:20px;
       overflow:hidden;
@@ -670,70 +674,36 @@
     .youtube-channel-cover{
       aspect-ratio:1/1;
       display:flex;
-      align-items:flex-end;
+      align-items:center;
       justify-content:center;
       background:
         linear-gradient(180deg, rgba(0,0,0,.06), rgba(0,0,0,.74)),
         #000;
     }
 
-    .youtube-channel-cover::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(circle at 50% 40%, rgba(255,255,255,.04), transparent 24%);
-      pointer-events:none;
-    }
-
     .youtube-cover-inner{
       position:relative;
       z-index:2;
       width:100%;
+      height:100%;
       padding:18px;
       display:flex;
       flex-direction:column;
       align-items:center;
-      gap:10px;
+      justify-content:center;
+      gap:18px;
       text-align:center;
-      background:linear-gradient(180deg, transparent, rgba(0,0,0,.58));
-    }
-
-    .youtube-cover-label{
-      font-family:Cinzel, serif;
-      font-size:.78rem;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      color:#d8b981;
-    }
-
-    body.theme-night .youtube-cover-label{
-      color:#b9d7ff;
     }
 
     .youtube-cover-inner i{
-      font-size:2.7rem;
+      font-size:3.1rem;
       color:#fff2d6;
       text-shadow:0 10px 24px rgba(0,0,0,.45);
     }
 
-    .youtube-cover-inner h4{
-      margin:0;
-      font-family:Cinzel, serif;
-      font-size:1rem;
-      color:#fff2d9;
-    }
-
-    .youtube-cover-inner p{
-      margin:0;
-      font-size:.88rem;
-      line-height:1.45;
-      color:#f7dfb8;
-    }
-
     .youtube-cover-link{
-      min-height:42px;
-      padding:0 16px;
+      min-height:46px;
+      padding:0 18px;
       border-radius:14px;
       border:1px solid rgba(255,255,255,.12);
       background:rgba(0,0,0,.38);
@@ -742,7 +712,7 @@
       align-items:center;
       justify-content:center;
       gap:10px;
-      font-weight:600;
+      font-weight:700;
       transition:transform .16s ease, border-color .24s ease, background .24s ease;
     }
 
@@ -848,30 +818,32 @@
       border:1px solid var(--platform-border);
       background:var(--platform-bg);
       color:var(--platform-color);
-      font-weight:600;
+      font-weight:700;
       transition:transform .16s ease, border-color .24s ease, background .24s ease, color .24s ease;
       justify-content:center;
+      box-shadow:var(--button-shadow);
     }
 
     .platform:hover,
     .subpage-link:hover{
       transform:translateY(-2px);
       border-color:var(--platform-border-hover);
+      box-shadow:var(--button-shadow-hover);
     }
 
     .about-grid{
       display:grid;
-      grid-template-columns:1.02fr .98fr;
+      grid-template-columns:.82fr 1.18fr;
       gap:30px;
       align-items:center;
     }
 
     .about-image{
-      min-height:340px;
+      min-height:270px;
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:20px;
+      padding:14px;
       background:#000;
       overflow:visible;
     }
@@ -1113,6 +1085,18 @@
       text-align:center;
     }
 
+    .contact-subpage-item a{
+      color:#ffffff;
+      text-decoration:none;
+      border-bottom:1px solid rgba(255,255,255,.18);
+      transition:opacity .18s ease, border-color .18s ease;
+    }
+
+    .contact-subpage-item a:hover{
+      opacity:.88;
+      border-color:rgba(255,255,255,.38);
+    }
+
     .socials{
       display:flex;
       justify-content:center;
@@ -1142,6 +1126,76 @@
     }
 
     body.theme-night .social:hover{color:#eef7ff;}
+
+    .video-channel-panel{
+      margin-top:22px;
+      padding:18px;
+      display:grid;
+      grid-template-columns:90px 1fr;
+      gap:16px;
+      align-items:center;
+    }
+
+    .video-channel-iconbox{
+      width:90px;
+      height:90px;
+      display:grid;
+      place-items:center;
+      border-radius:22px;
+      background:
+        linear-gradient(180deg, rgba(25,16,9,.94), rgba(8,5,3,.98));
+    }
+
+    .video-channel-iconbox i{
+      font-size:2.5rem;
+      color:var(--gold);
+    }
+
+    body.theme-night .video-channel-iconbox{
+      background:
+        linear-gradient(180deg, rgba(12,18,32,.94), rgba(4,9,18,.98));
+    }
+
+    .video-channel-headline{
+      font-family:Cinzel, serif;
+      font-size:1.2rem;
+      margin:0 0 12px;
+    }
+
+    .video-channel-actions{
+      display:grid;
+      grid-template-columns:1fr 170px;
+      gap:12px;
+      align-items:stretch;
+    }
+
+    .video-channel-mainbtn,
+    .video-channel-subs{
+      min-height:52px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:0 16px;
+      font-weight:700;
+    }
+
+    .video-channel-mainbtn{
+      background:var(--button-bg);
+      color:var(--button-text);
+      border:1px solid var(--platform-border);
+      box-shadow:var(--button-shadow);
+    }
+
+    .video-channel-mainbtn:hover{
+      box-shadow:var(--button-shadow-hover);
+      transform:translateY(-2px);
+    }
+
+    .video-channel-subs{
+      color:var(--text);
+      background:var(--panel-bg);
+    }
 
     footer{
       padding:24px 0 56px;
@@ -1217,20 +1271,26 @@
       .subpage-small-grid,
       .subpage-video-grid,
       .subpage-youtube-grid,
-      .subpage-join-grid{
+      .subpage-join-grid,
+      .video-channel-panel,
+      .video-channel-actions{
         grid-template-columns:1fr;
       }
 
       .release-card{padding:18px}
 
       .youtube-channel-cover{
-        max-width:360px;
+        max-width:420px;
         width:100%;
         margin-inline:auto;
       }
 
       .about-image{
-        min-height:320px;
+        min-height:240px;
+      }
+
+      .video-channel-iconbox{
+        margin-inline:auto;
       }
     }
 
@@ -1322,17 +1382,14 @@
           <article class="panel release-card">
             <a class="youtube-channel-cover" href="https://www.youtube.com/@imurheimofficial" target="_blank" rel="noopener" aria-label="URHEIM YouTube Channel">
               <div class="youtube-cover-inner">
-                <div class="youtube-cover-label">URHEIM YOUTUBE</div>
                 <i class="fa-brands fa-youtube"></i>
-                <h4>URHEIM YouTube Channel</h4>
-                <p>Watch latest videos</p>
                 <span class="youtube-cover-link">Watch Now</span>
               </div>
             </a>
 
             <div class="release-meta">
-              <h3>[Title Song]</h3>
-              <p>[Song description]</p>
+              <h3 id="latestTitle">URHEIM - Máme Tě Rádi</h3>
+              <p id="latestReleaseText">Release date: 2021-10-14</p>
 
               <div class="audio-bar">
                 <button class="play" id="playButton" type="button" aria-label="Play preview">
@@ -1471,17 +1528,14 @@
             <article class="panel release-card" style="margin-top:16px;">
               <a class="youtube-channel-cover" href="https://www.youtube.com/@imurheimofficial" target="_blank" rel="noopener" aria-label="URHEIM YouTube Channel">
                 <div class="youtube-cover-inner">
-                  <div class="youtube-cover-label">URHEIM YOUTUBE</div>
                   <i class="fa-brands fa-youtube"></i>
-                  <h4>URHEIM YouTube Channel</h4>
-                  <p>Watch latest videos</p>
                   <span class="youtube-cover-link">Watch Now</span>
                 </div>
               </a>
 
               <div class="release-meta">
-                <h3>[Title Song]</h3>
-                <p>[Song description]</p>
+                <h3 id="subLatestTitle">URHEIM - Máme Tě Rádi</h3>
+                <p id="subLatestReleaseText">Release date: 2021-10-14</p>
 
                 <div class="audio-bar">
                   <button class="play" id="subPlayButton" type="button" aria-label="Play preview">
@@ -1586,6 +1640,23 @@
                 <a class="subpage-link" href="#" target="_blank" rel="noopener">Watch</a>
               </div>
             </div>
+
+            <div class="video-channel-panel">
+              <div class="video-channel-iconbox">
+                <i class="fa-brands fa-youtube"></i>
+              </div>
+
+              <div>
+                <div class="video-channel-headline">URHEIM YouTube Channel</div>
+                <div class="video-channel-actions">
+                  <a class="video-channel-mainbtn" href="https://www.youtube.com/@imurheimofficial?sub_confirmation=1" target="_blank" rel="noopener">
+                    <i class="fa-brands fa-youtube"></i>
+                    YouTube
+                  </a>
+                  <div class="video-channel-subs" id="videoChannelSubs">0 subscribers</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -1634,28 +1705,28 @@
               <div class="contact-subpage-list">
                 <div class="contact-subpage-item">
                   <h4>Management</h4>
-                  <p>management@imurheimofficial.com</p>
+                  <p><a href="mailto:management@imurheimofficial.com">management@imurheimofficial.com</a></p>
                 </div>
 
                 <div class="contact-subpage-item">
                   <h4>General Info</h4>
-                  <p>info@imurheimofficial.com</p>
+                  <p><a href="mailto:info@imurheimofficial.com">info@imurheimofficial.com</a></p>
                 </div>
 
                 <div class="contact-subpage-item">
                   <h4>Partnerships / Inquiries</h4>
-                  <p>collab@imurheimofficial.com</p>
-                  <p>business@imurheimofficial.com</p>
+                  <p><a href="mailto:collab@imurheimofficial.com">collab@imurheimofficial.com</a></p>
+                  <p><a href="mailto:business@imurheimofficial.com">business@imurheimofficial.com</a></p>
                 </div>
 
                 <div class="contact-subpage-item">
                   <h4>Media</h4>
-                  <p>press@imurheimofficial.com</p>
+                  <p><a href="mailto:press@imurheimofficial.com">press@imurheimofficial.com</a></p>
                 </div>
 
                 <div class="contact-subpage-item">
                   <h4>Special Contacts</h4>
-                  <p>official@imurheimofficial.com</p>
+                  <p><a href="mailto:official@imurheimofficial.com">official@imurheimofficial.com</a></p>
                 </div>
               </div>
             </div>
@@ -1700,6 +1771,14 @@
       'Sunday', 'Monday', 'Tuesday', 'Wednesday',
       'Thursday', 'Friday', 'Saturday'
     ];
+
+    /*
+      TADY SI MŮŽEŠ RUČNĚ NASTAVIT DATA,
+      dokud nebudeš mít backend / YouTube API / konkrétní video URL:
+    */
+    const LATEST_VIDEO_TITLE = "URHEIM - Máme Tě Rádi";
+    const LATEST_VIDEO_RELEASE_DATE = "2021-10-14";
+    const YOUTUBE_SUBSCRIBERS = "0 subscribers";
 
     function isDayThemeByLocalTime(dateObj) {
       const hour = dateObj.getHours();
@@ -1748,6 +1827,32 @@
       }
     }
 
+    function applyLatestVideoData() {
+      const titleEls = [
+        document.getElementById('latestTitle'),
+        document.getElementById('subLatestTitle')
+      ];
+
+      const releaseEls = [
+        document.getElementById('latestReleaseText'),
+        document.getElementById('subLatestReleaseText')
+      ];
+
+      const subsEl = document.getElementById('videoChannelSubs');
+
+      titleEls.forEach(el => {
+        if (el) el.textContent = LATEST_VIDEO_TITLE;
+      });
+
+      releaseEls.forEach(el => {
+        if (el) el.textContent = `Release date: ${LATEST_VIDEO_RELEASE_DATE}`;
+      });
+
+      if (subsEl) {
+        subsEl.textContent = YOUTUBE_SUBSCRIBERS;
+      }
+    }
+
     updateHeaderClockAndTheme();
     setInterval(updateHeaderClockAndTheme, 1000);
 
@@ -1765,6 +1870,7 @@
     }
 
     document.getElementById('year').textContent = new Date().getFullYear();
+    applyLatestVideoData();
 
     const audio = document.getElementById('releaseAudio');
     const playButton = document.getElementById('playButton');
