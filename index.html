@@ -61,7 +61,7 @@
       --hero-inset-top:rgba(244,199,111,.28);
       --hero-inset-bottom:rgba(244,199,111,.28);
 
-      --bg-image-opacity:.34;
+      --bg-image-opacity:.40;
       --bg-image-filter:none;
 
       --clock-color:#b88d47;
@@ -145,7 +145,7 @@
       --hero-inset-top:rgba(126,170,255,.18);
       --hero-inset-bottom:rgba(126,170,255,.18);
 
-      --bg-image-opacity:.40;
+      --bg-image-opacity:.44;
       --bg-image-filter:
         hue-rotate(180deg)
         saturate(1.05)
@@ -277,7 +277,7 @@
     img{max-width:100%;display:block}
 
     .container{
-      width:min(var(--container), calc(100% - 32px));
+      width:min(1180px, calc(100% - 32px));
       margin-inline:auto;
     }
 
@@ -393,8 +393,8 @@
 
     .hero{
       position:relative;
-      padding:26px 0 22px;
-      min-height:400px;
+      padding:34px 0 24px;
+      min-height:430px;
       isolation:isolate;
       border-top:1px solid var(--hero-border-top);
       border-bottom:1px solid var(--hero-border-bottom);
@@ -438,7 +438,7 @@
 
     .hero-grid{
       display:grid;
-      gap:16px;
+      gap:18px;
       align-items:center;
       justify-items:center;
       text-align:center;
@@ -446,7 +446,7 @@
     }
 
     .hero-copy{
-      margin-top:6px;
+      margin-top:12px;
       width:min(100%, 900px);
       padding:0 8px;
     }
@@ -456,7 +456,7 @@
       text-transform:uppercase;
       letter-spacing:.18em;
       color:#d5b27b;
-      font-size:.76rem;
+      font-size:.78rem;
       opacity:.95;
       transition:color .24s ease;
     }
@@ -465,7 +465,7 @@
 
     .hero-watermark{
       width:min(1085px, 96%);
-      margin:4px auto 4px;
+      margin:6px auto 6px;
       filter:var(--watermark-filter);
       transition:filter .24s ease;
     }
@@ -473,10 +473,15 @@
     .headline-rule{
       width:min(420px, 82%);
       height:2px;
-      margin:8px auto 12px;
-      background:linear-gradient(90deg, transparent, var(--headline-rule-start), var(--headline-rule-mid), var(--headline-rule-start), transparent);
+      margin:10px auto 12px;
+      background:linear-gradient(90deg, transparent, rgba(244,199,111,.3), rgba(244,199,111,.95), rgba(244,199,111,.3), transparent);
       border-radius:999px;
-      box-shadow:0 0 14px rgba(255,174,49,.18);
+      box-shadow:0 0 18px rgba(255,174,49,.22);
+    }
+
+    body.theme-night .headline-rule{
+      background:linear-gradient(90deg, transparent, rgba(120,170,255,.24), rgba(175,214,255,.95), rgba(120,170,255,.24), transparent);
+      box-shadow:0 0 18px rgba(120,170,255,.22);
     }
 
     .subtitle{
@@ -492,7 +497,7 @@
 
     .hero-text{
       width:min(680px, 100%);
-      margin:12px auto 0;
+      margin:14px auto 0;
       color:var(--muted);
       font-size:.98rem;
       line-height:1.7;
@@ -504,7 +509,7 @@
       justify-content:center;
       gap:16px;
       flex-wrap:wrap;
-      margin-top:20px;
+      margin-top:22px;
     }
 
     .btn{
@@ -512,8 +517,8 @@
       align-items:center;
       justify-content:center;
       gap:10px;
-      min-height:50px;
-      padding:0 22px;
+      min-height:52px;
+      padding:0 24px;
       border-radius:14px;
       border:1px solid rgba(244,199,111,.32);
       color:var(--button-text);
@@ -532,7 +537,7 @@
     body.theme-night .btn{border-color:rgba(150,195,255,.28)}
 
     section{
-      padding:40px 0;
+      padding:44px 0;
       content-visibility:auto;
       contain-intrinsic-size:800px;
     }
@@ -542,7 +547,7 @@
       align-items:center;
       justify-content:center;
       gap:16px;
-      margin:0 0 24px;
+      margin:0 0 26px;
       font-family:Cinzel, serif;
       font-weight:700;
       font-size:clamp(1.5rem, 3vw, 2.5rem);
@@ -568,7 +573,7 @@
       position:relative;
       background:var(--panel-bg);
       border:1px solid var(--panel-border);
-      border-radius:var(--radius);
+      border-radius:24px;
       box-shadow:var(--panel-shadow);
       overflow:hidden;
       transition:background .24s ease, border-color .24s ease, box-shadow .24s ease;
@@ -596,7 +601,7 @@
       grid-template-columns:280px 1fr;
       gap:28px;
       align-items:center;
-      padding:22px;
+      padding:24px;
     }
 
     .media-cover,
@@ -875,7 +880,7 @@
     }
 
     .main-dynamic{
-      padding-top:6px;
+      padding-top:44px;
     }
 
     .page-shell{
@@ -954,20 +959,28 @@
       font-size:3rem;
     }
 
+    .contact-wrap{
+      display:flex;
+      justify-content:center;
+    }
+
     .contact-card{
       padding:30px 26px;
+      width:min(820px, 100%);
+      text-align:center;
     }
 
     .contact-title{
       margin:0 0 24px;
       font-family:Cinzel, serif;
       font-size:2.4rem;
-      text-align:left;
+      text-align:center;
     }
 
     .contact-list{
       display:grid;
       gap:22px;
+      text-align:center;
     }
 
     .contact-item h4{
@@ -975,6 +988,7 @@
       font-family:Cinzel, serif;
       font-size:1.1rem;
       color:var(--text);
+      text-align:center;
     }
 
     .contact-item p{
@@ -982,6 +996,7 @@
       font-size:.96rem;
       line-height:1.8;
       color:#ffffff;
+      text-align:center;
     }
 
     .socials{
@@ -1108,11 +1123,18 @@
       .about-image{
         min-height:320px;
       }
+
+      .main-dynamic{
+        padding-top:40px;
+      }
     }
 
     @media (max-width: 640px){
-      .container{width:min(100% - 20px, var(--container))}
-      .hero{padding:22px 0 18px}
+      .container{width:min(100% - 20px, 1180px)}
+      .hero{
+        padding:24px 0 18px;
+        min-height:auto;
+      }
       .hero-watermark{width:min(100%, 640px)}
       .subtitle{letter-spacing:.08em}
       .hero-text{font-size:.95rem}
@@ -1550,34 +1572,36 @@
     function contactMarkup() {
       return `
         <div class="page-shell">
-          <div class="contact-card panel">
-            <h2 class="contact-title">Contact</h2>
+          <div class="contact-wrap">
+            <div class="contact-card panel">
+              <h2 class="contact-title">Contact</h2>
 
-            <div class="contact-list">
-              <div class="contact-item">
-                <h4>Management</h4>
-                <p>management@imurheimofficial.com</p>
-              </div>
+              <div class="contact-list">
+                <div class="contact-item">
+                  <h4>Management</h4>
+                  <p>management@imurheimofficial.com</p>
+                </div>
 
-              <div class="contact-item">
-                <h4>General Info</h4>
-                <p>info@imurheimofficial.com</p>
-              </div>
+                <div class="contact-item">
+                  <h4>General Info</h4>
+                  <p>info@imurheimofficial.com</p>
+                </div>
 
-              <div class="contact-item">
-                <h4>Partnerships / Inquiries</h4>
-                <p>collab@imurheimofficial.com</p>
-                <p>business@imurheimofficial.com</p>
-              </div>
+                <div class="contact-item">
+                  <h4>Partnerships / Inquiries</h4>
+                  <p>collab@imurheimofficial.com</p>
+                  <p>business@imurheimofficial.com</p>
+                </div>
 
-              <div class="contact-item">
-                <h4>Media</h4>
-                <p>press@imurheimofficial.com</p>
-              </div>
+                <div class="contact-item">
+                  <h4>Media</h4>
+                  <p>press@imurheimofficial.com</p>
+                </div>
 
-              <div class="contact-item">
-                <h4>Special Contacts</h4>
-                <p>official@imurheimofficial.com</p>
+                <div class="contact-item">
+                  <h4>Special Contacts</h4>
+                  <p>official@imurheimofficial.com</p>
+                </div>
               </div>
             </div>
           </div>
@@ -1690,22 +1714,6 @@
       }
 
       window.scrollTo({ top: 0, behavior: 'auto' });
-    }
-
-    function updateHeaderClockAndTheme() {
-      const now = new Date();
-      applyThemeByLocalTime(now);
-
-      const hours = pad(now.getHours());
-      const minutes = pad(now.getMinutes());
-      const seconds = pad(now.getSeconds());
-      const weekday = WEEKDAYS[now.getDay()];
-      const year = now.getFullYear();
-
-      const clockEl = document.getElementById('headerClock');
-      if (clockEl) {
-        clockEl.textContent = `${hours}:${minutes}:${seconds} ${weekday} ${year}`;
-      }
     }
 
     document.addEventListener('click', (event) => {
