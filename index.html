@@ -618,11 +618,7 @@
     .subpage-card,
     .contact-subpage,
     .youtube-channel-cover,
-    .video-page-card,
-    .video-channel-panel,
-    .video-channel-iconbox,
-    .video-channel-mainbtn,
-    .video-channel-subs{
+    .video-page-card{
       position:relative;
       border-radius:20px;
       overflow:hidden;
@@ -783,8 +779,7 @@
     }
 
     .platform,
-    .subpage-link,
-    .video-channel-mainbtn{
+    .subpage-link{
       display:inline-flex;
       align-items:center;
       gap:10px;
@@ -801,8 +796,7 @@
     }
 
     .platform:hover,
-    .subpage-link:hover,
-    .video-channel-mainbtn:hover{
+    .subpage-link:hover{
       transform:translateY(-2px);
       border-color:var(--platform-border-hover);
       box-shadow:var(--button-shadow-hover);
@@ -1086,23 +1080,34 @@
 
     body.theme-night .social:hover{color:#eef7ff;}
 
-    .video-channel-panel{
-      margin-top:22px;
-      padding:18px;
-      display:grid;
-      grid-template-columns:72px 1fr;
-      gap:16px;
+    .video-channel-wrap{
+      margin-top:34px;
+      padding-top:10px;
+      display:flex;
+      justify-content:center;
+    }
+
+    .video-channel-center{
+      width:min(420px, 100%);
+      display:flex;
+      flex-direction:column;
       align-items:center;
+      justify-content:center;
+      gap:14px;
+      text-align:center;
     }
 
     .video-channel-iconbox{
-      width:72px;
-      height:72px;
+      width:84px;
+      height:84px;
       display:grid;
       place-items:center;
       border-radius:18px;
       overflow:hidden;
       background:#000;
+      border:1px solid var(--media-border);
+      box-shadow:var(--media-shadow);
+      transition:border-color .24s ease, box-shadow .24s ease, background .24s ease;
     }
 
     .video-channel-avatar{
@@ -1114,27 +1119,57 @@
 
     .video-channel-headline{
       font-family:Cinzel, serif;
-      font-size:1.1rem;
-      margin:0 0 10px;
+      font-size:1.32rem;
+      margin:0;
+      letter-spacing:.04em;
     }
 
-    .video-channel-actions{
-      display:grid;
-      grid-template-columns:1fr 140px;
-      gap:12px;
-      align-items:stretch;
-    }
-
-    .video-channel-subs{
-      min-height:46px;
+    .video-channel-row{
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:0 12px;
-      color:var(--text);
-      background:var(--panel-bg);
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .video-channel-mainbtn{
+      min-height:38px;
+      padding:0 14px;
+      border-radius:10px;
+      border:1px solid var(--platform-border);
+      background:var(--button-bg);
+      color:var(--button-text);
       font-weight:700;
-      text-align:center;
+      font-size:.92rem;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      box-shadow:var(--button-shadow);
+      transition:transform .16s ease, box-shadow .16s ease, border-color .24s ease, background .24s ease, color .24s ease;
+    }
+
+    .video-channel-mainbtn:hover{
+      transform:translateY(-2px);
+      box-shadow:var(--button-shadow-hover);
+      border-color:var(--platform-border-hover);
+    }
+
+    .video-channel-subs{
+      min-height:38px;
+      padding:0 12px;
+      border-radius:10px;
+      border:1px solid var(--media-border);
+      background:var(--panel-bg);
+      color:var(--text);
+      font-weight:700;
+      font-size:.88rem;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:var(--media-shadow);
+      white-space:nowrap;
+      transition:border-color .24s ease, box-shadow .24s ease, background .24s ease, color .24s ease;
     }
 
     footer{
@@ -1210,9 +1245,7 @@
       .video-grid,
       .subpage-video-grid,
       .subpage-join-grid,
-      .video-page-grid,
-      .video-channel-panel,
-      .video-channel-actions{
+      .video-page-grid{
         grid-template-columns:1fr;
       }
 
@@ -1228,8 +1261,12 @@
         min-height:240px;
       }
 
-      .video-channel-iconbox{
-        margin-inline:auto;
+      .video-channel-wrap{
+        margin-top:28px;
+      }
+
+      .video-channel-center{
+        width:min(100%, 340px);
       }
     }
 
@@ -1596,22 +1633,35 @@
               </article>
             </div>
 
-            <div class="video-channel-panel">
-              <div class="video-channel-iconbox">
-                <img class="video-channel-avatar" id="videoChannelAvatar" src="assets/URHEIM GOLDEN PROFILE.png" alt="URHEIM YouTube Channel">
-              </div>
+            <div class="video-channel-wrap">
+              <div class="video-channel-center">
+                <div class="video-channel-iconbox">
+                  <img
+                    class="video-channel-avatar"
+                    id="videoChannelAvatar"
+                    src="assets/URHEIM GOLDEN PROFILE.png"
+                    alt="URHEIM YouTube Channel"
+                  >
+                </div>
 
-              <div>
-                <div class="video-channel-headline">URHEIM YouTube Channel</div>
-                <div class="video-channel-actions">
-                  <a class="video-channel-mainbtn" href="https://www.youtube.com/@imurheimofficial?sub_confirmation=1" target="_blank" rel="noopener">
+                <div class="video-channel-headline">URHEIM</div>
+
+                <div class="video-channel-row">
+                  <a
+                    class="video-channel-mainbtn"
+                    href="https://www.youtube.com/@imurheimofficial?sub_confirmation=1"
+                    target="_blank"
+                    rel="noopener"
+                  >
                     <i class="fa-brands fa-youtube"></i>
                     YouTube
                   </a>
+
                   <div class="video-channel-subs" id="videoChannelSubs">0</div>
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </section>
