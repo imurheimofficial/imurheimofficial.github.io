@@ -123,7 +123,6 @@
       --footer-color:#d5b27b;
       --footer-line:linear-gradient(90deg, transparent, rgba(244,199,111,.3), rgba(244,199,111,.8), rgba(244,199,111,.3), transparent);
 
-      /* čas mírně tmavší */
       --clock-color:#b88d47;
     }
 
@@ -229,7 +228,6 @@
       --footer-color:#9eb9dc;
       --footer-line:linear-gradient(90deg, transparent, rgba(126,170,255,.24), rgba(175,214,255,.82), rgba(126,170,255,.24), transparent);
 
-      /* čas v noci taky mírně tmavší */
       --clock-color:#7f9fc9;
     }
 
@@ -472,6 +470,10 @@
       background:
         radial-gradient(circle at 50% 35%, rgba(130,185,255,.035), transparent 24%),
         linear-gradient(180deg, rgba(118,170,255,.02), transparent 40%);
+    }
+
+    .hero.hidden{
+      display:none;
     }
 
     .hero > *{
@@ -1211,7 +1213,7 @@
   </header>
 
   <main id="top">
-    <section class="hero frame-line">
+    <section class="hero frame-line" id="heroSection">
       <div class="container hero-grid">
         <div class="hero-copy">
           <div class="eyebrow">Official Artist Website</div>
@@ -1233,7 +1235,9 @@
           </p>
 
           <div class="cta-row">
-            <a class="btn" href="/music" data-view="music-page"><i class="fa-solid fa-play"></i> Listen Now</a>
+            <a class="btn" href="https://www.youtube.com/@imurheimofficial" target="_blank" rel="noopener">
+              <i class="fa-solid fa-play"></i> Listen Now
+            </a>
           </div>
         </div>
       </div>
@@ -1742,15 +1746,6 @@
       audio.addEventListener('play', updatePlayIcon);
       audio.addEventListener('pause', updatePlayIcon);
       audio.addEventListener('ended', updatePlayIcon);
-
-      progressBar.addEventListener('click', (event) => {
-        if (!audio.duration) return;
-
-        const rect = progressBar.getBoundingClientRect();
-        const clickX = event.clientX - rect.left;
-        const ratio = clickX / rect.width;
-        audio.currentTime = ratio * audio.duration;
-      });
     }
 
     const subAudioButton = document.getElementById('subPlayButton');
@@ -1797,10 +1792,21 @@
       audio.addEventListener('play', updateSubPlayIcon);
       audio.addEventListener('pause', updateSubPlayIcon);
       audio.addEventListener('ended', updateSubPlayIcon);
+    }
 
+    if (progressBar && audio) {
+      progressBar.addEventListener('click', (event) => {
+        if (!audio.duration) return;
+        const rect = progressBar.getBoundingClientRect();
+        const clickX = event.clientX - rect.left;
+        const ratio = clickX / rect.width;
+        audio.currentTime = ratio * audio.duration;
+      });
+    }
+
+    if (subProgressBar && audio) {
       subProgressBar.addEventListener('click', (event) => {
         if (!audio.duration) return;
-
         const rect = subProgressBar.getBoundingClientRect();
         const clickX = event.clientX - rect.left;
         const ratio = clickX / rect.width;
@@ -1808,7 +1814,9 @@
       });
     }
 
+    const heroSection = document.getElementById('heroSection');
     const homeContent = document.getElementById('homeContent');
+
     const subpages = {
       'bio-page': document.getElementById('subpageBio'),
       'music-page': document.getElementById('subpageMusic'),
@@ -1819,7 +1827,7 @@
 
     function setActiveNavByView(viewName) {
       document.querySelectorAll('.nav-links a[data-view]').forEach(link => {
-        if (link.dataset.view === viewName || (viewName === 'home' && link.dataset.view === 'home')) {
+        if (link.dataset.view === viewName) {
           link.classList.add('nav-active');
         } else {
           link.classList.remove('nav-active');
@@ -1828,14 +1836,15 @@
     }
 
     function showView(viewName, pushUrl = true) {
-      Object.values(subpages).forEach(page => {
-        page.classList.remove('active');
-      });
+      Object.values(subpages).forEach(page => page.classList.remove('active'));
 
       if (viewName === 'home') {
+        heroSection.classList.remove('hidden');
         homeContent.style.display = '';
       } else {
+        heroSection.classList.add('hidden');
         homeContent.style.display = 'none';
+
         if (subpages[viewName]) {
           subpages[viewName].classList.add('active');
         }
@@ -1861,8 +1870,7 @@
     document.querySelectorAll('[data-view]').forEach(link => {
       link.addEventListener('click', (event) => {
         event.preventDefault();
-        const viewName = link.dataset.view;
-        showView(viewName, true);
+        showView(link.dataset.view, true);
       });
     });
 
