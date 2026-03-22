@@ -82,7 +82,6 @@
       --button-shadow:inset 0 1px 0 rgba(255,243,215,.55), 0 10px 24px rgba(0,0,0,.26), 0 0 14px rgba(255,178,60,.14);
       --button-shadow-hover:inset 0 1px 0 rgba(255,243,215,.55), 0 14px 30px rgba(0,0,0,.32), 0 0 20px rgba(255,178,60,.18);
 
-      /* denní watermark */
       --watermark-filter:
         drop-shadow(0 0 10px rgba(255,196,98,.18))
         drop-shadow(0 0 20px rgba(255,170,56,.14))
@@ -91,8 +90,8 @@
         drop-shadow(0 8px 36px rgba(0,0,0,.45));
 
       --watermark-filter-peak:
-        drop-shadow(0 0 14px rgba(255,215,145,.22))
-        drop-shadow(0 0 28px rgba(255,170,56,.18))
+        drop-shadow(0 0 18px rgba(255,215,145,.26))
+        drop-shadow(0 0 34px rgba(255,170,56,.20))
         drop-shadow(0 2px 0 rgba(140,99,47,.85))
         drop-shadow(0 4px 20px rgba(255,170,56,.14))
         drop-shadow(0 8px 36px rgba(0,0,0,.45));
@@ -146,10 +145,15 @@
       --sub-inline-text:#f7e0b4;
       --youtube-icon-filter:none;
 
-      /* výraznější, ale pořád jemné denní orby */
-      --orb-color-1:rgba(255,214,145,.30);
-      --orb-color-2:rgba(255,182,74,.24);
-      --orb-color-3:rgba(255,230,180,.20);
+      --orb-color-1:rgba(255,222,164,.36);
+      --orb-color-2:rgba(255,194,104,.30);
+      --orb-color-3:rgba(255,235,194,.24);
+
+      --cell-glow:
+        0 0 0 1px rgba(244,199,111,.34),
+        0 0 18px rgba(255,184,77,.14),
+        0 0 30px rgba(255,174,49,.10),
+        0 10px 24px rgba(0,0,0,.22);
     }
 
     body.theme-night{
@@ -206,7 +210,6 @@
       --button-shadow:inset 0 1px 0 rgba(255,255,255,.52), 0 12px 26px rgba(0,0,0,.32), 0 0 16px rgba(110,170,255,.14);
       --button-shadow-hover:inset 0 1px 0 rgba(255,255,255,.52), 0 16px 34px rgba(0,0,0,.38), 0 0 22px rgba(110,170,255,.18);
 
-      /* noční watermark – stejné breathing chování, jen modře */
       --watermark-filter:
         hue-rotate(180deg)
         saturate(1.08)
@@ -223,8 +226,8 @@
         brightness(.90)
         contrast(1.10)
         sepia(.03)
-        drop-shadow(0 0 14px rgba(180,220,255,.20))
-        drop-shadow(0 0 28px rgba(135,188,255,.16))
+        drop-shadow(0 0 18px rgba(180,220,255,.22))
+        drop-shadow(0 0 34px rgba(135,188,255,.16))
         drop-shadow(0 8px 36px rgba(0,0,0,.50));
 
       --profile-image-filter:
@@ -280,10 +283,15 @@
         brightness(.84)
         contrast(1.05);
 
-      /* výraznější, ale pořád jemné noční orby */
-      --orb-color-1:rgba(180,215,255,.28);
-      --orb-color-2:rgba(135,188,255,.22);
-      --orb-color-3:rgba(220,238,255,.18);
+      --orb-color-1:rgba(194,224,255,.34);
+      --orb-color-2:rgba(150,198,255,.28);
+      --orb-color-3:rgba(228,241,255,.22);
+
+      --cell-glow:
+        0 0 0 1px rgba(155,196,255,.36),
+        0 0 18px rgba(120,170,255,.16),
+        0 0 30px rgba(120,170,255,.11),
+        0 10px 24px rgba(0,0,0,.24);
     }
 
     *{box-sizing:border-box}
@@ -361,14 +369,13 @@
       display:none !important;
     }
 
-    /* jemné orby přes stránku – opraveno, aby byly skutečně vidět */
     .dust-layer{
       position:fixed;
       inset:0;
       pointer-events:none;
       z-index:1;
       opacity:0;
-      animation:dustLayerAppear 1.4s ease .8s forwards;
+      animation:dustLayerAppear 1.2s ease .8s forwards;
       overflow:hidden;
     }
 
@@ -376,98 +383,30 @@
       position:absolute;
       border-radius:50%;
       filter:blur(12px);
-      opacity:.44;
+      opacity:.46;
       mix-blend-mode:screen;
       will-change:transform, opacity;
       box-shadow:
         0 0 18px currentColor,
-        0 0 32px currentColor;
+        0 0 34px currentColor;
     }
 
-    .dust-orb.orb-1{
-      width:26px;height:26px;
-      background:radial-gradient(circle, var(--orb-color-1) 0%, rgba(255,255,255,0) 72%);
-      color:var(--orb-color-1);
-      top:8%;left:6%;
-      animation:floatOrb1 20s linear infinite;
-    }
-    .dust-orb.orb-2{
-      width:18px;height:18px;
-      background:radial-gradient(circle, var(--orb-color-2) 0%, rgba(255,255,255,0) 72%);
-      color:var(--orb-color-2);
-      top:20%;left:18%;
-      animation:floatOrb2 24s linear infinite;
-    }
-    .dust-orb.orb-3{
-      width:14px;height:14px;
-      background:radial-gradient(circle, var(--orb-color-3) 0%, rgba(255,255,255,0) 72%);
-      color:var(--orb-color-3);
-      top:14%;left:54%;
-      animation:floatOrb3 22s linear infinite;
-    }
-    .dust-orb.orb-4{
-      width:22px;height:22px;
-      background:radial-gradient(circle, var(--orb-color-1) 0%, rgba(255,255,255,0) 72%);
-      color:var(--orb-color-1);
-      top:34%;left:76%;
-      animation:floatOrb4 28s linear infinite;
-    }
-    .dust-orb.orb-5{
-      width:16px;height:16px;
-      background:radial-gradient(circle, var(--orb-color-2) 0%, rgba(255,255,255,0) 72%);
-      color:var(--orb-color-2);
-      top:58%;left:10%;
-      animation:floatOrb5 21s linear infinite;
-    }
-    .dust-orb.orb-6{
-      width:30px;height:30px;
-      background:radial-gradient(circle, var(--orb-color-3) 0%, rgba(255,255,255,0) 72%);
-      color:var(--orb-color-3);
-      top:66%;left:46%;
-      animation:floatOrb6 30s linear infinite;
-    }
-    .dust-orb.orb-7{
-      width:20px;height:20px;
-      background:radial-gradient(circle, var(--orb-color-1) 0%, rgba(255,255,255,0) 72%);
-      color:var(--orb-color-1);
-      top:82%;left:80%;
-      animation:floatOrb7 24s linear infinite;
-    }
-    .dust-orb.orb-8{
-      width:12px;height:12px;
-      background:radial-gradient(circle, var(--orb-color-2) 0%, rgba(255,255,255,0) 72%);
-      color:var(--orb-color-2);
-      top:48%;left:30%;
-      animation:floatOrb8 19s linear infinite;
-    }
-    .dust-orb.orb-9{
-      width:24px;height:24px;
-      background:radial-gradient(circle, var(--orb-color-3) 0%, rgba(255,255,255,0) 72%);
-      color:var(--orb-color-3);
-      top:10%;left:86%;
-      animation:floatOrb9 27s linear infinite;
-    }
-    .dust-orb.orb-10{
-      width:15px;height:15px;
-      background:radial-gradient(circle, var(--orb-color-1) 0%, rgba(255,255,255,0) 72%);
-      color:var(--orb-color-1);
-      top:74%;left:22%;
-      animation:floatOrb10 23s linear infinite;
-    }
-    .dust-orb.orb-11{
-      width:19px;height:19px;
-      background:radial-gradient(circle, var(--orb-color-2) 0%, rgba(255,255,255,0) 72%);
-      color:var(--orb-color-2);
-      top:38%;left:58%;
-      animation:floatOrb11 26s linear infinite;
-    }
-    .dust-orb.orb-12{
-      width:13px;height:13px;
-      background:radial-gradient(circle, var(--orb-color-3) 0%, rgba(255,255,255,0) 72%);
-      color:var(--orb-color-3);
-      top:88%;left:60%;
-      animation:floatOrb12 22s linear infinite;
-    }
+    .dust-orb.orb-1{ width:24px;height:24px; top:7%; left:6%; color:var(--orb-color-1); background:radial-gradient(circle, var(--orb-color-1) 0%, rgba(255,255,255,0) 72%); animation:orbLoop1 10s ease-in-out infinite; }
+    .dust-orb.orb-2{ width:14px;height:14px; top:18%; left:18%; color:var(--orb-color-2); background:radial-gradient(circle, var(--orb-color-2) 0%, rgba(255,255,255,0) 72%); animation:orbLoop2 11s ease-in-out infinite; }
+    .dust-orb.orb-3{ width:18px;height:18px; top:13%; left:42%; color:var(--orb-color-3); background:radial-gradient(circle, var(--orb-color-3) 0%, rgba(255,255,255,0) 72%); animation:orbLoop3 9.5s ease-in-out infinite; }
+    .dust-orb.orb-4{ width:26px;height:26px; top:22%; left:76%; color:var(--orb-color-1); background:radial-gradient(circle, var(--orb-color-1) 0%, rgba(255,255,255,0) 72%); animation:orbLoop4 12s ease-in-out infinite; }
+    .dust-orb.orb-5{ width:16px;height:16px; top:33%; left:60%; color:var(--orb-color-2); background:radial-gradient(circle, var(--orb-color-2) 0%, rgba(255,255,255,0) 72%); animation:orbLoop5 10.5s ease-in-out infinite; }
+    .dust-orb.orb-6{ width:20px;height:20px; top:43%; left:10%; color:var(--orb-color-3); background:radial-gradient(circle, var(--orb-color-3) 0%, rgba(255,255,255,0) 72%); animation:orbLoop6 9.8s ease-in-out infinite; }
+    .dust-orb.orb-7{ width:28px;height:28px; top:52%; left:28%; color:var(--orb-color-1); background:radial-gradient(circle, var(--orb-color-1) 0%, rgba(255,255,255,0) 72%); animation:orbLoop7 11.8s ease-in-out infinite; }
+    .dust-orb.orb-8{ width:12px;height:12px; top:48%; left:82%; color:var(--orb-color-2); background:radial-gradient(circle, var(--orb-color-2) 0%, rgba(255,255,255,0) 72%); animation:orbLoop8 9.2s ease-in-out infinite; }
+    .dust-orb.orb-9{ width:22px;height:22px; top:66%; left:12%; color:var(--orb-color-3); background:radial-gradient(circle, var(--orb-color-3) 0%, rgba(255,255,255,0) 72%); animation:orbLoop9 10.6s ease-in-out infinite; }
+    .dust-orb.orb-10{ width:15px;height:15px; top:71%; left:46%; color:var(--orb-color-1); background:radial-gradient(circle, var(--orb-color-1) 0%, rgba(255,255,255,0) 72%); animation:orbLoop10 8.9s ease-in-out infinite; }
+    .dust-orb.orb-11{ width:18px;height:18px; top:76%; left:74%; color:var(--orb-color-2); background:radial-gradient(circle, var(--orb-color-2) 0%, rgba(255,255,255,0) 72%); animation:orbLoop11 10.1s ease-in-out infinite; }
+    .dust-orb.orb-12{ width:11px;height:11px; top:86%; left:58%; color:var(--orb-color-3); background:radial-gradient(circle, var(--orb-color-3) 0%, rgba(255,255,255,0) 72%); animation:orbLoop12 8.7s ease-in-out infinite; }
+    .dust-orb.orb-13{ width:20px;height:20px; top:8%; left:88%; color:var(--orb-color-1); background:radial-gradient(circle, var(--orb-color-1) 0%, rgba(255,255,255,0) 72%); animation:orbLoop13 11.2s ease-in-out infinite; }
+    .dust-orb.orb-14{ width:13px;height:13px; top:58%; left:58%; color:var(--orb-color-2); background:radial-gradient(circle, var(--orb-color-2) 0%, rgba(255,255,255,0) 72%); animation:orbLoop14 9.4s ease-in-out infinite; }
+    .dust-orb.orb-15{ width:17px;height:17px; top:30%; left:34%; color:var(--orb-color-3); background:radial-gradient(circle, var(--orb-color-3) 0%, rgba(255,255,255,0) 72%); animation:orbLoop15 10.8s ease-in-out infinite; }
+    .dust-orb.orb-16{ width:23px;height:23px; top:82%; left:86%; color:var(--orb-color-1); background:radial-gradient(circle, var(--orb-color-1) 0%, rgba(255,255,255,0) 72%); animation:orbLoop16 12.2s ease-in-out infinite; }
 
     header{
       position:sticky;
@@ -527,18 +466,20 @@
     }
 
     .nav-links a:hover{
-      color:#ffe4b3;
+      color:#fff0cc;
       text-shadow:
-        0 0 8px rgba(255,196,102,.45),
-        0 0 18px rgba(255,174,49,.45);
+        0 0 10px rgba(255,210,122,.62),
+        0 0 22px rgba(255,178,60,.62),
+        0 0 34px rgba(255,166,32,.36);
       transform:translateY(-1px);
     }
 
     body.theme-night .nav-links a:hover{
-      color:#eaf5ff;
+      color:#f1f8ff;
       text-shadow:
-        0 0 8px rgba(175,214,255,.42),
-        0 0 18px rgba(120,170,255,.36);
+        0 0 10px rgba(195,226,255,.54),
+        0 0 22px rgba(130,182,255,.48),
+        0 0 34px rgba(120,170,255,.28);
     }
 
     .nav-links a::after{
@@ -726,7 +667,7 @@
       margin:4px auto 4px;
       filter:var(--watermark-filter);
       transition:filter .24s ease;
-      animation:watermarkAura 4.8s ease-in-out infinite;
+      animation:watermarkAura 3.1s ease-in-out infinite;
       will-change:filter, transform, opacity;
     }
 
@@ -909,7 +850,7 @@
       justify-content:center;
       gap:10px;
       z-index:2;
-      transition:transform .16s ease, box-shadow .16s ease, opacity .2s ease, filter .2s ease;
+      transition:transform .16s ease, box-shadow .16s ease;
     }
 
     .youtube-cover-link:hover{
@@ -1021,7 +962,7 @@
       background:var(--platform-bg);
       color:var(--platform-color);
       font-weight:700;
-      transition:transform .16s ease, border-color .24s ease, background .24s ease, color .24s ease, opacity .2s ease, filter .2s ease;
+      transition:transform .16s ease, border-color .24s ease, background .24s ease, color .24s ease, opacity .2s ease, filter .2s ease, box-shadow .2s ease;
       justify-content:center;
       box-shadow:var(--button-shadow);
     }
@@ -1033,18 +974,13 @@
       box-shadow:var(--button-shadow-hover);
     }
 
-    /* hover efekt: hovered zůstane, ostatní ztmavnou */
-    .platforms:hover .platform,
-    .release-card:hover .youtube-cover-link,
-    .youtube-channel-cover:hover .youtube-cover-link{
+    /* pouze platformy se navzájem stmívají, WATCH NOW ne */
+    .platforms:hover .platform{
       opacity:.52;
       filter:brightness(.72);
     }
 
-    .platforms .platform:hover,
-    .platforms .youtube-cover-link:hover,
-    .youtube-channel-cover:hover .youtube-cover-link:hover,
-    .release-card:hover .youtube-channel-cover:hover .youtube-cover-link{
+    .platforms .platform:hover{
       opacity:1;
       filter:none;
     }
@@ -1122,6 +1058,11 @@
       margin:0 0 24px;
     }
 
+    .about-type-target{
+      min-height:150px;
+      white-space:normal;
+    }
+
     .video-grid,
     .subpage-video-grid,
     .subpage-join-grid{
@@ -1142,7 +1083,16 @@
     }
 
     .video-card,
-    .video-page-card{overflow:hidden;}
+    .video-page-card{
+      overflow:hidden;
+      transition:border-color .22s ease, box-shadow .22s ease, transform .22s ease;
+    }
+
+    .video-card:hover,
+    .video-page-card:hover{
+      border-color:var(--platform-border-hover);
+      box-shadow:var(--cell-glow);
+    }
 
     .video-thumb,
     .video-page-thumb{
@@ -1228,6 +1178,12 @@
       align-items:center;
       gap:12px;
       text-align:center;
+      transition:border-color .22s ease, box-shadow .22s ease;
+    }
+
+    .subpage-join-item:hover{
+      border-color:var(--platform-border-hover);
+      box-shadow:var(--cell-glow);
     }
 
     .subpage-join-item h4{
@@ -1240,9 +1196,25 @@
       font-size:3rem;
     }
 
+    .subpage-join-grid:hover .platform{
+      opacity:.52;
+      filter:brightness(.72);
+    }
+
+    .subpage-join-grid .platform:hover{
+      opacity:1;
+      filter:none;
+    }
+
     .collab-video-small{
       max-width:760px;
       margin:0 auto;
+      transition:border-color .22s ease, box-shadow .22s ease;
+    }
+
+    .collab-video-small:hover{
+      border-color:var(--platform-border-hover);
+      box-shadow:var(--cell-glow);
     }
 
     .contact-subpage-wrap{
@@ -1297,7 +1269,6 @@
       border-color:rgba(255,255,255,.38);
     }
 
-    /* spodek vždy dole */
     .bottom-fixed-wrap{
       margin-top:auto;
       width:100%;
@@ -1407,12 +1378,18 @@
       justify-content:flex-start;
       gap:0;
       flex-wrap:nowrap;
+      border-radius:8px;
+      transition:border-color .22s ease, box-shadow .22s ease;
+    }
+
+    .video-channel-row:hover{
+      box-shadow:var(--cell-glow);
     }
 
     .video-channel-mainbtn{
       min-height:34px;
       padding:0 12px;
-      border-radius:10px 0 0 10px;
+      border-radius:8px 0 0 8px;
       border:1px solid var(--platform-border);
       background:var(--button-bg);
       color:var(--button-text);
@@ -1423,20 +1400,21 @@
       justify-content:center;
       gap:7px;
       box-shadow:var(--button-shadow);
-      transition:transform .16s ease, box-shadow .16s ease, border-color .24s ease, background .24s ease, color .24s ease;
+      transition:box-shadow .16s ease, border-color .24s ease, background .24s ease, color .24s ease;
       border-right:none;
+      transform:none !important;
     }
 
     .video-channel-mainbtn:hover{
-      transform:translateY(-2px);
-      box-shadow:var(--button-shadow-hover);
+      transform:none !important;
+      box-shadow:var(--button-shadow);
       border-color:var(--platform-border-hover);
     }
 
     .video-channel-subs{
       min-height:34px;
       padding:0 10px;
-      border-radius:0 10px 10px 0;
+      border-radius:0 8px 8px 0;
       border:1px solid var(--media-border);
       background:var(--panel-bg);
       color:var(--text);
@@ -1537,71 +1515,27 @@
       to { opacity:1; }
     }
 
-    @keyframes floatOrb1 {
-      0% { transform:translate3d(0,0,0); opacity:.28; }
-      50% { transform:translate3d(68px,122px,0); opacity:.42; }
-      100% { transform:translate3d(12px,250px,0); opacity:.20; }
-    }
-    @keyframes floatOrb2 {
-      0% { transform:translate3d(0,0,0); opacity:.22; }
-      50% { transform:translate3d(-46px,96px,0); opacity:.34; }
-      100% { transform:translate3d(38px,186px,0); opacity:.18; }
-    }
-    @keyframes floatOrb3 {
-      0% { transform:translate3d(0,0,0); opacity:.24; }
-      50% { transform:translate3d(74px,-28px,0); opacity:.36; }
-      100% { transform:translate3d(24px,148px,0); opacity:.18; }
-    }
-    @keyframes floatOrb4 {
-      0% { transform:translate3d(0,0,0); opacity:.22; }
-      50% { transform:translate3d(-58px,112px,0); opacity:.36; }
-      100% { transform:translate3d(-12px,226px,0); opacity:.18; }
-    }
-    @keyframes floatOrb5 {
-      0% { transform:translate3d(0,0,0); opacity:.22; }
-      50% { transform:translate3d(34px,-64px,0); opacity:.34; }
-      100% { transform:translate3d(84px,124px,0); opacity:.18; }
-    }
-    @keyframes floatOrb6 {
-      0% { transform:translate3d(0,0,0); opacity:.20; }
-      50% { transform:translate3d(-24px,86px,0); opacity:.34; }
-      100% { transform:translate3d(48px,168px,0); opacity:.18; }
-    }
-    @keyframes floatOrb7 {
-      0% { transform:translate3d(0,0,0); opacity:.22; }
-      50% { transform:translate3d(-68px,-54px,0); opacity:.34; }
-      100% { transform:translate3d(-34px,108px,0); opacity:.18; }
-    }
-    @keyframes floatOrb8 {
-      0% { transform:translate3d(0,0,0); opacity:.20; }
-      50% { transform:translate3d(58px,54px,0); opacity:.32; }
-      100% { transform:translate3d(12px,154px,0); opacity:.18; }
-    }
-    @keyframes floatOrb9 {
-      0% { transform:translate3d(0,0,0); opacity:.20; }
-      50% { transform:translate3d(-52px,72px,0); opacity:.34; }
-      100% { transform:translate3d(-20px,188px,0); opacity:.18; }
-    }
-    @keyframes floatOrb10 {
-      0% { transform:translate3d(0,0,0); opacity:.22; }
-      50% { transform:translate3d(64px,-42px,0); opacity:.34; }
-      100% { transform:translate3d(26px,118px,0); opacity:.18; }
-    }
-    @keyframes floatOrb11 {
-      0% { transform:translate3d(0,0,0); opacity:.22; }
-      50% { transform:translate3d(-42px,66px,0); opacity:.34; }
-      100% { transform:translate3d(18px,174px,0); opacity:.18; }
-    }
-    @keyframes floatOrb12 {
-      0% { transform:translate3d(0,0,0); opacity:.18; }
-      50% { transform:translate3d(48px,-36px,0); opacity:.30; }
-      100% { transform:translate3d(12px,116px,0); opacity:.16; }
-    }
+    @keyframes orbLoop1 { 0%,100%{transform:translate3d(0,0,0)} 25%{transform:translate3d(34px,-18px,0)} 50%{transform:translate3d(64px,20px,0)} 75%{transform:translate3d(18px,52px,0)} }
+    @keyframes orbLoop2 { 0%,100%{transform:translate3d(0,0,0)} 25%{transform:translate3d(-26px,12px,0)} 50%{transform:translate3d(-42px,46px,0)} 75%{transform:translate3d(8px,68px,0)} }
+    @keyframes orbLoop3 { 0%,100%{transform:translate3d(0,0,0)} 25%{transform:translate3d(28px,-12px,0)} 50%{transform:translate3d(50px,16px,0)} 75%{transform:translate3d(14px,44px,0)} }
+    @keyframes orbLoop4 { 0%,100%{transform:translate3d(0,0,0)} 25%{transform:translate3d(-36px,18px,0)} 50%{transform:translate3d(-58px,56px,0)} 75%{transform:translate3d(-8px,82px,0)} }
+    @keyframes orbLoop5 { 0%,100%{transform:translate3d(0,0,0)} 25%{transform:translate3d(18px,-24px,0)} 50%{transform:translate3d(42px,10px,0)} 75%{transform:translate3d(10px,46px,0)} }
+    @keyframes orbLoop6 { 0%,100%{transform:translate3d(0,0,0)} 25%{transform:translate3d(-22px,8px,0)} 50%{transform:translate3d(-38px,42px,0)} 75%{transform:translate3d(12px,58px,0)} }
+    @keyframes orbLoop7 { 0%,100%{transform:translate3d(0,0,0)} 25%{transform:translate3d(32px,-18px,0)} 50%{transform:translate3d(56px,14px,0)} 75%{transform:translate3d(24px,52px,0)} }
+    @keyframes orbLoop8 { 0%,100%{transform:translate3d(0,0,0)} 25%{transform:translate3d(-18px,-10px,0)} 50%{transform:translate3d(-30px,24px,0)} 75%{transform:translate3d(10px,48px,0)} }
+    @keyframes orbLoop9 { 0%,100%{transform:translate3d(0,0,0)} 25%{transform:translate3d(18px,-16px,0)} 50%{transform:translate3d(44px,18px,0)} 75%{transform:translate3d(14px,54px,0)} }
+    @keyframes orbLoop10 { 0%,100%{transform:translate3d(0,0,0)} 25%{transform:translate3d(-24px,10px,0)} 50%{transform:translate3d(-40px,34px,0)} 75%{transform:translate3d(6px,56px,0)} }
+    @keyframes orbLoop11 { 0%,100%{transform:translate3d(0,0,0)} 25%{transform:translate3d(26px,-14px,0)} 50%{transform:translate3d(48px,16px,0)} 75%{transform:translate3d(16px,44px,0)} }
+    @keyframes orbLoop12 { 0%,100%{transform:translate3d(0,0,0)} 25%{transform:translate3d(-12px,-18px,0)} 50%{transform:translate3d(-24px,14px,0)} 75%{transform:translate3d(8px,42px,0)} }
+    @keyframes orbLoop13 { 0%,100%{transform:translate3d(0,0,0)} 25%{transform:translate3d(-28px,10px,0)} 50%{transform:translate3d(-46px,42px,0)} 75%{transform:translate3d(-6px,68px,0)} }
+    @keyframes orbLoop14 { 0%,100%{transform:translate3d(0,0,0)} 25%{transform:translate3d(22px,-12px,0)} 50%{transform:translate3d(34px,18px,0)} 75%{transform:translate3d(10px,40px,0)} }
+    @keyframes orbLoop15 { 0%,100%{transform:translate3d(0,0,0)} 25%{transform:translate3d(-20px,14px,0)} 50%{transform:translate3d(-36px,40px,0)} 75%{transform:translate3d(8px,60px,0)} }
+    @keyframes orbLoop16 { 0%,100%{transform:translate3d(0,0,0)} 25%{transform:translate3d(-30px,-18px,0)} 50%{transform:translate3d(-56px,10px,0)} 75%{transform:translate3d(-12px,48px,0)} }
 
     @media (max-width: 980px){
       .nav{
         min-height:64px;
-        grid-template-columns:auto auto 1fr auto;
+        grid-template-columns:auto 1fr auto;
         gap:6px;
       }
 
@@ -1613,8 +1547,8 @@
       .mobile-toggle{
         display:grid;
         place-items:center;
-        grid-column:2 / 3;
-        margin-left:0;
+        grid-column:3 / 4;
+        margin-left:auto;
         width:38px;
         height:38px;
         border-radius:10px;
@@ -1910,6 +1844,10 @@
       <span class="dust-orb orb-10"></span>
       <span class="dust-orb orb-11"></span>
       <span class="dust-orb orb-12"></span>
+      <span class="dust-orb orb-13"></span>
+      <span class="dust-orb orb-14"></span>
+      <span class="dust-orb orb-15"></span>
+      <span class="dust-orb orb-16"></span>
     </div>
 
     <header class="frame-line">
@@ -1923,10 +1861,6 @@
           </button>
         </div>
 
-        <button class="mobile-toggle" id="mobileToggle" aria-label="Otevřít menu">
-          <i class="fa-solid fa-bars"></i>
-        </button>
-
         <nav class="nav-links" id="navLinks">
           <a href="/" data-view="home" class="nav-active">Home</a>
           <a href="/bio" data-view="bio-page">Bio</a>
@@ -1935,6 +1869,10 @@
           <a href="/collabs" data-view="collabs-page">Collabs</a>
           <a href="/contact" data-view="contact-page">Contact</a>
         </nav>
+
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Otevřít menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
 
         <div class="header-clock" id="headerClock" aria-live="polite">00 : 00 : 00 / Monday / 2026</div>
       </div>
@@ -2037,7 +1975,11 @@
                   <div class="about-copy">
                     <h3>About URHEIM</h3>
                     <div class="about-tags">Pop / Rock / Ethnic / Electronic / Dance</div>
-                    <p>
+                    <p
+                      class="about-type-target"
+                      data-type-target="home"
+                      data-fulltext="Creates music across multiple genres, with a strong love for pop at the core, while often exploring rock influences, EDM energy, rap elements, and stripped-back arrangements built around guitar or piano. Deeply inspired by Arabic, Egyptian, and other ethnic instruments, he blends these influences into a broader musical identity. URHEIM represents a multi-genre artistic vision where emotion, atmosphere, rhythm, and cultural texture come together in a distinctive and constantly evolving sound."
+                    >
                       Creates music across multiple genres, with a strong love for pop at the core, while often exploring rock influences, EDM energy, rap elements, and stripped-back arrangements built around guitar or piano. Deeply inspired by Arabic, Egyptian, and other ethnic instruments, he blends these influences into a broader musical identity. URHEIM represents a multi-genre artistic vision where emotion, atmosphere, rhythm, and cultural texture come together in a distinctive and constantly evolving sound.
                     </p>
                     <a class="platform" href="/video" data-view="video-page"><i class="fa-solid fa-book-open"></i> Read More</a>
@@ -2102,7 +2044,11 @@
                   <div class="about-copy">
                     <h3>About URHEIM</h3>
                     <div class="about-tags">Pop / Rock / Ethnic / Electronic / Dance</div>
-                    <p>
+                    <p
+                      class="about-type-target"
+                      data-type-target="bio-page"
+                      data-fulltext="Creates music across multiple genres, with a strong love for pop at the core, while often exploring rock influences, EDM energy, rap elements, and stripped-back arrangements built around guitar or piano. Deeply inspired by Arabic, Egyptian, and other ethnic instruments, he blends these influences into a broader musical identity. URHEIM represents a multi-genre artistic vision where emotion, atmosphere, rhythm, and cultural texture come together in a distinctive and constantly evolving sound."
+                    >
                       Creates music across multiple genres, with a strong love for pop at the core, while often exploring rock influences, EDM energy, rap elements, and stripped-back arrangements built around guitar or piano. Deeply inspired by Arabic, Egyptian, and other ethnic instruments, he blends these influences into a broader musical identity. URHEIM represents a multi-genre artistic vision where emotion, atmosphere, rhythm, and cultural texture come together in a distinctive and constantly evolving sound.
                     </p>
                   </div>
@@ -2409,6 +2355,7 @@
 
     let manualTheme = null;
     let lastScheduledTheme = null;
+    const activeTypewriters = new Map();
 
     function getScheduledTheme(dateObj) {
       const hour = dateObj.getHours();
@@ -2540,6 +2487,35 @@
       } catch (error) {
         applyLatestVideoData(null);
       }
+    }
+
+    function stopAllTypewriters() {
+      activeTypewriters.forEach(intervalId => clearInterval(intervalId));
+      activeTypewriters.clear();
+    }
+
+    function typeAboutText(viewName) {
+      stopAllTypewriters();
+
+      const targets = document.querySelectorAll(`.about-type-target[data-type-target="${viewName}"]`);
+      targets.forEach(target => {
+        const fullText = target.dataset.fulltext || target.textContent.trim();
+        target.textContent = "";
+        let index = 0;
+
+        const timer = setInterval(() => {
+          target.textContent = fullText.slice(0, index);
+          index += 4;
+
+          if (index > fullText.length) {
+            target.textContent = fullText;
+            clearInterval(timer);
+            activeTypewriters.delete(target);
+          }
+        }, 10);
+
+        activeTypewriters.set(target, timer);
+      });
     }
 
     const themeSwitch = document.getElementById('themeSwitch');
@@ -2730,6 +2706,7 @@
         homeContent.style.display = '';
         resetAndRunAnimations(heroSection);
         resetAndRunAnimations(homeContent);
+        setTimeout(() => typeAboutText('home'), 140);
       } else {
         heroSection.classList.add('hidden');
         homeContent.style.display = 'none';
@@ -2737,6 +2714,12 @@
         if (subpages[viewName]) {
           subpages[viewName].classList.add('active');
           resetAndRunAnimations(subpages[viewName]);
+        }
+
+        if (viewName === 'bio-page') {
+          setTimeout(() => typeAboutText('bio-page'), 140);
+        } else {
+          stopAllTypewriters();
         }
       }
 
