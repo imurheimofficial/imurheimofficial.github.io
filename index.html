@@ -1282,9 +1282,9 @@
 
     @media (max-width: 980px){
       .nav{
-        min-height:68px;
+        min-height:64px;
         grid-template-columns:auto auto 1fr auto;
-        gap:8px;
+        gap:6px;
       }
 
       .nav-left{
@@ -1297,39 +1297,42 @@
         place-items:center;
         grid-column:2 / 3;
         margin-left:0;
+        width:38px;
+        height:38px;
+        border-radius:10px;
       }
 
       .nav-links{
         position:absolute;
-        top:74px;
-        left:16px;
-        right:16px;
+        top:70px;
+        left:12px;
+        right:12px;
         display:none;
         flex-direction:column;
         align-items:center;
         justify-content:center;
-        gap:18px;
-        padding:22px 20px;
+        gap:16px;
+        padding:18px 16px;
         background:var(--mobile-menu-bg);
         border:1px solid var(--mobile-menu-border);
-        border-radius:20px;
+        border-radius:18px;
         box-shadow:var(--mobile-menu-shadow);
-        font-size:1.04rem;
+        font-size:1rem;
         z-index:60;
       }
 
-      .nav-links a{font-size:1.04rem;}
+      .nav-links a{font-size:1rem;}
       .nav-links.open{display:flex}
 
       .header-clock{
         grid-column:4 / 5;
         justify-self:end;
-        font-size:.63rem;
+        font-size:.58rem;
         min-width:auto;
       }
 
-      .hero{padding-top:24px; min-height:auto}
-      .hero-copy{margin-top:8px}
+      .hero{padding-top:20px; min-height:auto}
+      .hero-copy{margin-top:6px}
 
       .release-card,
       .about-grid,
@@ -1340,25 +1343,25 @@
         grid-template-columns:1fr;
       }
 
-      .release-card{padding:18px}
+      .release-card{padding:16px; gap:18px}
 
       .youtube-channel-cover{
-        max-width:420px;
+        max-width:350px;
         width:100%;
         margin-inline:auto;
       }
 
       .about-image{
-        min-height:240px;
+        min-height:210px;
       }
 
       .video-channel-inline{
-        margin-top:18px;
+        margin-top:16px;
       }
 
       .video-channel-inline-inner{
         flex-direction:column;
-        gap:10px;
+        gap:9px;
       }
 
       .video-channel-meta{
@@ -1368,50 +1371,195 @@
       .video-channel-row{
         justify-content:center;
       }
+
+      .subpage-card{
+        padding:20px;
+      }
+
+      .contact-subpage{
+        padding:22px 18px;
+      }
+
+      section{
+        padding:28px 0;
+      }
     }
 
     @media (max-width: 640px){
-      .container{width:min(100% - 20px, var(--container))}
+      .container{width:min(100% - 16px, var(--container))}
 
       .hero{
-        padding:22px 0 18px;
+        padding:16px 0 14px;
       }
 
       .hero-watermark{
-        width:min(100%, 640px);
+        width:min(100%, 520px);
       }
 
-      .subtitle{letter-spacing:.08em}
-      .hero-text{font-size:.95rem}
-      .section-title{font-size:1.5rem}
+      .eyebrow{
+        font-size:.62rem;
+        letter-spacing:.14em;
+      }
+
+      .subtitle{
+        font-size:1rem;
+        letter-spacing:.05em;
+      }
+
+      .hero-text{
+        font-size:.88rem;
+        line-height:1.55;
+        width:min(100%, 94%);
+      }
+
+      .section-title{
+        font-size:1.3rem;
+        gap:10px;
+        margin:0 0 18px;
+      }
+
+      .section-title::before,
+      .section-title::after{
+        width:min(12vw, 70px);
+      }
 
       .release-meta h3,
       .about-copy h3,
-      .contact-subpage h2{font-size:1.8rem}
+      .contact-subpage h2{
+        font-size:1.45rem;
+      }
 
-      .platforms{display:grid;grid-template-columns:1fr 1fr}
-      .platform{justify-content:center}
+      .about-tags{
+        font-size:.92rem;
+        line-height:1.55;
+        margin-bottom:12px;
+      }
 
-      .social{width:42px;height:42px;font-size:.95rem}
+      .about-copy p,
+      .release-meta p,
+      .contact-subpage-item p{
+        font-size:.88rem;
+        line-height:1.7;
+      }
+
+      .platforms{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:10px;
+      }
+
+      .platform{
+        justify-content:center;
+        min-height:40px;
+        font-size:.82rem;
+        padding:0 10px;
+        gap:8px;
+      }
+
+      .social{
+        width:38px;
+        height:38px;
+        font-size:.85rem;
+      }
+
       .video-info h4,
-      .video-page-info h4{font-size:1.15rem}
+      .video-page-info h4{
+        font-size:1rem;
+      }
+
+      .video-info,
+      .video-page-info{
+        min-height:60px;
+        padding:12px 12px 14px;
+      }
+
+      .play-large{
+        font-size:3rem;
+      }
 
       .theme-switch{
-        width:54px;
-        height:28px;
+        width:50px;
+        height:26px;
       }
 
       .theme-switch::before{
-        width:20px;
-        height:20px;
+        width:18px;
+        height:18px;
       }
 
       body.theme-night .theme-switch::before{
         left:28px;
       }
 
-      .eyebrow{
-        font-size:.7rem;
+      .theme-switch-icon{
+        font-size:.68rem;
+        padding:0 7px;
+      }
+
+      .audio-bar{
+        gap:10px;
+        margin:14px 0;
+      }
+
+      .play{
+        width:46px;
+        height:46px;
+      }
+
+      .track-title{
+        margin-bottom:8px;
+        font-size:.9rem;
+      }
+
+      .track-time{
+        font-size:.78rem;
+      }
+
+      .progress{
+        height:7px;
+      }
+
+      .subpage-card{
+        padding:16px;
+      }
+
+      .contact-subpage{
+        padding:18px 14px;
+      }
+
+      .contact-subpage-list{
+        gap:22px;
+      }
+
+      .contact-subpage-item h4{
+        font-size:.98rem;
+      }
+
+      .video-channel-iconbox{
+        width:56px;
+        height:56px;
+      }
+
+      .video-channel-headline{
+        font-size:.94rem;
+      }
+
+      .video-channel-mainbtn,
+      .video-channel-subs{
+        min-height:30px;
+        font-size:.75rem;
+      }
+
+      .footer-copy{
+        font-size:.8rem;
+      }
+
+      footer{
+        padding:14px 0 34px;
+      }
+
+      .footer-line{
+        margin:0 auto 14px;
       }
     }
   </style>
@@ -1909,11 +2057,13 @@
     ];
 
     const LATEST_VIDEO_ENDPOINT = "/api/latest-video.json";
-    let manualTheme = null;
 
-    function isDayThemeByLocalTime(dateObj) {
+    let manualTheme = null;
+    let lastScheduledTheme = null;
+
+    function getScheduledTheme(dateObj) {
       const hour = dateObj.getHours();
-      return hour >= 5 && hour < 17;
+      return (hour >= 5 && hour < 17) ? 'day' : 'night';
     }
 
     function setTheme(isDay) {
@@ -1932,17 +2082,19 @@
     }
 
     function applyThemeByLocalTime(dateObj) {
-      if (manualTheme === 'day') {
-        setTheme(true);
-        return;
+      const scheduledTheme = getScheduledTheme(dateObj);
+
+      if (lastScheduledTheme === null) {
+        lastScheduledTheme = scheduledTheme;
       }
 
-      if (manualTheme === 'night') {
-        setTheme(false);
-        return;
+      if (scheduledTheme !== lastScheduledTheme) {
+        manualTheme = null;
+        lastScheduledTheme = scheduledTheme;
       }
 
-      setTheme(isDayThemeByLocalTime(dateObj));
+      const themeToApply = manualTheme || scheduledTheme;
+      setTheme(themeToApply === 'day');
     }
 
     function pad(value) {
@@ -2045,15 +2197,7 @@
     if (themeSwitch) {
       themeSwitch.addEventListener('click', () => {
         const isNightNow = document.body.classList.contains('theme-night');
-
-        if (manualTheme === null) {
-          manualTheme = isNightNow ? 'day' : 'night';
-        } else if (manualTheme === 'day') {
-          manualTheme = 'night';
-        } else {
-          manualTheme = 'day';
-        }
-
+        manualTheme = isNightNow ? 'day' : 'night';
         updateHeaderClockAndTheme();
       });
     }
