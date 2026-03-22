@@ -408,6 +408,12 @@
       letter-spacing:.01em;
     }
 
+    .clock-seconds{
+      font-size:.72em;
+      opacity:.95;
+      vertical-align:baseline;
+    }
+
     .mobile-toggle{
       display:none;
       margin-left:auto;
@@ -472,9 +478,7 @@
         linear-gradient(180deg, rgba(118,170,255,.02), transparent 40%);
     }
 
-    .hero.hidden{
-      display:none;
-    }
+    .hero.hidden{display:none;}
 
     .hero > *{
       position:relative;
@@ -652,7 +656,7 @@
       display:grid;
       grid-template-columns:280px 1fr;
       gap:28px;
-      align-items:center;
+      align-items:start;
       padding:22px;
     }
 
@@ -660,7 +664,8 @@
     .about-image,
     .video-thumb,
     .subpage-card,
-    .contact-subpage{
+    .contact-subpage,
+    .youtube-preview-card{
       position:relative;
       border-radius:20px;
       overflow:hidden;
@@ -756,11 +761,19 @@
 
     body.theme-night .track-time{color:#93b2d8;}
 
+    .release-bottom{
+      display:grid;
+      grid-template-columns:minmax(0, 1fr) 280px;
+      gap:18px;
+      align-items:start;
+      margin-top:22px;
+    }
+
     .platforms{
       display:flex;
       flex-wrap:wrap;
       gap:12px;
-      margin-top:22px;
+      margin-top:0;
     }
 
     .platform,
@@ -783,6 +796,50 @@
     .subpage-link:hover{
       transform:translateY(-2px);
       border-color:var(--platform-border-hover);
+    }
+
+    .youtube-preview-card{
+      padding:16px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      min-height:100%;
+    }
+
+    .youtube-preview-thumb{
+      position:relative;
+      aspect-ratio:16/9;
+      border-radius:16px;
+      overflow:hidden;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.34), rgba(0,0,0,.58)),
+        url("https://i.ytimg.com/vi_webp/dQw4w9WgXcQ/maxresdefault.webp") center center / cover no-repeat,
+        #000;
+      border:1px solid rgba(255,255,255,.06);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .youtube-preview-thumb i{
+      font-size:2.7rem;
+      color:#fff4d9;
+      text-shadow:0 8px 20px rgba(0,0,0,.45);
+    }
+
+    .youtube-preview-card h4{
+      margin:0;
+      font-family:Cinzel, serif;
+      font-size:1.02rem;
+      text-align:center;
+    }
+
+    .youtube-preview-card p{
+      margin:0;
+      text-align:center;
+      font-size:.9rem;
+      color:var(--muted);
+      line-height:1.5;
     }
 
     .about-grid{
@@ -981,7 +1038,8 @@
 
     .subpage-join-grid{
       grid-template-columns:repeat(2,1fr);
-      margin-top:20px;
+      margin-top:0;
+      margin-bottom:18px;
       gap:16px;
     }
 
@@ -991,6 +1049,11 @@
 
     .subpage-join-item i{
       font-size:3rem;
+    }
+
+    .collab-video-small{
+      max-width:760px;
+      margin:0 auto;
     }
 
     .contact-subpage-wrap{
@@ -1005,7 +1068,7 @@
     }
 
     .contact-subpage h2{
-      margin:0 0 24px;
+      margin:0 0 30px;
       font-family:Cinzel, serif;
       font-size:2.4rem;
       text-align:center;
@@ -1013,12 +1076,12 @@
 
     .contact-subpage-list{
       display:grid;
-      gap:22px;
+      gap:30px;
       text-align:center;
     }
 
     .contact-subpage-item h4{
-      margin:0 0 8px;
+      margin:0 0 10px;
       font-family:Cinzel, serif;
       font-size:1.1rem;
       color:var(--text);
@@ -1028,7 +1091,7 @@
     .contact-subpage-item p{
       margin:0;
       font-size:.96rem;
-      line-height:1.8;
+      line-height:2;
       color:#ffffff;
       text-align:center;
     }
@@ -1038,7 +1101,7 @@
       justify-content:center;
       gap:14px;
       flex-wrap:wrap;
-      padding:10px 0 4px;
+      padding:4px 0 0;
     }
 
     .social{
@@ -1088,6 +1151,10 @@
       .subpage-video-grid,
       .subpage-youtube-grid{
         grid-template-columns:repeat(2,1fr);
+      }
+
+      .release-bottom{
+        grid-template-columns:1fr;
       }
     }
 
@@ -1208,7 +1275,7 @@
         <i class="fa-solid fa-bars"></i>
       </button>
 
-      <div class="header-clock" id="headerClock" aria-live="polite">00:00:00 Saturday 2026</div>
+      <div class="header-clock" id="headerClock" aria-live="polite">00'00'00 | Monday | 02 Feb 2026</div>
     </div>
   </header>
 
@@ -1275,17 +1342,26 @@
                 </div>
               </div>
 
+              <div class="release-bottom">
+                <div class="platforms">
+                  <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-spotify"></i> Spotify</a>
+                  <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-apple"></i> Apple Music</a>
+                  <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-soundcloud"></i> SoundCloud</a>
+                  <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-amazon"></i> Amazon</a>
+                </div>
+
+                <a class="youtube-preview-card" href="https://www.youtube.com/@imurheimofficial" target="_blank" rel="noopener" aria-label="YouTube Channel Preview">
+                  <div class="youtube-preview-thumb">
+                    <i class="fa-brands fa-youtube"></i>
+                  </div>
+                  <h4>URHEIM YouTube Channel</h4>
+                  <p>Open channel and watch latest videos</p>
+                </a>
+              </div>
+
               <audio id="releaseAudio" class="hidden-audio" preload="metadata">
                 <source src="" type="audio/mpeg">
               </audio>
-
-              <div class="platforms">
-                <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-spotify"></i> Spotify</a>
-                <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-apple"></i> Apple Music</a>
-                <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i> YouTube</a>
-                <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-soundcloud"></i> SoundCloud</a>
-                <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-amazon"></i> Amazon</a>
-              </div>
             </div>
           </article>
         </div>
@@ -1416,27 +1492,25 @@
                     </div>
                   </div>
                 </div>
+
+                <div class="release-bottom">
+                  <div class="platforms">
+                    <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-spotify"></i> Spotify</a>
+                    <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-apple"></i> Apple Music</a>
+                    <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-soundcloud"></i> SoundCloud</a>
+                    <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-amazon"></i> Amazon</a>
+                  </div>
+
+                  <a class="youtube-preview-card" href="https://www.youtube.com/@imurheimofficial" target="_blank" rel="noopener" aria-label="YouTube Channel Preview">
+                    <div class="youtube-preview-thumb">
+                      <i class="fa-brands fa-youtube"></i>
+                    </div>
+                    <h4>URHEIM YouTube Channel</h4>
+                    <p>Open channel and watch latest videos</p>
+                  </a>
+                </div>
               </div>
             </article>
-
-            <div class="subpage-small-grid">
-              <div class="subpage-small-item subpage-card">
-                <h4>Spotify</h4>
-                <a class="subpage-link" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-spotify"></i> Open</a>
-              </div>
-              <div class="subpage-small-item subpage-card">
-                <h4>SoundCloud</h4>
-                <a class="subpage-link" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-soundcloud"></i> Open</a>
-              </div>
-              <div class="subpage-small-item subpage-card">
-                <h4>Apple Music</h4>
-                <a class="subpage-link" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-apple"></i> Open</a>
-              </div>
-              <div class="subpage-small-item subpage-card">
-                <h4>Amazon</h4>
-                <a class="subpage-link" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-amazon"></i> Open</a>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -1523,15 +1597,6 @@
           <div class="panel subpage-card">
             <h2 class="section-title">Collabs</h2>
 
-            <article class="panel video-card" style="margin-top:16px;">
-              <a href="#" class="video-thumb">
-                <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
-              </a>
-              <div class="video-info">
-                <h4>Collab Project</h4>
-              </div>
-            </article>
-
             <div class="subpage-join-grid">
               <div class="subpage-join-item subpage-card">
                 <i class="fa-brands fa-discord"></i>
@@ -1545,6 +1610,15 @@
                 <a class="subpage-link" href="https://www.reddit.com/r/imurheimofficial/" target="_blank" rel="noopener">Join</a>
               </div>
             </div>
+
+            <article class="panel video-card collab-video-small">
+              <a href="#" class="video-thumb">
+                <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
+              </a>
+              <div class="video-info">
+                <h4>Collab Project</h4>
+              </div>
+            </article>
           </div>
         </div>
       </section>
@@ -1592,8 +1666,8 @@
 
     <section id="contact">
       <div class="container">
-        <div class="panel" style="padding:30px 24px;">
-          <h2 class="section-title" style="margin-top:0;">Connect</h2>
+        <div class="panel" style="padding:18px 24px;">
+          <h2 class="section-title" style="margin-top:0; margin-bottom:16px;">Connect</h2>
 
           <div class="socials">
             <a class="social" href="https://facebook.com/imurheimofficiaI" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
@@ -1625,6 +1699,11 @@
     const WEEKDAYS = [
       'Sunday', 'Monday', 'Tuesday', 'Wednesday',
       'Thursday', 'Friday', 'Saturday'
+    ];
+
+    const MONTHS = [
+      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
     ];
 
     function isDayThemeByLocalTime(dateObj) {
@@ -1666,11 +1745,13 @@
       const minutes = pad(now.getMinutes());
       const seconds = pad(now.getSeconds());
       const weekday = WEEKDAYS[now.getDay()];
+      const day = pad(now.getDate());
+      const month = MONTHS[now.getMonth()];
       const year = now.getFullYear();
 
       const clockEl = document.getElementById('headerClock');
       if (clockEl) {
-        clockEl.textContent = `${hours}:${minutes}:${seconds} ${weekday} ${year}`;
+        clockEl.innerHTML = `${hours}'${minutes}'<span class="clock-seconds">${seconds}</span> | ${weekday} | ${day} ${month} ${year}`;
       }
     }
 
