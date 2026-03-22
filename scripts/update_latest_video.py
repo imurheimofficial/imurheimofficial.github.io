@@ -41,10 +41,10 @@ def extract_video_id(entry: ET.Element) -> str:
 
     link_el = entry.find("atom:link", ATOM_NS)
     if link_el is not None:
-      href = link_el.attrib.get("href", "")
-      match = re.search(r"v=([A-Za-z0-9_-]{11})", href)
-      if match:
-          return match.group(1)
+        href = link_el.attrib.get("href", "")
+        match = re.search(r"v=([A-Za-z0-9_-]{11})", href)
+        if match:
+            return match.group(1)
 
     return ""
 
@@ -67,13 +67,22 @@ def save_json(data: dict) -> None:
 
 
 def fetch_latest_video_from_feed() -> dict:
+    """
+    Vrací data o nejnovějším videu.
+    Když na kanálu zatím žádné video není, vrátí placeholder místo pádu.
+    """
     feed_url = f"https://www.youtube.com/feeds/videos.xml?channel_id={CHANNEL_ID}"
     xml_text = fetch_url(feed_url)
     root = ET.fromstring(xml_text)
 
     entry = root.find("atom:entry", ATOM_NS)
     if entry is None:
-        raise RuntimeError("Feed neobsahuje žádné video.")
+        return {
+            "title": "[Song Title]",
+            "releaseDate": "",
+            "videoUrl": CHANNEL_URL_FALLBACK,
+            "thumbnailUrl": ""
+        }
 
     title = (entry.findtext("atom:title", default="", namespaces=ATOM_NS) or "").strip()
     published = (entry.findtext("atom:published", default="", namespaces=ATOM_NS) or "").strip()
@@ -81,10 +90,15 @@ def fetch_latest_video_from_feed() -> dict:
 
     video_id = extract_video_id(entry)
     if not video_id:
-        raise RuntimeError("Nepodařilo se získat video ID.")
+        return {
+            "title": title or "[Song Title]",
+            "releaseDate": release_date,
+            "videoUrl": CHANNEL_URL_FALLBACK,
+            "thumbnailUrl": ""
+        }
 
     return {
-        "title": title,
+        "title": title or "[Song Title]",
         "releaseDate": release_date,
         "videoUrl": f"https://www.youtube.com/watch?v={video_id}",
         "thumbnailUrl": f"https://i.ytimg.com/vi/{video_id}/maxresdefault.jpg"
@@ -92,6 +106,10 @@ def fetch_latest_video_from_feed() -> dict:
 
 
 def fetch_channel_data_from_api() -> dict:
+    """
+    Vrací subscribers + avatar.
+    Když API key nebude fungovat, chyba se odchytí výš a použije se fallback.
+    """
     if not YOUTUBE_API_KEY:
         raise RuntimeError("YOUTUBE_API_KEY není nastavený v prostředí.")
 
@@ -140,8 +158,10 @@ def main() -> int:
 
     existing = load_existing_json()
 
+    # nejnovější video – nově bez pádu, i když žádné video zatím není
     latest_video = fetch_latest_video_from_feed()
 
+    # channel data z API – když to selže, použije se fallback a workflow NESPADNE
     try:
         channel_data = fetch_channel_data_from_api()
     except Exception as exc:
