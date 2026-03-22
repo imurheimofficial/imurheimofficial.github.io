@@ -21,10 +21,40 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Check files
+        run: |
+          echo "Repository root:"
+          ls -la
+          echo ""
+          echo ".github/workflows:"
+          ls -la .github/workflows || true
+          echo ""
+          echo "scripts:"
+          ls -la scripts || true
+          echo ""
+          echo "api:"
+          ls -la api || true
+
+      - name: Check secret presence
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        run: |
+          if [ -z "$YOUTUBE_API_KEY" ]; then
+            echo "ERROR: YOUTUBE_API_KEY secret is empty or missing"
+            exit 1
+          else
+            echo "OK: YOUTUBE_API_KEY secret exists"
+          fi
+
       - name: Run updater
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
         run: python scripts/update_latest_video.py
+
+      - name: Show generated JSON
+        run: |
+          echo "api/latest-video.json content:"
+          cat api/latest-video.json
 
       - name: Commit and push if changed
         run: |
