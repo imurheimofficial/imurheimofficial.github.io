@@ -123,6 +123,17 @@
       --footer-line:linear-gradient(90deg, transparent, rgba(244,199,111,.3), rgba(244,199,111,.8), rgba(244,199,111,.3), transparent);
 
       --clock-color:#b88d47;
+
+      --switch-track:#22170b;
+      --switch-track-border:rgba(244,199,111,.22);
+      --switch-knob:#efc76f;
+      --switch-icon:#2c1a06;
+      --switch-shadow:0 4px 14px rgba(0,0,0,.28);
+
+      --official-label:#b88d47;
+      --official-label-glow:0 0 10px rgba(255,179,72,.12);
+
+      --sub-inline-text:#f7e0b4;
     }
 
     body.theme-night{
@@ -227,6 +238,17 @@
       --footer-line:linear-gradient(90deg, transparent, rgba(126,170,255,.24), rgba(175,214,255,.82), rgba(126,170,255,.24), transparent);
 
       --clock-color:#7f9fc9;
+
+      --switch-track:#08101d;
+      --switch-track-border:rgba(126,170,255,.24);
+      --switch-knob:#b7d9ff;
+      --switch-icon:#08101d;
+      --switch-shadow:0 4px 16px rgba(0,0,0,.38);
+
+      --official-label:#8eaed8;
+      --official-label-glow:0 0 12px rgba(120,170,255,.16);
+
+      --sub-inline-text:#dcecff;
     }
 
     *{box-sizing:border-box}
@@ -318,15 +340,20 @@
     .nav{
       min-height:74px;
       position:relative;
+      display:grid;
+      grid-template-columns:auto 1fr auto;
+      align-items:center;
+      gap:14px;
+    }
+
+    .nav-left{
       display:flex;
       align-items:center;
-      justify-content:flex-end;
+      gap:10px;
+      min-width:90px;
     }
 
     .nav-links{
-      position:absolute;
-      left:50%;
-      transform:translateX(-50%);
       display:flex;
       align-items:center;
       justify-content:center;
@@ -387,9 +414,9 @@
     .nav-links a.nav-active::after{width:100%}
 
     .header-clock{
-      margin-left:auto;
       display:flex;
       align-items:center;
+      justify-content:flex-end;
       min-height:18px;
       padding:0;
       border:none;
@@ -402,6 +429,49 @@
       transition:color .24s ease;
       font-variant-numeric:tabular-nums;
       letter-spacing:.01em;
+      min-width:170px;
+    }
+
+    .theme-switch{
+      position:relative;
+      width:58px;
+      height:30px;
+      border-radius:999px;
+      border:1px solid var(--switch-track-border);
+      background:var(--switch-track);
+      box-shadow:var(--switch-shadow);
+      cursor:pointer;
+      transition:background .24s ease, border-color .24s ease, box-shadow .24s ease;
+      flex:0 0 auto;
+    }
+
+    .theme-switch::before{
+      content:"";
+      position:absolute;
+      top:3px;
+      left:4px;
+      width:22px;
+      height:22px;
+      border-radius:50%;
+      background:var(--switch-knob);
+      box-shadow:0 2px 8px rgba(0,0,0,.24);
+      transition:left .24s ease, background .24s ease;
+    }
+
+    body.theme-night .theme-switch::before{
+      left:30px;
+    }
+
+    .theme-switch-icon{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 8px;
+      color:var(--switch-icon);
+      font-size:.8rem;
+      pointer-events:none;
     }
 
     .mobile-toggle{
@@ -494,13 +564,12 @@
       font-family:Cinzel, serif;
       text-transform:uppercase;
       letter-spacing:.18em;
-      color:#d5b27b;
-      font-size:.76rem;
+      color:var(--official-label);
+      font-size:.74rem;
       opacity:.95;
-      transition:color .24s ease;
+      text-shadow:var(--official-label-glow);
+      transition:color .24s ease, text-shadow .24s ease;
     }
-
-    body.theme-night .eyebrow{color:#b7d3f7;}
 
     .hero-watermark{
       width:min(1085px, 96%);
@@ -1053,14 +1122,14 @@
     .socials{
       display:flex;
       justify-content:center;
-      gap:14px;
+      gap:12px;
       flex-wrap:wrap;
-      padding:4px 0 0;
+      padding:2px 0 0;
     }
 
     .social{
-      width:54px;
-      height:54px;
+      width:46px;
+      height:46px;
       border-radius:50%;
       display:grid;
       place-items:center;
@@ -1069,7 +1138,7 @@
       color:var(--social-color);
       box-shadow:var(--social-shadow);
       transition:transform .16s ease, color .24s ease, background .24s ease, border-color .24s ease, box-shadow .24s ease;
-      font-size:1.15rem;
+      font-size:1rem;
     }
 
     .social:hover{
@@ -1080,34 +1149,35 @@
 
     body.theme-night .social:hover{color:#eef7ff;}
 
-    .video-channel-wrap{
-      margin-top:34px;
-      padding-top:10px;
+    .video-channel-inline{
+      margin-top:38px;
+      padding-top:4px;
       display:flex;
       justify-content:center;
+      align-items:center;
     }
 
-    .video-channel-center{
-      width:min(420px, 100%);
+    .video-channel-inline-inner{
       display:flex;
-      flex-direction:column;
       align-items:center;
       justify-content:center;
-      gap:14px;
-      text-align:center;
+      gap:12px;
+      flex-wrap:wrap;
+      color:var(--sub-inline-text);
     }
 
     .video-channel-iconbox{
-      width:84px;
-      height:84px;
+      width:56px;
+      height:56px;
       display:grid;
       place-items:center;
-      border-radius:18px;
+      border-radius:14px;
       overflow:hidden;
       background:#000;
       border:1px solid var(--media-border);
       box-shadow:var(--media-shadow);
       transition:border-color .24s ease, box-shadow .24s ease, background .24s ease;
+      flex:0 0 auto;
     }
 
     .video-channel-avatar{
@@ -1117,36 +1187,46 @@
       display:block;
     }
 
+    .video-channel-meta{
+      display:flex;
+      flex-direction:column;
+      align-items:flex-start;
+      justify-content:center;
+      gap:8px;
+    }
+
     .video-channel-headline{
       font-family:Cinzel, serif;
-      font-size:1.32rem;
+      font-size:1.02rem;
       margin:0;
       letter-spacing:.04em;
+      line-height:1;
     }
 
     .video-channel-row{
       display:flex;
       align-items:center;
-      justify-content:center;
-      gap:10px;
-      flex-wrap:wrap;
+      justify-content:flex-start;
+      gap:0;
+      flex-wrap:nowrap;
     }
 
     .video-channel-mainbtn{
-      min-height:38px;
-      padding:0 14px;
-      border-radius:10px;
+      min-height:34px;
+      padding:0 12px;
+      border-radius:10px 0 0 10px;
       border:1px solid var(--platform-border);
       background:var(--button-bg);
       color:var(--button-text);
       font-weight:700;
-      font-size:.92rem;
+      font-size:.82rem;
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      gap:8px;
+      gap:7px;
       box-shadow:var(--button-shadow);
       transition:transform .16s ease, box-shadow .16s ease, border-color .24s ease, background .24s ease, color .24s ease;
+      border-right:none;
     }
 
     .video-channel-mainbtn:hover{
@@ -1156,14 +1236,14 @@
     }
 
     .video-channel-subs{
-      min-height:38px;
-      padding:0 12px;
-      border-radius:10px;
+      min-height:34px;
+      padding:0 10px;
+      border-radius:0 10px 10px 0;
       border:1px solid var(--media-border);
       background:var(--panel-bg);
       color:var(--text);
       font-weight:700;
-      font-size:.88rem;
+      font-size:.8rem;
       display:inline-flex;
       align-items:center;
       justify-content:center;
@@ -1173,14 +1253,14 @@
     }
 
     footer{
-      padding:24px 0 56px;
+      padding:18px 0 46px;
       text-align:center;
       color:var(--footer-color);
     }
 
     .footer-line{
       width:min(920px, 100%);
-      margin:0 auto 28px;
+      margin:0 auto 18px;
       height:1px;
       background:var(--footer-line);
     }
@@ -1188,6 +1268,7 @@
     .footer-copy{
       font-family:Cinzel, serif;
       letter-spacing:.06em;
+      font-size:.9rem;
     }
 
     .hidden-audio{display:none;}
@@ -1195,9 +1276,20 @@
     @media (max-width: 980px){
       .nav{
         min-height:68px;
-        display:grid;
-        grid-template-columns:1fr auto auto;
+        grid-template-columns:auto auto 1fr auto;
         gap:8px;
+      }
+
+      .nav-left{
+        grid-column:1 / 2;
+        min-width:auto;
+      }
+
+      .mobile-toggle{
+        display:grid;
+        place-items:center;
+        grid-column:2 / 3;
+        margin-left:0;
       }
 
       .nav-links{
@@ -1205,7 +1297,6 @@
         top:74px;
         left:16px;
         right:16px;
-        transform:none;
         display:none;
         flex-direction:column;
         align-items:center;
@@ -1223,18 +1314,11 @@
       .nav-links a{font-size:1.04rem;}
       .nav-links.open{display:flex}
 
-      .mobile-toggle{
-        display:grid;
-        place-items:center;
-        grid-column:2 / 3;
-        margin-left:0;
-      }
-
       .header-clock{
-        grid-column:3 / 4;
-        margin-left:0;
+        grid-column:4 / 5;
         justify-self:end;
         font-size:.63rem;
+        min-width:auto;
       }
 
       .hero{padding-top:24px; min-height:auto}
@@ -1261,12 +1345,21 @@
         min-height:240px;
       }
 
-      .video-channel-wrap{
+      .video-channel-inline{
         margin-top:28px;
       }
 
-      .video-channel-center{
-        width:min(100%, 340px);
+      .video-channel-inline-inner{
+        flex-direction:column;
+        gap:10px;
+      }
+
+      .video-channel-meta{
+        align-items:center;
+      }
+
+      .video-channel-row{
+        justify-content:center;
       }
     }
 
@@ -1292,9 +1385,27 @@
       .platforms{display:grid;grid-template-columns:1fr 1fr}
       .platform{justify-content:center}
 
-      .social{width:48px;height:48px}
+      .social{width:42px;height:42px;font-size:.95rem}
       .video-info h4,
       .video-page-info h4{font-size:1.15rem}
+
+      .theme-switch{
+        width:54px;
+        height:28px;
+      }
+
+      .theme-switch::before{
+        width:20px;
+        height:20px;
+      }
+
+      body.theme-night .theme-switch::before{
+        left:28px;
+      }
+
+      .eyebrow{
+        font-size:.7rem;
+      }
     }
   </style>
 </head>
@@ -1302,6 +1413,19 @@
 <body class="theme-day">
   <header class="frame-line">
     <div class="container nav">
+      <div class="nav-left">
+        <button class="theme-switch" id="themeSwitch" aria-label="Přepnout motiv">
+          <span class="theme-switch-icon">
+            <i class="fa-solid fa-sun"></i>
+            <i class="fa-solid fa-moon"></i>
+          </span>
+        </button>
+      </div>
+
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Otevřít menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
       <nav class="nav-links" id="navLinks">
         <a href="/" data-view="home" class="nav-active">Home</a>
         <a href="/bio" data-view="bio-page">Bio</a>
@@ -1310,10 +1434,6 @@
         <a href="/collabs" data-view="collabs-page">Collabs</a>
         <a href="/contact" data-view="contact-page">Contact</a>
       </nav>
-
-      <button class="mobile-toggle" id="mobileToggle" aria-label="Otevřít menu">
-        <i class="fa-solid fa-bars"></i>
-      </button>
 
       <div class="header-clock" id="headerClock" aria-live="polite">00 : 00 : 00 / Monday / 2026</div>
     </div>
@@ -1633,8 +1753,8 @@
               </article>
             </div>
 
-            <div class="video-channel-wrap">
-              <div class="video-channel-center">
+            <div class="video-channel-inline">
+              <div class="video-channel-inline-inner">
                 <div class="video-channel-iconbox">
                   <img
                     class="video-channel-avatar"
@@ -1644,20 +1764,22 @@
                   >
                 </div>
 
-                <div class="video-channel-headline">URHEIM</div>
+                <div class="video-channel-meta">
+                  <div class="video-channel-headline">URHEIM</div>
 
-                <div class="video-channel-row">
-                  <a
-                    class="video-channel-mainbtn"
-                    href="https://www.youtube.com/@imurheimofficial?sub_confirmation=1"
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    <i class="fa-brands fa-youtube"></i>
-                    YouTube
-                  </a>
+                  <div class="video-channel-row">
+                    <a
+                      class="video-channel-mainbtn"
+                      href="https://www.youtube.com/@imurheimofficial?sub_confirmation=1"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      <i class="fa-brands fa-youtube"></i>
+                      Subscribe
+                    </a>
 
-                  <div class="video-channel-subs" id="videoChannelSubs">0</div>
+                    <div class="video-channel-subs" id="videoChannelSubs">0</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1742,8 +1864,8 @@
 
     <section id="contact">
       <div class="container">
-        <div class="panel" style="padding:18px 24px;">
-          <h2 class="section-title" style="margin-top:0; margin-bottom:16px;">Connect</h2>
+        <div class="panel" style="padding:12px 18px;">
+          <h2 class="section-title" style="margin-top:0; margin-bottom:12px;">Connect</h2>
 
           <div class="socials">
             <a class="social" href="https://facebook.com/imurheimofficiaI" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
@@ -1778,31 +1900,40 @@
     ];
 
     const LATEST_VIDEO_ENDPOINT = "/api/latest-video.json";
+    let manualTheme = null;
 
     function isDayThemeByLocalTime(dateObj) {
       const hour = dateObj.getHours();
       return hour >= 5 && hour < 17;
     }
 
-    function applyThemeByLocalTime(dateObj) {
-      const isDay = isDayThemeByLocalTime(dateObj);
-
+    function setTheme(isDay) {
       if (isDay) {
-        if (!document.body.classList.contains('theme-day')) {
-          document.body.classList.remove('theme-night');
-          document.body.classList.add('theme-day');
-        }
+        document.body.classList.remove('theme-night');
+        document.body.classList.add('theme-day');
       } else {
-        if (!document.body.classList.contains('theme-night')) {
-          document.body.classList.remove('theme-day');
-          document.body.classList.add('theme-night');
-        }
+        document.body.classList.remove('theme-day');
+        document.body.classList.add('theme-night');
       }
 
       const themeMeta = document.querySelector('meta[name="theme-color"]');
       if (themeMeta) {
         themeMeta.setAttribute('content', isDay ? '#000000' : '#08101d');
       }
+    }
+
+    function applyThemeByLocalTime(dateObj) {
+      if (manualTheme === 'day') {
+        setTheme(true);
+        return;
+      }
+
+      if (manualTheme === 'night') {
+        setTheme(false);
+        return;
+      }
+
+      setTheme(isDayThemeByLocalTime(dateObj));
     }
 
     function pad(value) {
@@ -1899,6 +2030,23 @@
       } catch (error) {
         applyLatestVideoData(null);
       }
+    }
+
+    const themeSwitch = document.getElementById('themeSwitch');
+    if (themeSwitch) {
+      themeSwitch.addEventListener('click', () => {
+        const isNightNow = document.body.classList.contains('theme-night');
+
+        if (manualTheme === null) {
+          manualTheme = isNightNow ? 'day' : 'night';
+        } else if (manualTheme === 'day') {
+          manualTheme = 'night';
+        } else {
+          manualTheme = 'day';
+        }
+
+        updateHeaderClockAndTheme();
+      });
     }
 
     updateHeaderClockAndTheme();
