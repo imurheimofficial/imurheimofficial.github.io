@@ -323,8 +323,6 @@
       justify-content:flex-end;
     }
 
-    .brand{display:none;}
-
     .nav-links{
       position:absolute;
       left:50%;
@@ -547,43 +545,6 @@
       transition:color .24s ease;
     }
 
-    .cta-row{
-      display:flex;
-      justify-content:center;
-      gap:16px;
-      flex-wrap:wrap;
-      margin-top:20px;
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      min-height:50px;
-      padding:0 22px;
-      border-radius:14px;
-      border:1px solid rgba(244,199,111,.32);
-      color:var(--button-text);
-      font-weight:700;
-      letter-spacing:.03em;
-      background:var(--button-bg);
-      box-shadow:var(--button-shadow);
-      transition:
-        transform .16s ease,
-        box-shadow .16s ease,
-        background .24s ease,
-        color .24s ease,
-        border-color .24s ease;
-    }
-
-    .btn:hover{
-      transform:translateY(-2px);
-      box-shadow:var(--button-shadow-hover);
-    }
-
-    body.theme-night .btn{border-color:rgba(150,195,255,.28);}
-
     section{
       padding:40px 0;
       content-visibility:auto;
@@ -657,6 +618,7 @@
     .subpage-card,
     .contact-subpage,
     .youtube-channel-cover,
+    .video-page-card,
     .video-channel-panel,
     .video-channel-iconbox,
     .video-channel-mainbtn,
@@ -681,6 +643,16 @@
         #000;
     }
 
+    .youtube-cover-thumb{
+      width:100%;
+      height:100%;
+      position:absolute;
+      inset:0;
+      background:center center / cover no-repeat;
+      opacity:.45;
+      filter:saturate(.9) contrast(1.02);
+    }
+
     .youtube-cover-inner{
       position:relative;
       z-index:2;
@@ -699,27 +671,30 @@
       font-size:3.1rem;
       color:#fff2d6;
       text-shadow:0 10px 24px rgba(0,0,0,.45);
+      z-index:2;
     }
 
     .youtube-cover-link{
       min-height:46px;
       padding:0 18px;
       border-radius:14px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(0,0,0,.38);
-      color:#fff1d5;
+      border:1px solid rgba(244,199,111,.32);
+      color:var(--button-text);
+      font-weight:700;
+      letter-spacing:.03em;
+      background:var(--button-bg);
+      box-shadow:var(--button-shadow);
       display:inline-flex;
       align-items:center;
       justify-content:center;
       gap:10px;
-      font-weight:700;
-      transition:transform .16s ease, border-color .24s ease, background .24s ease;
+      z-index:2;
+      transition:transform .16s ease, box-shadow .16s ease;
     }
 
     .youtube-cover-link:hover{
       transform:translateY(-2px);
-      border-color:rgba(255,255,255,.22);
-      background:rgba(0,0,0,.48);
+      box-shadow:var(--button-shadow-hover);
     }
 
     .release-meta h3{
@@ -808,7 +783,8 @@
     }
 
     .platform,
-    .subpage-link{
+    .subpage-link,
+    .video-channel-mainbtn{
       display:inline-flex;
       align-items:center;
       gap:10px;
@@ -825,7 +801,8 @@
     }
 
     .platform:hover,
-    .subpage-link:hover{
+    .subpage-link:hover,
+    .video-channel-mainbtn:hover{
       transform:translateY(-2px);
       border-color:var(--platform-border-hover);
       box-shadow:var(--button-shadow-hover);
@@ -833,17 +810,17 @@
 
     .about-grid{
       display:grid;
-      grid-template-columns:.82fr 1.18fr;
+      grid-template-columns:.72fr 1.28fr;
       gap:30px;
       align-items:center;
     }
 
     .about-image{
-      min-height:270px;
+      min-height:230px;
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:14px;
+      padding:12px;
       background:#000;
       overflow:visible;
     }
@@ -906,20 +883,28 @@
 
     .video-grid,
     .subpage-video-grid,
-    .subpage-youtube-grid,
-    .subpage-small-grid,
     .subpage-join-grid{
       display:grid;
       gap:22px;
     }
 
-    .video-grid{
+    .video-grid,
+    .subpage-video-grid{
       grid-template-columns:repeat(3, 1fr);
     }
 
-    .video-card{overflow:hidden;}
+    .video-page-grid{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:22px;
+      margin-top:22px;
+    }
 
-    .video-thumb{
+    .video-card,
+    .video-page-card{overflow:hidden;}
+
+    .video-thumb,
+    .video-page-thumb{
       position:relative;
       aspect-ratio:16/9;
       display:flex;
@@ -932,7 +917,8 @@
       background-position:center;
     }
 
-    .video-thumb::before{
+    .video-thumb::before,
+    .video-page-thumb::before{
       content:"";
       position:absolute;
       inset:0;
@@ -956,7 +942,8 @@
       text-shadow:0 8px 18px rgba(0,0,0,.55), 0 0 16px rgba(120,170,255,.14);
     }
 
-    .video-info{
+    .video-info,
+    .video-page-info{
       padding:16px 18px 18px;
       text-align:center;
       display:flex;
@@ -965,7 +952,8 @@
       min-height:72px;
     }
 
-    .video-info h4{
+    .video-info h4,
+    .video-page-info h4{
       margin:0;
       font-family:Cinzel, serif;
       font-size:1.28rem;
@@ -983,48 +971,6 @@
       padding:28px;
     }
 
-    .subpage-small-grid{
-      grid-template-columns:repeat(4,1fr);
-      margin-top:18px;
-      gap:16px;
-    }
-
-    .subpage-small-item,
-    .subpage-youtube-item,
-    .subpage-join-item{
-      padding:18px;
-      min-height:120px;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-      gap:12px;
-      text-align:center;
-    }
-
-    .subpage-small-item h4,
-    .subpage-youtube-item h4,
-    .subpage-join-item h4{
-      margin:0;
-      font-family:Cinzel, serif;
-      font-size:1.05rem;
-    }
-
-    .subpage-video-grid{
-      grid-template-columns:repeat(3,1fr);
-      margin-top:18px;
-    }
-
-    .subpage-youtube-grid{
-      grid-template-columns:repeat(3,1fr);
-      margin-top:18px;
-      gap:16px;
-    }
-
-    .subpage-youtube-item i{
-      font-size:2.2rem;
-    }
-
     .subpage-join-grid{
       grid-template-columns:repeat(2,1fr);
       margin-top:0;
@@ -1033,7 +979,20 @@
     }
 
     .subpage-join-item{
+      padding:18px;
       min-height:180px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      gap:12px;
+      text-align:center;
+    }
+
+    .subpage-join-item h4{
+      margin:0;
+      font-family:Cinzel, serif;
+      font-size:1.05rem;
     }
 
     .subpage-join-item i{
@@ -1131,70 +1090,51 @@
       margin-top:22px;
       padding:18px;
       display:grid;
-      grid-template-columns:90px 1fr;
+      grid-template-columns:72px 1fr;
       gap:16px;
       align-items:center;
     }
 
     .video-channel-iconbox{
-      width:90px;
-      height:90px;
+      width:72px;
+      height:72px;
       display:grid;
       place-items:center;
-      border-radius:22px;
-      background:
-        linear-gradient(180deg, rgba(25,16,9,.94), rgba(8,5,3,.98));
+      border-radius:18px;
+      overflow:hidden;
+      background:#000;
     }
 
-    .video-channel-iconbox i{
-      font-size:2.5rem;
-      color:var(--gold);
-    }
-
-    body.theme-night .video-channel-iconbox{
-      background:
-        linear-gradient(180deg, rgba(12,18,32,.94), rgba(4,9,18,.98));
+    .video-channel-avatar{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
     }
 
     .video-channel-headline{
       font-family:Cinzel, serif;
-      font-size:1.2rem;
-      margin:0 0 12px;
+      font-size:1.1rem;
+      margin:0 0 10px;
     }
 
     .video-channel-actions{
       display:grid;
-      grid-template-columns:1fr 170px;
+      grid-template-columns:1fr 140px;
       gap:12px;
       align-items:stretch;
     }
 
-    .video-channel-mainbtn,
     .video-channel-subs{
-      min-height:52px;
+      min-height:46px;
       display:flex;
       align-items:center;
       justify-content:center;
-      gap:10px;
-      padding:0 16px;
-      font-weight:700;
-    }
-
-    .video-channel-mainbtn{
-      background:var(--button-bg);
-      color:var(--button-text);
-      border:1px solid var(--platform-border);
-      box-shadow:var(--button-shadow);
-    }
-
-    .video-channel-mainbtn:hover{
-      box-shadow:var(--button-shadow-hover);
-      transform:translateY(-2px);
-    }
-
-    .video-channel-subs{
+      padding:0 12px;
       color:var(--text);
       background:var(--panel-bg);
+      font-weight:700;
+      text-align:center;
     }
 
     footer{
@@ -1268,10 +1208,9 @@
       .release-card,
       .about-grid,
       .video-grid,
-      .subpage-small-grid,
       .subpage-video-grid,
-      .subpage-youtube-grid,
       .subpage-join-grid,
+      .video-page-grid,
       .video-channel-panel,
       .video-channel-actions{
         grid-template-columns:1fr;
@@ -1307,7 +1246,6 @@
 
       .subtitle{letter-spacing:.08em}
       .hero-text{font-size:.95rem}
-      .btn{width:100%}
       .section-title{font-size:1.5rem}
 
       .release-meta h3,
@@ -1318,7 +1256,8 @@
       .platform{justify-content:center}
 
       .social{width:48px;height:48px}
-      .video-info h4{font-size:1.15rem}
+      .video-info h4,
+      .video-page-info h4{font-size:1.15rem}
     }
   </style>
 </head>
@@ -1364,12 +1303,6 @@
           <p class="hero-text">
             Ancient echoes, hidden signs, and a sound that moves through worlds—shaped by mystery, driven by emotion, and unconstrained by genre.
           </p>
-
-          <div class="cta-row">
-            <a class="btn" href="https://www.youtube.com/@imurheimofficial" target="_blank" rel="noopener">
-              <i class="fa-solid fa-play"></i> Listen Now
-            </a>
-          </div>
         </div>
       </div>
     </section>
@@ -1380,7 +1313,8 @@
           <h2 class="section-title">Latest Release</h2>
 
           <article class="panel release-card">
-            <a class="youtube-channel-cover" href="https://www.youtube.com/@imurheimofficial" target="_blank" rel="noopener" aria-label="URHEIM YouTube Channel">
+            <a class="youtube-channel-cover" id="latestVideoLink" href="https://www.youtube.com/@imurheimofficial" target="_blank" rel="noopener" aria-label="Latest YouTube Video">
+              <div class="youtube-cover-thumb" id="latestVideoThumb"></div>
               <div class="youtube-cover-inner">
                 <i class="fa-brands fa-youtube"></i>
                 <span class="youtube-cover-link">Watch Now</span>
@@ -1388,8 +1322,8 @@
             </a>
 
             <div class="release-meta">
-              <h3 id="latestTitle">URHEIM - Máme Tě Rádi</h3>
-              <p id="latestReleaseText">Release date: 2021-10-14</p>
+              <h3 id="latestTitle">[Song Title]</h3>
+              <p id="latestReleaseText">Release date:</p>
 
               <div class="audio-bar">
                 <button class="play" id="playButton" type="button" aria-label="Play preview">
@@ -1447,7 +1381,7 @@
                 <p>
                   Creates music across multiple genres, with a strong love for pop at the core, while often exploring rock influences, EDM energy, rap elements, and stripped-back arrangements built around guitar or piano. Deeply inspired by Arabic, Egyptian, and other ethnic instruments, he blends these influences into a broader musical identity. URHEIM represents a multi-genre artistic vision where emotion, atmosphere, rhythm, and cultural texture come together in a distinctive and constantly evolving sound.
                 </p>
-                <a class="btn" href="/video" data-view="video-page"><i class="fa-solid fa-book-open"></i> Read More</a>
+                <a class="platform" href="/video" data-view="video-page"><i class="fa-solid fa-book-open"></i> Read More</a>
               </div>
             </div>
           </div>
@@ -1526,7 +1460,8 @@
             <h2 class="section-title">Latest Release</h2>
 
             <article class="panel release-card" style="margin-top:16px;">
-              <a class="youtube-channel-cover" href="https://www.youtube.com/@imurheimofficial" target="_blank" rel="noopener" aria-label="URHEIM YouTube Channel">
+              <a class="youtube-channel-cover" id="subLatestVideoLink" href="https://www.youtube.com/@imurheimofficial" target="_blank" rel="noopener" aria-label="Latest YouTube Video">
+                <div class="youtube-cover-thumb" id="subLatestVideoThumb"></div>
                 <div class="youtube-cover-inner">
                   <i class="fa-brands fa-youtube"></i>
                   <span class="youtube-cover-link">Watch Now</span>
@@ -1534,8 +1469,8 @@
               </a>
 
               <div class="release-meta">
-                <h3 id="subLatestTitle">URHEIM - Máme Tě Rádi</h3>
-                <p id="subLatestReleaseText">Release date: 2021-10-14</p>
+                <h3 id="subLatestTitle">[Song Title]</h3>
+                <p id="subLatestReleaseText">Release date:</p>
 
                 <div class="audio-bar">
                   <button class="play" id="subPlayButton" type="button" aria-label="Play preview">
@@ -1605,45 +1540,65 @@
               </article>
             </div>
 
-            <div class="subpage-youtube-grid">
-              <div class="subpage-youtube-item subpage-card">
-                <i class="fa-brands fa-youtube"></i>
-                <h4>YouTube Video 1</h4>
-                <a class="subpage-link" href="#" target="_blank" rel="noopener">Watch</a>
-              </div>
-              <div class="subpage-youtube-item subpage-card">
-                <i class="fa-brands fa-youtube"></i>
-                <h4>YouTube Video 2</h4>
-                <a class="subpage-link" href="#" target="_blank" rel="noopener">Watch</a>
-              </div>
-              <div class="subpage-youtube-item subpage-card">
-                <i class="fa-brands fa-youtube"></i>
-                <h4>YouTube Video 3</h4>
-                <a class="subpage-link" href="#" target="_blank" rel="noopener">Watch</a>
-              </div>
-            </div>
+            <div class="video-page-grid">
+              <article class="panel video-page-card">
+                <a href="#" class="video-page-thumb">
+                  <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
+                </a>
+                <div class="video-page-info">
+                  <h4>YouTube Video 1</h4>
+                </div>
+              </article>
 
-            <div class="subpage-youtube-grid">
-              <div class="subpage-youtube-item subpage-card">
-                <i class="fa-brands fa-youtube"></i>
-                <h4>YouTube Video 4</h4>
-                <a class="subpage-link" href="#" target="_blank" rel="noopener">Watch</a>
-              </div>
-              <div class="subpage-youtube-item subpage-card">
-                <i class="fa-brands fa-youtube"></i>
-                <h4>YouTube Video 5</h4>
-                <a class="subpage-link" href="#" target="_blank" rel="noopener">Watch</a>
-              </div>
-              <div class="subpage-youtube-item subpage-card">
-                <i class="fa-brands fa-youtube"></i>
-                <h4>YouTube Video 6</h4>
-                <a class="subpage-link" href="#" target="_blank" rel="noopener">Watch</a>
-              </div>
+              <article class="panel video-page-card">
+                <a href="#" class="video-page-thumb">
+                  <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
+                </a>
+                <div class="video-page-info">
+                  <h4>YouTube Video 2</h4>
+                </div>
+              </article>
+
+              <article class="panel video-page-card">
+                <a href="#" class="video-page-thumb">
+                  <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
+                </a>
+                <div class="video-page-info">
+                  <h4>YouTube Video 3</h4>
+                </div>
+              </article>
+
+              <article class="panel video-page-card">
+                <a href="#" class="video-page-thumb">
+                  <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
+                </a>
+                <div class="video-page-info">
+                  <h4>YouTube Video 4</h4>
+                </div>
+              </article>
+
+              <article class="panel video-page-card">
+                <a href="#" class="video-page-thumb">
+                  <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
+                </a>
+                <div class="video-page-info">
+                  <h4>YouTube Video 5</h4>
+                </div>
+              </article>
+
+              <article class="panel video-page-card">
+                <a href="#" class="video-page-thumb">
+                  <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
+                </a>
+                <div class="video-page-info">
+                  <h4>YouTube Video 6</h4>
+                </div>
+              </article>
             </div>
 
             <div class="video-channel-panel">
               <div class="video-channel-iconbox">
-                <i class="fa-brands fa-youtube"></i>
+                <img class="video-channel-avatar" id="videoChannelAvatar" src="assets/URHEIM GOLDEN PROFILE.png" alt="URHEIM YouTube Channel">
               </div>
 
               <div>
@@ -1653,7 +1608,7 @@
                     <i class="fa-brands fa-youtube"></i>
                     YouTube
                   </a>
-                  <div class="video-channel-subs" id="videoChannelSubs">0 subscribers</div>
+                  <div class="video-channel-subs" id="videoChannelSubs">0</div>
                 </div>
               </div>
             </div>
@@ -1672,13 +1627,13 @@
               <div class="subpage-join-item subpage-card">
                 <i class="fa-brands fa-discord"></i>
                 <h4>Discord</h4>
-                <a class="subpage-link" href="https://discordapp.com/users/1204486293132808252" target="_blank" rel="noopener">Join</a>
+                <a class="platform" href="https://discordapp.com/users/1204486293132808252" target="_blank" rel="noopener">Join</a>
               </div>
 
               <div class="subpage-join-item subpage-card">
                 <i class="fa-brands fa-reddit"></i>
                 <h4>Reddit</h4>
-                <a class="subpage-link" href="https://www.reddit.com/r/imurheimofficial/" target="_blank" rel="noopener">Join</a>
+                <a class="platform" href="https://www.reddit.com/r/imurheimofficial/" target="_blank" rel="noopener">Join</a>
               </div>
             </div>
 
@@ -1772,13 +1727,7 @@
       'Thursday', 'Friday', 'Saturday'
     ];
 
-    /*
-      TADY SI MŮŽEŠ RUČNĚ NASTAVIT DATA,
-      dokud nebudeš mít backend / YouTube API / konkrétní video URL:
-    */
-    const LATEST_VIDEO_TITLE = "URHEIM - Máme Tě Rádi";
-    const LATEST_VIDEO_RELEASE_DATE = "2021-10-14";
-    const YOUTUBE_SUBSCRIBERS = "0 subscribers";
+    const LATEST_VIDEO_ENDPOINT = "/api/latest-video.json";
 
     function isDayThemeByLocalTime(dateObj) {
       const hour = dateObj.getHours();
@@ -1812,7 +1761,6 @@
 
     function updateHeaderClockAndTheme() {
       const now = new Date();
-
       applyThemeByLocalTime(now);
 
       const hours = pad(now.getHours());
@@ -1827,7 +1775,14 @@
       }
     }
 
-    function applyLatestVideoData() {
+    function applyLatestVideoData(data) {
+      const title = data?.title?.trim() || "[Song Title]";
+      const releaseDate = data?.releaseDate?.trim() || "";
+      const videoUrl = data?.videoUrl?.trim() || "https://www.youtube.com/@imurheimofficial";
+      const thumbnailUrl = data?.thumbnailUrl?.trim() || "";
+      const subscribers = data?.subscribers?.toString().trim() || "0";
+      const channelAvatarUrl = data?.channelAvatarUrl?.trim() || "assets/URHEIM GOLDEN PROFILE.png";
+
       const titleEls = [
         document.getElementById('latestTitle'),
         document.getElementById('subLatestTitle')
@@ -1838,23 +1793,69 @@
         document.getElementById('subLatestReleaseText')
       ];
 
-      const subsEl = document.getElementById('videoChannelSubs');
+      const linkEls = [
+        document.getElementById('latestVideoLink'),
+        document.getElementById('subLatestVideoLink')
+      ];
+
+      const thumbEls = [
+        document.getElementById('latestVideoThumb'),
+        document.getElementById('subLatestVideoThumb')
+      ];
 
       titleEls.forEach(el => {
-        if (el) el.textContent = LATEST_VIDEO_TITLE;
+        if (el) el.textContent = title;
       });
 
       releaseEls.forEach(el => {
-        if (el) el.textContent = `Release date: ${LATEST_VIDEO_RELEASE_DATE}`;
+        if (el) el.textContent = releaseDate ? `Release date: ${releaseDate}` : "Release date:";
       });
 
+      linkEls.forEach(el => {
+        if (el) el.href = videoUrl;
+      });
+
+      thumbEls.forEach(el => {
+        if (!el) return;
+        if (thumbnailUrl) {
+          el.style.backgroundImage = `url("${thumbnailUrl}")`;
+        } else {
+          el.style.backgroundImage = "none";
+        }
+      });
+
+      const subsEl = document.getElementById('videoChannelSubs');
       if (subsEl) {
-        subsEl.textContent = YOUTUBE_SUBSCRIBERS;
+        subsEl.textContent = subscribers;
+      }
+
+      const avatarEl = document.getElementById('videoChannelAvatar');
+      if (avatarEl) {
+        avatarEl.src = channelAvatarUrl;
+      }
+    }
+
+    async function fetchLatestVideoData() {
+      try {
+        const response = await fetch(`${LATEST_VIDEO_ENDPOINT}?t=${Date.now()}`, {
+          method: "GET",
+          cache: "no-store"
+        });
+
+        if (!response.ok) throw new Error("Latest video endpoint not ready");
+
+        const data = await response.json();
+        applyLatestVideoData(data);
+      } catch (error) {
+        applyLatestVideoData(null);
       }
     }
 
     updateHeaderClockAndTheme();
     setInterval(updateHeaderClockAndTheme, 1000);
+
+    fetchLatestVideoData();
+    setInterval(fetchLatestVideoData, 30000);
 
     const toggle = document.getElementById('mobileToggle');
     const navLinks = document.getElementById('navLinks');
@@ -1870,7 +1871,6 @@
     }
 
     document.getElementById('year').textContent = new Date().getFullYear();
-    applyLatestVideoData();
 
     const audio = document.getElementById('releaseAudio');
     const playButton = document.getElementById('playButton');
