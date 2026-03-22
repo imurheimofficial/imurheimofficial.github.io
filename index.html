@@ -51,8 +51,7 @@
       --bg-image-opacity:.34;
       --bg-image-filter:none;
 
-      /* horní background mírně zesvětlen */
-      --hero-bg-overlay:linear-gradient(rgba(0,0,0,.76), rgba(0,0,0,.84));
+      --hero-bg-overlay:linear-gradient(rgba(0,0,0,.82), rgba(0,0,0,.90));
       --hero-image-filter:none;
       --hero-image-opacity:1;
       --hero-border-top:rgba(244,199,111,.18);
@@ -83,12 +82,9 @@
       --button-shadow:inset 0 1px 0 rgba(255,243,215,.55), 0 10px 24px rgba(0,0,0,.26), 0 0 14px rgba(255,178,60,.14);
       --button-shadow-hover:inset 0 1px 0 rgba(255,243,215,.55), 0 14px 30px rgba(0,0,0,.32), 0 0 20px rgba(255,178,60,.18);
 
-      /* watermark aura lehce zvýrazněná */
       --watermark-filter:
-        drop-shadow(0 0 8px rgba(255,196,98,.20))
-        drop-shadow(0 0 18px rgba(255,170,56,.18))
         drop-shadow(0 2px 0 rgba(140,99,47,.85))
-        drop-shadow(0 4px 20px rgba(255,170,56,.16))
+        drop-shadow(0 4px 20px rgba(255,170,56,.12))
         drop-shadow(0 8px 36px rgba(0,0,0,.45));
 
       --profile-image-filter:none;
@@ -159,12 +155,11 @@
         contrast(1.08)
         sepia(.08);
 
-      /* horní background v noci také malinko světlejší než předtím */
-      --hero-bg-overlay:linear-gradient(rgba(0,0,0,.76), rgba(0,0,0,.84));
+      --hero-bg-overlay:linear-gradient(rgba(0,0,0,.82), rgba(0,0,0,.90));
       --hero-image-filter:
         hue-rotate(180deg)
         saturate(1.12)
-        brightness(.70)
+        brightness(.66)
         contrast(1.12)
         sepia(.04);
       --hero-image-opacity:1;
@@ -198,12 +193,12 @@
 
       --watermark-filter:
         hue-rotate(180deg)
-        saturate(1.10)
-        brightness(.82)
-        contrast(1.12)
+        saturate(1.08)
+        brightness(.80)
+        contrast(1.10)
         sepia(.03)
-        drop-shadow(0 0 10px rgba(120,170,255,.18))
-        drop-shadow(0 0 22px rgba(120,170,255,.18))
+        drop-shadow(0 0 8px rgba(120,170,255,.16))
+        drop-shadow(0 0 18px rgba(120,170,255,.16))
         drop-shadow(0 8px 36px rgba(0,0,0,.50));
 
       --profile-image-filter:
@@ -360,9 +355,14 @@
       align-items:center;
       gap:10px;
       min-width:90px;
+      justify-content:flex-start;
     }
 
+    /* přesně vystředěné menu */
     .nav-links{
+      position:absolute;
+      left:50%;
+      transform:translateX(-50%);
       display:flex;
       align-items:center;
       justify-content:center;
@@ -372,6 +372,7 @@
       letter-spacing:.05em;
       padding:10px 0;
       white-space:nowrap;
+      width:max-content;
     }
 
     .nav-links a{
@@ -421,21 +422,26 @@
     .nav-links a:hover::after{width:0}
     .nav-links a.nav-active::after{width:100%}
 
-    /* čas skrytý, ale zůstává funkční v DOM */
     .header-clock{
-      position:absolute;
-      opacity:0;
-      pointer-events:none;
-      width:1px;
-      height:1px;
-      overflow:hidden;
-      right:0;
-      top:0;
-      min-width:0;
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      min-height:18px;
+      padding:0;
+      border:none;
+      background:transparent;
       color:transparent;
       font-size:.72rem;
       line-height:1;
+      text-align:right;
       white-space:nowrap;
+      transition:color .24s ease;
+      font-variant-numeric:tabular-nums;
+      letter-spacing:.01em;
+      min-width:170px;
+      opacity:0;
+      pointer-events:none;
+      user-select:none;
     }
 
     .theme-switch{
@@ -581,13 +587,22 @@
       width:min(1085px, 96%);
       margin:4px auto 4px;
       filter:var(--watermark-filter);
-      transition:filter .24s ease;
+      transition:filter .14s ease;
+      animation:watermarkAuraDay 3.6s ease-in-out infinite;
+      will-change:filter;
     }
 
     .hero-watermark img{
       width:100%;
       height:auto;
       object-fit:contain;
+    }
+
+    body.theme-night .hero-watermark{
+      animation:
+        watermarkAuraNight 3.6s ease-in-out infinite,
+        watermarkPulseWeak 2s linear infinite,
+        watermarkPulseStrong 5s linear infinite;
     }
 
     .headline-rule{
@@ -618,27 +633,6 @@
       font-size:.98rem;
       line-height:1.7;
       transition:color .24s ease;
-    }
-
-    /* animace při otevření a po kliknutí na Home */
-    .hero-animate .eyebrow,
-    .hero-animate .subtitle,
-    .hero-animate .hero-text{
-      opacity:0;
-      transform:translateY(16px);
-      will-change:opacity, transform;
-    }
-
-    .hero-animate.run .eyebrow{
-      animation:heroFadeUp .75s ease forwards;
-    }
-
-    .hero-animate.run .subtitle{
-      animation:heroFadeUp .8s ease .12s forwards;
-    }
-
-    .hero-animate.run .hero-text{
-      animation:heroFadeUp .9s ease .24s forwards;
     }
 
     section{
@@ -722,7 +716,7 @@
       border:1px solid var(--media-border);
       box-shadow:var(--media-shadow);
       isolation:isolate;
-      transition:border-color .24s ease, box-shadow .24s ease, background .24s ease, filter .24s ease;
+      transition:border-color .24s ease, box-shadow .24s ease, background .24s ease, filter .24s ease, opacity .5s ease, transform .5s ease;
       background:var(--panel-bg);
     }
 
@@ -828,7 +822,14 @@
       transition:transform .16s ease, border-color .24s ease, background .24s ease, color .24s ease, box-shadow .24s ease;
     }
 
-    .play:hover{transform:translateY(-1px);}
+    /* hover vzhled jako buňky */
+    .play:hover{
+      transform:translateY(-2px);
+      color:var(--button-text);
+      background:var(--button-bg);
+      border-color:var(--platform-border-hover);
+      box-shadow:var(--button-shadow-hover);
+    }
 
     .track{flex:1;}
 
@@ -1149,6 +1150,12 @@
       border-color:rgba(255,255,255,.38);
     }
 
+    .social-panel{
+      padding:12px 18px;
+      opacity:0;
+      transform:translateY(22px);
+    }
+
     .socials{
       display:flex;
       justify-content:center;
@@ -1171,13 +1178,18 @@
       font-size:1rem;
     }
 
+    /* hover vzhled jako zlaté/modré buňky */
     .social:hover{
       transform:translateY(-2px);
-      color:#ffe2af;
-      box-shadow:var(--social-shadow-hover);
+      color:var(--button-text);
+      background:var(--button-bg);
+      border-color:var(--platform-border-hover);
+      box-shadow:var(--button-shadow-hover);
     }
 
-    body.theme-night .social:hover{color:#eef7ff;}
+    body.theme-night .social:hover{
+      color:var(--button-text);
+    }
 
     .video-channel-inline{
       margin-top:20px;
@@ -1304,14 +1316,117 @@
 
     .hidden-audio{display:none;}
 
-    @keyframes heroFadeUp {
-      0% {
-        opacity: 0;
-        transform: translateY(18px);
+    /* vstupní animace */
+    .animate-in{
+      opacity:0;
+      transform:translateY(22px);
+      will-change:opacity, transform;
+    }
+
+    .animate-in.run{
+      animation:fadeUpIn .72s ease forwards;
+    }
+
+    .animate-in.run.delay-1{ animation-delay:.08s; }
+    .animate-in.run.delay-2{ animation-delay:.16s; }
+    .animate-in.run.delay-3{ animation-delay:.24s; }
+    .animate-in.run.delay-4{ animation-delay:.32s; }
+
+    @keyframes fadeUpIn {
+      from {
+        opacity:0;
+        transform:translateY(22px);
       }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
+      to {
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    @keyframes watermarkAuraDay {
+      0%, 100% {
+        filter:
+          drop-shadow(0 2px 0 rgba(140,99,47,.85))
+          drop-shadow(0 4px 20px rgba(255,170,56,.12))
+          drop-shadow(0 8px 36px rgba(0,0,0,.45));
+      }
+      50% {
+        filter:
+          drop-shadow(0 0 8px rgba(255,196,98,.20))
+          drop-shadow(0 0 18px rgba(255,170,56,.18))
+          drop-shadow(0 2px 0 rgba(140,99,47,.85))
+          drop-shadow(0 4px 20px rgba(255,170,56,.16))
+          drop-shadow(0 8px 36px rgba(0,0,0,.45));
+      }
+    }
+
+    @keyframes watermarkAuraNight {
+      0%, 100% {
+        filter:
+          hue-rotate(180deg)
+          saturate(1.08)
+          brightness(.80)
+          contrast(1.10)
+          sepia(.03)
+          drop-shadow(0 0 8px rgba(120,170,255,.16))
+          drop-shadow(0 0 18px rgba(120,170,255,.16))
+          drop-shadow(0 8px 36px rgba(0,0,0,.50));
+      }
+      50% {
+        filter:
+          hue-rotate(180deg)
+          saturate(1.12)
+          brightness(.84)
+          contrast(1.12)
+          sepia(.03)
+          drop-shadow(0 0 10px rgba(135,188,255,.20))
+          drop-shadow(0 0 24px rgba(135,188,255,.18))
+          drop-shadow(0 8px 36px rgba(0,0,0,.50));
+      }
+    }
+
+    /* A) každé 2 sekundy slabý pulse */
+    @keyframes watermarkPulseWeak {
+      0%, 84%, 100% {
+        filter:
+          hue-rotate(180deg)
+          saturate(1.08)
+          brightness(.80)
+          contrast(1.10)
+          sepia(.03)
+          drop-shadow(0 0 8px rgba(120,170,255,.16))
+          drop-shadow(0 0 18px rgba(120,170,255,.16))
+          drop-shadow(0 8px 36px rgba(0,0,0,.50));
+      }
+      88% {
+        filter:
+          hue-rotate(180deg)
+          saturate(1.15)
+          brightness(.92)
+          contrast(1.15)
+          sepia(.03)
+          drop-shadow(0 0 12px rgba(150,200,255,.24))
+          drop-shadow(0 0 28px rgba(150,200,255,.24))
+          drop-shadow(0 8px 36px rgba(0,0,0,.50));
+      }
+    }
+
+    /* B) každých 5 sekund silnější pulse */
+    @keyframes watermarkPulseStrong {
+      0%, 93%, 100% {
+        opacity:1;
+      }
+      96% {
+        opacity:1;
+        filter:
+          hue-rotate(180deg)
+          saturate(1.22)
+          brightness(1.04)
+          contrast(1.22)
+          sepia(.03)
+          drop-shadow(0 0 16px rgba(190,225,255,.34))
+          drop-shadow(0 0 42px rgba(190,225,255,.30))
+          drop-shadow(0 8px 36px rgba(0,0,0,.50));
       }
     }
 
@@ -1342,6 +1457,8 @@
         top:70px;
         left:12px;
         right:12px;
+        transform:none;
+        width:auto;
         display:none;
         flex-direction:column;
         align-items:center;
@@ -1414,6 +1531,10 @@
 
       section{
         padding:28px 0;
+      }
+
+      .social-panel{
+        transform:translateY(18px);
       }
     }
 
@@ -1627,12 +1748,12 @@
   </header>
 
   <main id="top">
-    <section class="hero frame-line hero-animate" id="heroSection">
+    <section class="hero frame-line" id="heroSection">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <div class="eyebrow" id="heroEyebrow">Official Artist Website</div>
+          <div class="eyebrow animate-in delay-1">Official Artist Website</div>
 
-          <div class="hero-watermark" id="heroWatermark">
+          <div class="hero-watermark">
             <img
               src="assets/URHEIM GOLDEN WATERMARK.png"
               alt="URHEIM Watermark"
@@ -1643,8 +1764,8 @@
           </div>
 
           <div class="headline-rule"></div>
-          <p class="subtitle" id="heroSubtitle">Echoes of the Unspoken</p>
-          <p class="hero-text" id="heroText">
+          <p class="subtitle animate-in delay-2">Echoes of the Unspoken</p>
+          <p class="hero-text animate-in delay-3">
             Ancient echoes, hidden signs, and a sound that moves through worlds—shaped by mystery, driven by emotion, and unconstrained by genre.
           </p>
         </div>
@@ -1654,9 +1775,9 @@
     <div id="homeContent">
       <section id="music">
         <div class="container">
-          <h2 class="section-title">Latest Release</h2>
+          <h2 class="section-title animate-in delay-1">Latest Release</h2>
 
-          <article class="panel release-card">
+          <article class="panel release-card animate-in delay-2">
             <a class="youtube-channel-cover" id="latestVideoLink" href="https://www.youtube.com/@imurheimofficial" target="_blank" rel="noopener" aria-label="Latest YouTube Video">
               <div class="youtube-cover-thumb" id="latestVideoThumb"></div>
               <div class="youtube-cover-inner">
@@ -1706,7 +1827,7 @@
 
       <section id="bio">
         <div class="container">
-          <div class="panel" style="padding:28px;">
+          <div class="panel animate-in delay-3" style="padding:28px;">
             <div class="about-grid">
               <div class="about-image" aria-label="Profile Picture">
                 <img
@@ -1734,10 +1855,10 @@
 
       <section id="videos">
         <div class="container">
-          <h2 class="section-title">Videos</h2>
+          <h2 class="section-title animate-in delay-1">Videos</h2>
 
           <div class="video-grid">
-            <article class="panel video-card">
+            <article class="panel video-card animate-in delay-2">
               <a href="#" class="video-thumb">
                 <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
               </a>
@@ -1746,7 +1867,7 @@
               </div>
             </article>
 
-            <article class="panel video-card">
+            <article class="panel video-card animate-in delay-3">
               <a href="#" class="video-thumb">
                 <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
               </a>
@@ -1755,7 +1876,7 @@
               </div>
             </article>
 
-            <article class="panel video-card" id="collabs">
+            <article class="panel video-card animate-in delay-4" id="collabs">
               <a href="#" class="video-thumb">
                 <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
               </a>
@@ -1771,7 +1892,7 @@
     <div id="subpageBio" class="subpage-shell">
       <section>
         <div class="container">
-          <div class="panel subpage-card">
+          <div class="panel subpage-card animate-in delay-2">
             <div class="about-grid">
               <div class="about-image" aria-label="Profile Picture">
                 <img
@@ -1800,10 +1921,10 @@
     <div id="subpageMusic" class="subpage-shell">
       <section>
         <div class="container">
-          <div class="panel subpage-card">
+          <div class="panel subpage-card animate-in delay-2">
             <h2 class="section-title">Latest Release</h2>
 
-            <article class="panel release-card" style="margin-top:16px;">
+            <article class="panel release-card animate-in delay-3" style="margin-top:16px;">
               <a class="youtube-channel-cover" id="subLatestVideoLink" href="https://www.youtube.com/@imurheimofficial" target="_blank" rel="noopener" aria-label="Latest YouTube Video">
                 <div class="youtube-cover-thumb" id="subLatestVideoThumb"></div>
                 <div class="youtube-cover-inner">
@@ -1852,10 +1973,10 @@
     <div id="subpageVideo" class="subpage-shell">
       <section>
         <div class="container">
-          <div class="subpage-card">
+          <div class="subpage-card animate-in delay-2">
             <h2 class="section-title">Videos</h2>
 
-            <div class="video-card-grid-panel panel">
+            <div class="video-card-grid-panel panel animate-in delay-3">
               <div class="subpage-video-grid" style="margin-bottom:22px; padding:0 0 22px;">
                 <article class="panel video-card">
                   <a href="#" class="video-thumb">
@@ -1942,7 +2063,7 @@
               </div>
             </div>
 
-            <div class="video-channel-inline">
+            <div class="video-channel-inline animate-in delay-4">
               <div class="video-channel-inline-inner">
                 <div class="video-channel-iconbox">
                   <img
@@ -1981,24 +2102,24 @@
     <div id="subpageCollabs" class="subpage-shell">
       <section>
         <div class="container">
-          <div class="panel subpage-card">
+          <div class="panel subpage-card animate-in delay-2">
             <h2 class="section-title">Collabs</h2>
 
             <div class="subpage-join-grid">
-              <div class="subpage-join-item subpage-card">
+              <div class="subpage-join-item subpage-card animate-in delay-3">
                 <i class="fa-brands fa-discord"></i>
                 <h4>Discord</h4>
                 <a class="platform" href="https://discordapp.com/users/1204486293132808252" target="_blank" rel="noopener">Join</a>
               </div>
 
-              <div class="subpage-join-item subpage-card">
+              <div class="subpage-join-item subpage-card animate-in delay-4">
                 <i class="fa-brands fa-reddit"></i>
                 <h4>Reddit</h4>
                 <a class="platform" href="https://www.reddit.com/r/imurheimofficial/" target="_blank" rel="noopener">Join</a>
               </div>
             </div>
 
-            <article class="panel video-card collab-video-small">
+            <article class="panel video-card collab-video-small animate-in delay-4">
               <a href="#" class="video-thumb">
                 <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
               </a>
@@ -2015,7 +2136,7 @@
       <section>
         <div class="container">
           <div class="contact-subpage-wrap">
-            <div class="contact-subpage panel">
+            <div class="contact-subpage panel animate-in delay-2">
               <h2>Contact</h2>
 
               <div class="contact-subpage-list">
@@ -2053,9 +2174,7 @@
 
     <section id="contact">
       <div class="container">
-        <div class="panel" style="padding:12px 18px;">
-          <h2 class="section-title" style="margin-top:0; margin-bottom:12px;">Connect</h2>
-
+        <div class="panel social-panel animate-in delay-4" id="socialPanel">
           <div class="socials">
             <a class="social" href="https://facebook.com/imurheimofficiaI" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
             <a class="social" href="https://instagram.com/imurheimofficial" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
@@ -2093,88 +2212,9 @@
     let manualTheme = null;
     let lastScheduledTheme = null;
 
-    const heroSection = document.getElementById('heroSection');
-    const heroWatermark = document.getElementById('heroWatermark');
-    const heroEyebrow = document.getElementById('heroEyebrow');
-    const heroSubtitle = document.getElementById('heroSubtitle');
-    const heroText = document.getElementById('heroText');
-
-    let weakWatermarkPulseInterval = null;
-    let strongWatermarkPulseInterval = null;
-    let weakPulseActive = false;
-    let strongPulseActive = false;
-    let pulseResetTimeout = null;
-
     function getScheduledTheme(dateObj) {
       const hour = dateObj.getHours();
       return (hour >= 5 && hour < 17) ? 'day' : 'night';
-    }
-
-    function getBaseWatermarkFilter() {
-      if (document.body.classList.contains('theme-night')) {
-        return 'hue-rotate(180deg) saturate(1.10) brightness(.82) contrast(1.12) sepia(.03) drop-shadow(0 0 10px rgba(120,170,255,.18)) drop-shadow(0 0 22px rgba(120,170,255,.18)) drop-shadow(0 8px 36px rgba(0,0,0,.50))';
-      }
-      return 'drop-shadow(0 0 8px rgba(255,196,98,.20)) drop-shadow(0 0 18px rgba(255,170,56,.18)) drop-shadow(0 2px 0 rgba(140,99,47,.85)) drop-shadow(0 4px 20px rgba(255,170,56,.16)) drop-shadow(0 8px 36px rgba(0,0,0,.45))';
-    }
-
-    function getWeakNightWatermarkFilter() {
-      return 'hue-rotate(180deg) saturate(1.12) brightness(.90) contrast(1.14) sepia(.03) drop-shadow(0 0 12px rgba(135,188,255,.22)) drop-shadow(0 0 28px rgba(135,188,255,.20)) drop-shadow(0 8px 36px rgba(0,0,0,.50))';
-    }
-
-    function getStrongNightWatermarkFilter() {
-      return 'hue-rotate(180deg) saturate(1.16) brightness(1.02) contrast(1.18) sepia(.03) drop-shadow(0 0 18px rgba(175,214,255,.34)) drop-shadow(0 0 40px rgba(175,214,255,.28)) drop-shadow(0 8px 36px rgba(0,0,0,.50))';
-    }
-
-    function applyCurrentWatermarkState() {
-      if (!heroWatermark) return;
-
-      if (!document.body.classList.contains('theme-night')) {
-        heroWatermark.style.filter = getBaseWatermarkFilter();
-        return;
-      }
-
-      if (strongPulseActive) {
-        heroWatermark.style.filter = getStrongNightWatermarkFilter();
-      } else if (weakPulseActive) {
-        heroWatermark.style.filter = getWeakNightWatermarkFilter();
-      } else {
-        heroWatermark.style.filter = getBaseWatermarkFilter();
-      }
-    }
-
-    function triggerWeakWatermarkPulse() {
-      if (!document.body.classList.contains('theme-night')) return;
-
-      weakPulseActive = true;
-      applyCurrentWatermarkState();
-
-      clearTimeout(pulseResetTimeout);
-      pulseResetTimeout = setTimeout(() => {
-        weakPulseActive = false;
-        applyCurrentWatermarkState();
-      }, 260);
-    }
-
-    function triggerStrongWatermarkPulse() {
-      if (!document.body.classList.contains('theme-night')) return;
-
-      strongPulseActive = true;
-      weakPulseActive = false;
-      applyCurrentWatermarkState();
-
-      clearTimeout(pulseResetTimeout);
-      pulseResetTimeout = setTimeout(() => {
-        strongPulseActive = false;
-        applyCurrentWatermarkState();
-      }, 420);
-    }
-
-    function startWatermarkNightBlinking() {
-      if (weakWatermarkPulseInterval) clearInterval(weakWatermarkPulseInterval);
-      if (strongWatermarkPulseInterval) clearInterval(strongWatermarkPulseInterval);
-
-      weakWatermarkPulseInterval = setInterval(triggerWeakWatermarkPulse, 2000);
-      strongWatermarkPulseInterval = setInterval(triggerStrongWatermarkPulse, 5000);
     }
 
     function setTheme(isDay) {
@@ -2190,10 +2230,6 @@
       if (themeMeta) {
         themeMeta.setAttribute('content', isDay ? '#000000' : '#08101d');
       }
-
-      weakPulseActive = false;
-      strongPulseActive = false;
-      applyCurrentWatermarkState();
     }
 
     function applyThemeByLocalTime(dateObj) {
@@ -2230,24 +2266,6 @@
       if (clockEl) {
         clockEl.textContent = `${hours} : ${minutes} : ${seconds} / ${weekday} / ${year}`;
       }
-    }
-
-    function runHeroIntroAnimation() {
-      if (!heroSection || !heroEyebrow || !heroSubtitle || !heroText) return;
-
-      heroSection.classList.remove('run');
-
-      heroEyebrow.style.animation = 'none';
-      heroSubtitle.style.animation = 'none';
-      heroText.style.animation = 'none';
-
-      void heroSection.offsetWidth;
-
-      heroEyebrow.style.animation = '';
-      heroSubtitle.style.animation = '';
-      heroText.style.animation = '';
-
-      heroSection.classList.add('run');
     }
 
     function applyLatestVideoData(data) {
@@ -2336,9 +2354,6 @@
     }
 
     updateHeaderClockAndTheme();
-    startWatermarkNightBlinking();
-    runHeroIntroAnimation();
-
     setInterval(updateHeaderClockAndTheme, 1000);
 
     fetchLatestVideoData();
@@ -2481,6 +2496,7 @@
       });
     }
 
+    const heroSection = document.getElementById('heroSection');
     const homeContent = document.getElementById('homeContent');
 
     const subpages = {
@@ -2501,20 +2517,42 @@
       });
     }
 
+    function resetAndRunAnimations(scope = document) {
+      const elements = scope.querySelectorAll('.animate-in');
+      elements.forEach(el => {
+        el.classList.remove('run');
+      });
+
+      void document.body.offsetWidth;
+
+      elements.forEach(el => {
+        el.classList.add('run');
+      });
+    }
+
     function showView(viewName, pushUrl = true) {
       Object.values(subpages).forEach(page => page.classList.remove('active'));
 
       if (viewName === 'home') {
         heroSection.classList.remove('hidden');
         homeContent.style.display = '';
-        runHeroIntroAnimation();
+        resetAndRunAnimations(heroSection);
+        resetAndRunAnimations(homeContent);
       } else {
         heroSection.classList.add('hidden');
         homeContent.style.display = 'none';
 
         if (subpages[viewName]) {
           subpages[viewName].classList.add('active');
+          resetAndRunAnimations(subpages[viewName]);
         }
+      }
+
+      const socialPanel = document.getElementById('socialPanel');
+      if (socialPanel) {
+        socialPanel.classList.remove('run');
+        void socialPanel.offsetWidth;
+        socialPanel.classList.add('run');
       }
 
       setActiveNavByView(viewName);
