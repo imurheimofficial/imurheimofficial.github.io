@@ -20,14 +20,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/URHEIM GOLDEN PROFILE.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/URHEIM GOLDEN PROFILE.png">
-  <link rel="icon" type="image/png" sizes="48x48" href="assets/URHEIM GOLDEN PROFILE.png">
-  <link rel="icon" type="image/png" sizes="64x64" href="assets/URHEIM GOLDEN PROFILE.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="assets/URHEIM GOLDEN PROFILE.png">
-  <link rel="icon" type="image/png" sizes="180x180" href="assets/URHEIM GOLDEN PROFILE.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="assets/URHEIM GOLDEN PROFILE.png">
-  <link rel="icon" type="image/png" sizes="512x512" href="assets/URHEIM GOLDEN PROFILE.png">
+  <!-- Rounded favicon -->
+  <link rel="icon" type="image/svg+xml" href='data:image/svg+xml;utf8,
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+      <defs>
+        <clipPath id="r">
+          <rect x="24" y="24" width="464" height="464" rx="112" ry="112"/>
+        </clipPath>
+      </defs>
+      <image href="assets/URHEIM GOLDEN PROFILE.png" x="0" y="0" width="512" height="512" clip-path="url(%23r)"/>
+    </svg>'>
   <link rel="shortcut icon" href="assets/URHEIM GOLDEN PROFILE.png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/URHEIM GOLDEN PROFILE.png">
   <link rel="mask-icon" href="assets/URHEIM GOLDEN PROFILE.png" color="#f4c76f">
@@ -154,6 +156,12 @@
         0 0 18px rgba(255,184,77,.14),
         0 0 30px rgba(255,174,49,.10),
         0 10px 24px rgba(0,0,0,.22);
+
+      --smart-card-bg:linear-gradient(180deg, rgba(20,13,8,.82), rgba(8,5,3,.92));
+      --smart-row-bg:linear-gradient(180deg, rgba(35,22,12,.86), rgba(12,7,4,.96));
+      --smart-row-play-bg:linear-gradient(180deg, #f0cb76 0%, #dca441 52%, #9d631f 100%);
+      --smart-row-play-color:#2a1503;
+      --smart-subtext:#b89661;
     }
 
     body.theme-night{
@@ -210,30 +218,29 @@
       --button-shadow:inset 0 1px 0 rgba(255,255,255,.52), 0 12px 26px rgba(0,0,0,.32), 0 0 16px rgba(110,170,255,.14);
       --button-shadow-hover:inset 0 1px 0 rgba(255,255,255,.52), 0 16px 34px rgba(0,0,0,.38), 0 0 22px rgba(110,170,255,.18);
 
-      /* NOČNÍ WATERMARK — stejná síla a rychlost glow jako denní */
       --watermark-filter:
         hue-rotate(180deg)
-        saturate(1.10)
-        brightness(.92)
-        contrast(1.12)
+        saturate(1.12)
+        brightness(.95)
+        contrast(1.14)
         sepia(.02)
-        drop-shadow(0 0 10px rgba(150,205,255,.22))
-        drop-shadow(0 0 20px rgba(120,180,255,.18))
+        drop-shadow(0 0 10px rgba(160,214,255,.24))
+        drop-shadow(0 0 20px rgba(132,194,255,.20))
         drop-shadow(0 2px 0 rgba(62,96,146,.75))
-        drop-shadow(0 4px 20px rgba(120,180,255,.16))
+        drop-shadow(0 4px 20px rgba(132,194,255,.18))
         drop-shadow(0 8px 36px rgba(0,0,0,.50));
 
       --watermark-filter-peak:
         hue-rotate(180deg)
-        saturate(1.14)
-        brightness(.98)
-        contrast(1.14)
-        sepia(.02)
-        drop-shadow(0 0 18px rgba(205,232,255,.28))
-        drop-shadow(0 0 34px rgba(140,196,255,.22))
+        saturate(1.18)
+        brightness(1.04)
+        contrast(1.16)
+        sepia(.01)
+        drop-shadow(0 0 20px rgba(224,242,255,.34))
+        drop-shadow(0 0 38px rgba(154,210,255,.26))
         drop-shadow(0 2px 0 rgba(62,96,146,.75))
-        drop-shadow(0 4px 20px rgba(140,196,255,.18))
-        drop-shadow(0 8px 36px rgba(0,0,0,.50));
+        drop-shadow(0 4px 22px rgba(154,210,255,.22))
+        drop-shadow(0 8px 38px rgba(0,0,0,.50));
 
       --profile-image-filter:
         hue-rotate(180deg)
@@ -297,6 +304,12 @@
         0 0 18px rgba(120,170,255,.16),
         0 0 30px rgba(120,170,255,.11),
         0 10px 24px rgba(0,0,0,.24);
+
+      --smart-card-bg:linear-gradient(180deg, rgba(10,18,32,.84), rgba(4,9,18,.94));
+      --smart-row-bg:linear-gradient(180deg, rgba(16,24,40,.92), rgba(5,10,20,.98));
+      --smart-row-play-bg:linear-gradient(180deg, #d8ebff 0%, #8fbaf1 52%, #4e78ab 100%);
+      --smart-row-play-color:#071423;
+      --smart-subtext:#7e9fc6;
     }
 
     *{box-sizing:border-box}
@@ -591,7 +604,7 @@
 
     .hero{
       position:relative;
-      padding:26px 0 22px;
+      padding:26px 0 28px;
       min-height:400px;
       isolation:isolate;
       border-top:1px solid var(--hero-border-top);
@@ -710,6 +723,248 @@
       font-size:.98rem;
       line-height:1.7;
       transition:color .24s ease;
+      min-height:56px;
+    }
+
+    .hero-listen-wrap{
+      margin-top:18px;
+      display:flex;
+      justify-content:center;
+    }
+
+    .hero-listen-btn{
+      min-height:60px;
+      padding:0 28px;
+      border-radius:16px;
+      border:1px solid var(--platform-border);
+      background:var(--button-bg);
+      color:var(--button-text);
+      font-family:Cinzel, serif;
+      font-weight:800;
+      font-size:1.18rem;
+      letter-spacing:.05em;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+      box-shadow:var(--button-shadow);
+      transition:transform .18s ease, box-shadow .18s ease, border-color .24s ease, filter .24s ease;
+    }
+
+    .hero-listen-btn:hover{
+      transform:translateY(-3px);
+      border-color:var(--platform-border-hover);
+      box-shadow:var(--button-shadow-hover);
+      filter:brightness(1.04);
+    }
+
+    .subpage-shell{
+      display:none;
+    }
+
+    .subpage-shell.active{
+      display:block;
+    }
+
+    .smart-link-shell{
+      display:none;
+    }
+
+    .smart-link-shell.active{
+      display:block;
+    }
+
+    .smart-link-page{
+      position:relative;
+      min-height:calc(100vh - 74px);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:48px 0 64px;
+      overflow:hidden;
+    }
+
+    .smart-link-page::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:url("assets/Background Profile Web.png") center center / cover no-repeat;
+      filter:blur(26px) saturate(1.05) brightness(.58);
+      opacity:.58;
+      transform:scale(1.08);
+      pointer-events:none;
+    }
+
+    body.theme-night .smart-link-page::before{
+      filter:
+        blur(28px)
+        hue-rotate(180deg)
+        saturate(1.08)
+        brightness(.50)
+        contrast(1.06);
+      opacity:.62;
+    }
+
+    .smart-link-inner{
+      position:relative;
+      z-index:2;
+      width:min(520px, 100%);
+      margin:0 auto;
+    }
+
+    .smart-link-card{
+      position:relative;
+      padding:28px 24px 22px;
+      border-radius:28px;
+      border:1px solid var(--panel-border);
+      background:var(--smart-card-bg);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .smart-link-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      background:
+        radial-gradient(circle at 20% 18%, rgba(255,184,77,.08), transparent 24%),
+        radial-gradient(circle at 82% 78%, rgba(255,184,77,.05), transparent 24%);
+    }
+
+    body.theme-night .smart-link-card::before{
+      background:
+        radial-gradient(circle at 20% 18%, rgba(140,196,255,.08), transparent 24%),
+        radial-gradient(circle at 82% 78%, rgba(140,196,255,.05), transparent 24%);
+    }
+
+    .smart-profile-link{
+      width:132px;
+      height:132px;
+      margin:0 auto 18px;
+      position:relative;
+      border-radius:28px;
+      overflow:hidden;
+      border:1px solid var(--media-border);
+      box-shadow:var(--media-shadow);
+      display:block;
+      transition:transform .18s ease, box-shadow .18s ease, border-color .24s ease;
+    }
+
+    .smart-profile-link:hover{
+      transform:translateY(-2px);
+      border-color:var(--platform-border-hover);
+      box-shadow:var(--cell-glow);
+    }
+
+    .smart-profile-link img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      filter:var(--profile-image-filter);
+    }
+
+    .smart-profile-play{
+      position:absolute;
+      inset:0;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.28));
+      color:#fff0d8;
+      font-size:2.4rem;
+      text-shadow:0 8px 20px rgba(0,0,0,.45);
+      pointer-events:none;
+    }
+
+    body.theme-night .smart-profile-play{
+      color:#e6f4ff;
+    }
+
+    .smart-title{
+      margin:0;
+      text-align:center;
+      font-family:Cinzel, serif;
+      font-size:1.9rem;
+      line-height:1.2;
+    }
+
+    .smart-available{
+      margin:8px 0 22px;
+      text-align:center;
+      color:var(--smart-subtext);
+      font-size:.98rem;
+      font-weight:600;
+    }
+
+    .smart-platform-list{
+      display:grid;
+      gap:12px;
+    }
+
+    .smart-platform-row{
+      display:grid;
+      grid-template-columns:1fr auto;
+      align-items:center;
+      gap:14px;
+      min-height:58px;
+      padding:0 0 0 16px;
+      border-radius:18px;
+      border:1px solid var(--media-border);
+      background:var(--smart-row-bg);
+      box-shadow:var(--media-shadow);
+      overflow:hidden;
+      transition:border-color .22s ease, box-shadow .22s ease;
+    }
+
+    .smart-platform-row:hover{
+      border-color:var(--platform-border-hover);
+      box-shadow:var(--cell-glow);
+    }
+
+    .smart-platform-name{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:700;
+      color:var(--text);
+    }
+
+    .smart-platform-name i{
+      width:20px;
+      text-align:center;
+      color:var(--gold);
+    }
+
+    .smart-play-btn{
+      min-width:98px;
+      height:58px;
+      border-left:1px solid var(--platform-border);
+      background:var(--smart-row-play-bg);
+      color:var(--smart-row-play-color);
+      font-weight:800;
+      letter-spacing:.04em;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      transition:filter .18s ease, background .24s ease, color .24s ease;
+      cursor:pointer;
+    }
+
+    .smart-play-btn:hover{
+      filter:brightness(1.04);
+    }
+
+    .smart-play-btn.disabled{
+      cursor:default;
+      opacity:.74;
+      filter:saturate(.92);
+    }
+
+    .smart-note{
+      margin:14px 0 0;
+      text-align:center;
+      font-size:.78rem;
+      color:var(--smart-subtext);
     }
 
     section{
@@ -1048,10 +1303,12 @@
 
     .about-tags{
       color:#f0d4a0;
-      font-size:1.1rem;
+      font-size:1.06rem;
       margin-bottom:18px;
       line-height:1.8;
       transition:color .24s ease;
+      min-height:30px;
+      letter-spacing:.02em;
     }
 
     body.theme-night .about-tags{color:#cfe4ff;}
@@ -1152,14 +1409,6 @@
       margin:0;
       font-family:Cinzel, serif;
       font-size:1.28rem;
-    }
-
-    .subpage-shell{
-      display:none;
-    }
-
-    .subpage-shell.active{
-      display:block;
     }
 
     .subpage-card{
@@ -1589,7 +1838,6 @@
       .hero{padding-top:20px; min-height:auto}
       .hero-copy{margin-top:6px}
 
-      .release-card,
       .about-grid,
       .video-grid,
       .subpage-video-grid,
@@ -1597,8 +1845,6 @@
       .video-page-grid{
         grid-template-columns:1fr;
       }
-
-      .release-card{padding:16px; gap:18px}
 
       .youtube-channel-cover{
         max-width:350px;
@@ -1635,6 +1881,15 @@
         padding:22px 18px;
       }
 
+      .smart-link-page{
+        min-height:calc(100vh - 64px);
+        padding:34px 0 44px;
+      }
+
+      .smart-link-card{
+        padding:24px 18px 18px;
+      }
+
       section{
         padding:28px 0;
       }
@@ -1653,7 +1908,7 @@
       .container{width:min(100% - 16px, var(--container))}
 
       .hero{
-        padding:16px 0 14px;
+        padding:16px 0 20px;
       }
 
       .hero-watermark{
@@ -1674,6 +1929,13 @@
         font-size:.88rem;
         line-height:1.55;
         width:min(100%, 94%);
+        min-height:72px;
+      }
+
+      .hero-listen-btn{
+        min-height:54px;
+        padding:0 22px;
+        font-size:1rem;
       }
 
       .section-title{
@@ -1687,7 +1949,6 @@
         width:min(12vw, 70px);
       }
 
-      .release-meta h3,
       .about-copy h3,
       .contact-subpage h2{
         font-size:1.45rem;
@@ -1697,19 +1958,13 @@
         font-size:.92rem;
         line-height:1.55;
         margin-bottom:12px;
+        min-height:24px;
       }
 
       .about-copy p,
-      .release-meta p,
       .contact-subpage-item p{
         font-size:.88rem;
         line-height:1.7;
-      }
-
-      .platforms{
-        display:grid;
-        grid-template-columns:1fr 1fr;
-        gap:10px;
       }
 
       .platform{
@@ -1718,6 +1973,24 @@
         font-size:.82rem;
         padding:0 10px;
         gap:8px;
+      }
+
+      .smart-title{
+        font-size:1.42rem;
+      }
+
+      .smart-available{
+        font-size:.88rem;
+      }
+
+      .smart-platform-row{
+        min-height:52px;
+        border-radius:16px;
+      }
+
+      .smart-play-btn{
+        min-width:86px;
+        height:52px;
       }
 
       .social{
@@ -1758,29 +2031,6 @@
       .theme-switch-icon{
         font-size:.68rem;
         padding:0 7px;
-      }
-
-      .audio-bar{
-        gap:10px;
-        margin:14px 0;
-      }
-
-      .play{
-        width:46px;
-        height:46px;
-      }
-
-      .track-title{
-        margin-bottom:8px;
-        font-size:.9rem;
-      }
-
-      .track-time{
-        font-size:.78rem;
-      }
-
-      .progress{
-        height:7px;
       }
 
       .subpage-card{
@@ -1868,7 +2118,6 @@
         <nav class="nav-links" id="navLinks">
           <a href="/" data-view="home" class="nav-active">Home</a>
           <a href="/bio" data-view="bio-page">Bio</a>
-          <a href="/music" data-view="music-page">Music</a>
           <a href="/video" data-view="video-page">Video</a>
           <a href="/collabs" data-view="collabs-page">Collabs</a>
           <a href="/contact" data-view="contact-page">Contact</a>
@@ -1884,6 +2133,7 @@
 
     <div class="main-content-wrap">
       <main id="top">
+        <!-- HOME -->
         <section class="hero frame-line" id="heroSection">
           <div class="container hero-grid">
             <div class="hero-copy">
@@ -1901,134 +2151,27 @@
 
               <div class="headline-rule"></div>
               <p class="subtitle animate-in delay-2">Echoes of the Unspoken</p>
-              <p class="hero-text animate-in delay-3">
+              <p
+                class="hero-text animate-in delay-3"
+                id="heroTypeTarget"
+                data-fulltext="Ancient echoes, hidden signs, and a sound that moves through worlds—shaped by mystery, driven by emotion, and unconstrained by genre."
+              >
                 Ancient echoes, hidden signs, and a sound that moves through worlds—shaped by mystery, driven by emotion, and unconstrained by genre.
               </p>
+
+              <div class="hero-listen-wrap animate-in delay-4">
+                <a class="hero-listen-btn" href="/smart-link" target="_blank" rel="noopener">
+                  <i class="fa-solid fa-headphones"></i>
+                  Listen Now
+                </a>
+              </div>
             </div>
           </div>
         </section>
 
-        <div id="homeContent">
-          <section id="music">
-            <div class="container">
-              <h2 class="section-title animate-in delay-1">Latest Release</h2>
+        <div id="homeContent"></div>
 
-              <article class="panel release-card animate-in delay-2">
-                <a class="youtube-channel-cover" id="latestVideoLink" href="https://www.youtube.com/@imurheimofficial" target="_blank" rel="noopener" aria-label="Latest YouTube Video">
-                  <div class="youtube-cover-thumb" id="latestVideoThumb"></div>
-                  <div class="youtube-cover-inner">
-                    <i class="fa-brands fa-youtube"></i>
-                    <span class="youtube-cover-link">Watch Now</span>
-                  </div>
-                </a>
-
-                <div class="release-meta">
-                  <h3 id="latestTitle">[Song Title]</h3>
-                  <p id="latestReleaseText">Release date:</p>
-
-                  <div class="audio-bar">
-                    <button class="play" id="playButton" type="button" aria-label="Play preview">
-                      <i class="fa-solid fa-play" id="playIcon"></i>
-                    </button>
-
-                    <div class="track">
-                      <div class="track-title">
-                        <span>Preview Track</span>
-                      </div>
-
-                      <div class="progress" id="progressBar" aria-label="Audio progress">
-                        <span id="progressFill"></span>
-                      </div>
-
-                      <div class="track-time">
-                        <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="platforms">
-                    <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-spotify"></i> Spotify</a>
-                    <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-apple"></i> Apple Music</a>
-                    <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-soundcloud"></i> SoundCloud</a>
-                    <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-amazon"></i> Amazon</a>
-                  </div>
-
-                  <audio id="releaseAudio" class="hidden-audio" preload="metadata">
-                    <source src="" type="audio/mpeg">
-                  </audio>
-                </div>
-              </article>
-            </div>
-          </section>
-
-          <section id="bio">
-            <div class="container">
-              <div class="panel animate-in delay-3" style="padding:28px;">
-                <div class="about-grid">
-                  <div class="about-image" aria-label="Profile Picture">
-                    <img
-                      class="about-profile-img"
-                      src="assets/URHEIM GOLDEN PROFILE.png"
-                      alt="URHEIM Golden Profile"
-                      decoding="async"
-                      loading="eager"
-                      fetchpriority="high"
-                    >
-                  </div>
-
-                  <div class="about-copy">
-                    <h3>About URHEIM</h3>
-                    <div class="about-tags">Pop / Rock / Ethnic / Electronic / Dance</div>
-                    <p
-                      class="about-type-target"
-                      data-type-target="home"
-                      data-fulltext="Creates music across multiple genres, with a strong love for pop at the core, while often exploring rock influences, EDM energy, rap elements, and stripped-back arrangements built around guitar or piano. Deeply inspired by Arabic, Egyptian, and other ethnic instruments, he blends these influences into a broader musical identity. URHEIM represents a multi-genre artistic vision where emotion, atmosphere, rhythm, and cultural texture come together in a distinctive and constantly evolving sound."
-                    >
-                      Creates music across multiple genres, with a strong love for pop at the core, while often exploring rock influences, EDM energy, rap elements, and stripped-back arrangements built around guitar or piano. Deeply inspired by Arabic, Egyptian, and other ethnic instruments, he blends these influences into a broader musical identity. URHEIM represents a multi-genre artistic vision where emotion, atmosphere, rhythm, and cultural texture come together in a distinctive and constantly evolving sound.
-                    </p>
-                    <a class="platform" href="/video" data-view="video-page"><i class="fa-solid fa-book-open"></i> Read More</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section id="videos">
-            <div class="container">
-              <h2 class="section-title animate-in delay-1">Videos</h2>
-
-              <div class="video-grid">
-                <article class="panel video-card animate-in delay-2">
-                  <a href="#" class="video-thumb">
-                    <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
-                  </a>
-                  <div class="video-info">
-                    <h4>Official Video</h4>
-                  </div>
-                </article>
-
-                <article class="panel video-card animate-in delay-3">
-                  <a href="#" class="video-thumb">
-                    <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
-                  </a>
-                  <div class="video-info">
-                    <h4>Live Performance</h4>
-                  </div>
-                </article>
-
-                <article class="panel video-card animate-in delay-4" id="collabs">
-                  <a href="#" class="video-thumb">
-                    <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
-                  </a>
-                  <div class="video-info">
-                    <h4>Collab Project</h4>
-                  </div>
-                </article>
-              </div>
-            </div>
-          </section>
-        </div>
-
+        <!-- BIO -->
         <div id="subpageBio" class="subpage-shell">
           <section>
             <div class="container">
@@ -2047,7 +2190,13 @@
 
                   <div class="about-copy">
                     <h3>About URHEIM</h3>
-                    <div class="about-tags">Pop / Rock / Ethnic / Electronic / Dance</div>
+                    <div
+                      class="about-tags"
+                      data-tags-target="bio-page"
+                      data-fulltext="Pop  •  Rock  •  Ethnic  •  Electronic  •  Dance"
+                    >
+                      Pop  •  Rock  •  Ethnic  •  Electronic  •  Dance
+                    </div>
                     <p
                       class="about-type-target"
                       data-type-target="bio-page"
@@ -2062,58 +2211,7 @@
           </section>
         </div>
 
-        <div id="subpageMusic" class="subpage-shell">
-          <section>
-            <div class="container">
-              <div class="panel subpage-card animate-in delay-2">
-                <h2 class="section-title">Latest Release</h2>
-
-                <article class="panel release-card animate-in delay-3" style="margin-top:16px;">
-                  <a class="youtube-channel-cover" id="subLatestVideoLink" href="https://www.youtube.com/@imurheimofficial" target="_blank" rel="noopener" aria-label="Latest YouTube Video">
-                    <div class="youtube-cover-thumb" id="subLatestVideoThumb"></div>
-                    <div class="youtube-cover-inner">
-                      <i class="fa-brands fa-youtube"></i>
-                      <span class="youtube-cover-link">Watch Now</span>
-                    </div>
-                  </a>
-
-                  <div class="release-meta">
-                    <h3 id="subLatestTitle">[Song Title]</h3>
-                    <p id="subLatestReleaseText">Release date:</p>
-
-                    <div class="audio-bar">
-                      <button class="play" id="subPlayButton" type="button" aria-label="Play preview">
-                        <i class="fa-solid fa-play" id="subPlayIcon"></i>
-                      </button>
-
-                      <div class="track">
-                        <div class="track-title">
-                          <span>Preview Track</span>
-                        </div>
-
-                        <div class="progress" id="subProgressBar" aria-label="Audio progress">
-                          <span id="subProgressFill"></span>
-                        </div>
-
-                        <div class="track-time">
-                          <span id="subCurrentTime">0:00</span> / <span id="subDuration">0:00</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="platforms">
-                      <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-spotify"></i> Spotify</a>
-                      <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-apple"></i> Apple Music</a>
-                      <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-soundcloud"></i> SoundCloud</a>
-                      <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-amazon"></i> Amazon</a>
-                    </div>
-                  </div>
-                </article>
-              </div>
-            </div>
-          </section>
-        </div>
-
+        <!-- VIDEO -->
         <div id="subpageVideo" class="subpage-shell">
           <section>
             <div class="container">
@@ -2243,6 +2341,7 @@
           </section>
         </div>
 
+        <!-- COLLABS -->
         <div id="subpageCollabs" class="subpage-shell">
           <section>
             <div class="container">
@@ -2276,6 +2375,7 @@
           </section>
         </div>
 
+        <!-- CONTACT -->
         <div id="subpageContact" class="subpage-shell">
           <section>
             <div class="container">
@@ -2310,6 +2410,61 @@
                       <p><a href="mailto:official@imurheimofficial.com">official@imurheimofficial.com</a></p>
                     </div>
                   </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- SMART LINK -->
+        <div id="subpageSmartLink" class="smart-link-shell">
+          <section class="smart-link-page">
+            <div class="container">
+              <div class="smart-link-inner animate-in delay-2">
+                <div class="smart-link-card">
+                  <a
+                    class="smart-profile-link"
+                    id="smartLatestVideoLink"
+                    href="https://www.youtube.com/@imurheimofficial"
+                    target="_blank"
+                    rel="noopener"
+                    aria-label="Open latest release"
+                  >
+                    <img src="assets/URHEIM GOLDEN PROFILE.png" alt="URHEIM Profile">
+                    <div class="smart-profile-play"><i class="fa-brands fa-youtube"></i></div>
+                  </a>
+
+                  <h1 class="smart-title" id="smartLatestTitle">[Song Title]</h1>
+                  <div class="smart-available">Available Now</div>
+
+                  <div class="smart-platform-list">
+                    <div class="smart-platform-row">
+                      <div class="smart-platform-name"><i class="fa-brands fa-youtube"></i> YouTube</div>
+                      <a class="smart-play-btn" href="https://www.youtube.com/@imurheimofficial" target="_blank" rel="noopener">Play</a>
+                    </div>
+
+                    <div class="smart-platform-row">
+                      <div class="smart-platform-name"><i class="fa-brands fa-spotify"></i> Spotify</div>
+                      <a class="smart-play-btn" href="https://open.spotify.com/artist/53KpmHShdf1iZssxYIli3t" target="_blank" rel="noopener">Play</a>
+                    </div>
+
+                    <div class="smart-platform-row">
+                      <div class="smart-platform-name"><i class="fa-brands fa-apple"></i> Apple Music</div>
+                      <span class="smart-play-btn disabled">Play</span>
+                    </div>
+
+                    <div class="smart-platform-row">
+                      <div class="smart-platform-name"><i class="fa-brands fa-amazon"></i> Amazon</div>
+                      <span class="smart-play-btn disabled">Play</span>
+                    </div>
+
+                    <div class="smart-platform-row">
+                      <div class="smart-platform-name"><i class="fa-brands fa-soundcloud"></i> SoundCloud</div>
+                      <a class="smart-play-btn" href="https://soundcloud.com/imurheimofficial" target="_blank" rel="noopener">Play</a>
+                    </div>
+                  </div>
+
+                  <div class="smart-note">This page may contain affiliate links.</div>
                 </div>
               </div>
             </div>
@@ -2360,6 +2515,15 @@
     let manualTheme = null;
     let lastScheduledTheme = null;
     const activeTypewriters = new Map();
+
+    const latestState = {
+      title: "[Song Title]",
+      releaseDate: "",
+      videoUrl: "https://www.youtube.com/@imurheimofficial",
+      thumbnailUrl: "",
+      subscribers: "0",
+      channelAvatarUrl: "assets/URHEIM GOLDEN PROFILE.png"
+    };
 
     function getScheduledTheme(dateObj) {
       const hour = dateObj.getHours();
@@ -2418,63 +2582,24 @@
     }
 
     function applyLatestVideoData(data) {
-      const title = data?.title?.trim() || "[Song Title]";
-      const releaseDate = data?.releaseDate?.trim() || "";
-      const videoUrl = data?.videoUrl?.trim() || "https://www.youtube.com/@imurheimofficial";
-      const thumbnailUrl = data?.thumbnailUrl?.trim() || "";
-      const subscribers = data?.subscribers?.toString().trim() || "0";
-      const channelAvatarUrl = data?.channelAvatarUrl?.trim() || "assets/URHEIM GOLDEN PROFILE.png";
-
-      const titleEls = [
-        document.getElementById('latestTitle'),
-        document.getElementById('subLatestTitle')
-      ];
-
-      const releaseEls = [
-        document.getElementById('latestReleaseText'),
-        document.getElementById('subLatestReleaseText')
-      ];
-
-      const linkEls = [
-        document.getElementById('latestVideoLink'),
-        document.getElementById('subLatestVideoLink')
-      ];
-
-      const thumbEls = [
-        document.getElementById('latestVideoThumb'),
-        document.getElementById('subLatestVideoThumb')
-      ];
-
-      titleEls.forEach(el => {
-        if (el) el.textContent = title;
-      });
-
-      releaseEls.forEach(el => {
-        if (el) el.textContent = releaseDate ? `Release date: ${releaseDate}` : "Release date:";
-      });
-
-      linkEls.forEach(el => {
-        if (el) el.href = videoUrl;
-      });
-
-      thumbEls.forEach(el => {
-        if (!el) return;
-        if (thumbnailUrl) {
-          el.style.backgroundImage = `url("${thumbnailUrl}")`;
-        } else {
-          el.style.backgroundImage = "none";
-        }
-      });
+      latestState.title = data?.title?.trim() || "[Song Title]";
+      latestState.releaseDate = data?.releaseDate?.trim() || "";
+      latestState.videoUrl = data?.videoUrl?.trim() || "https://www.youtube.com/@imurheimofficial";
+      latestState.thumbnailUrl = data?.thumbnailUrl?.trim() || "";
+      latestState.subscribers = data?.subscribers?.toString().trim() || "0";
+      latestState.channelAvatarUrl = data?.channelAvatarUrl?.trim() || "assets/URHEIM GOLDEN PROFILE.png";
 
       const subsEl = document.getElementById('videoChannelSubs');
-      if (subsEl) {
-        subsEl.textContent = subscribers;
-      }
+      if (subsEl) subsEl.textContent = latestState.subscribers;
 
       const avatarEl = document.getElementById('videoChannelAvatar');
-      if (avatarEl) {
-        avatarEl.src = channelAvatarUrl;
-      }
+      if (avatarEl) avatarEl.src = latestState.channelAvatarUrl;
+
+      const smartTitle = document.getElementById('smartLatestTitle');
+      if (smartTitle) smartTitle.textContent = latestState.title;
+
+      const smartLink = document.getElementById('smartLatestVideoLink');
+      if (smartLink) smartLink.href = latestState.videoUrl;
     }
 
     async function fetchLatestVideoData() {
@@ -2493,33 +2618,57 @@
       }
     }
 
-    function stopAllTypewriters() {
-      activeTypewriters.forEach(intervalId => clearInterval(intervalId));
-      activeTypewriters.clear();
+    function clearTypewriterMap(mapKeyPrefix) {
+      [...activeTypewriters.keys()].forEach(key => {
+        if (key.startsWith(mapKeyPrefix)) {
+          clearInterval(activeTypewriters.get(key));
+          activeTypewriters.delete(key);
+        }
+      });
     }
 
-    function typeAboutText(viewName) {
-      stopAllTypewriters();
+    function runTypewriter(el, fullText, speed, step, mapKey) {
+      if (!el) return;
+      clearInterval(activeTypewriters.get(mapKey));
+      activeTypewriters.delete(mapKey);
 
-      const targets = document.querySelectorAll(`.about-type-target[data-type-target="${viewName}"]`);
-      targets.forEach(target => {
-        const fullText = target.dataset.fulltext || target.textContent.trim();
-        target.textContent = "";
-        let index = 0;
+      el.textContent = "";
+      let index = 0;
 
-        const timer = setInterval(() => {
-          target.textContent = fullText.slice(0, index);
-          index += 4;
+      const timer = setInterval(() => {
+        el.textContent = fullText.slice(0, index);
+        index += step;
 
-          if (index > fullText.length) {
-            target.textContent = fullText;
-            clearInterval(timer);
-            activeTypewriters.delete(target);
-          }
-        }, 10);
+        if (index > fullText.length) {
+          el.textContent = fullText;
+          clearInterval(timer);
+          activeTypewriters.delete(mapKey);
+        }
+      }, speed);
 
-        activeTypewriters.set(target, timer);
-      });
+      activeTypewriters.set(mapKey, timer);
+    }
+
+    function typeHomeHero() {
+      const heroTarget = document.getElementById("heroTypeTarget");
+      if (heroTarget) {
+        runTypewriter(heroTarget, heroTarget.dataset.fulltext || heroTarget.textContent.trim(), 10, 4, "hero");
+      }
+    }
+
+    function typeBioContent(viewName) {
+      clearTypewriterMap("bio-");
+      clearTypewriterMap("tags-");
+
+      const textTarget = document.querySelector(`.about-type-target[data-type-target="${viewName}"]`);
+      if (textTarget) {
+        runTypewriter(textTarget, textTarget.dataset.fulltext || textTarget.textContent.trim(), 10, 4, `bio-${viewName}`);
+      }
+
+      const tagsTarget = document.querySelector(`.about-tags[data-tags-target="${viewName}"]`);
+      if (tagsTarget) {
+        runTypewriter(tagsTarget, tagsTarget.dataset.fulltext || tagsTarget.textContent.trim(), 14, 2, `tags-${viewName}`);
+      }
     }
 
     const themeSwitch = document.getElementById('themeSwitch');
@@ -2552,134 +2701,12 @@
 
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    const audio = document.getElementById('releaseAudio');
-    const playButton = document.getElementById('playButton');
-    const playIcon = document.getElementById('playIcon');
-    const progressBar = document.getElementById('progressBar');
-    const progressFill = document.getElementById('progressFill');
-    const currentTimeEl = document.getElementById('currentTime');
-    const durationEl = document.getElementById('duration');
-
-    function formatTime(seconds) {
-      if (!isFinite(seconds)) return '0:00';
-      const mins = Math.floor(seconds / 60);
-      const secs = Math.floor(seconds % 60);
-      return `${mins}:${secs.toString().padStart(2, '0')}`;
-    }
-
-    function updatePlayIcon() {
-      if (audio.paused) {
-        playIcon.className = 'fa-solid fa-play';
-      } else {
-        playIcon.className = 'fa-solid fa-pause';
-      }
-    }
-
-    if (playButton && audio) {
-      playButton.addEventListener('click', () => {
-        const source = audio.querySelector('source');
-        if (!source || !source.getAttribute('src')) {
-          alert('Sem potom vlož cestu k audio souboru do <source src="">.');
-          return;
-        }
-
-        if (audio.paused) {
-          audio.play();
-        } else {
-          audio.pause();
-        }
-      });
-
-      audio.addEventListener('loadedmetadata', () => {
-        durationEl.textContent = formatTime(audio.duration);
-      });
-
-      audio.addEventListener('timeupdate', () => {
-        currentTimeEl.textContent = formatTime(audio.currentTime);
-
-        if (audio.duration) {
-          const percent = (audio.currentTime / audio.duration) * 100;
-          progressFill.style.width = `${percent}%`;
-        }
-      });
-
-      audio.addEventListener('play', updatePlayIcon);
-      audio.addEventListener('pause', updatePlayIcon);
-      audio.addEventListener('ended', updatePlayIcon);
-    }
-
-    const subAudioButton = document.getElementById('subPlayButton');
-    const subPlayIcon = document.getElementById('subPlayIcon');
-    const subProgressBar = document.getElementById('subProgressBar');
-    const subProgressFill = document.getElementById('subProgressFill');
-    const subCurrentTimeEl = document.getElementById('subCurrentTime');
-    const subDurationEl = document.getElementById('subDuration');
-
-    function updateSubPlayIcon() {
-      if (subPlayIcon) {
-        subPlayIcon.className = audio.paused ? 'fa-solid fa-play' : 'fa-solid fa-pause';
-      }
-    }
-
-    if (subAudioButton && audio) {
-      subAudioButton.addEventListener('click', () => {
-        const source = audio.querySelector('source');
-        if (!source || !source.getAttribute('src')) {
-          alert('Sem potom vlož cestu k audio souboru do <source src="">.');
-          return;
-        }
-
-        if (audio.paused) {
-          audio.play();
-        } else {
-          audio.pause();
-        }
-      });
-
-      audio.addEventListener('loadedmetadata', () => {
-        if (subDurationEl) subDurationEl.textContent = formatTime(audio.duration);
-      });
-
-      audio.addEventListener('timeupdate', () => {
-        if (subCurrentTimeEl) subCurrentTimeEl.textContent = formatTime(audio.currentTime);
-
-        if (audio.duration && subProgressFill) {
-          const percent = (audio.currentTime / audio.duration) * 100;
-          subProgressFill.style.width = `${percent}%`;
-        }
-      });
-
-      audio.addEventListener('play', updateSubPlayIcon);
-      audio.addEventListener('pause', updateSubPlayIcon);
-      audio.addEventListener('ended', updateSubPlayIcon);
-    }
-
-    if (progressBar && audio) {
-      progressBar.addEventListener('click', (event) => {
-        if (!audio.duration) return;
-        const rect = progressBar.getBoundingClientRect();
-        const clickX = event.clientX - rect.left;
-        const ratio = clickX / rect.width;
-        audio.currentTime = ratio * audio.duration;
-      });
-    }
-
-    if (subProgressBar && audio) {
-      subProgressBar.addEventListener('click', (event) => {
-        if (!audio.duration) return;
-        const rect = subProgressBar.getBoundingClientRect();
-        const clickX = event.clientX - rect.left;
-        const ratio = clickX / rect.width;
-        audio.currentTime = ratio * audio.duration;
-      });
-    }
-
     const heroSection = document.getElementById('heroSection');
     const homeContent = document.getElementById('homeContent');
+    const smartLinkPage = document.getElementById('subpageSmartLink');
 
     const subpages = {
       'bio-page': document.getElementById('subpageBio'),
-      'music-page': document.getElementById('subpageMusic'),
       'video-page': document.getElementById('subpageVideo'),
       'collabs-page': document.getElementById('subpageCollabs'),
       'contact-page': document.getElementById('subpageContact')
@@ -2702,28 +2729,30 @@
       elements.forEach(el => el.classList.add('run'));
     }
 
-    function showView(viewName, pushUrl = true) {
+    function hideAllViews() {
       Object.values(subpages).forEach(page => page.classList.remove('active'));
+      smartLinkPage.classList.remove('active');
+      heroSection.classList.add('hidden');
+      homeContent.style.display = 'none';
+    }
+
+    function showView(viewName, pushUrl = true) {
+      hideAllViews();
 
       if (viewName === 'home') {
         heroSection.classList.remove('hidden');
         homeContent.style.display = '';
         resetAndRunAnimations(heroSection);
-        resetAndRunAnimations(homeContent);
-        setTimeout(() => typeAboutText('home'), 140);
-      } else {
-        heroSection.classList.add('hidden');
-        homeContent.style.display = 'none';
-
-        if (subpages[viewName]) {
-          subpages[viewName].classList.add('active');
-          resetAndRunAnimations(subpages[viewName]);
-        }
+        setTimeout(typeHomeHero, 140);
+      } else if (viewName === 'smart-link') {
+        smartLinkPage.classList.add('active');
+        resetAndRunAnimations(smartLinkPage);
+      } else if (subpages[viewName]) {
+        subpages[viewName].classList.add('active');
+        resetAndRunAnimations(subpages[viewName]);
 
         if (viewName === 'bio-page') {
-          setTimeout(() => typeAboutText('bio-page'), 140);
-        } else {
-          stopAllTypewriters();
+          setTimeout(() => typeBioContent('bio-page'), 140);
         }
       }
 
@@ -2734,16 +2763,20 @@
         socialPanel.classList.add('run');
       }
 
-      setActiveNavByView(viewName);
+      if (viewName === 'smart-link') {
+        document.querySelectorAll('.nav-links a[data-view]').forEach(link => link.classList.remove('nav-active'));
+      } else {
+        setActiveNavByView(viewName);
+      }
 
       if (pushUrl) {
         const pathMap = {
           'home': '/',
           'bio-page': '/bio',
-          'music-page': '/music',
           'video-page': '/video',
           'collabs-page': '/collabs',
-          'contact-page': '/contact'
+          'contact-page': '/contact',
+          'smart-link': '/smart-link'
         };
         history.pushState({ view: viewName }, '', pathMap[viewName] || '/');
       }
@@ -2761,20 +2794,20 @@
     window.addEventListener('popstate', () => {
       const path = window.location.pathname.toLowerCase();
       if (path === '/bio') showView('bio-page', false);
-      else if (path === '/music') showView('music-page', false);
       else if (path === '/video') showView('video-page', false);
       else if (path === '/collabs') showView('collabs-page', false);
       else if (path === '/contact') showView('contact-page', false);
+      else if (path === '/smart-link') showView('smart-link', false);
       else showView('home', false);
     });
 
     (function initViewFromPath() {
       const path = window.location.pathname.toLowerCase();
       if (path === '/bio') showView('bio-page', false);
-      else if (path === '/music') showView('music-page', false);
       else if (path === '/video') showView('video-page', false);
       else if (path === '/collabs') showView('collabs-page', false);
       else if (path === '/contact') showView('contact-page', false);
+      else if (path === '/smart-link') showView('smart-link', false);
       else showView('home', false);
     })();
   </script>
