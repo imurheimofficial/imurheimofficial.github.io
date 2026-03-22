@@ -82,7 +82,10 @@
       --button-shadow:inset 0 1px 0 rgba(255,243,215,.55), 0 10px 24px rgba(0,0,0,.26), 0 0 14px rgba(255,178,60,.14);
       --button-shadow-hover:inset 0 1px 0 rgba(255,243,215,.55), 0 14px 30px rgba(0,0,0,.32), 0 0 20px rgba(255,178,60,.18);
 
+      /* noční watermark už svítí stejně jako denní, bez blikání */
       --watermark-filter:
+        drop-shadow(0 0 10px rgba(255,196,98,.18))
+        drop-shadow(0 0 20px rgba(255,170,56,.14))
         drop-shadow(0 2px 0 rgba(140,99,47,.85))
         drop-shadow(0 4px 20px rgba(255,170,56,.12))
         drop-shadow(0 8px 36px rgba(0,0,0,.45));
@@ -135,6 +138,10 @@
 
       --sub-inline-text:#f7e0b4;
       --youtube-icon-filter:none;
+
+      --orb-color-1:rgba(255,214,145,.10);
+      --orb-color-2:rgba(255,182,74,.08);
+      --orb-color-3:rgba(255,230,180,.06);
     }
 
     body.theme-night{
@@ -191,14 +198,15 @@
       --button-shadow:inset 0 1px 0 rgba(255,255,255,.52), 0 12px 26px rgba(0,0,0,.32), 0 0 16px rgba(110,170,255,.14);
       --button-shadow-hover:inset 0 1px 0 rgba(255,255,255,.52), 0 16px 34px rgba(0,0,0,.38), 0 0 22px rgba(110,170,255,.18);
 
+      /* stejné svícení, jen modré */
       --watermark-filter:
         hue-rotate(180deg)
         saturate(1.08)
-        brightness(.80)
+        brightness(.88)
         contrast(1.10)
         sepia(.03)
-        drop-shadow(0 0 8px rgba(120,170,255,.16))
-        drop-shadow(0 0 18px rgba(120,170,255,.16))
+        drop-shadow(0 0 10px rgba(135,188,255,.18))
+        drop-shadow(0 0 20px rgba(135,188,255,.14))
         drop-shadow(0 8px 36px rgba(0,0,0,.50));
 
       --profile-image-filter:
@@ -253,6 +261,10 @@
         saturate(1.08)
         brightness(.84)
         contrast(1.05);
+
+      --orb-color-1:rgba(180,215,255,.10);
+      --orb-color-2:rgba(135,188,255,.08);
+      --orb-color-3:rgba(220,238,255,.06);
     }
 
     *{box-sizing:border-box}
@@ -330,6 +342,75 @@
       display:none !important;
     }
 
+    /* jemné orby přes stránku */
+    .dust-layer{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:1;
+      opacity:0;
+      animation:dustLayerAppear 1.4s ease .8s forwards;
+      overflow:hidden;
+    }
+
+    .dust-orb{
+      position:absolute;
+      border-radius:50%;
+      filter:blur(2px);
+      opacity:.22;
+      mix-blend-mode:screen;
+      will-change:transform, opacity;
+    }
+
+    .dust-orb.orb-1{
+      width:8px;height:8px;
+      background:var(--orb-color-1);
+      top:12%;left:8%;
+      animation:floatOrb1 18s linear infinite;
+    }
+    .dust-orb.orb-2{
+      width:10px;height:10px;
+      background:var(--orb-color-2);
+      top:28%;left:22%;
+      animation:floatOrb2 22s linear infinite;
+    }
+    .dust-orb.orb-3{
+      width:6px;height:6px;
+      background:var(--orb-color-3);
+      top:18%;left:58%;
+      animation:floatOrb3 20s linear infinite;
+    }
+    .dust-orb.orb-4{
+      width:9px;height:9px;
+      background:var(--orb-color-1);
+      top:44%;left:74%;
+      animation:floatOrb4 25s linear infinite;
+    }
+    .dust-orb.orb-5{
+      width:7px;height:7px;
+      background:var(--orb-color-2);
+      top:66%;left:14%;
+      animation:floatOrb5 19s linear infinite;
+    }
+    .dust-orb.orb-6{
+      width:11px;height:11px;
+      background:var(--orb-color-3);
+      top:72%;left:52%;
+      animation:floatOrb6 24s linear infinite;
+    }
+    .dust-orb.orb-7{
+      width:8px;height:8px;
+      background:var(--orb-color-1);
+      top:84%;left:82%;
+      animation:floatOrb7 21s linear infinite;
+    }
+    .dust-orb.orb-8{
+      width:5px;height:5px;
+      background:var(--orb-color-2);
+      top:54%;left:34%;
+      animation:floatOrb8 17s linear infinite;
+    }
+
     header{
       position:sticky;
       top:0;
@@ -358,7 +439,6 @@
       justify-content:flex-start;
     }
 
-    /* přesně vystředěné menu */
     .nav-links{
       position:absolute;
       left:50%;
@@ -587,22 +667,14 @@
       width:min(1085px, 96%);
       margin:4px auto 4px;
       filter:var(--watermark-filter);
-      transition:filter .14s ease;
-      animation:watermarkAuraDay 3.6s ease-in-out infinite;
-      will-change:filter;
+      transition:filter .24s ease;
+      animation:watermarkAura 3.6s ease-in-out infinite;
     }
 
     .hero-watermark img{
       width:100%;
       height:auto;
       object-fit:contain;
-    }
-
-    body.theme-night .hero-watermark{
-      animation:
-        watermarkAuraNight 3.6s ease-in-out infinite,
-        watermarkPulseWeak 2s linear infinite,
-        watermarkPulseStrong 5s linear infinite;
     }
 
     .headline-rule{
@@ -778,7 +850,7 @@
       justify-content:center;
       gap:10px;
       z-index:2;
-      transition:transform .16s ease, box-shadow .16s ease;
+      transition:transform .16s ease, box-shadow .16s ease, opacity .2s ease, filter .2s ease;
     }
 
     .youtube-cover-link:hover{
@@ -822,7 +894,6 @@
       transition:transform .16s ease, border-color .24s ease, background .24s ease, color .24s ease, box-shadow .24s ease;
     }
 
-    /* hover vzhled jako buňky */
     .play:hover{
       transform:translateY(-2px);
       color:var(--button-text);
@@ -890,7 +961,7 @@
       background:var(--platform-bg);
       color:var(--platform-color);
       font-weight:700;
-      transition:transform .16s ease, border-color .24s ease, background .24s ease, color .24s ease;
+      transition:transform .16s ease, border-color .24s ease, background .24s ease, color .24s ease, opacity .2s ease, filter .2s ease;
       justify-content:center;
       box-shadow:var(--button-shadow);
     }
@@ -900,6 +971,18 @@
       transform:translateY(-2px);
       border-color:var(--platform-border-hover);
       box-shadow:var(--button-shadow-hover);
+    }
+
+    /* hover efekt: ostatní ztmavnou */
+    .platforms:hover .platform,
+    .platforms:hover .youtube-cover-link{
+      opacity:.52;
+      filter:brightness(.72);
+    }
+    .platforms .platform:hover,
+    .platforms .youtube-cover-link:hover{
+      opacity:1;
+      filter:none;
     }
 
     .about-grid{
@@ -1150,6 +1233,14 @@
       border-color:rgba(255,255,255,.38);
     }
 
+    /* spodek vždy dole */
+    .bottom-fixed-wrap{
+      margin-top:auto;
+      width:100%;
+      position:relative;
+      z-index:5;
+    }
+
     .social-panel{
       padding:12px 18px;
       opacity:0;
@@ -1178,7 +1269,6 @@
       font-size:1rem;
     }
 
-    /* hover vzhled jako zlaté/modré buňky */
     .social:hover{
       transform:translateY(-2px);
       color:var(--button-text);
@@ -1299,6 +1389,7 @@
       padding:18px 0 46px;
       text-align:center;
       color:var(--footer-color);
+      flex-shrink:0;
     }
 
     .footer-line{
@@ -1316,7 +1407,16 @@
 
     .hidden-audio{display:none;}
 
-    /* vstupní animace */
+    .page-shell{
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+    }
+
+    .main-content-wrap{
+      flex:1 0 auto;
+    }
+
     .animate-in{
       opacity:0;
       transform:translateY(22px);
@@ -1327,107 +1427,85 @@
       animation:fadeUpIn .72s ease forwards;
     }
 
+    .animate-in.run.from-top{
+      animation:fadeDownIn .72s ease forwards;
+    }
+
     .animate-in.run.delay-1{ animation-delay:.08s; }
     .animate-in.run.delay-2{ animation-delay:.16s; }
     .animate-in.run.delay-3{ animation-delay:.24s; }
     .animate-in.run.delay-4{ animation-delay:.32s; }
 
     @keyframes fadeUpIn {
-      from {
-        opacity:0;
-        transform:translateY(22px);
-      }
-      to {
-        opacity:1;
-        transform:translateY(0);
-      }
+      from { opacity:0; transform:translateY(22px); }
+      to { opacity:1; transform:translateY(0); }
     }
 
-    @keyframes watermarkAuraDay {
-      0%, 100% {
-        filter:
-          drop-shadow(0 2px 0 rgba(140,99,47,.85))
-          drop-shadow(0 4px 20px rgba(255,170,56,.12))
-          drop-shadow(0 8px 36px rgba(0,0,0,.45));
+    @keyframes fadeDownIn {
+      from { opacity:0; transform:translateY(-22px); }
+      to { opacity:1; transform:translateY(0); }
+    }
+
+    @keyframes watermarkAura {
+      0%,100% {
+        filter:var(--watermark-filter);
       }
       50% {
         filter:
-          drop-shadow(0 0 8px rgba(255,196,98,.20))
-          drop-shadow(0 0 18px rgba(255,170,56,.18))
+          drop-shadow(0 0 14px rgba(255,215,145,.22))
+          drop-shadow(0 0 28px rgba(255,170,56,.18))
           drop-shadow(0 2px 0 rgba(140,99,47,.85))
-          drop-shadow(0 4px 20px rgba(255,170,56,.16))
+          drop-shadow(0 4px 20px rgba(255,170,56,.14))
           drop-shadow(0 8px 36px rgba(0,0,0,.45));
       }
     }
 
-    @keyframes watermarkAuraNight {
-      0%, 100% {
-        filter:
-          hue-rotate(180deg)
-          saturate(1.08)
-          brightness(.80)
-          contrast(1.10)
-          sepia(.03)
-          drop-shadow(0 0 8px rgba(120,170,255,.16))
-          drop-shadow(0 0 18px rgba(120,170,255,.16))
-          drop-shadow(0 8px 36px rgba(0,0,0,.50));
-      }
-      50% {
-        filter:
-          hue-rotate(180deg)
-          saturate(1.12)
-          brightness(.84)
-          contrast(1.12)
-          sepia(.03)
-          drop-shadow(0 0 10px rgba(135,188,255,.20))
-          drop-shadow(0 0 24px rgba(135,188,255,.18))
-          drop-shadow(0 8px 36px rgba(0,0,0,.50));
-      }
+    body.theme-night @keyframes watermarkAura {}
+
+    @keyframes dustLayerAppear {
+      from { opacity:0; }
+      to { opacity:1; }
     }
 
-    /* A) každé 2 sekundy slabý pulse */
-    @keyframes watermarkPulseWeak {
-      0%, 84%, 100% {
-        filter:
-          hue-rotate(180deg)
-          saturate(1.08)
-          brightness(.80)
-          contrast(1.10)
-          sepia(.03)
-          drop-shadow(0 0 8px rgba(120,170,255,.16))
-          drop-shadow(0 0 18px rgba(120,170,255,.16))
-          drop-shadow(0 8px 36px rgba(0,0,0,.50));
-      }
-      88% {
-        filter:
-          hue-rotate(180deg)
-          saturate(1.15)
-          brightness(.92)
-          contrast(1.15)
-          sepia(.03)
-          drop-shadow(0 0 12px rgba(150,200,255,.24))
-          drop-shadow(0 0 28px rgba(150,200,255,.24))
-          drop-shadow(0 8px 36px rgba(0,0,0,.50));
-      }
+    @keyframes floatOrb1 {
+      0% { transform:translate3d(0,0,0); opacity:.18; }
+      50% { transform:translate3d(60px,120px,0); opacity:.28; }
+      100% { transform:translate3d(10px,240px,0); opacity:.14; }
     }
-
-    /* B) každých 5 sekund silnější pulse */
-    @keyframes watermarkPulseStrong {
-      0%, 93%, 100% {
-        opacity:1;
-      }
-      96% {
-        opacity:1;
-        filter:
-          hue-rotate(180deg)
-          saturate(1.22)
-          brightness(1.04)
-          contrast(1.22)
-          sepia(.03)
-          drop-shadow(0 0 16px rgba(190,225,255,.34))
-          drop-shadow(0 0 42px rgba(190,225,255,.30))
-          drop-shadow(0 8px 36px rgba(0,0,0,.50));
-      }
+    @keyframes floatOrb2 {
+      0% { transform:translate3d(0,0,0); opacity:.12; }
+      50% { transform:translate3d(-40px,90px,0); opacity:.22; }
+      100% { transform:translate3d(35px,180px,0); opacity:.10; }
+    }
+    @keyframes floatOrb3 {
+      0% { transform:translate3d(0,0,0); opacity:.16; }
+      50% { transform:translate3d(70px,-30px,0); opacity:.24; }
+      100% { transform:translate3d(20px,140px,0); opacity:.10; }
+    }
+    @keyframes floatOrb4 {
+      0% { transform:translate3d(0,0,0); opacity:.14; }
+      50% { transform:translate3d(-55px,110px,0); opacity:.22; }
+      100% { transform:translate3d(-10px,220px,0); opacity:.10; }
+    }
+    @keyframes floatOrb5 {
+      0% { transform:translate3d(0,0,0); opacity:.14; }
+      50% { transform:translate3d(30px,-60px,0); opacity:.22; }
+      100% { transform:translate3d(80px,120px,0); opacity:.10; }
+    }
+    @keyframes floatOrb6 {
+      0% { transform:translate3d(0,0,0); opacity:.12; }
+      50% { transform:translate3d(-20px,80px,0); opacity:.20; }
+      100% { transform:translate3d(45px,160px,0); opacity:.10; }
+    }
+    @keyframes floatOrb7 {
+      0% { transform:translate3d(0,0,0); opacity:.14; }
+      50% { transform:translate3d(-65px,-50px,0); opacity:.22; }
+      100% { transform:translate3d(-30px,100px,0); opacity:.10; }
+    }
+    @keyframes floatOrb8 {
+      0% { transform:translate3d(0,0,0); opacity:.12; }
+      50% { transform:translate3d(55px,50px,0); opacity:.20; }
+      100% { transform:translate3d(10px,150px,0); opacity:.10; }
     }
 
     @media (max-width: 980px){
@@ -1535,6 +1613,10 @@
 
       .social-panel{
         transform:translateY(18px);
+      }
+
+      .dust-orb{
+        transform:scale(.9);
       }
     }
 
@@ -1714,271 +1796,168 @@
       .footer-line{
         margin:0 auto 14px;
       }
+
+      .dust-orb{
+        filter:blur(1.8px);
+      }
     }
   </style>
 </head>
 
 <body class="theme-day">
-  <header class="frame-line">
-    <div class="container nav">
-      <div class="nav-left">
-        <button class="theme-switch" id="themeSwitch" aria-label="Přepnout motiv">
-          <span class="theme-switch-icon">
-            <i class="fa-solid fa-sun"></i>
-            <i class="fa-solid fa-moon"></i>
-          </span>
+  <div class="page-shell">
+    <div class="dust-layer" aria-hidden="true">
+      <span class="dust-orb orb-1"></span>
+      <span class="dust-orb orb-2"></span>
+      <span class="dust-orb orb-3"></span>
+      <span class="dust-orb orb-4"></span>
+      <span class="dust-orb orb-5"></span>
+      <span class="dust-orb orb-6"></span>
+      <span class="dust-orb orb-7"></span>
+      <span class="dust-orb orb-8"></span>
+    </div>
+
+    <header class="frame-line">
+      <div class="container nav">
+        <div class="nav-left">
+          <button class="theme-switch" id="themeSwitch" aria-label="Přepnout motiv">
+            <span class="theme-switch-icon">
+              <i class="fa-solid fa-sun"></i>
+              <i class="fa-solid fa-moon"></i>
+            </span>
+          </button>
+        </div>
+
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Otevřít menu">
+          <i class="fa-solid fa-bars"></i>
         </button>
+
+        <nav class="nav-links" id="navLinks">
+          <a href="/" data-view="home" class="nav-active">Home</a>
+          <a href="/bio" data-view="bio-page">Bio</a>
+          <a href="/music" data-view="music-page">Music</a>
+          <a href="/video" data-view="video-page">Video</a>
+          <a href="/collabs" data-view="collabs-page">Collabs</a>
+          <a href="/contact" data-view="contact-page">Contact</a>
+        </nav>
+
+        <div class="header-clock" id="headerClock" aria-live="polite">00 : 00 : 00 / Monday / 2026</div>
       </div>
+    </header>
 
-      <button class="mobile-toggle" id="mobileToggle" aria-label="Otevřít menu">
-        <i class="fa-solid fa-bars"></i>
-      </button>
+    <div class="main-content-wrap">
+      <main id="top">
+        <section class="hero frame-line" id="heroSection">
+          <div class="container hero-grid">
+            <div class="hero-copy">
+              <div class="eyebrow animate-in from-top delay-1">Official Artist Website</div>
 
-      <nav class="nav-links" id="navLinks">
-        <a href="/" data-view="home" class="nav-active">Home</a>
-        <a href="/bio" data-view="bio-page">Bio</a>
-        <a href="/music" data-view="music-page">Music</a>
-        <a href="/video" data-view="video-page">Video</a>
-        <a href="/collabs" data-view="collabs-page">Collabs</a>
-        <a href="/contact" data-view="contact-page">Contact</a>
-      </nav>
-
-      <div class="header-clock" id="headerClock" aria-live="polite">00 : 00 : 00 / Monday / 2026</div>
-    </div>
-  </header>
-
-  <main id="top">
-    <section class="hero frame-line" id="heroSection">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <div class="eyebrow animate-in delay-1">Official Artist Website</div>
-
-          <div class="hero-watermark">
-            <img
-              src="assets/URHEIM GOLDEN WATERMARK.png"
-              alt="URHEIM Watermark"
-              decoding="async"
-              fetchpriority="high"
-              loading="eager"
-            >
-          </div>
-
-          <div class="headline-rule"></div>
-          <p class="subtitle animate-in delay-2">Echoes of the Unspoken</p>
-          <p class="hero-text animate-in delay-3">
-            Ancient echoes, hidden signs, and a sound that moves through worlds—shaped by mystery, driven by emotion, and unconstrained by genre.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <div id="homeContent">
-      <section id="music">
-        <div class="container">
-          <h2 class="section-title animate-in delay-1">Latest Release</h2>
-
-          <article class="panel release-card animate-in delay-2">
-            <a class="youtube-channel-cover" id="latestVideoLink" href="https://www.youtube.com/@imurheimofficial" target="_blank" rel="noopener" aria-label="Latest YouTube Video">
-              <div class="youtube-cover-thumb" id="latestVideoThumb"></div>
-              <div class="youtube-cover-inner">
-                <i class="fa-brands fa-youtube"></i>
-                <span class="youtube-cover-link">Watch Now</span>
-              </div>
-            </a>
-
-            <div class="release-meta">
-              <h3 id="latestTitle">[Song Title]</h3>
-              <p id="latestReleaseText">Release date:</p>
-
-              <div class="audio-bar">
-                <button class="play" id="playButton" type="button" aria-label="Play preview">
-                  <i class="fa-solid fa-play" id="playIcon"></i>
-                </button>
-
-                <div class="track">
-                  <div class="track-title">
-                    <span>Preview Track</span>
-                  </div>
-
-                  <div class="progress" id="progressBar" aria-label="Audio progress">
-                    <span id="progressFill"></span>
-                  </div>
-
-                  <div class="track-time">
-                    <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="platforms">
-                <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-spotify"></i> Spotify</a>
-                <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-apple"></i> Apple Music</a>
-                <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-soundcloud"></i> SoundCloud</a>
-                <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-amazon"></i> Amazon</a>
-              </div>
-
-              <audio id="releaseAudio" class="hidden-audio" preload="metadata">
-                <source src="" type="audio/mpeg">
-              </audio>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section id="bio">
-        <div class="container">
-          <div class="panel animate-in delay-3" style="padding:28px;">
-            <div class="about-grid">
-              <div class="about-image" aria-label="Profile Picture">
+              <div class="hero-watermark">
                 <img
-                  class="about-profile-img"
-                  src="assets/URHEIM GOLDEN PROFILE.png"
-                  alt="URHEIM Golden Profile"
+                  src="assets/URHEIM GOLDEN WATERMARK.png"
+                  alt="URHEIM Watermark"
                   decoding="async"
-                  loading="eager"
                   fetchpriority="high"
+                  loading="eager"
                 >
               </div>
 
-              <div class="about-copy">
-                <h3>About URHEIM</h3>
-                <div class="about-tags">Pop / Rock / Ethnic / Electronic / Dance</div>
-                <p>
-                  Creates music across multiple genres, with a strong love for pop at the core, while often exploring rock influences, EDM energy, rap elements, and stripped-back arrangements built around guitar or piano. Deeply inspired by Arabic, Egyptian, and other ethnic instruments, he blends these influences into a broader musical identity. URHEIM represents a multi-genre artistic vision where emotion, atmosphere, rhythm, and cultural texture come together in a distinctive and constantly evolving sound.
-                </p>
-                <a class="platform" href="/video" data-view="video-page"><i class="fa-solid fa-book-open"></i> Read More</a>
-              </div>
+              <div class="headline-rule"></div>
+              <p class="subtitle animate-in delay-2">Echoes of the Unspoken</p>
+              <p class="hero-text animate-in delay-3">
+                Ancient echoes, hidden signs, and a sound that moves through worlds—shaped by mystery, driven by emotion, and unconstrained by genre.
+              </p>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section id="videos">
-        <div class="container">
-          <h2 class="section-title animate-in delay-1">Videos</h2>
+        <div id="homeContent">
+          <section id="music">
+            <div class="container">
+              <h2 class="section-title animate-in delay-1">Latest Release</h2>
 
-          <div class="video-grid">
-            <article class="panel video-card animate-in delay-2">
-              <a href="#" class="video-thumb">
-                <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
-              </a>
-              <div class="video-info">
-                <h4>Official Video</h4>
-              </div>
-            </article>
+              <article class="panel release-card animate-in delay-2">
+                <a class="youtube-channel-cover" id="latestVideoLink" href="https://www.youtube.com/@imurheimofficial" target="_blank" rel="noopener" aria-label="Latest YouTube Video">
+                  <div class="youtube-cover-thumb" id="latestVideoThumb"></div>
+                  <div class="youtube-cover-inner">
+                    <i class="fa-brands fa-youtube"></i>
+                    <span class="youtube-cover-link">Watch Now</span>
+                  </div>
+                </a>
 
-            <article class="panel video-card animate-in delay-3">
-              <a href="#" class="video-thumb">
-                <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
-              </a>
-              <div class="video-info">
-                <h4>Live Performance</h4>
-              </div>
-            </article>
+                <div class="release-meta">
+                  <h3 id="latestTitle">[Song Title]</h3>
+                  <p id="latestReleaseText">Release date:</p>
 
-            <article class="panel video-card animate-in delay-4" id="collabs">
-              <a href="#" class="video-thumb">
-                <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
-              </a>
-              <div class="video-info">
-                <h4>Collab Project</h4>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-    </div>
+                  <div class="audio-bar">
+                    <button class="play" id="playButton" type="button" aria-label="Play preview">
+                      <i class="fa-solid fa-play" id="playIcon"></i>
+                    </button>
 
-    <div id="subpageBio" class="subpage-shell">
-      <section>
-        <div class="container">
-          <div class="panel subpage-card animate-in delay-2">
-            <div class="about-grid">
-              <div class="about-image" aria-label="Profile Picture">
-                <img
-                  class="about-profile-img"
-                  src="assets/URHEIM GOLDEN PROFILE.png"
-                  alt="URHEIM Golden Profile"
-                  decoding="async"
-                  loading="eager"
-                  fetchpriority="high"
-                >
-              </div>
+                    <div class="track">
+                      <div class="track-title">
+                        <span>Preview Track</span>
+                      </div>
 
-              <div class="about-copy">
-                <h3>About URHEIM</h3>
-                <div class="about-tags">Pop / Rock / Ethnic / Electronic / Dance</div>
-                <p>
-                  Creates music across multiple genres, with a strong love for pop at the core, while often exploring rock influences, EDM energy, rap elements, and stripped-back arrangements built around guitar or piano. Deeply inspired by Arabic, Egyptian, and other ethnic instruments, he blends these influences into a broader musical identity. URHEIM represents a multi-genre artistic vision where emotion, atmosphere, rhythm, and cultural texture come together in a distinctive and constantly evolving sound.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
+                      <div class="progress" id="progressBar" aria-label="Audio progress">
+                        <span id="progressFill"></span>
+                      </div>
 
-    <div id="subpageMusic" class="subpage-shell">
-      <section>
-        <div class="container">
-          <div class="panel subpage-card animate-in delay-2">
-            <h2 class="section-title">Latest Release</h2>
-
-            <article class="panel release-card animate-in delay-3" style="margin-top:16px;">
-              <a class="youtube-channel-cover" id="subLatestVideoLink" href="https://www.youtube.com/@imurheimofficial" target="_blank" rel="noopener" aria-label="Latest YouTube Video">
-                <div class="youtube-cover-thumb" id="subLatestVideoThumb"></div>
-                <div class="youtube-cover-inner">
-                  <i class="fa-brands fa-youtube"></i>
-                  <span class="youtube-cover-link">Watch Now</span>
-                </div>
-              </a>
-
-              <div class="release-meta">
-                <h3 id="subLatestTitle">[Song Title]</h3>
-                <p id="subLatestReleaseText">Release date:</p>
-
-                <div class="audio-bar">
-                  <button class="play" id="subPlayButton" type="button" aria-label="Play preview">
-                    <i class="fa-solid fa-play" id="subPlayIcon"></i>
-                  </button>
-
-                  <div class="track">
-                    <div class="track-title">
-                      <span>Preview Track</span>
-                    </div>
-
-                    <div class="progress" id="subProgressBar" aria-label="Audio progress">
-                      <span id="subProgressFill"></span>
-                    </div>
-
-                    <div class="track-time">
-                      <span id="subCurrentTime">0:00</span> / <span id="subDuration">0:00</span>
+                      <div class="track-time">
+                        <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div class="platforms">
-                  <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-spotify"></i> Spotify</a>
-                  <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-apple"></i> Apple Music</a>
-                  <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-soundcloud"></i> SoundCloud</a>
-                  <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-amazon"></i> Amazon</a>
+                  <div class="platforms">
+                    <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-spotify"></i> Spotify</a>
+                    <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-apple"></i> Apple Music</a>
+                    <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-soundcloud"></i> SoundCloud</a>
+                    <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-amazon"></i> Amazon</a>
+                  </div>
+
+                  <audio id="releaseAudio" class="hidden-audio" preload="metadata">
+                    <source src="" type="audio/mpeg">
+                  </audio>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section id="bio">
+            <div class="container">
+              <div class="panel animate-in delay-3" style="padding:28px;">
+                <div class="about-grid">
+                  <div class="about-image" aria-label="Profile Picture">
+                    <img
+                      class="about-profile-img"
+                      src="assets/URHEIM GOLDEN PROFILE.png"
+                      alt="URHEIM Golden Profile"
+                      decoding="async"
+                      loading="eager"
+                      fetchpriority="high"
+                    >
+                  </div>
+
+                  <div class="about-copy">
+                    <h3>About URHEIM</h3>
+                    <div class="about-tags">Pop / Rock / Ethnic / Electronic / Dance</div>
+                    <p>
+                      Creates music across multiple genres, with a strong love for pop at the core, while often exploring rock influences, EDM energy, rap elements, and stripped-back arrangements built around guitar or piano. Deeply inspired by Arabic, Egyptian, and other ethnic instruments, he blends these influences into a broader musical identity. URHEIM represents a multi-genre artistic vision where emotion, atmosphere, rhythm, and cultural texture come together in a distinctive and constantly evolving sound.
+                    </p>
+                    <a class="platform" href="/video" data-view="video-page"><i class="fa-solid fa-book-open"></i> Read More</a>
+                  </div>
                 </div>
               </div>
-            </article>
-          </div>
-        </div>
-      </section>
-    </div>
+            </div>
+          </section>
 
-    <div id="subpageVideo" class="subpage-shell">
-      <section>
-        <div class="container">
-          <div class="subpage-card animate-in delay-2">
-            <h2 class="section-title">Videos</h2>
+          <section id="videos">
+            <div class="container">
+              <h2 class="section-title animate-in delay-1">Videos</h2>
 
-            <div class="video-card-grid-panel panel animate-in delay-3">
-              <div class="subpage-video-grid" style="margin-bottom:22px; padding:0 0 22px;">
-                <article class="panel video-card">
+              <div class="video-grid">
+                <article class="panel video-card animate-in delay-2">
                   <a href="#" class="video-thumb">
                     <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
                   </a>
@@ -1987,7 +1966,7 @@
                   </div>
                 </article>
 
-                <article class="panel video-card">
+                <article class="panel video-card animate-in delay-3">
                   <a href="#" class="video-thumb">
                     <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
                   </a>
@@ -1996,7 +1975,7 @@
                   </div>
                 </article>
 
-                <article class="panel video-card">
+                <article class="panel video-card animate-in delay-4" id="collabs">
                   <a href="#" class="video-thumb">
                     <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
                   </a>
@@ -2005,201 +1984,325 @@
                   </div>
                 </article>
               </div>
-
-              <div class="video-page-grid" style="padding:0 0 22px;">
-                <article class="panel video-page-card">
-                  <a href="#" class="video-page-thumb">
-                    <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
-                  </a>
-                  <div class="video-page-info">
-                    <h4>YouTube Video 1</h4>
-                  </div>
-                </article>
-
-                <article class="panel video-page-card">
-                  <a href="#" class="video-page-thumb">
-                    <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
-                  </a>
-                  <div class="video-page-info">
-                    <h4>YouTube Video 2</h4>
-                  </div>
-                </article>
-
-                <article class="panel video-page-card">
-                  <a href="#" class="video-page-thumb">
-                    <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
-                  </a>
-                  <div class="video-page-info">
-                    <h4>YouTube Video 3</h4>
-                  </div>
-                </article>
-
-                <article class="panel video-page-card">
-                  <a href="#" class="video-page-thumb">
-                    <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
-                  </a>
-                  <div class="video-page-info">
-                    <h4>YouTube Video 4</h4>
-                  </div>
-                </article>
-
-                <article class="panel video-page-card">
-                  <a href="#" class="video-page-thumb">
-                    <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
-                  </a>
-                  <div class="video-page-info">
-                    <h4>YouTube Video 5</h4>
-                  </div>
-                </article>
-
-                <article class="panel video-page-card">
-                  <a href="#" class="video-page-thumb">
-                    <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
-                  </a>
-                  <div class="video-page-info">
-                    <h4>YouTube Video 6</h4>
-                  </div>
-                </article>
-              </div>
             </div>
+          </section>
+        </div>
 
-            <div class="video-channel-inline animate-in delay-4">
-              <div class="video-channel-inline-inner">
-                <div class="video-channel-iconbox">
-                  <img
-                    class="video-channel-avatar"
-                    id="videoChannelAvatar"
-                    src="assets/URHEIM GOLDEN PROFILE.png"
-                    alt="URHEIM YouTube Channel"
-                  >
-                </div>
-
-                <div class="video-channel-meta">
-                  <div class="video-channel-headline">URHEIM</div>
-
-                  <div class="video-channel-row">
-                    <a
-                      class="video-channel-mainbtn"
-                      href="https://www.youtube.com/@imurheimofficial?sub_confirmation=1"
-                      target="_blank"
-                      rel="noopener"
+        <div id="subpageBio" class="subpage-shell">
+          <section>
+            <div class="container">
+              <div class="panel subpage-card animate-in delay-2">
+                <div class="about-grid">
+                  <div class="about-image" aria-label="Profile Picture">
+                    <img
+                      class="about-profile-img"
+                      src="assets/URHEIM GOLDEN PROFILE.png"
+                      alt="URHEIM Golden Profile"
+                      decoding="async"
+                      loading="eager"
+                      fetchpriority="high"
                     >
-                      <i class="fa-brands fa-youtube"></i>
-                      Subscribe
-                    </a>
+                  </div>
 
-                    <div class="video-channel-subs" id="videoChannelSubs">0</div>
+                  <div class="about-copy">
+                    <h3>About URHEIM</h3>
+                    <div class="about-tags">Pop / Rock / Ethnic / Electronic / Dance</div>
+                    <p>
+                      Creates music across multiple genres, with a strong love for pop at the core, while often exploring rock influences, EDM energy, rap elements, and stripped-back arrangements built around guitar or piano. Deeply inspired by Arabic, Egyptian, and other ethnic instruments, he blends these influences into a broader musical identity. URHEIM represents a multi-genre artistic vision where emotion, atmosphere, rhythm, and cultural texture come together in a distinctive and constantly evolving sound.
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
-
-          </div>
+          </section>
         </div>
-      </section>
-    </div>
 
-    <div id="subpageCollabs" class="subpage-shell">
-      <section>
-        <div class="container">
-          <div class="panel subpage-card animate-in delay-2">
-            <h2 class="section-title">Collabs</h2>
+        <div id="subpageMusic" class="subpage-shell">
+          <section>
+            <div class="container">
+              <div class="panel subpage-card animate-in delay-2">
+                <h2 class="section-title">Latest Release</h2>
 
-            <div class="subpage-join-grid">
-              <div class="subpage-join-item subpage-card animate-in delay-3">
-                <i class="fa-brands fa-discord"></i>
-                <h4>Discord</h4>
-                <a class="platform" href="https://discordapp.com/users/1204486293132808252" target="_blank" rel="noopener">Join</a>
-              </div>
+                <article class="panel release-card animate-in delay-3" style="margin-top:16px;">
+                  <a class="youtube-channel-cover" id="subLatestVideoLink" href="https://www.youtube.com/@imurheimofficial" target="_blank" rel="noopener" aria-label="Latest YouTube Video">
+                    <div class="youtube-cover-thumb" id="subLatestVideoThumb"></div>
+                    <div class="youtube-cover-inner">
+                      <i class="fa-brands fa-youtube"></i>
+                      <span class="youtube-cover-link">Watch Now</span>
+                    </div>
+                  </a>
 
-              <div class="subpage-join-item subpage-card animate-in delay-4">
-                <i class="fa-brands fa-reddit"></i>
-                <h4>Reddit</h4>
-                <a class="platform" href="https://www.reddit.com/r/imurheimofficial/" target="_blank" rel="noopener">Join</a>
-              </div>
-            </div>
+                  <div class="release-meta">
+                    <h3 id="subLatestTitle">[Song Title]</h3>
+                    <p id="subLatestReleaseText">Release date:</p>
 
-            <article class="panel video-card collab-video-small animate-in delay-4">
-              <a href="#" class="video-thumb">
-                <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
-              </a>
-              <div class="video-info">
-                <h4>Collab Project</h4>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-    </div>
+                    <div class="audio-bar">
+                      <button class="play" id="subPlayButton" type="button" aria-label="Play preview">
+                        <i class="fa-solid fa-play" id="subPlayIcon"></i>
+                      </button>
 
-    <div id="subpageContact" class="subpage-shell">
-      <section>
-        <div class="container">
-          <div class="contact-subpage-wrap">
-            <div class="contact-subpage panel animate-in delay-2">
-              <h2>Contact</h2>
+                      <div class="track">
+                        <div class="track-title">
+                          <span>Preview Track</span>
+                        </div>
 
-              <div class="contact-subpage-list">
-                <div class="contact-subpage-item">
-                  <h4>Management</h4>
-                  <p><a href="mailto:management@imurheimofficial.com">management@imurheimofficial.com</a></p>
-                </div>
+                        <div class="progress" id="subProgressBar" aria-label="Audio progress">
+                          <span id="subProgressFill"></span>
+                        </div>
 
-                <div class="contact-subpage-item">
-                  <h4>General Info</h4>
-                  <p><a href="mailto:info@imurheimofficial.com">info@imurheimofficial.com</a></p>
-                </div>
+                        <div class="track-time">
+                          <span id="subCurrentTime">0:00</span> / <span id="subDuration">0:00</span>
+                        </div>
+                      </div>
+                    </div>
 
-                <div class="contact-subpage-item">
-                  <h4>Partnerships / Inquiries</h4>
-                  <p><a href="mailto:collab@imurheimofficial.com">collab@imurheimofficial.com</a></p>
-                  <p><a href="mailto:business@imurheimofficial.com">business@imurheimofficial.com</a></p>
-                </div>
-
-                <div class="contact-subpage-item">
-                  <h4>Media</h4>
-                  <p><a href="mailto:press@imurheimofficial.com">press@imurheimofficial.com</a></p>
-                </div>
-
-                <div class="contact-subpage-item">
-                  <h4>Special Contacts</h4>
-                  <p><a href="mailto:official@imurheimofficial.com">official@imurheimofficial.com</a></p>
-                </div>
+                    <div class="platforms">
+                      <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-spotify"></i> Spotify</a>
+                      <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-apple"></i> Apple Music</a>
+                      <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-soundcloud"></i> SoundCloud</a>
+                      <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-amazon"></i> Amazon</a>
+                    </div>
+                  </div>
+                </article>
               </div>
             </div>
+          </section>
+        </div>
+
+        <div id="subpageVideo" class="subpage-shell">
+          <section>
+            <div class="container">
+              <div class="subpage-card animate-in delay-2">
+                <h2 class="section-title">Videos</h2>
+
+                <div class="video-card-grid-panel panel animate-in delay-3">
+                  <div class="subpage-video-grid" style="margin-bottom:22px; padding:0 0 22px;">
+                    <article class="panel video-card">
+                      <a href="#" class="video-thumb">
+                        <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
+                      </a>
+                      <div class="video-info">
+                        <h4>Official Video</h4>
+                      </div>
+                    </article>
+
+                    <article class="panel video-card">
+                      <a href="#" class="video-thumb">
+                        <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
+                      </a>
+                      <div class="video-info">
+                        <h4>Live Performance</h4>
+                      </div>
+                    </article>
+
+                    <article class="panel video-card">
+                      <a href="#" class="video-thumb">
+                        <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
+                      </a>
+                      <div class="video-info">
+                        <h4>Collab Project</h4>
+                      </div>
+                    </article>
+                  </div>
+
+                  <div class="video-page-grid" style="padding:0 0 22px;">
+                    <article class="panel video-page-card">
+                      <a href="#" class="video-page-thumb">
+                        <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
+                      </a>
+                      <div class="video-page-info">
+                        <h4>YouTube Video 1</h4>
+                      </div>
+                    </article>
+
+                    <article class="panel video-page-card">
+                      <a href="#" class="video-page-thumb">
+                        <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
+                      </a>
+                      <div class="video-page-info">
+                        <h4>YouTube Video 2</h4>
+                      </div>
+                    </article>
+
+                    <article class="panel video-page-card">
+                      <a href="#" class="video-page-thumb">
+                        <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
+                      </a>
+                      <div class="video-page-info">
+                        <h4>YouTube Video 3</h4>
+                      </div>
+                    </article>
+
+                    <article class="panel video-page-card">
+                      <a href="#" class="video-page-thumb">
+                        <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
+                      </a>
+                      <div class="video-page-info">
+                        <h4>YouTube Video 4</h4>
+                      </div>
+                    </article>
+
+                    <article class="panel video-page-card">
+                      <a href="#" class="video-page-thumb">
+                        <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
+                      </a>
+                      <div class="video-page-info">
+                        <h4>YouTube Video 5</h4>
+                      </div>
+                    </article>
+
+                    <article class="panel video-page-card">
+                      <a href="#" class="video-page-thumb">
+                        <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
+                      </a>
+                      <div class="video-page-info">
+                        <h4>YouTube Video 6</h4>
+                      </div>
+                    </article>
+                  </div>
+                </div>
+
+                <div class="video-channel-inline animate-in delay-4">
+                  <div class="video-channel-inline-inner">
+                    <div class="video-channel-iconbox">
+                      <img
+                        class="video-channel-avatar"
+                        id="videoChannelAvatar"
+                        src="assets/URHEIM GOLDEN PROFILE.png"
+                        alt="URHEIM YouTube Channel"
+                      >
+                    </div>
+
+                    <div class="video-channel-meta">
+                      <div class="video-channel-headline">URHEIM</div>
+
+                      <div class="video-channel-row">
+                        <a
+                          class="video-channel-mainbtn"
+                          href="https://www.youtube.com/@imurheimofficial?sub_confirmation=1"
+                          target="_blank"
+                          rel="noopener"
+                        >
+                          <i class="fa-brands fa-youtube"></i>
+                          Subscribe
+                        </a>
+
+                        <div class="video-channel-subs" id="videoChannelSubs">0</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div id="subpageCollabs" class="subpage-shell">
+          <section>
+            <div class="container">
+              <div class="panel subpage-card animate-in delay-2">
+                <h2 class="section-title">Collabs</h2>
+
+                <div class="subpage-join-grid">
+                  <div class="subpage-join-item subpage-card animate-in delay-3">
+                    <i class="fa-brands fa-discord"></i>
+                    <h4>Discord</h4>
+                    <a class="platform" href="https://discordapp.com/users/1204486293132808252" target="_blank" rel="noopener">Join</a>
+                  </div>
+
+                  <div class="subpage-join-item subpage-card animate-in delay-4">
+                    <i class="fa-brands fa-reddit"></i>
+                    <h4>Reddit</h4>
+                    <a class="platform" href="https://www.reddit.com/r/imurheimofficial/" target="_blank" rel="noopener">Join</a>
+                  </div>
+                </div>
+
+                <article class="panel video-card collab-video-small animate-in delay-4">
+                  <a href="#" class="video-thumb">
+                    <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
+                  </a>
+                  <div class="video-info">
+                    <h4>Collab Project</h4>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div id="subpageContact" class="subpage-shell">
+          <section>
+            <div class="container">
+              <div class="contact-subpage-wrap">
+                <div class="contact-subpage panel animate-in delay-2">
+                  <h2>Contact</h2>
+
+                  <div class="contact-subpage-list">
+                    <div class="contact-subpage-item">
+                      <h4>Management</h4>
+                      <p><a href="mailto:management@imurheimofficial.com">management@imurheimofficial.com</a></p>
+                    </div>
+
+                    <div class="contact-subpage-item">
+                      <h4>General Info</h4>
+                      <p><a href="mailto:info@imurheimofficial.com">info@imurheimofficial.com</a></p>
+                    </div>
+
+                    <div class="contact-subpage-item">
+                      <h4>Partnerships / Inquiries</h4>
+                      <p><a href="mailto:collab@imurheimofficial.com">collab@imurheimofficial.com</a></p>
+                      <p><a href="mailto:business@imurheimofficial.com">business@imurheimofficial.com</a></p>
+                    </div>
+
+                    <div class="contact-subpage-item">
+                      <h4>Media</h4>
+                      <p><a href="mailto:press@imurheimofficial.com">press@imurheimofficial.com</a></p>
+                    </div>
+
+                    <div class="contact-subpage-item">
+                      <h4>Special Contacts</h4>
+                      <p><a href="mailto:official@imurheimofficial.com">official@imurheimofficial.com</a></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <div class="bottom-fixed-wrap">
+      <section id="contact">
+        <div class="container">
+          <div class="panel social-panel animate-in delay-4" id="socialPanel">
+            <div class="socials">
+              <a class="social" href="https://facebook.com/imurheimofficiaI" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+              <a class="social" href="https://instagram.com/imurheimofficial" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+              <a class="social" href="https://threads.com/@imurheimofficial" target="_blank" rel="noopener" aria-label="Threads"><i class="fa-brands fa-threads"></i></a>
+              <a class="social" href="https://tiktok.com/@imurheimofficial" target="_blank" rel="noopener" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+              <a class="social" href="https://twitter.com/imurheimoficial" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+              <a class="social" href="https://twitch.tv/imurheimofficial" target="_blank" rel="noopener" aria-label="Twitch"><i class="fa-brands fa-twitch"></i></a>
+              <a class="social" href="https://youtube.com/@imurheimofficial" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+              <a class="social" href="https://open.spotify.com/artist/53KpmHShdf1iZssxYIli3t" target="_blank" rel="noopener" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
+              <a class="social" href="https://soundcloud.com/imurheimofficial" target="_blank" rel="noopener" aria-label="SoundCloud"><i class="fa-brands fa-soundcloud"></i></a>
+              <a class="social" href="https://discordapp.com/users/1204486293132808252" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+              <a class="social" href="https://www.reddit.com/r/imurheimofficial/" target="_blank" rel="noopener" aria-label="Reddit"><i class="fa-brands fa-reddit"></i></a>
+              <a class="social" href="https://steamcommunity.com/id/imurheimofficial/" target="_blank" rel="noopener" aria-label="Steam"><i class="fa-brands fa-steam"></i></a>
+            </div>
           </div>
         </div>
       </section>
-    </div>
 
-    <section id="contact">
-      <div class="container">
-        <div class="panel social-panel animate-in delay-4" id="socialPanel">
-          <div class="socials">
-            <a class="social" href="https://facebook.com/imurheimofficiaI" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-            <a class="social" href="https://instagram.com/imurheimofficial" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-            <a class="social" href="https://threads.com/@imurheimofficial" target="_blank" rel="noopener" aria-label="Threads"><i class="fa-brands fa-threads"></i></a>
-            <a class="social" href="https://tiktok.com/@imurheimofficial" target="_blank" rel="noopener" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-            <a class="social" href="https://twitter.com/imurheimoficial" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
-            <a class="social" href="https://twitch.tv/imurheimofficial" target="_blank" rel="noopener" aria-label="Twitch"><i class="fa-brands fa-twitch"></i></a>
-            <a class="social" href="https://youtube.com/@imurheimofficial" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-            <a class="social" href="https://open.spotify.com/artist/53KpmHShdf1iZssxYIli3t" target="_blank" rel="noopener" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
-            <a class="social" href="https://soundcloud.com/imurheimofficial" target="_blank" rel="noopener" aria-label="SoundCloud"><i class="fa-brands fa-soundcloud"></i></a>
-            <a class="social" href="https://discordapp.com/users/1204486293132808252" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
-            <a class="social" href="https://www.reddit.com/r/imurheimofficial/" target="_blank" rel="noopener" aria-label="Reddit"><i class="fa-brands fa-reddit"></i></a>
-            <a class="social" href="https://steamcommunity.com/id/imurheimofficial/" target="_blank" rel="noopener" aria-label="Steam"><i class="fa-brands fa-steam"></i></a>
-          </div>
+      <footer>
+        <div class="container">
+          <div class="footer-line"></div>
+          <div class="footer-copy">© <span id="year"></span> URHEIM</div>
         </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <div class="footer-line"></div>
-      <div class="footer-copy">© <span id="year"></span> URHEIM</div>
+      </footer>
     </div>
-  </footer>
+  </div>
 
   <script>
     const WEEKDAYS = [
@@ -2519,15 +2622,9 @@
 
     function resetAndRunAnimations(scope = document) {
       const elements = scope.querySelectorAll('.animate-in');
-      elements.forEach(el => {
-        el.classList.remove('run');
-      });
-
+      elements.forEach(el => el.classList.remove('run'));
       void document.body.offsetWidth;
-
-      elements.forEach(el => {
-        el.classList.add('run');
-      });
+      elements.forEach(el => el.classList.add('run'));
     }
 
     function showView(viewName, pushUrl = true) {
