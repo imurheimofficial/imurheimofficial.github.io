@@ -420,9 +420,7 @@
       transition:background .24s ease, border-color .24s ease, box-shadow .24s ease;
     }
 
-    body.smart-link-mode header{
-      display:none !important;
-    }
+    body.smart-link-mode header{display:none !important;}
 
     .nav{
       min-height:74px; position:relative; display:grid;
@@ -721,8 +719,8 @@
       grid-template-columns:1fr auto;
       align-items:center;
       gap:14px;
-      min-height:170px;
-      padding:0 0 0 28px;
+      min-height:98px;
+      padding:0 0 0 18px;
       border-bottom:1px solid var(--smart-divider);
       background:transparent;
       box-shadow:none;
@@ -730,24 +728,20 @@
       transition:background .18s ease;
     }
 
-    .smart-platform-row:last-child{
-      border-bottom:none;
-    }
-
-    .smart-platform-row:hover{
-      background:var(--smart-row-hover);
-    }
+    .smart-platform-row:last-child{border-bottom:none;}
+    .smart-platform-row:hover{background:var(--smart-row-hover);}
 
     .smart-platform-name{
       display:flex;
       align-items:center;
       justify-content:flex-start;
       width:100%;
+      height:100%;
     }
 
     .smart-platform-icon{
-      width:120px;
-      height:120px;
+      width:92px;
+      height:92px;
       object-fit:contain;
       display:block;
       filter:none !important;
@@ -756,8 +750,8 @@
     }
 
     .smart-play-btn{
-      min-width:118px;
-      height:170px;
+      min-width:108px;
+      height:98px;
       border-left:1px solid var(--smart-divider);
       background:transparent;
       color:var(--smart-row-play-text);
@@ -1094,17 +1088,13 @@
       margin-top:auto; width:100%; position:relative; z-index:5; flex-shrink:0;
     }
 
-    body.smart-link-mode .bottom-fixed-wrap{
-      background:transparent;
-    }
+    body.smart-link-mode .bottom-fixed-wrap{background:transparent;}
 
     .social-panel{
       padding:12px 18px; opacity:0; transform:translateY(22px);
     }
 
-    body.smart-link-mode #contact{
-      display:none !important;
-    }
+    body.smart-link-mode #contact{display:none !important;}
 
     .socials{
       display:flex; justify-content:center; gap:12px; flex-wrap:wrap; padding:2px 0 0;
@@ -1179,17 +1169,13 @@
       padding:18px 0 46px; text-align:center; color:var(--footer-color); flex-shrink:0; margin-top:0;
     }
 
-    body.smart-link-mode footer{
-      padding:18px 0 28px;
-    }
+    body.smart-link-mode footer{padding:18px 0 28px;}
 
     .footer-line{
       width:min(920px, 100%); margin:0 auto 18px; height:1px; background:var(--footer-line);
     }
 
-    body.smart-link-mode .footer-line{
-      display:none;
-    }
+    body.smart-link-mode .footer-line{display:none;}
 
     .footer-copy{
       font-family:Cinzel, serif; letter-spacing:.06em; font-size:.9rem;
@@ -1359,21 +1345,19 @@
         border-radius:38px;
       }
 
-      .smart-link-card{
-        border-radius:8px;
-      }
+      .smart-link-card{border-radius:8px;}
 
       .smart-platform-row{
-        min-height:132px;
+        min-height:84px;
       }
 
       .smart-platform-icon{
-        width:92px;
-        height:92px;
+        width:78px;
+        height:78px;
       }
 
       .smart-play-btn{
-        height:132px;
+        height:84px;
         min-width:96px;
       }
 
@@ -1483,24 +1467,22 @@
         font-size:.9rem;
       }
 
-      .smart-link-card{
-        border-radius:8px;
-      }
+      .smart-link-card{border-radius:8px;}
 
       .smart-platform-row{
-        min-height:100px;
-        padding-left:14px;
-        gap:10px;
+        min-height:72px;
+        padding-left:10px;
+        gap:8px;
       }
 
       .smart-platform-icon{
-        width:72px;
-        height:72px;
+        width:66px;
+        height:66px;
       }
 
       .smart-play-btn{
         min-width:78px;
-        height:100px;
+        height:72px;
         font-size:.92rem;
       }
 
@@ -2357,75 +2339,6 @@
 
       navLinks.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => navLinks.classList.remove('open'));
-      });
-    }
-
-    const audio = document.getElementById('releaseAudio') || (() => {
-      const audioEl = document.createElement('audio');
-      audioEl.id = 'releaseAudio';
-      audioEl.className = 'hidden-audio';
-      audioEl.preload = 'metadata';
-      audioEl.innerHTML = '<source src="" type="audio/mpeg">';
-      document.body.appendChild(audioEl);
-      return audioEl;
-    })();
-
-    const subAudioButton = document.getElementById('subPlayButton');
-    const subPlayIcon = document.getElementById('subPlayIcon');
-    const subProgressBar = document.getElementById('subProgressBar');
-    const subProgressFill = document.getElementById('subProgressFill');
-    const subCurrentTimeEl = document.getElementById('subCurrentTime');
-    const subDurationEl = document.getElementById('subDuration');
-
-    function formatTime(seconds) {
-      if (!isFinite(seconds)) return '0:00';
-      const mins = Math.floor(seconds / 60);
-      const secs = Math.floor(seconds % 60);
-      return `${mins}:${secs.toString().padStart(2, '0')}`;
-    }
-
-    function updateSubPlayIcon() {
-      if (subPlayIcon) {
-        subPlayIcon.className = audio.paused ? 'fa-solid fa-play' : 'fa-solid fa-pause';
-      }
-    }
-
-    if (subAudioButton && audio) {
-      subAudioButton.addEventListener('click', () => {
-        const source = audio.querySelector('source');
-        if (!source || !source.getAttribute('src')) {
-          alert('Sem potom vlož cestu k audio souboru do <source src="">.');
-          return;
-        }
-
-        if (audio.paused) audio.play();
-        else audio.pause();
-      });
-
-      audio.addEventListener('loadedmetadata', () => {
-        if (subDurationEl) subDurationEl.textContent = formatTime(audio.duration);
-      });
-
-      audio.addEventListener('timeupdate', () => {
-        if (subCurrentTimeEl) subCurrentTimeEl.textContent = formatTime(audio.currentTime);
-        if (audio.duration && subProgressFill) {
-          const percent = (audio.currentTime / audio.duration) * 100;
-          subProgressFill.style.width = `${percent}%`;
-        }
-      });
-
-      audio.addEventListener('play', updateSubPlayIcon);
-      audio.addEventListener('pause', updateSubPlayIcon);
-      audio.addEventListener('ended', updateSubPlayIcon);
-    }
-
-    if (subProgressBar && audio) {
-      subProgressBar.addEventListener('click', (event) => {
-        if (!audio.duration) return;
-        const rect = subProgressBar.getBoundingClientRect();
-        const clickX = event.clientX - rect.left;
-        const ratio = clickX / rect.width;
-        audio.currentTime = ratio * audio.duration;
       });
     }
 
