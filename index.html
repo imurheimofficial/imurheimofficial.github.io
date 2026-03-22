@@ -51,7 +51,7 @@
       --bg-image-opacity:.34;
       --bg-image-filter:none;
 
-      --hero-bg-overlay:linear-gradient(rgba(0,0,0,.82), rgba(0,0,0,.90));
+      --hero-bg-overlay:linear-gradient(rgba(0,0,0,.74), rgba(0,0,0,.84));
       --hero-image-filter:none;
       --hero-image-opacity:1;
       --hero-border-top:rgba(244,199,111,.18);
@@ -81,11 +81,14 @@
       --button-bg:linear-gradient(180deg, #f0cb76 0%, #dca441 52%, #9d631f 100%);
       --button-shadow:inset 0 1px 0 rgba(255,243,215,.55), 0 10px 24px rgba(0,0,0,.26), 0 0 14px rgba(255,178,60,.14);
       --button-shadow-hover:inset 0 1px 0 rgba(255,243,215,.55), 0 14px 30px rgba(0,0,0,.32), 0 0 20px rgba(255,178,60,.18);
+      --button-dim-filter:brightness(.72) saturate(.82);
 
       --watermark-filter:
+        drop-shadow(0 0 12px rgba(255,185,82,.20))
+        drop-shadow(0 0 24px rgba(255,176,66,.18))
         drop-shadow(0 2px 0 rgba(140,99,47,.85))
-        drop-shadow(0 4px 20px rgba(255,170,56,.12))
-        drop-shadow(0 8px 36px rgba(0,0,0,.45));
+        drop-shadow(0 8px 40px rgba(255,170,56,.18))
+        drop-shadow(0 12px 42px rgba(0,0,0,.45));
 
       --profile-image-filter:none;
 
@@ -113,7 +116,7 @@
       --social-bg:linear-gradient(180deg, rgba(35,22,12,.85), rgba(10,6,4,.95));
       --social-color:var(--gold);
       --social-shadow:inset 0 0 10px rgba(255,184,77,.05), 0 6px 16px rgba(0,0,0,.22);
-      --social-shadow-hover:inset 0 0 10px rgba(255,184,77,.10), 0 10px 22px rgba(0,0,0,.28), 0 0 14px rgba(255,174,49,.10);
+      --social-shadow-hover:var(--button-shadow-hover);
 
       --video-thumb-overlay:
         radial-gradient(circle at 50% 45%, rgba(255,203,112,.14), transparent 20%),
@@ -130,8 +133,8 @@
       --switch-icon:#2c1a06;
       --switch-shadow:0 4px 14px rgba(0,0,0,.28);
 
-      --official-label:#b88d47;
-      --official-label-glow:0 0 10px rgba(255,179,72,.12);
+      --official-label:#a77b35;
+      --official-label-glow:0 0 10px rgba(255,179,72,.10);
 
       --sub-inline-text:#f7e0b4;
       --youtube-icon-filter:none;
@@ -155,11 +158,11 @@
         contrast(1.08)
         sepia(.08);
 
-      --hero-bg-overlay:linear-gradient(rgba(0,0,0,.82), rgba(0,0,0,.90));
+      --hero-bg-overlay:linear-gradient(rgba(0,0,0,.74), rgba(0,0,0,.84));
       --hero-image-filter:
         hue-rotate(180deg)
         saturate(1.12)
-        brightness(.66)
+        brightness(.70)
         contrast(1.12)
         sepia(.04);
       --hero-image-opacity:1;
@@ -190,15 +193,17 @@
       --button-bg:linear-gradient(180deg, #d8ebff 0%, #8fbaf1 52%, #4e78ab 100%);
       --button-shadow:inset 0 1px 0 rgba(255,255,255,.52), 0 12px 26px rgba(0,0,0,.32), 0 0 16px rgba(110,170,255,.14);
       --button-shadow-hover:inset 0 1px 0 rgba(255,255,255,.52), 0 16px 34px rgba(0,0,0,.38), 0 0 22px rgba(110,170,255,.18);
+      --button-dim-filter:brightness(.62) saturate(.85);
 
       --watermark-filter:
         hue-rotate(180deg)
-        saturate(1.08)
-        brightness(.80)
+        saturate(1.10)
+        brightness(.84)
         contrast(1.10)
         sepia(.03)
-        drop-shadow(0 0 8px rgba(120,170,255,.16))
-        drop-shadow(0 0 18px rgba(120,170,255,.16))
+        drop-shadow(0 0 10px rgba(120,170,255,.18))
+        drop-shadow(0 0 22px rgba(120,170,255,.18))
+        drop-shadow(0 0 34px rgba(120,170,255,.14))
         drop-shadow(0 8px 36px rgba(0,0,0,.50));
 
       --profile-image-filter:
@@ -216,6 +221,7 @@
       --play-border:rgba(126,170,255,.28);
       --play-bg:linear-gradient(180deg, rgba(145,196,255,.18), rgba(4,10,20,.9));
       --play-color:#c8e5ff;
+      --play-shadow:0 0 16px rgba(120,170,255,.12);
 
       --progress-bg:rgba(222,237,255,.09);
       --progress-border:rgba(126,170,255,.16);
@@ -229,6 +235,7 @@
       --social-border:rgba(126,170,255,.18);
       --social-bg:linear-gradient(180deg, rgba(16,24,40,.90), rgba(4,9,18,.96));
       --social-color:#c8e4ff;
+      --social-shadow-hover:var(--button-shadow-hover);
 
       --video-thumb-overlay:
         radial-gradient(circle at 50% 45%, rgba(135,190,255,.16), transparent 22%),
@@ -244,7 +251,7 @@
       --switch-icon:#08101d;
       --switch-shadow:0 4px 16px rgba(0,0,0,.38);
 
-      --official-label:#8eaed8;
+      --official-label:#7291b8;
       --official-label-glow:0 0 12px rgba(120,170,255,.16);
 
       --sub-inline-text:#dcecff;
@@ -333,7 +340,7 @@
     header{
       position:sticky;
       top:0;
-      z-index:50;
+      z-index:80;
       backdrop-filter: blur(8px);
       background:var(--header-bg);
       border-bottom:1px solid var(--header-border);
@@ -417,22 +424,17 @@
     .nav-links a.nav-active::after{width:100%}
 
     .header-clock{
-      display:flex;
-      align-items:center;
-      justify-content:flex-end;
-      min-height:18px;
-      padding:0;
-      border:none;
-      background:transparent;
-      color:var(--clock-color);
-      font-size:.72rem;
-      line-height:1;
-      text-align:right;
+      position:absolute;
+      right:0;
+      opacity:0;
+      pointer-events:none;
+      width:0;
+      min-width:0;
+      overflow:hidden;
       white-space:nowrap;
-      transition:color .24s ease;
+      font-size:.72rem;
+      color:var(--clock-color);
       font-variant-numeric:tabular-nums;
-      letter-spacing:.01em;
-      min-width:170px;
     }
 
     .theme-switch{
@@ -578,7 +580,9 @@
       width:min(1085px, 96%);
       margin:4px auto 4px;
       filter:var(--watermark-filter);
-      transition:filter .24s ease;
+      transition:filter .24s ease, transform .24s ease;
+      animation:watermarkLampDrift 4.8s ease-in-out infinite;
+      will-change:filter, transform;
     }
 
     .hero-watermark img{
@@ -615,6 +619,41 @@
       font-size:.98rem;
       line-height:1.7;
       transition:color .24s ease;
+    }
+
+    .hero-reveal-item{
+      opacity:1;
+      transform:none;
+    }
+
+    .hero.animate-reveal .subtitle{
+      animation:heroTextReveal .85s ease forwards;
+    }
+
+    .hero.animate-reveal .hero-text{
+      opacity:0;
+      transform:translateY(14px);
+      animation:heroTextReveal .95s ease forwards .12s;
+    }
+
+    .hero.animate-reveal .subtitle{
+      opacity:0;
+      transform:translateY(12px);
+    }
+
+    .view-content,
+    .subpage-shell{
+      will-change:opacity, transform;
+    }
+
+    .view-content.view-enter-right,
+    .subpage-shell.view-enter-right{
+      animation:viewEnterRight .42s cubic-bezier(.2,.8,.2,1) forwards;
+    }
+
+    .view-content.view-enter-left,
+    .subpage-shell.view-enter-left{
+      animation:viewEnterLeft .42s cubic-bezier(.2,.8,.2,1) forwards;
     }
 
     section{
@@ -657,7 +696,7 @@
       border-radius:var(--radius);
       box-shadow:var(--shadow);
       overflow:hidden;
-      transition:background .24s ease, border-color .24s ease, box-shadow .24s ease;
+      transition:background .24s ease, border-color .24s ease, box-shadow .24s ease, filter .24s ease, opacity .24s ease;
     }
 
     .panel::before{
@@ -742,7 +781,7 @@
       text-shadow:0 10px 24px rgba(0,0,0,.45);
       z-index:2;
       filter:var(--youtube-icon-filter);
-      transition:filter .24s ease, color .24s ease;
+      transition:filter .24s ease, color .24s ease, opacity .24s ease;
     }
 
     .youtube-cover-link{
@@ -760,10 +799,10 @@
       justify-content:center;
       gap:10px;
       z-index:2;
-      transition:transform .16s ease, box-shadow .16s ease;
+      transition:transform .16s ease, box-shadow .16s ease, filter .24s ease, opacity .24s ease;
     }
 
-    .youtube-cover-link:hover{
+    .youtube-channel-cover:hover .youtube-cover-link{
       transform:translateY(-2px);
       box-shadow:var(--button-shadow-hover);
     }
@@ -801,10 +840,16 @@
       cursor:pointer;
       appearance:none;
       -webkit-appearance:none;
-      transition:transform .16s ease, border-color .24s ease, background .24s ease, color .24s ease, box-shadow .24s ease;
+      transition:transform .16s ease, border-color .24s ease, background .24s ease, color .24s ease, box-shadow .24s ease, filter .24s ease;
     }
 
-    .play:hover{transform:translateY(-1px);}
+    .play:hover{
+      transform:translateY(-1px);
+      background:var(--button-bg);
+      color:var(--button-text);
+      border-color:var(--platform-border-hover);
+      box-shadow:var(--button-shadow-hover);
+    }
 
     .track{flex:1;}
 
@@ -865,7 +910,7 @@
       background:var(--platform-bg);
       color:var(--platform-color);
       font-weight:700;
-      transition:transform .16s ease, border-color .24s ease, background .24s ease, color .24s ease;
+      transition:transform .16s ease, border-color .24s ease, background .24s ease, color .24s ease, filter .24s ease, opacity .24s ease;
       justify-content:center;
       box-shadow:var(--button-shadow);
     }
@@ -875,6 +920,12 @@
       transform:translateY(-2px);
       border-color:var(--platform-border-hover);
       box-shadow:var(--button-shadow-hover);
+    }
+
+    .platform-group:has(.platform:hover) .platform:not(:hover),
+    .platform-group:has(.youtube-channel-cover:hover) .platform{
+      filter:var(--button-dim-filter);
+      opacity:.78;
     }
 
     .about-grid{
@@ -1125,12 +1176,16 @@
       border-color:rgba(255,255,255,.38);
     }
 
+    .social-panel{
+      padding:10px 18px;
+    }
+
     .socials{
       display:flex;
       justify-content:center;
       gap:12px;
       flex-wrap:wrap;
-      padding:2px 0 0;
+      padding:0;
     }
 
     .social{
@@ -1143,17 +1198,29 @@
       background:var(--social-bg);
       color:var(--social-color);
       box-shadow:var(--social-shadow);
-      transition:transform .16s ease, color .24s ease, background .24s ease, border-color .24s ease, box-shadow .24s ease;
+      transition:
+        transform .16s ease,
+        color .24s ease,
+        background .24s ease,
+        border-color .24s ease,
+        box-shadow .24s ease,
+        filter .24s ease,
+        opacity .24s ease;
       font-size:1rem;
     }
 
     .social:hover{
       transform:translateY(-2px);
-      color:#ffe2af;
+      background:var(--button-bg);
+      color:var(--button-text);
       box-shadow:var(--social-shadow-hover);
+      border-color:var(--platform-border-hover);
     }
 
-    body.theme-night .social:hover{color:#eef7ff;}
+    .socials:has(.social:hover) .social:not(:hover){
+      filter:var(--button-dim-filter);
+      opacity:.78;
+    }
 
     .video-channel-inline{
       margin-top:20px;
@@ -1232,7 +1299,7 @@
       justify-content:center;
       gap:7px;
       box-shadow:var(--button-shadow);
-      transition:transform .16s ease, box-shadow .16s ease, border-color .24s ease, background .24s ease, color .24s ease;
+      transition:transform .16s ease, box-shadow .16s ease, border-color .24s ease, background .24s ease, color .24s ease, filter .24s ease, opacity .24s ease;
       border-right:none;
     }
 
@@ -1256,7 +1323,13 @@
       justify-content:center;
       box-shadow:var(--media-shadow);
       white-space:nowrap;
-      transition:border-color .24s ease, box-shadow .24s ease, background .24s ease, color .24s ease;
+      transition:border-color .24s ease, box-shadow .24s ease, background .24s ease, color .24s ease, filter .24s ease, opacity .24s ease;
+    }
+
+    .video-channel-row:has(.video-channel-mainbtn:hover) .video-channel-subs,
+    .video-channel-row:has(.video-channel-subs:hover) .video-channel-mainbtn{
+      filter:var(--button-dim-filter);
+      opacity:.82;
     }
 
     footer{
@@ -1279,6 +1352,57 @@
     }
 
     .hidden-audio{display:none;}
+
+    @keyframes watermarkLampDrift{
+      0%{
+        transform:translateY(0) scale(1);
+      }
+      25%{
+        transform:translateY(-1px) scale(1.003);
+      }
+      50%{
+        transform:translateY(0) scale(1.006);
+      }
+      75%{
+        transform:translateY(1px) scale(1.003);
+      }
+      100%{
+        transform:translateY(0) scale(1);
+      }
+    }
+
+    @keyframes heroTextReveal{
+      0%{
+        opacity:0;
+        transform:translateY(16px);
+      }
+      100%{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    @keyframes viewEnterRight{
+      0%{
+        opacity:0;
+        transform:translateX(28px);
+      }
+      100%{
+        opacity:1;
+        transform:translateX(0);
+      }
+    }
+
+    @keyframes viewEnterLeft{
+      0%{
+        opacity:0;
+        transform:translateX(-28px);
+      }
+      100%{
+        opacity:1;
+        transform:translateX(0);
+      }
+    }
 
     @media (max-width: 980px){
       .nav{
@@ -1325,10 +1449,7 @@
       .nav-links.open{display:flex}
 
       .header-clock{
-        grid-column:4 / 5;
-        justify-self:end;
-        font-size:.58rem;
-        min-width:auto;
+        display:none;
       }
 
       .hero{padding-top:20px; min-height:auto}
@@ -1595,12 +1716,12 @@
   </header>
 
   <main id="top">
-    <section class="hero frame-line" id="heroSection">
+    <section class="hero frame-line animate-reveal" id="heroSection">
       <div class="container hero-grid">
         <div class="hero-copy">
           <div class="eyebrow">Official Artist Website</div>
 
-          <div class="hero-watermark">
+          <div class="hero-watermark" id="heroWatermark">
             <img
               src="assets/URHEIM GOLDEN WATERMARK.png"
               alt="URHEIM Watermark"
@@ -1611,15 +1732,15 @@
           </div>
 
           <div class="headline-rule"></div>
-          <p class="subtitle">Echoes of the Unspoken</p>
-          <p class="hero-text">
+          <p class="subtitle hero-reveal-item">Echoes of the Unspoken</p>
+          <p class="hero-text hero-reveal-item">
             Ancient echoes, hidden signs, and a sound that moves through worlds—shaped by mystery, driven by emotion, and unconstrained by genre.
           </p>
         </div>
       </div>
     </section>
 
-    <div id="homeContent">
+    <div id="homeContent" class="view-content">
       <section id="music">
         <div class="container">
           <h2 class="section-title">Latest Release</h2>
@@ -1657,7 +1778,7 @@
                 </div>
               </div>
 
-              <div class="platforms">
+              <div class="platforms platform-group">
                 <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-spotify"></i> Spotify</a>
                 <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-apple"></i> Apple Music</a>
                 <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-soundcloud"></i> SoundCloud</a>
@@ -1804,7 +1925,7 @@
                   </div>
                 </div>
 
-                <div class="platforms">
+                <div class="platforms platform-group">
                   <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-spotify"></i> Spotify</a>
                   <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-apple"></i> Apple Music</a>
                   <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-soundcloud"></i> SoundCloud</a>
@@ -2021,9 +2142,7 @@
 
     <section id="contact">
       <div class="container">
-        <div class="panel" style="padding:12px 18px;">
-          <h2 class="section-title" style="margin-top:0; margin-bottom:12px;">Connect</h2>
-
+        <div class="panel social-panel">
           <div class="socials">
             <a class="social" href="https://facebook.com/imurheimofficiaI" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
             <a class="social" href="https://instagram.com/imurheimofficial" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
@@ -2079,6 +2198,8 @@
       if (themeMeta) {
         themeMeta.setAttribute('content', isDay ? '#000000' : '#08101d');
       }
+
+      updateWatermarkBaseGlow();
     }
 
     function applyThemeByLocalTime(dateObj) {
@@ -2356,6 +2477,23 @@
       'contact-page': document.getElementById('subpageContact')
     };
 
+    const viewOrder = {
+      'home': 0,
+      'bio-page': 1,
+      'music-page': 2,
+      'video-page': 3,
+      'collabs-page': 4,
+      'contact-page': 5
+    };
+
+    let currentViewName = 'home';
+
+    function triggerHeroReveal() {
+      heroSection.classList.remove('animate-reveal');
+      void heroSection.offsetWidth;
+      heroSection.classList.add('animate-reveal');
+    }
+
     function setActiveNavByView(viewName) {
       document.querySelectorAll('.nav-links a[data-view]').forEach(link => {
         if (link.dataset.view === viewName) {
@@ -2366,21 +2504,42 @@
       });
     }
 
+    function clearViewAnimClasses(el) {
+      if (!el) return;
+      el.classList.remove('view-enter-left', 'view-enter-right');
+    }
+
+    function applyViewAnimation(el, direction) {
+      if (!el) return;
+      clearViewAnimClasses(el);
+      void el.offsetWidth;
+      el.classList.add(direction === 'left' ? 'view-enter-left' : 'view-enter-right');
+      setTimeout(() => clearViewAnimClasses(el), 500);
+    }
+
     function showView(viewName, pushUrl = true) {
       Object.values(subpages).forEach(page => page.classList.remove('active'));
+
+      const prevOrder = viewOrder[currentViewName] ?? 0;
+      const nextOrder = viewOrder[viewName] ?? 0;
+      const direction = nextOrder >= prevOrder ? 'right' : 'left';
 
       if (viewName === 'home') {
         heroSection.classList.remove('hidden');
         homeContent.style.display = '';
+        applyViewAnimation(homeContent, direction);
+        triggerHeroReveal();
       } else {
         heroSection.classList.add('hidden');
         homeContent.style.display = 'none';
 
         if (subpages[viewName]) {
           subpages[viewName].classList.add('active');
+          applyViewAnimation(subpages[viewName], direction);
         }
       }
 
+      currentViewName = viewName;
       setActiveNavByView(viewName);
 
       if (pushUrl) {
@@ -2424,6 +2583,86 @@
       else if (path === '/contact') showView('contact-page', false);
       else showView('home', false);
     })();
+
+    const heroWatermark = document.getElementById('heroWatermark');
+    let weakFlickerTimeout = null;
+    let strongFlickerInterval = null;
+    let watermarkResetTimeout = null;
+
+    function updateWatermarkBaseGlow() {
+      if (!heroWatermark) return;
+
+      if (document.body.classList.contains('theme-night')) {
+        heroWatermark.style.filter =
+          'hue-rotate(180deg) saturate(1.10) brightness(.84) contrast(1.10) sepia(.03) ' +
+          'drop-shadow(0 0 12px rgba(120,170,255,.20)) ' +
+          'drop-shadow(0 0 26px rgba(120,170,255,.20)) ' +
+          'drop-shadow(0 0 42px rgba(120,170,255,.16)) ' +
+          'drop-shadow(0 8px 36px rgba(0,0,0,.50))';
+      } else {
+        heroWatermark.style.filter =
+          'drop-shadow(0 0 14px rgba(255,185,82,.22)) ' +
+          'drop-shadow(0 0 28px rgba(255,176,66,.20)) ' +
+          'drop-shadow(0 2px 0 rgba(140,99,47,.85)) ' +
+          'drop-shadow(0 10px 44px rgba(255,170,56,.20)) ' +
+          'drop-shadow(0 12px 42px rgba(0,0,0,.45))';
+      }
+    }
+
+    function setTemporaryWatermarkGlow(filterValue, durationMs) {
+      if (!heroWatermark) return;
+      clearTimeout(watermarkResetTimeout);
+      heroWatermark.style.filter = filterValue;
+      watermarkResetTimeout = setTimeout(() => {
+        updateWatermarkBaseGlow();
+      }, durationMs);
+    }
+
+    function scheduleWeakNightFlicker() {
+      clearTimeout(weakFlickerTimeout);
+
+      const delay = (Math.random() * 1500) + 500;
+
+      weakFlickerTimeout = setTimeout(() => {
+        if (document.body.classList.contains('theme-night')) {
+          setTemporaryWatermarkGlow(
+            'hue-rotate(180deg) saturate(1.12) brightness(.88) contrast(1.12) sepia(.03) ' +
+            'drop-shadow(0 0 14px rgba(145,198,255,.24)) ' +
+            'drop-shadow(0 0 30px rgba(145,198,255,.22)) ' +
+            'drop-shadow(0 0 46px rgba(145,198,255,.18)) ' +
+            'drop-shadow(0 8px 36px rgba(0,0,0,.50))',
+            120
+          );
+        }
+
+        scheduleWeakNightFlicker();
+      }, delay);
+    }
+
+    function startNightStrongPulse() {
+      clearInterval(strongFlickerInterval);
+
+      strongFlickerInterval = setInterval(() => {
+        if (document.body.classList.contains('theme-night')) {
+          setTemporaryWatermarkGlow(
+            'hue-rotate(180deg) saturate(1.16) brightness(.98) contrast(1.18) sepia(.03) ' +
+            'drop-shadow(0 0 18px rgba(170,214,255,.34)) ' +
+            'drop-shadow(0 0 42px rgba(170,214,255,.30)) ' +
+            'drop-shadow(0 0 62px rgba(170,214,255,.22)) ' +
+            'drop-shadow(0 10px 38px rgba(0,0,0,.50))',
+            220
+          );
+        }
+      }, 6000);
+    }
+
+    function initWatermarkNightEffects() {
+      updateWatermarkBaseGlow();
+      scheduleWeakNightFlicker();
+      startNightStrongPulse();
+    }
+
+    initWatermarkNightEffects();
   </script>
 </body>
 </html>
