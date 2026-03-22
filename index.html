@@ -38,20 +38,14 @@
   <style>
     :root{
       --bg:#090603;
-      --bg-2:#140d07;
       --panel:rgba(18,12,8,.72);
-      --panel-strong:rgba(10,7,4,.88);
       --gold:#f4c76f;
       --gold-soft:#d7a148;
-      --gold-deep:#8b571e;
-      --line:rgba(244,199,111,.38);
       --text:#f7e0b4;
       --muted:#d2b586;
       --muted-dark:#b89661;
       --shadow:0 0 0 1px rgba(244,199,111,.18), 0 16px 42px rgba(0,0,0,.42);
-      --glow:0 0 16px rgba(255,174,49,.22), 0 0 34px rgba(255,174,49,.10);
       --radius:24px;
-      --radius-sm:16px;
       --container:1180px;
 
       --bg-image-opacity:.34;
@@ -81,12 +75,8 @@
       --mobile-toggle-color:var(--gold);
       --mobile-toggle-shadow:none;
 
-      --particle-opacity:.16;
-      --particle-filter:none;
-
       --headline-rule-start:rgba(244,199,111,.3);
       --headline-rule-mid:rgba(244,199,111,.95);
-      --headline-rule-shadow:0 0 14px rgba(255,174,49,.18);
 
       --button-text:#2a1503;
       --button-bg:linear-gradient(180deg, #f0cb76 0%, #dca441 52%, #9d631f 100%);
@@ -114,7 +104,6 @@
       --progress-bg:rgba(255,245,219,.08);
       --progress-border:rgba(244,199,111,.12);
       --progress-fill:linear-gradient(90deg, rgba(255,217,148,.95), rgba(219,150,54,.95));
-      --progress-fill-shadow:0 0 12px rgba(255,184,77,.14);
 
       --platform-border:rgba(244,199,111,.16);
       --platform-bg:rgba(11,7,4,.76);
@@ -134,18 +123,15 @@
       --footer-color:#d5b27b;
       --footer-line:linear-gradient(90deg, transparent, rgba(244,199,111,.3), rgba(244,199,111,.8), rgba(244,199,111,.3), transparent);
 
-      --clock-color:#cda96f;
+      /* čas mírně tmavší */
+      --clock-color:#b88d47;
     }
 
     body.theme-night{
       --bg:#03050d;
-      --bg-2:#08111f;
       --panel:rgba(9,16,28,.78);
-      --panel-strong:rgba(5,10,20,.9);
       --gold:#9fc8ff;
       --gold-soft:#6ea1e3;
-      --gold-deep:#355f95;
-      --line:rgba(135,180,255,.30);
       --text:#dcecff;
       --muted:#abc4e3;
       --muted-dark:#7e9fc6;
@@ -187,7 +173,8 @@
       --mobile-toggle-bg:rgba(4,10,20,.96);
       --mobile-toggle-border:rgba(126,170,255,.24);
       --mobile-toggle-color:#c8e4ff;
-      --mobile-toggle-shadow:0 0 12px rgba(120,170,255,.10);
+      /* podsvícení pryč */
+      --mobile-toggle-shadow:none;
 
       --headline-rule-start:rgba(120,170,255,.24);
       --headline-rule-mid:rgba(175,214,255,.95);
@@ -243,7 +230,8 @@
       --footer-color:#9eb9dc;
       --footer-line:linear-gradient(90deg, transparent, rgba(126,170,255,.24), rgba(175,214,255,.82), rgba(126,170,255,.24), transparent);
 
-      --clock-color:#8eadd3;
+      /* čas v noci taky mírně tmavší */
+      --clock-color:#7f9fc9;
     }
 
     *{box-sizing:border-box}
@@ -429,12 +417,11 @@
       width:42px;
       height:42px;
       border-radius:12px;
-      box-shadow:var(--mobile-toggle-shadow);
+      box-shadow:none;
       transition:
         background .24s ease,
         color .24s ease,
         border-color .24s ease,
-        box-shadow .24s ease,
         transform .16s ease;
     }
 
@@ -749,7 +736,6 @@
       width:0%;
       border-radius:999px;
       background:var(--progress-fill);
-      box-shadow:var(--progress-fill-shadow);
       pointer-events:none;
     }
 
@@ -781,7 +767,7 @@
       background:var(--platform-bg);
       color:var(--platform-color);
       font-weight:600;
-      transition:transform .16s ease, border-color .24s ease, background .24s ease, color .24s ease, box-shadow .24s ease;
+      transition:transform .16s ease, border-color .24s ease, background .24s ease, color .24s ease;
     }
 
     .platform:hover{
@@ -1008,6 +994,7 @@
         place-items:center;
         grid-column:2 / 3;
         margin-left:0;
+        box-shadow:none;
       }
 
       .header-clock{
