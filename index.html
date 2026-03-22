@@ -148,11 +148,15 @@
         0 0 30px rgba(255,174,49,.10),
         0 10px 24px rgba(0,0,0,.22);
 
-      --smart-card-bg:linear-gradient(180deg, rgba(20,13,8,.82), rgba(8,5,3,.92));
-      --smart-row-bg:linear-gradient(180deg, rgba(35,22,12,.86), rgba(12,7,4,.96));
-      --smart-row-play-bg:linear-gradient(180deg, #f0cb76 0%, #dca441 52%, #9d631f 100%);
-      --smart-row-play-color:#2a1503;
+      --smart-card-bg:linear-gradient(180deg, rgba(20,13,8,.84), rgba(8,5,3,.94));
       --smart-subtext:#b89661;
+
+      --smart-static-text:#ffffff;
+      --smart-static-sub:#f3f3f3;
+      --smart-divider:rgba(255,255,255,.14);
+      --smart-row-hover:rgba(255,255,255,.03);
+      --smart-row-play-text:#ffffff;
+      --smart-brand-icon:#ffffff;
     }
 
     body.theme-night{
@@ -296,11 +300,15 @@
         0 0 30px rgba(120,170,255,.11),
         0 10px 24px rgba(0,0,0,.24);
 
-      --smart-card-bg:linear-gradient(180deg, rgba(10,18,32,.84), rgba(4,9,18,.94));
-      --smart-row-bg:linear-gradient(180deg, rgba(16,24,40,.92), rgba(5,10,20,.98));
-      --smart-row-play-bg:linear-gradient(180deg, #d8ebff 0%, #8fbaf1 52%, #4e78ab 100%);
-      --smart-row-play-color:#071423;
+      --smart-card-bg:linear-gradient(180deg, rgba(10,18,32,.86), rgba(4,9,18,.96));
       --smart-subtext:#7e9fc6;
+
+      --smart-static-text:#ffffff;
+      --smart-static-sub:#f3f3f3;
+      --smart-divider:rgba(255,255,255,.14);
+      --smart-row-hover:rgba(255,255,255,.035);
+      --smart-row-play-text:#ffffff;
+      --smart-brand-icon:#ffffff;
     }
 
     *{box-sizing:border-box}
@@ -588,7 +596,7 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:72px 0 52px;
+      padding:72px 0 60px;
       overflow:hidden;
     }
 
@@ -630,8 +638,8 @@
     }
 
     .smart-profile-link{
-      width:214px;
-      height:214px;
+      width:228px;
+      height:228px;
       margin:0 auto 20px;
       position:relative;
       border-radius:42px;
@@ -692,86 +700,89 @@
     .smart-link-card{
       position:relative;
       width:100%;
-      padding:22px 20px 20px;
-      border-radius:28px;
-      border:1px solid var(--panel-border);
-      background:var(--smart-card-bg);
-      box-shadow:var(--shadow);
+      padding:0;
+      border-radius:8px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(17,17,17,.72);
+      box-shadow:
+        0 14px 34px rgba(0,0,0,.28),
+        0 0 0 1px rgba(255,255,255,.03);
       overflow:hidden;
+      backdrop-filter:blur(8px);
     }
 
-    .smart-link-card::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      pointer-events:none;
-      background:
-        radial-gradient(circle at 20% 18%, rgba(255,184,77,.08), transparent 24%),
-        radial-gradient(circle at 82% 78%, rgba(255,184,77,.05), transparent 24%);
+    .smart-platform-list{
+      display:grid;
+      gap:0;
     }
-
-    body.theme-night .smart-link-card::before{
-      background:
-        radial-gradient(circle at 20% 18%, rgba(140,196,255,.08), transparent 24%),
-        radial-gradient(circle at 82% 78%, rgba(140,196,255,.05), transparent 24%);
-    }
-
-    .smart-platform-list{display:grid; gap:14px;}
 
     .smart-platform-row{
       display:grid;
       grid-template-columns:1fr auto;
       align-items:center;
       gap:14px;
-      min-height:72px;
+      min-height:68px;
       padding:0 0 0 20px;
-      border-radius:20px;
-      border:1px solid var(--media-border);
-      background:var(--smart-row-bg);
-      box-shadow:var(--media-shadow);
+      border-bottom:1px solid var(--smart-divider);
+      background:transparent;
+      box-shadow:none;
       overflow:hidden;
-      transition:border-color .22s ease, box-shadow .22s ease;
+      transition:background .18s ease;
+    }
+
+    .smart-platform-row:last-child{
+      border-bottom:none;
     }
 
     .smart-platform-row:hover{
-      border-color:var(--platform-border-hover);
-      box-shadow:var(--cell-glow);
+      background:var(--smart-row-hover);
     }
 
     .smart-platform-name{
       display:flex;
       align-items:center;
       gap:14px;
-      font-weight:700;
-      color:var(--text);
-      font-size:1.05rem;
+      font-weight:600;
+      color:var(--smart-static-text);
+      font-size:1rem;
+      letter-spacing:0;
     }
 
     .smart-platform-name i{
-      width:28px;
+      width:26px;
       text-align:center;
-      color:var(--gold);
-      font-size:1.6rem;
+      color:var(--smart-brand-icon);
+      font-size:1.34rem;
+      filter:none !important;
     }
 
     .smart-play-btn{
-      min-width:112px;
-      height:72px;
-      border-left:1px solid var(--platform-border);
-      background:var(--smart-row-play-bg);
-      color:var(--smart-row-play-color);
-      font-weight:800;
-      letter-spacing:.04em;
+      min-width:96px;
+      height:68px;
+      border-left:1px solid var(--smart-divider);
+      background:transparent;
+      color:var(--smart-row-play-text);
+      font-weight:600;
+      letter-spacing:0;
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      transition:filter .18s ease, background .24s ease, color .24s ease;
+      transition:background .18s ease, color .18s ease, opacity .18s ease;
       cursor:pointer;
       font-size:1rem;
+      text-transform:none;
     }
 
-    .smart-play-btn:hover{filter:brightness(1.04);}
-    .smart-play-btn.disabled{cursor:default; opacity:.74; filter:saturate(.92);}
+    .smart-play-btn:hover{
+      background:rgba(255,255,255,.03);
+      filter:none;
+    }
+
+    .smart-play-btn.disabled{
+      cursor:default;
+      opacity:.56;
+      filter:none;
+    }
 
     section{
       padding:40px 0; content-visibility:auto; contain-intrinsic-size:800px;
@@ -1170,7 +1181,7 @@
     }
 
     body.smart-link-mode footer{
-      padding:10px 0 28px;
+      padding:18px 0 28px;
     }
 
     .footer-line{
@@ -1190,6 +1201,7 @@
       letter-spacing:0;
       font-size:.82rem;
       color:var(--smart-subtext);
+      margin-top:18px;
     }
 
     .hidden-audio{display:none;}
@@ -1339,17 +1351,17 @@
 
       .smart-link-page{
         min-height:100vh;
-        padding:46px 0 34px;
+        padding:46px 0 40px;
       }
 
       .smart-profile-link{
-        width:182px;
-        height:182px;
+        width:192px;
+        height:192px;
         border-radius:34px;
       }
 
       .smart-link-card{
-        padding:18px 16px 16px;
+        border-radius:8px;
       }
 
       .smart-platform-row{
@@ -1358,7 +1370,7 @@
 
       .smart-play-btn{
         height:64px;
-        min-width:98px;
+        min-width:96px;
       }
 
       section{padding:28px 0;}
@@ -1445,12 +1457,12 @@
       }
 
       .smart-link-page{
-        padding:34px 0 24px;
+        padding:34px 0 26px;
       }
 
       .smart-profile-link{
-        width:154px;
-        height:154px;
+        width:164px;
+        height:164px;
         border-radius:30px;
         margin-bottom:16px;
       }
@@ -1468,28 +1480,27 @@
       }
 
       .smart-link-card{
-        border-radius:22px;
+        border-radius:8px;
       }
 
       .smart-platform-row{
         min-height:58px;
         padding-left:14px;
         gap:10px;
-        border-radius:16px;
       }
 
       .smart-platform-name{
-        font-size:.95rem;
+        font-size:.94rem;
         gap:10px;
       }
 
       .smart-platform-name i{
-        width:24px;
-        font-size:1.35rem;
+        width:22px;
+        font-size:1.18rem;
       }
 
       .smart-play-btn{
-        min-width:84px;
+        min-width:78px;
         height:58px;
         font-size:.92rem;
       }
@@ -1569,7 +1580,7 @@
       .footer-copy{font-size:.8rem;}
 
       footer{padding:14px 0 34px;}
-      body.smart-link-mode footer{padding:6px 0 18px;}
+      body.smart-link-mode footer{padding:16px 0 18px;}
       .footer-line{margin:0 auto 14px;}
 
       .dust-orb{filter:blur(8px);}
@@ -1988,6 +1999,16 @@
                       <div class="smart-platform-name"><i class="fa-brands fa-soundcloud"></i> SoundCloud</div>
                       <a class="smart-play-btn" href="https://soundcloud.com/imurheimofficial" target="_blank" rel="noopener">Play</a>
                     </div>
+
+                    <div class="smart-platform-row">
+                      <div class="smart-platform-name"><i class="fa-brands fa-youtube"></i> YouTube Music</div>
+                      <span class="smart-play-btn disabled">Play</span>
+                    </div>
+
+                    <div class="smart-platform-row">
+                      <div class="smart-platform-name"><i class="fa-solid fa-music"></i> Deezer</div>
+                      <span class="smart-play-btn disabled">Play</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -2105,6 +2126,16 @@
       }
     }
 
+    function updateDocumentTitleForView(viewName) {
+      if (viewName === 'smart-link') {
+        document.title = latestState.title && latestState.title !== "[Song Title]"
+          ? latestState.title
+          : "URHEIM";
+      } else {
+        document.title = "URHEIM";
+      }
+    }
+
     function applyLatestVideoData(data) {
       latestState.title = data?.title?.trim() || "[Song Title]";
       latestState.releaseDate = data?.releaseDate?.trim() || "";
@@ -2140,6 +2171,10 @@
 
       const smartLink = document.getElementById('smartLatestVideoLink');
       if (smartLink) smartLink.href = latestState.videoUrl;
+
+      if (document.body.classList.contains('smart-link-mode')) {
+        updateDocumentTitleForView('smart-link');
+      }
     }
 
     async function fetchLatestVideoData() {
@@ -2211,14 +2246,13 @@
       }
     }
 
-    function generateRoundedFavicon(sourcePath) {
+    function generateRoundedFavicon(sourcePath, radius = 58, scale = 1) {
       try {
         const img = new Image();
         img.crossOrigin = "anonymous";
 
         img.onload = () => {
           const size = 256;
-          const radius = 58;
           const canvas = document.createElement("canvas");
           canvas.width = size;
           canvas.height = size;
@@ -2229,7 +2263,10 @@
           roundedRect(ctx, 0, 0, size, size, radius);
           ctx.closePath();
           ctx.clip();
-          ctx.drawImage(img, 0, 0, size, size);
+
+          const drawSize = size * scale;
+          const offset = (size - drawSize) / 2;
+          ctx.drawImage(img, offset, offset, drawSize, drawSize);
 
           const dataUrl = canvas.toDataURL("image/png");
 
@@ -2272,10 +2309,12 @@
       }
 
       if (isSmart) {
-        generateRoundedFavicon("assets/URHEIM GOLDEN WATERMARK.png");
+        generateRoundedFavicon("assets/URHEIM GOLDEN WATERMARK.png", 68, 1.10);
       } else {
-        generateRoundedFavicon("assets/URHEIM GOLDEN PROFILE.png");
+        generateRoundedFavicon("assets/URHEIM GOLDEN PROFILE.png", 58, 1);
       }
+
+      updateDocumentTitleForView(viewName);
     }
 
     const themeSwitch = document.getElementById('themeSwitch');
@@ -2293,7 +2332,7 @@
     fetchLatestVideoData();
     setInterval(fetchLatestVideoData, 30000);
 
-    generateRoundedFavicon("assets/URHEIM GOLDEN PROFILE.png");
+    generateRoundedFavicon("assets/URHEIM GOLDEN PROFILE.png", 58, 1);
 
     const toggle = document.getElementById('mobileToggle');
     const navLinks = document.getElementById('navLinks');
