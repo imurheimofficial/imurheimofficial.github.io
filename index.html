@@ -134,6 +134,7 @@
       --official-label-glow:0 0 10px rgba(255,179,72,.12);
 
       --sub-inline-text:#f7e0b4;
+      --youtube-icon-filter:none;
     }
 
     body.theme-night{
@@ -162,7 +163,6 @@
         contrast(1.12)
         sepia(.04);
       --hero-image-opacity:1;
-
       --hero-border-top:rgba(126,170,255,.16);
       --hero-border-bottom:rgba(126,170,255,.16);
       --hero-inset-top:rgba(126,170,255,.18);
@@ -236,7 +236,6 @@
 
       --footer-color:#9eb9dc;
       --footer-line:linear-gradient(90deg, transparent, rgba(126,170,255,.24), rgba(175,214,255,.82), rgba(126,170,255,.24), transparent);
-
       --clock-color:#7f9fc9;
 
       --switch-track:#08101d;
@@ -249,6 +248,11 @@
       --official-label-glow:0 0 12px rgba(120,170,255,.16);
 
       --sub-inline-text:#dcecff;
+      --youtube-icon-filter:
+        hue-rotate(180deg)
+        saturate(1.08)
+        brightness(.84)
+        contrast(1.05);
     }
 
     *{box-sizing:border-box}
@@ -375,10 +379,10 @@
       font-size:1.18rem;
       letter-spacing:.05em;
       line-height:1;
+      text-shadow:none;
     }
 
-    .nav-links a:hover,
-    .nav-links a.nav-active{
+    .nav-links a:hover{
       color:#ffe4b3;
       text-shadow:
         0 0 8px rgba(255,196,102,.45),
@@ -386,8 +390,7 @@
       transform:translateY(-1px);
     }
 
-    body.theme-night .nav-links a:hover,
-    body.theme-night .nav-links a.nav-active{
+    body.theme-night .nav-links a:hover{
       color:#eaf5ff;
       text-shadow:
         0 0 8px rgba(175,214,255,.42),
@@ -410,7 +413,7 @@
       box-shadow:0 0 8px rgba(120,170,255,.48);
     }
 
-    .nav-links a:hover::after,
+    .nav-links a:hover::after{width:0}
     .nav-links a.nav-active::after{width:100%}
 
     .header-clock{
@@ -687,7 +690,8 @@
     .subpage-card,
     .contact-subpage,
     .youtube-channel-cover,
-    .video-page-card{
+    .video-page-card,
+    .video-card-grid-panel{
       position:relative;
       border-radius:20px;
       overflow:hidden;
@@ -737,6 +741,8 @@
       color:#fff2d6;
       text-shadow:0 10px 24px rgba(0,0,0,.45);
       z-index:2;
+      filter:var(--youtube-icon-filter);
+      transition:filter .24s ease, color .24s ease;
     }
 
     .youtube-cover-link{
@@ -960,7 +966,7 @@
       display:grid;
       grid-template-columns:repeat(3, 1fr);
       gap:22px;
-      margin-top:22px;
+      margin-top:0;
     }
 
     .video-card,
@@ -1150,8 +1156,8 @@
     body.theme-night .social:hover{color:#eef7ff;}
 
     .video-channel-inline{
-      margin-top:38px;
-      padding-top:4px;
+      margin-top:20px;
+      padding-top:0;
       display:flex;
       justify-content:center;
       align-items:center;
@@ -1167,17 +1173,18 @@
     }
 
     .video-channel-iconbox{
-      width:56px;
-      height:56px;
+      width:64px;
+      height:64px;
       display:grid;
       place-items:center;
       border-radius:14px;
       overflow:hidden;
-      background:#000;
-      border:1px solid var(--media-border);
-      box-shadow:var(--media-shadow);
-      transition:border-color .24s ease, box-shadow .24s ease, background .24s ease;
+      background:transparent;
+      border:none;
+      box-shadow:none;
+      transition:filter .24s ease, transform .24s ease;
       flex:0 0 auto;
+      filter:var(--profile-image-filter);
     }
 
     .video-channel-avatar{
@@ -1346,7 +1353,7 @@
       }
 
       .video-channel-inline{
-        margin-top:28px;
+        margin-top:18px;
       }
 
       .video-channel-inline-inner{
@@ -1665,92 +1672,94 @@
     <div id="subpageVideo" class="subpage-shell">
       <section>
         <div class="container">
-          <div class="panel subpage-card">
+          <div class="subpage-card">
             <h2 class="section-title">Videos</h2>
 
-            <div class="subpage-video-grid">
-              <article class="panel video-card">
-                <a href="#" class="video-thumb">
-                  <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
-                </a>
-                <div class="video-info">
-                  <h4>Official Video</h4>
-                </div>
-              </article>
+            <div class="video-card-grid-panel panel">
+              <div class="subpage-video-grid" style="margin-bottom:22px; padding:0 0 22px;">
+                <article class="panel video-card">
+                  <a href="#" class="video-thumb">
+                    <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
+                  </a>
+                  <div class="video-info">
+                    <h4>Official Video</h4>
+                  </div>
+                </article>
 
-              <article class="panel video-card">
-                <a href="#" class="video-thumb">
-                  <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
-                </a>
-                <div class="video-info">
-                  <h4>Live Performance</h4>
-                </div>
-              </article>
+                <article class="panel video-card">
+                  <a href="#" class="video-thumb">
+                    <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
+                  </a>
+                  <div class="video-info">
+                    <h4>Live Performance</h4>
+                  </div>
+                </article>
 
-              <article class="panel video-card">
-                <a href="#" class="video-thumb">
-                  <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
-                </a>
-                <div class="video-info">
-                  <h4>Collab Project</h4>
-                </div>
-              </article>
-            </div>
+                <article class="panel video-card">
+                  <a href="#" class="video-thumb">
+                    <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
+                  </a>
+                  <div class="video-info">
+                    <h4>Collab Project</h4>
+                  </div>
+                </article>
+              </div>
 
-            <div class="video-page-grid">
-              <article class="panel video-page-card">
-                <a href="#" class="video-page-thumb">
-                  <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
-                </a>
-                <div class="video-page-info">
-                  <h4>YouTube Video 1</h4>
-                </div>
-              </article>
+              <div class="video-page-grid" style="padding:0 0 22px;">
+                <article class="panel video-page-card">
+                  <a href="#" class="video-page-thumb">
+                    <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
+                  </a>
+                  <div class="video-page-info">
+                    <h4>YouTube Video 1</h4>
+                  </div>
+                </article>
 
-              <article class="panel video-page-card">
-                <a href="#" class="video-page-thumb">
-                  <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
-                </a>
-                <div class="video-page-info">
-                  <h4>YouTube Video 2</h4>
-                </div>
-              </article>
+                <article class="panel video-page-card">
+                  <a href="#" class="video-page-thumb">
+                    <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
+                  </a>
+                  <div class="video-page-info">
+                    <h4>YouTube Video 2</h4>
+                  </div>
+                </article>
 
-              <article class="panel video-page-card">
-                <a href="#" class="video-page-thumb">
-                  <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
-                </a>
-                <div class="video-page-info">
-                  <h4>YouTube Video 3</h4>
-                </div>
-              </article>
+                <article class="panel video-page-card">
+                  <a href="#" class="video-page-thumb">
+                    <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
+                  </a>
+                  <div class="video-page-info">
+                    <h4>YouTube Video 3</h4>
+                  </div>
+                </article>
 
-              <article class="panel video-page-card">
-                <a href="#" class="video-page-thumb">
-                  <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
-                </a>
-                <div class="video-page-info">
-                  <h4>YouTube Video 4</h4>
-                </div>
-              </article>
+                <article class="panel video-page-card">
+                  <a href="#" class="video-page-thumb">
+                    <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
+                  </a>
+                  <div class="video-page-info">
+                    <h4>YouTube Video 4</h4>
+                  </div>
+                </article>
 
-              <article class="panel video-page-card">
-                <a href="#" class="video-page-thumb">
-                  <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
-                </a>
-                <div class="video-page-info">
-                  <h4>YouTube Video 5</h4>
-                </div>
-              </article>
+                <article class="panel video-page-card">
+                  <a href="#" class="video-page-thumb">
+                    <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
+                  </a>
+                  <div class="video-page-info">
+                    <h4>YouTube Video 5</h4>
+                  </div>
+                </article>
 
-              <article class="panel video-page-card">
-                <a href="#" class="video-page-thumb">
-                  <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
-                </a>
-                <div class="video-page-info">
-                  <h4>YouTube Video 6</h4>
-                </div>
-              </article>
+                <article class="panel video-page-card">
+                  <a href="#" class="video-page-thumb">
+                    <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
+                  </a>
+                  <div class="video-page-info">
+                    <h4>YouTube Video 6</h4>
+                  </div>
+                </article>
+              </div>
             </div>
 
             <div class="video-channel-inline">
