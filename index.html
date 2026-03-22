@@ -73,7 +73,6 @@
       --mobile-toggle-bg:#000;
       --mobile-toggle-border:rgba(244,199,111,.25);
       --mobile-toggle-color:var(--gold);
-      --mobile-toggle-shadow:none;
 
       --headline-rule-start:rgba(244,199,111,.3);
       --headline-rule-mid:rgba(244,199,111,.95);
@@ -172,7 +171,6 @@
       --mobile-toggle-bg:rgba(4,10,20,.96);
       --mobile-toggle-border:rgba(126,170,255,.24);
       --mobile-toggle-color:#c8e4ff;
-      --mobile-toggle-shadow:none;
 
       --headline-rule-start:rgba(120,170,255,.24);
       --headline-rule-mid:rgba(175,214,255,.95);
@@ -654,7 +652,6 @@
       padding:22px;
     }
 
-    .media-cover,
     .about-image,
     .video-thumb,
     .subpage-card,
@@ -676,8 +673,7 @@
       align-items:flex-end;
       justify-content:center;
       background:
-        linear-gradient(180deg, rgba(0,0,0,.16), rgba(0,0,0,.66)),
-        url("https://i.ytimg.com/vi_webp/dQw4w9WgXcQ/maxresdefault.webp") center center / cover no-repeat,
+        linear-gradient(180deg, rgba(0,0,0,.06), rgba(0,0,0,.74)),
         #000;
     }
 
@@ -686,7 +682,7 @@
       position:absolute;
       inset:0;
       background:
-        radial-gradient(circle at 50% 40%, rgba(255,255,255,.06), transparent 24%);
+        radial-gradient(circle at 50% 40%, rgba(255,255,255,.04), transparent 24%);
       pointer-events:none;
     }
 
@@ -698,13 +694,25 @@
       display:flex;
       flex-direction:column;
       align-items:center;
-      gap:12px;
+      gap:10px;
       text-align:center;
       background:linear-gradient(180deg, transparent, rgba(0,0,0,.58));
     }
 
+    .youtube-cover-label{
+      font-family:Cinzel, serif;
+      font-size:.78rem;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:#d8b981;
+    }
+
+    body.theme-night .youtube-cover-label{
+      color:#b9d7ff;
+    }
+
     .youtube-cover-inner i{
-      font-size:2.5rem;
+      font-size:2.7rem;
       color:#fff2d6;
       text-shadow:0 10px 24px rgba(0,0,0,.45);
     }
@@ -1155,14 +1163,6 @@
 
     .hidden-audio{display:none;}
 
-    @media (max-width: 1100px){
-      .subpage-small-grid,
-      .subpage-video-grid,
-      .subpage-youtube-grid{
-        grid-template-columns:repeat(2,1fr);
-      }
-    }
-
     @media (max-width: 980px){
       .nav{
         min-height:68px;
@@ -1199,7 +1199,6 @@
         place-items:center;
         grid-column:2 / 3;
         margin-left:0;
-        box-shadow:none;
       }
 
       .header-clock{
@@ -1323,10 +1322,11 @@
           <article class="panel release-card">
             <a class="youtube-channel-cover" href="https://www.youtube.com/@imurheimofficial" target="_blank" rel="noopener" aria-label="URHEIM YouTube Channel">
               <div class="youtube-cover-inner">
+                <div class="youtube-cover-label">URHEIM YOUTUBE</div>
                 <i class="fa-brands fa-youtube"></i>
                 <h4>URHEIM YouTube Channel</h4>
-                <p>Open channel and watch latest videos</p>
-                <span class="youtube-cover-link">Open Channel</span>
+                <p>Watch latest videos</p>
+                <span class="youtube-cover-link">Watch Now</span>
               </div>
             </a>
 
@@ -1471,10 +1471,11 @@
             <article class="panel release-card" style="margin-top:16px;">
               <a class="youtube-channel-cover" href="https://www.youtube.com/@imurheimofficial" target="_blank" rel="noopener" aria-label="URHEIM YouTube Channel">
                 <div class="youtube-cover-inner">
+                  <div class="youtube-cover-label">URHEIM YOUTUBE</div>
                   <i class="fa-brands fa-youtube"></i>
                   <h4>URHEIM YouTube Channel</h4>
-                  <p>Open channel and watch latest videos</p>
-                  <span class="youtube-cover-link">Open Channel</span>
+                  <p>Watch latest videos</p>
+                  <span class="youtube-cover-link">Watch Now</span>
                 </div>
               </a>
 
