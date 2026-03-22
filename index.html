@@ -20,7 +20,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 
-  <!-- Rounded favicon -->
   <link rel="icon" type="image/svg+xml" href='data:image/svg+xml;utf8,
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
       <defs>
@@ -758,21 +757,11 @@
       filter:brightness(1.04);
     }
 
-    .subpage-shell{
-      display:none;
-    }
+    .subpage-shell{display:none;}
+    .subpage-shell.active{display:block;}
 
-    .subpage-shell.active{
-      display:block;
-    }
-
-    .smart-link-shell{
-      display:none;
-    }
-
-    .smart-link-shell.active{
-      display:block;
-    }
+    .smart-link-shell{display:none;}
+    .smart-link-shell.active{display:block;}
 
     .smart-link-page{
       position:relative;
@@ -796,12 +785,7 @@
     }
 
     body.theme-night .smart-link-page::before{
-      filter:
-        blur(28px)
-        hue-rotate(180deg)
-        saturate(1.08)
-        brightness(.50)
-        contrast(1.06);
+      filter:blur(28px) hue-rotate(180deg) saturate(1.08) brightness(.50) contrast(1.06);
       opacity:.62;
     }
 
@@ -876,9 +860,7 @@
       pointer-events:none;
     }
 
-    body.theme-night .smart-profile-play{
-      color:#e6f4ff;
-    }
+    body.theme-night .smart-profile-play{color:#e6f4ff;}
 
     .smart-title{
       margin:0;
@@ -950,9 +932,7 @@
       cursor:pointer;
     }
 
-    .smart-play-btn:hover{
-      filter:brightness(1.04);
-    }
+    .smart-play-btn:hover{filter:brightness(1.04);}
 
     .smart-play-btn.disabled{
       cursor:default;
@@ -1566,9 +1546,7 @@
       box-shadow:var(--button-shadow-hover);
     }
 
-    body.theme-night .social:hover{
-      color:var(--button-text);
-    }
+    body.theme-night .social:hover{color:var(--button-text);}
 
     .video-channel-inline{
       margin-top:20px;
@@ -1727,14 +1705,8 @@
       will-change:opacity, transform;
     }
 
-    .animate-in.run{
-      animation:fadeUpIn .72s ease forwards;
-    }
-
-    .animate-in.run.from-top{
-      animation:fadeDownIn .72s ease forwards;
-    }
-
+    .animate-in.run{animation:fadeUpIn .72s ease forwards;}
+    .animate-in.run.from-top{animation:fadeDownIn .72s ease forwards;}
     .animate-in.run.delay-1{ animation-delay:.08s; }
     .animate-in.run.delay-2{ animation-delay:.16s; }
     .animate-in.run.delay-3{ animation-delay:.24s; }
@@ -1830,14 +1802,12 @@
 
       .nav-links a{font-size:1rem;}
       .nav-links.open{display:flex}
-
-      .header-clock{
-        display:none;
-      }
+      .header-clock{display:none;}
 
       .hero{padding-top:20px; min-height:auto}
       .hero-copy{margin-top:6px}
 
+      .release-card,
       .about-grid,
       .video-grid,
       .subpage-video-grid,
@@ -1852,51 +1822,25 @@
         margin-inline:auto;
       }
 
-      .about-image{
-        min-height:210px;
-      }
+      .about-image{min-height:210px;}
 
-      .video-channel-inline{
-        margin-top:16px;
-      }
+      .video-channel-inline{margin-top:16px;}
+      .video-channel-inline-inner{flex-direction:column; gap:9px;}
+      .video-channel-meta{align-items:center;}
+      .video-channel-row{justify-content:center;}
 
-      .video-channel-inline-inner{
-        flex-direction:column;
-        gap:9px;
-      }
-
-      .video-channel-meta{
-        align-items:center;
-      }
-
-      .video-channel-row{
-        justify-content:center;
-      }
-
-      .subpage-card{
-        padding:20px;
-      }
-
-      .contact-subpage{
-        padding:22px 18px;
-      }
+      .subpage-card{padding:20px;}
+      .contact-subpage{padding:22px 18px;}
 
       .smart-link-page{
         min-height:calc(100vh - 64px);
         padding:34px 0 44px;
       }
 
-      .smart-link-card{
-        padding:24px 18px 18px;
-      }
+      .smart-link-card{padding:24px 18px 18px;}
 
-      section{
-        padding:28px 0;
-      }
-
-      .social-panel{
-        transform:translateY(18px);
-      }
+      section{padding:28px 0;}
+      .social-panel{transform:translateY(18px);}
 
       .dust-orb{
         transform:scale(.9);
@@ -1907,13 +1851,8 @@
     @media (max-width: 640px){
       .container{width:min(100% - 16px, var(--container))}
 
-      .hero{
-        padding:16px 0 20px;
-      }
-
-      .hero-watermark{
-        width:min(100%, 520px);
-      }
+      .hero{padding:16px 0 20px;}
+      .hero-watermark{width:min(100%, 520px);}
 
       .eyebrow{
         font-size:.62rem;
@@ -1949,6 +1888,7 @@
         width:min(12vw, 70px);
       }
 
+      .release-meta h3,
       .about-copy h3,
       .contact-subpage h2{
         font-size:1.45rem;
@@ -1962,9 +1902,16 @@
       }
 
       .about-copy p,
+      .release-meta p,
       .contact-subpage-item p{
         font-size:.88rem;
         line-height:1.7;
+      }
+
+      .platforms{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:10px;
       }
 
       .platform{
@@ -1975,13 +1922,8 @@
         gap:8px;
       }
 
-      .smart-title{
-        font-size:1.42rem;
-      }
-
-      .smart-available{
-        font-size:.88rem;
-      }
+      .smart-title{font-size:1.42rem;}
+      .smart-available{font-size:.88rem;}
 
       .smart-platform-row{
         min-height:52px;
@@ -2010,9 +1952,7 @@
         padding:12px 12px 14px;
       }
 
-      .play-large{
-        font-size:3rem;
-      }
+      .play-large{font-size:3rem;}
 
       .theme-switch{
         width:50px;
@@ -2024,39 +1964,42 @@
         height:18px;
       }
 
-      body.theme-night .theme-switch::before{
-        left:28px;
-      }
+      body.theme-night .theme-switch::before{left:28px;}
 
       .theme-switch-icon{
         font-size:.68rem;
         padding:0 7px;
       }
 
-      .subpage-card{
-        padding:16px;
+      .audio-bar{
+        gap:10px;
+        margin:14px 0;
       }
 
-      .contact-subpage{
-        padding:18px 14px;
+      .play{
+        width:46px;
+        height:46px;
       }
 
-      .contact-subpage-list{
-        gap:22px;
+      .track-title{
+        margin-bottom:8px;
+        font-size:.9rem;
       }
 
-      .contact-subpage-item h4{
-        font-size:.98rem;
-      }
+      .track-time{font-size:.78rem;}
+      .progress{height:7px;}
+
+      .subpage-card{padding:16px;}
+      .contact-subpage{padding:18px 14px;}
+      .contact-subpage-list{gap:22px;}
+      .contact-subpage-item h4{font-size:.98rem;}
 
       .video-channel-iconbox{
         width:56px;
         height:56px;
       }
 
-      .video-channel-headline{
-        font-size:.94rem;
-      }
+      .video-channel-headline{font-size:.94rem;}
 
       .video-channel-mainbtn,
       .video-channel-subs{
@@ -2064,21 +2007,12 @@
         font-size:.75rem;
       }
 
-      .footer-copy{
-        font-size:.8rem;
-      }
+      .footer-copy{font-size:.8rem;}
 
-      footer{
-        padding:14px 0 34px;
-      }
+      footer{padding:14px 0 34px;}
+      .footer-line{margin:0 auto 14px;}
 
-      .footer-line{
-        margin:0 auto 14px;
-      }
-
-      .dust-orb{
-        filter:blur(8px);
-      }
+      .dust-orb{filter:blur(8px);}
     }
   </style>
 </head>
@@ -2118,6 +2052,7 @@
         <nav class="nav-links" id="navLinks">
           <a href="/" data-view="home" class="nav-active">Home</a>
           <a href="/bio" data-view="bio-page">Bio</a>
+          <a href="/music" data-view="music-page">Music</a>
           <a href="/video" data-view="video-page">Video</a>
           <a href="/collabs" data-view="collabs-page">Collabs</a>
           <a href="/contact" data-view="contact-page">Contact</a>
@@ -2206,6 +2141,59 @@
                     </p>
                   </div>
                 </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- MUSIC -->
+        <div id="subpageMusic" class="subpage-shell">
+          <section>
+            <div class="container">
+              <div class="panel subpage-card animate-in delay-2">
+                <h2 class="section-title">Latest Release</h2>
+
+                <article class="panel release-card animate-in delay-3" style="margin-top:16px;">
+                  <a class="youtube-channel-cover" id="subLatestVideoLink" href="https://www.youtube.com/@imurheimofficial" target="_blank" rel="noopener" aria-label="Latest YouTube Video">
+                    <div class="youtube-cover-thumb" id="subLatestVideoThumb"></div>
+                    <div class="youtube-cover-inner">
+                      <i class="fa-brands fa-youtube"></i>
+                      <span class="youtube-cover-link">Watch Now</span>
+                    </div>
+                  </a>
+
+                  <div class="release-meta">
+                    <h3 id="subLatestTitle">[Song Title]</h3>
+                    <p id="subLatestReleaseText">Release date:</p>
+
+                    <div class="audio-bar">
+                      <button class="play" id="subPlayButton" type="button" aria-label="Play preview">
+                        <i class="fa-solid fa-play" id="subPlayIcon"></i>
+                      </button>
+
+                      <div class="track">
+                        <div class="track-title">
+                          <span>Preview Track</span>
+                        </div>
+
+                        <div class="progress" id="subProgressBar" aria-label="Audio progress">
+                          <span id="subProgressFill"></span>
+                        </div>
+
+                        <div class="track-time">
+                          <span id="subCurrentTime">0:00</span> / <span id="subDuration">0:00</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="platforms">
+                      <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-spotify"></i> Spotify</a>
+                      <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-apple"></i> Apple Music</a>
+                      <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-soundcloud"></i> SoundCloud</a>
+                      <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-amazon"></i> Amazon</a>
+                    </div>
+                  </div>
+                </article>
               </div>
             </div>
           </section>
@@ -2589,6 +2577,22 @@
       latestState.subscribers = data?.subscribers?.toString().trim() || "0";
       latestState.channelAvatarUrl = data?.channelAvatarUrl?.trim() || "assets/URHEIM GOLDEN PROFILE.png";
 
+      const subLatestTitle = document.getElementById('subLatestTitle');
+      if (subLatestTitle) subLatestTitle.textContent = latestState.title;
+
+      const subLatestReleaseText = document.getElementById('subLatestReleaseText');
+      if (subLatestReleaseText) {
+        subLatestReleaseText.textContent = latestState.releaseDate ? `Release date: ${latestState.releaseDate}` : "Release date:";
+      }
+
+      const subLatestVideoLink = document.getElementById('subLatestVideoLink');
+      if (subLatestVideoLink) subLatestVideoLink.href = latestState.videoUrl;
+
+      const subLatestVideoThumb = document.getElementById('subLatestVideoThumb');
+      if (subLatestVideoThumb) {
+        subLatestVideoThumb.style.backgroundImage = latestState.thumbnailUrl ? `url("${latestState.thumbnailUrl}")` : "none";
+      }
+
       const subsEl = document.getElementById('videoChannelSubs');
       if (subsEl) subsEl.textContent = latestState.subscribers;
 
@@ -2701,12 +2705,82 @@
 
     document.getElementById('year').textContent = new Date().getFullYear();
 
+    const audio = document.getElementById('releaseAudio') || (() => {
+      const audioEl = document.createElement('audio');
+      audioEl.id = 'releaseAudio';
+      audioEl.className = 'hidden-audio';
+      audioEl.preload = 'metadata';
+      audioEl.innerHTML = '<source src="" type="audio/mpeg">';
+      document.body.appendChild(audioEl);
+      return audioEl;
+    })();
+
+    const subAudioButton = document.getElementById('subPlayButton');
+    const subPlayIcon = document.getElementById('subPlayIcon');
+    const subProgressBar = document.getElementById('subProgressBar');
+    const subProgressFill = document.getElementById('subProgressFill');
+    const subCurrentTimeEl = document.getElementById('subCurrentTime');
+    const subDurationEl = document.getElementById('subDuration');
+
+    function formatTime(seconds) {
+      if (!isFinite(seconds)) return '0:00';
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+      return `${mins}:${secs.toString().padStart(2, '0')}`;
+    }
+
+    function updateSubPlayIcon() {
+      if (subPlayIcon) {
+        subPlayIcon.className = audio.paused ? 'fa-solid fa-play' : 'fa-solid fa-pause';
+      }
+    }
+
+    if (subAudioButton && audio) {
+      subAudioButton.addEventListener('click', () => {
+        const source = audio.querySelector('source');
+        if (!source || !source.getAttribute('src')) {
+          alert('Sem potom vlož cestu k audio souboru do <source src="">.');
+          return;
+        }
+
+        if (audio.paused) audio.play();
+        else audio.pause();
+      });
+
+      audio.addEventListener('loadedmetadata', () => {
+        if (subDurationEl) subDurationEl.textContent = formatTime(audio.duration);
+      });
+
+      audio.addEventListener('timeupdate', () => {
+        if (subCurrentTimeEl) subCurrentTimeEl.textContent = formatTime(audio.currentTime);
+        if (audio.duration && subProgressFill) {
+          const percent = (audio.currentTime / audio.duration) * 100;
+          subProgressFill.style.width = `${percent}%`;
+        }
+      });
+
+      audio.addEventListener('play', updateSubPlayIcon);
+      audio.addEventListener('pause', updateSubPlayIcon);
+      audio.addEventListener('ended', updateSubPlayIcon);
+    }
+
+    if (subProgressBar && audio) {
+      subProgressBar.addEventListener('click', (event) => {
+        if (!audio.duration) return;
+        const rect = subProgressBar.getBoundingClientRect();
+        const clickX = event.clientX - rect.left;
+        const ratio = clickX / rect.width;
+        audio.currentTime = ratio * audio.duration;
+      });
+    }
+
     const heroSection = document.getElementById('heroSection');
     const homeContent = document.getElementById('homeContent');
     const smartLinkPage = document.getElementById('subpageSmartLink');
 
     const subpages = {
       'bio-page': document.getElementById('subpageBio'),
+      'music-page': document.getElementById('subpageMusic'),
       'video-page': document.getElementById('subpageVideo'),
       'collabs-page': document.getElementById('subpageCollabs'),
       'contact-page': document.getElementById('subpageContact')
@@ -2714,11 +2788,8 @@
 
     function setActiveNavByView(viewName) {
       document.querySelectorAll('.nav-links a[data-view]').forEach(link => {
-        if (link.dataset.view === viewName) {
-          link.classList.add('nav-active');
-        } else {
-          link.classList.remove('nav-active');
-        }
+        if (link.dataset.view === viewName) link.classList.add('nav-active');
+        else link.classList.remove('nav-active');
       });
     }
 
@@ -2773,6 +2844,7 @@
         const pathMap = {
           'home': '/',
           'bio-page': '/bio',
+          'music-page': '/music',
           'video-page': '/video',
           'collabs-page': '/collabs',
           'contact-page': '/contact',
@@ -2794,6 +2866,7 @@
     window.addEventListener('popstate', () => {
       const path = window.location.pathname.toLowerCase();
       if (path === '/bio') showView('bio-page', false);
+      else if (path === '/music') showView('music-page', false);
       else if (path === '/video') showView('video-page', false);
       else if (path === '/collabs') showView('collabs-page', false);
       else if (path === '/contact') showView('contact-page', false);
@@ -2804,6 +2877,7 @@
     (function initViewFromPath() {
       const path = window.location.pathname.toLowerCase();
       if (path === '/bio') showView('bio-page', false);
+      else if (path === '/music') showView('music-page', false);
       else if (path === '/video') showView('video-page', false);
       else if (path === '/collabs') showView('collabs-page', false);
       else if (path === '/contact') showView('contact-page', false);
