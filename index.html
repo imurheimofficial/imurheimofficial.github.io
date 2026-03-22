@@ -37,21 +37,19 @@
 
   <style>
     :root{
+      --bg:#090603;
+      --panel:rgba(18,12,8,.72);
       --gold:#f4c76f;
       --gold-soft:#d7a148;
-      --gold-deep:#8b571e;
       --text:#f7e0b4;
       --muted:#d2b586;
       --muted-dark:#b89661;
+      --shadow:0 0 0 1px rgba(244,199,111,.18), 0 16px 42px rgba(0,0,0,.42);
+      --radius:24px;
+      --container:1180px;
 
-      --panel-border:rgba(244,199,111,.18);
-      --panel-bg:linear-gradient(180deg, rgba(24,15,9,.8), rgba(10,6,4,.9));
-      --panel-shadow:0 0 0 1px rgba(244,199,111,.18), 0 16px 42px rgba(0,0,0,.42);
-
-      --header-bg:#000;
-      --header-border:rgba(244,199,111,.12);
-      --header-inset:rgba(244,199,111,.22);
-      --header-shadow:0 8px 24px rgba(0,0,0,.18);
+      --bg-image-opacity:.34;
+      --bg-image-filter:none;
 
       --hero-bg-overlay:linear-gradient(rgba(0,0,0,.82), rgba(0,0,0,.90));
       --hero-image-filter:none;
@@ -61,10 +59,10 @@
       --hero-inset-top:rgba(244,199,111,.28);
       --hero-inset-bottom:rgba(244,199,111,.28);
 
-      --bg-image-opacity:.40;
-      --bg-image-filter:none;
-
-      --clock-color:#b88d47;
+      --header-bg:#000;
+      --header-border:rgba(244,199,111,.12);
+      --header-inset:rgba(244,199,111,.22);
+      --header-shadow:0 8px 24px rgba(0,0,0,.18);
 
       --mobile-menu-bg:rgba(0,0,0,.92);
       --mobile-menu-border:rgba(244,199,111,.14);
@@ -75,6 +73,10 @@
       --mobile-toggle-bg:#000;
       --mobile-toggle-border:rgba(244,199,111,.25);
       --mobile-toggle-color:var(--gold);
+      --mobile-toggle-shadow:none;
+
+      --headline-rule-start:rgba(244,199,111,.3);
+      --headline-rule-mid:rgba(244,199,111,.95);
 
       --button-text:#2a1503;
       --button-bg:linear-gradient(180deg, #f0cb76 0%, #dca441 52%, #9d631f 100%);
@@ -88,9 +90,16 @@
 
       --profile-image-filter:none;
 
+      --panel-border:rgba(244,199,111,.18);
+      --panel-bg:linear-gradient(180deg, rgba(24,15,9,.8), rgba(10,6,4,.9));
+
+      --media-border:rgba(244,199,111,.2);
+      --media-shadow:inset 0 0 0 1px rgba(255,211,139,.05), 0 10px 22px rgba(0,0,0,.24);
+
       --play-border:rgba(244,199,111,.28);
       --play-bg:linear-gradient(180deg, rgba(255,203,112,.15), rgba(10,6,3,.85));
       --play-color:var(--gold);
+      --play-shadow:0 0 14px rgba(255,178,60,.10);
 
       --progress-bg:rgba(255,245,219,.08);
       --progress-border:rgba(244,199,111,.12);
@@ -113,24 +122,28 @@
 
       --footer-color:#d5b27b;
       --footer-line:linear-gradient(90deg, transparent, rgba(244,199,111,.3), rgba(244,199,111,.8), rgba(244,199,111,.3), transparent);
+
+      /* čas mírně tmavší */
+      --clock-color:#b88d47;
     }
 
     body.theme-night{
+      --bg:#03050d;
+      --panel:rgba(9,16,28,.78);
       --gold:#9fc8ff;
       --gold-soft:#6ea1e3;
-      --gold-deep:#355f95;
       --text:#dcecff;
       --muted:#abc4e3;
       --muted-dark:#7e9fc6;
+      --shadow:0 0 0 1px rgba(125,170,255,.14), 0 20px 48px rgba(0,0,0,.54);
 
-      --panel-border:rgba(126,170,255,.18);
-      --panel-bg:linear-gradient(180deg, rgba(11,20,36,.84), rgba(5,10,20,.92));
-      --panel-shadow:0 0 0 1px rgba(125,170,255,.14), 0 20px 48px rgba(0,0,0,.54);
-
-      --header-bg:#000;
-      --header-border:rgba(126,170,255,.14);
-      --header-inset:rgba(126,170,255,.18);
-      --header-shadow:0 10px 26px rgba(0,0,0,.28);
+      --bg-image-opacity:.40;
+      --bg-image-filter:
+        hue-rotate(180deg)
+        saturate(1.05)
+        brightness(.50)
+        contrast(1.08)
+        sepia(.08);
 
       --hero-bg-overlay:linear-gradient(rgba(0,0,0,.82), rgba(0,0,0,.90));
       --hero-image-filter:
@@ -140,20 +153,16 @@
         contrast(1.12)
         sepia(.04);
       --hero-image-opacity:1;
+
       --hero-border-top:rgba(126,170,255,.16);
       --hero-border-bottom:rgba(126,170,255,.16);
       --hero-inset-top:rgba(126,170,255,.18);
       --hero-inset-bottom:rgba(126,170,255,.18);
 
-      --bg-image-opacity:.44;
-      --bg-image-filter:
-        hue-rotate(180deg)
-        saturate(1.05)
-        brightness(.50)
-        contrast(1.08)
-        sepia(.08);
-
-      --clock-color:#7f9fc9;
+      --header-bg:#000;
+      --header-border:rgba(126,170,255,.14);
+      --header-inset:rgba(126,170,255,.18);
+      --header-shadow:0 10px 26px rgba(0,0,0,.28);
 
       --mobile-menu-bg:rgba(0,0,0,.92);
       --mobile-menu-border:rgba(126,170,255,.16);
@@ -164,6 +173,10 @@
       --mobile-toggle-bg:rgba(4,10,20,.96);
       --mobile-toggle-border:rgba(126,170,255,.24);
       --mobile-toggle-color:#c8e4ff;
+      --mobile-toggle-shadow:none;
+
+      --headline-rule-start:rgba(120,170,255,.24);
+      --headline-rule-mid:rgba(175,214,255,.95);
 
       --button-text:#071423;
       --button-bg:linear-gradient(180deg, #d8ebff 0%, #8fbaf1 52%, #4e78ab 100%);
@@ -186,6 +199,11 @@
         brightness(.82)
         contrast(1.08)
         sepia(.03);
+
+      --panel-border:rgba(126,170,255,.18);
+      --panel-bg:linear-gradient(180deg, rgba(11,20,36,.84), rgba(5,10,20,.92));
+
+      --media-border:rgba(126,170,255,.18);
 
       --play-border:rgba(126,170,255,.28);
       --play-bg:linear-gradient(180deg, rgba(145,196,255,.18), rgba(4,10,20,.9));
@@ -210,11 +228,14 @@
 
       --footer-color:#9eb9dc;
       --footer-line:linear-gradient(90deg, transparent, rgba(126,170,255,.24), rgba(175,214,255,.82), rgba(126,170,255,.24), transparent);
+
+      /* čas v noci taky mírně tmavší */
+      --clock-color:#7f9fc9;
     }
 
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
-    html,body{min-height:100%}
+    html, body{min-height:100%}
 
     body{
       margin:0;
@@ -232,7 +253,7 @@
       text-rendering:optimizeLegibility;
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
-      transition:background .28s ease,color .24s ease;
+      transition:background .28s ease, color .24s ease;
     }
 
     body.theme-night{
@@ -268,28 +289,34 @@
       background:url("assets/Background Profile Web.png") center bottom / cover no-repeat;
       opacity:var(--bg-image-opacity);
       filter:var(--bg-image-filter);
-      -webkit-mask-image:linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,.95) 28%, rgba(0,0,0,.35) 52%, rgba(0,0,0,0) 76%);
-      mask-image:linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,.95) 28%, rgba(0,0,0,.35) 52%, rgba(0,0,0,0) 76%);
-      transition:opacity .24s ease,filter .24s ease;
+      -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,.95) 28%, rgba(0,0,0,.35) 52%, rgba(0,0,0,0) 76%);
+      mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,.95) 28%, rgba(0,0,0,.35) 52%, rgba(0,0,0,0) 76%);
+      transition:opacity .24s ease, filter .24s ease;
     }
 
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block}
 
     .container{
-      width:min(1180px, calc(100% - 32px));
+      width:min(var(--container), calc(100% - 32px));
       margin-inline:auto;
+    }
+
+    .frame-line::before,
+    .frame-line::after{
+      content:none !important;
+      display:none !important;
     }
 
     header{
       position:sticky;
       top:0;
       z-index:50;
-      backdrop-filter:blur(8px);
+      backdrop-filter: blur(8px);
       background:var(--header-bg);
       border-bottom:1px solid var(--header-border);
       box-shadow:inset 0 -1px 0 var(--header-inset), var(--header-shadow);
-      transition:background .24s ease,border-color .24s ease,box-shadow .24s ease;
+      transition:background .24s ease, border-color .24s ease, box-shadow .24s ease;
     }
 
     .nav{
@@ -299,6 +326,8 @@
       align-items:center;
       justify-content:flex-end;
     }
+
+    .brand{display:none;}
 
     .nav-links{
       position:absolute;
@@ -328,16 +357,20 @@
     }
 
     .nav-links a:hover,
-    .nav-links a.active{
+    .nav-links a.nav-active{
       color:#ffe4b3;
-      text-shadow:0 0 8px rgba(255,196,102,.45), 0 0 18px rgba(255,174,49,.45);
+      text-shadow:
+        0 0 8px rgba(255,196,102,.45),
+        0 0 18px rgba(255,174,49,.45);
       transform:translateY(-1px);
     }
 
     body.theme-night .nav-links a:hover,
-    body.theme-night .nav-links a.active{
+    body.theme-night .nav-links a.nav-active{
       color:#eaf5ff;
-      text-shadow:0 0 8px rgba(175,214,255,.42), 0 0 18px rgba(120,170,255,.36);
+      text-shadow:
+        0 0 8px rgba(175,214,255,.42),
+        0 0 18px rgba(120,170,255,.36);
     }
 
     .nav-links a::after{
@@ -357,15 +390,16 @@
     }
 
     .nav-links a:hover::after,
-    .nav-links a.active::after{
-      width:100%;
-    }
+    .nav-links a.nav-active::after{width:100%}
 
     .header-clock{
       margin-left:auto;
       display:flex;
       align-items:center;
       min-height:18px;
+      padding:0;
+      border:none;
+      background:transparent;
       color:var(--clock-color);
       font-size:.72rem;
       line-height:1;
@@ -386,21 +420,27 @@
       height:42px;
       border-radius:12px;
       box-shadow:none;
-      transition:background .24s ease,color .24s ease,border-color .24s ease,transform .16s ease;
+      transition:
+        background .24s ease,
+        color .24s ease,
+        border-color .24s ease,
+        transform .16s ease;
     }
 
-    .mobile-toggle:hover{transform:translateY(-1px)}
+    .mobile-toggle:hover{transform:translateY(-1px);}
 
     .hero{
       position:relative;
-      padding:34px 0 24px;
-      min-height:430px;
+      padding:26px 0 22px;
+      min-height:400px;
       isolation:isolate;
       border-top:1px solid var(--hero-border-top);
       border-bottom:1px solid var(--hero-border-bottom);
-      box-shadow:inset 0 1px 0 var(--hero-inset-top), inset 0 -1px 0 var(--hero-inset-bottom);
+      box-shadow:
+        inset 0 1px 0 var(--hero-inset-top),
+        inset 0 -1px 0 var(--hero-inset-bottom);
       background:var(--hero-bg-overlay);
-      transition:border-color .24s ease,box-shadow .24s ease,background .24s ease;
+      transition:border-color .24s ease, box-shadow .24s ease, background .24s ease;
       overflow:hidden;
     }
 
@@ -412,7 +452,7 @@
       background:url("assets/Background Profile Web.png") center center / cover no-repeat;
       filter:var(--hero-image-filter);
       opacity:var(--hero-image-opacity);
-      transition:filter .24s ease,opacity .24s ease;
+      transition:filter .24s ease, opacity .24s ease;
       pointer-events:none;
     }
 
@@ -434,11 +474,14 @@
         linear-gradient(180deg, rgba(118,170,255,.02), transparent 40%);
     }
 
-    .hero > *{position:relative;z-index:2}
+    .hero > *{
+      position:relative;
+      z-index:2;
+    }
 
     .hero-grid{
       display:grid;
-      gap:18px;
+      gap:16px;
       align-items:center;
       justify-items:center;
       text-align:center;
@@ -446,7 +489,7 @@
     }
 
     .hero-copy{
-      margin-top:12px;
+      margin-top:6px;
       width:min(100%, 900px);
       padding:0 8px;
     }
@@ -456,32 +499,34 @@
       text-transform:uppercase;
       letter-spacing:.18em;
       color:#d5b27b;
-      font-size:.78rem;
+      font-size:.76rem;
       opacity:.95;
       transition:color .24s ease;
     }
 
-    body.theme-night .eyebrow{color:#b7d3f7}
+    body.theme-night .eyebrow{color:#b7d3f7;}
 
     .hero-watermark{
       width:min(1085px, 96%);
-      margin:6px auto 6px;
+      margin:4px auto 4px;
       filter:var(--watermark-filter);
       transition:filter .24s ease;
+    }
+
+    .hero-watermark img{
+      width:100%;
+      height:auto;
+      object-fit:contain;
     }
 
     .headline-rule{
       width:min(420px, 82%);
       height:2px;
-      margin:10px auto 12px;
-      background:linear-gradient(90deg, transparent, rgba(244,199,111,.3), rgba(244,199,111,.95), rgba(244,199,111,.3), transparent);
+      margin:8px auto 12px;
+      background:linear-gradient(90deg, transparent, var(--headline-rule-start), var(--headline-rule-mid), var(--headline-rule-start), transparent);
       border-radius:999px;
-      box-shadow:0 0 18px rgba(255,174,49,.22);
-    }
-
-    body.theme-night .headline-rule{
-      background:linear-gradient(90deg, transparent, rgba(120,170,255,.24), rgba(175,214,255,.95), rgba(120,170,255,.24), transparent);
-      box-shadow:0 0 18px rgba(120,170,255,.22);
+      box-shadow:0 0 14px rgba(255,174,49,.18);
+      transition:background .24s ease, box-shadow .24s ease;
     }
 
     .subtitle{
@@ -493,11 +538,11 @@
       transition:color .24s ease;
     }
 
-    body.theme-night .subtitle{color:#d9ebff}
+    body.theme-night .subtitle{color:#d9ebff;}
 
     .hero-text{
       width:min(680px, 100%);
-      margin:14px auto 0;
+      margin:12px auto 0;
       color:var(--muted);
       font-size:.98rem;
       line-height:1.7;
@@ -509,7 +554,7 @@
       justify-content:center;
       gap:16px;
       flex-wrap:wrap;
-      margin-top:22px;
+      margin-top:20px;
     }
 
     .btn{
@@ -517,8 +562,8 @@
       align-items:center;
       justify-content:center;
       gap:10px;
-      min-height:52px;
-      padding:0 24px;
+      min-height:50px;
+      padding:0 22px;
       border-radius:14px;
       border:1px solid rgba(244,199,111,.32);
       color:var(--button-text);
@@ -526,7 +571,12 @@
       letter-spacing:.03em;
       background:var(--button-bg);
       box-shadow:var(--button-shadow);
-      transition:transform .16s ease, box-shadow .16s ease, background .24s ease, color .24s ease, border-color .24s ease;
+      transition:
+        transform .16s ease,
+        box-shadow .16s ease,
+        background .24s ease,
+        color .24s ease,
+        border-color .24s ease;
     }
 
     .btn:hover{
@@ -534,10 +584,10 @@
       box-shadow:var(--button-shadow-hover);
     }
 
-    body.theme-night .btn{border-color:rgba(150,195,255,.28)}
+    body.theme-night .btn{border-color:rgba(150,195,255,.28);}
 
     section{
-      padding:44px 0;
+      padding:40px 0;
       content-visibility:auto;
       contain-intrinsic-size:800px;
     }
@@ -547,7 +597,7 @@
       align-items:center;
       justify-content:center;
       gap:16px;
-      margin:0 0 26px;
+      margin:0 0 24px;
       font-family:Cinzel, serif;
       font-weight:700;
       font-size:clamp(1.5rem, 3vw, 2.5rem);
@@ -573,8 +623,8 @@
       position:relative;
       background:var(--panel-bg);
       border:1px solid var(--panel-border);
-      border-radius:24px;
-      box-shadow:var(--panel-shadow);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
       overflow:hidden;
       transition:background .24s ease, border-color .24s ease, box-shadow .24s ease;
     }
@@ -601,23 +651,22 @@
       grid-template-columns:280px 1fr;
       gap:28px;
       align-items:center;
-      padding:24px;
+      padding:22px;
     }
 
     .media-cover,
     .about-image,
     .video-thumb,
-    .small-card,
-    .join-card,
-    .contact-card{
+    .subpage-card,
+    .contact-subpage{
       position:relative;
       border-radius:20px;
       overflow:hidden;
-      border:1px solid var(--panel-border);
-      box-shadow:var(--panel-shadow);
+      border:1px solid var(--media-border);
+      box-shadow:var(--media-shadow);
       isolation:isolate;
-      background:var(--panel-bg);
       transition:border-color .24s ease, box-shadow .24s ease, background .24s ease, filter .24s ease;
+      background:var(--panel-bg);
     }
 
     .media-cover{
@@ -627,8 +676,7 @@
       background-position:center;
     }
 
-    .release-meta h3,
-    .page-card-title{
+    .release-meta h3{
       margin:0 0 10px;
       font-family:Cinzel, serif;
       font-size:2rem;
@@ -657,15 +705,16 @@
       border:1px solid var(--play-border);
       background:var(--play-bg);
       color:var(--play-color);
+      box-shadow:var(--play-shadow);
       cursor:pointer;
       appearance:none;
       -webkit-appearance:none;
-      transition:transform .16s ease, border-color .24s ease, background .24s ease, color .24s ease;
+      transition:transform .16s ease, border-color .24s ease, background .24s ease, color .24s ease, box-shadow .24s ease;
     }
 
-    .play:hover{transform:translateY(-1px)}
+    .play:hover{transform:translateY(-1px);}
 
-    .track{flex:1}
+    .track{flex:1;}
 
     .track-title{
       display:flex;
@@ -703,28 +752,19 @@
       transition:color .24s ease;
     }
 
-    body.theme-night .track-time{color:#93b2d8}
-
-    .platforms,
-    .small-grid,
-    .video-page-grid,
-    .youtube-grid,
-    .join-grid{
-      display:grid;
-      gap:16px;
-    }
+    body.theme-night .track-time{color:#93b2d8;}
 
     .platforms{
-      grid-template-columns:repeat(auto-fit,minmax(145px,1fr));
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
       margin-top:22px;
     }
 
     .platform,
-    .small-link,
-    .join-link{
+    .subpage-link{
       display:inline-flex;
       align-items:center;
-      justify-content:center;
       gap:10px;
       min-height:46px;
       padding:0 16px;
@@ -734,11 +774,11 @@
       color:var(--platform-color);
       font-weight:600;
       transition:transform .16s ease, border-color .24s ease, background .24s ease, color .24s ease;
+      justify-content:center;
     }
 
     .platform:hover,
-    .small-link:hover,
-    .join-link:hover{
+    .subpage-link:hover{
       transform:translateY(-2px);
       border-color:var(--platform-border-hover);
     }
@@ -792,9 +832,7 @@
       user-select:none;
     }
 
-    .about-copy{
-      padding:8px 4px 8px 0;
-    }
+    .about-copy{padding:8px 4px 8px 0;}
 
     .about-copy h3{
       margin:0 0 16px;
@@ -810,22 +848,28 @@
       transition:color .24s ease;
     }
 
-    body.theme-night .about-tags{color:#cfe4ff}
+    body.theme-night .about-tags{color:#cfe4ff;}
 
-    .about-copy p,
-    .page-copy{
+    .about-copy p{
       color:var(--muted-dark);
       line-height:1.85;
       margin:0 0 24px;
     }
 
-    .video-grid{
+    .video-grid,
+    .subpage-video-grid,
+    .subpage-youtube-grid,
+    .subpage-small-grid,
+    .subpage-join-grid{
       display:grid;
-      grid-template-columns:repeat(3, 1fr);
       gap:22px;
     }
 
-    .video-card{overflow:hidden}
+    .video-grid{
+      grid-template-columns:repeat(3, 1fr);
+    }
+
+    .video-card{overflow:hidden;}
 
     .video-thumb{
       position:relative;
@@ -879,111 +923,99 @@
       font-size:1.28rem;
     }
 
-    .main-dynamic{
-      padding-top:44px;
+    .subpage-shell{
+      display:none;
     }
 
-    .page-shell{
-      display:grid;
-      gap:28px;
+    .subpage-shell.active{
+      display:block;
     }
 
-    .page-card{
+    .subpage-card{
       padding:28px;
     }
 
-    .small-grid{
+    .subpage-small-grid{
       grid-template-columns:repeat(4,1fr);
       margin-top:18px;
+      gap:16px;
     }
 
-    .small-card{
+    .subpage-small-item,
+    .subpage-youtube-item,
+    .subpage-join-item{
       padding:18px;
-      text-align:center;
       min-height:120px;
       display:flex;
       flex-direction:column;
       justify-content:center;
+      align-items:center;
       gap:12px;
+      text-align:center;
     }
 
-    .small-card h4,
-    .join-card h4{
+    .subpage-small-item h4,
+    .subpage-youtube-item h4,
+    .subpage-join-item h4{
       margin:0;
       font-family:Cinzel, serif;
       font-size:1.05rem;
     }
 
-    .video-page-grid{
+    .subpage-video-grid{
       grid-template-columns:repeat(3,1fr);
       margin-top:18px;
     }
 
-    .youtube-grid{
+    .subpage-youtube-grid{
       grid-template-columns:repeat(3,1fr);
       margin-top:18px;
+      gap:16px;
     }
 
-    .youtube-card{
-      padding:18px;
-      min-height:170px;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-      text-align:center;
-      gap:14px;
-    }
-
-    .youtube-card i{
+    .subpage-youtube-item i{
       font-size:2.2rem;
     }
 
-    .join-grid{
+    .subpage-join-grid{
       grid-template-columns:repeat(2,1fr);
       margin-top:20px;
+      gap:16px;
     }
 
-    .join-card{
-      padding:26px;
+    .subpage-join-item{
       min-height:180px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      gap:18px;
     }
 
-    .join-card i{
+    .subpage-join-item i{
       font-size:3rem;
     }
 
-    .contact-wrap{
+    .contact-subpage-wrap{
       display:flex;
       justify-content:center;
     }
 
-    .contact-card{
-      padding:30px 26px;
+    .contact-subpage{
       width:min(820px, 100%);
+      padding:30px 26px;
       text-align:center;
     }
 
-    .contact-title{
+    .contact-subpage h2{
       margin:0 0 24px;
       font-family:Cinzel, serif;
       font-size:2.4rem;
       text-align:center;
     }
 
-    .contact-list{
+    .contact-subpage-list{
       display:grid;
       gap:22px;
       text-align:center;
     }
 
-    .contact-item h4{
+    .contact-subpage-item h4{
       margin:0 0 8px;
       font-family:Cinzel, serif;
       font-size:1.1rem;
@@ -991,7 +1023,7 @@
       text-align:center;
     }
 
-    .contact-item p{
+    .contact-subpage-item p{
       margin:0;
       font-size:.96rem;
       line-height:1.8;
@@ -1027,7 +1059,7 @@
       box-shadow:var(--social-shadow-hover);
     }
 
-    body.theme-night .social:hover{color:#eef7ff}
+    body.theme-night .social:hover{color:#eef7ff;}
 
     footer{
       padding:24px 0 56px;
@@ -1047,12 +1079,12 @@
       letter-spacing:.06em;
     }
 
-    .hidden-audio{display:none}
+    .hidden-audio{display:none;}
 
     @media (max-width: 1100px){
-      .small-grid,
-      .video-page-grid,
-      .youtube-grid{
+      .subpage-small-grid,
+      .subpage-video-grid,
+      .subpage-youtube-grid{
         grid-template-columns:repeat(2,1fr);
       }
     }
@@ -1085,7 +1117,7 @@
         z-index:60;
       }
 
-      .nav-links a{font-size:1.04rem}
+      .nav-links a{font-size:1.04rem;}
       .nav-links.open{display:flex}
 
       .mobile-toggle{
@@ -1093,6 +1125,7 @@
         place-items:center;
         grid-column:2 / 3;
         margin-left:0;
+        box-shadow:none;
       }
 
       .header-clock{
@@ -1102,13 +1135,16 @@
         font-size:.63rem;
       }
 
+      .hero{padding-top:24px; min-height:auto}
+      .hero-copy{margin-top:8px}
+
       .release-card,
       .about-grid,
       .video-grid,
-      .small-grid,
-      .video-page-grid,
-      .youtube-grid,
-      .join-grid{
+      .subpage-small-grid,
+      .subpage-video-grid,
+      .subpage-youtube-grid,
+      .subpage-join-grid{
         grid-template-columns:1fr;
       }
 
@@ -1123,27 +1159,31 @@
       .about-image{
         min-height:320px;
       }
-
-      .main-dynamic{
-        padding-top:40px;
-      }
     }
 
     @media (max-width: 640px){
-      .container{width:min(100% - 20px, 1180px)}
+      .container{width:min(100% - 20px, var(--container))}
+
       .hero{
-        padding:24px 0 18px;
-        min-height:auto;
+        padding:22px 0 18px;
       }
-      .hero-watermark{width:min(100%, 640px)}
+
+      .hero-watermark{
+        width:min(100%, 640px);
+      }
+
       .subtitle{letter-spacing:.08em}
       .hero-text{font-size:.95rem}
       .btn{width:100%}
       .section-title{font-size:1.5rem}
+
       .release-meta h3,
       .about-copy h3,
-      .contact-title{font-size:1.8rem}
-      .platforms{grid-template-columns:1fr 1fr}
+      .contact-subpage h2{font-size:1.8rem}
+
+      .platforms{display:grid;grid-template-columns:1fr 1fr}
+      .platform{justify-content:center}
+
       .social{width:48px;height:48px}
       .video-info h4{font-size:1.15rem}
     }
@@ -1151,15 +1191,15 @@
 </head>
 
 <body class="theme-day">
-  <header>
+  <header class="frame-line">
     <div class="container nav">
       <nav class="nav-links" id="navLinks">
-        <a href="/" data-route="/">Home</a>
-        <a href="/bio" data-route="/bio">Bio</a>
-        <a href="/music" data-route="/music">Music</a>
-        <a href="/video" data-route="/video">Video</a>
-        <a href="/collabs" data-route="/collabs">Collabs</a>
-        <a href="/contact" data-route="/contact">Contact</a>
+        <a href="/" data-view="home" class="nav-active">Home</a>
+        <a href="/bio" data-view="bio-page">Bio</a>
+        <a href="/music" data-view="music-page">Music</a>
+        <a href="/video" data-view="video-page">Video</a>
+        <a href="/collabs" data-view="collabs-page">Collabs</a>
+        <a href="/contact" data-view="contact-page">Contact</a>
       </nav>
 
       <button class="mobile-toggle" id="mobileToggle" aria-label="Otevřít menu">
@@ -1171,7 +1211,7 @@
   </header>
 
   <main id="top">
-    <section class="hero">
+    <section class="hero frame-line">
       <div class="container hero-grid">
         <div class="hero-copy">
           <div class="eyebrow">Official Artist Website</div>
@@ -1193,17 +1233,360 @@
           </p>
 
           <div class="cta-row">
-            <a class="btn" href="/music" data-route="/music"><i class="fa-solid fa-play"></i> Listen Now</a>
+            <a class="btn" href="/music" data-view="music-page"><i class="fa-solid fa-play"></i> Listen Now</a>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="main-dynamic">
-      <div class="container" id="pageContent"></div>
-    </section>
+    <div id="homeContent">
+      <section id="music">
+        <div class="container">
+          <h2 class="section-title">Latest Release</h2>
 
-    <section id="connect">
+          <article class="panel release-card">
+            <div class="media-cover" aria-label="Cover placeholder"></div>
+
+            <div class="release-meta">
+              <h3>[Title Song]</h3>
+              <p>[Song description]</p>
+
+              <div class="audio-bar">
+                <button class="play" id="playButton" type="button" aria-label="Play preview">
+                  <i class="fa-solid fa-play" id="playIcon"></i>
+                </button>
+
+                <div class="track">
+                  <div class="track-title">
+                    <span>Preview Track</span>
+                  </div>
+
+                  <div class="progress" id="progressBar" aria-label="Audio progress">
+                    <span id="progressFill"></span>
+                  </div>
+
+                  <div class="track-time">
+                    <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
+                  </div>
+                </div>
+              </div>
+
+              <audio id="releaseAudio" class="hidden-audio" preload="metadata">
+                <source src="" type="audio/mpeg">
+              </audio>
+
+              <div class="platforms">
+                <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-spotify"></i> Spotify</a>
+                <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-apple"></i> Apple Music</a>
+                <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i> YouTube</a>
+                <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-soundcloud"></i> SoundCloud</a>
+                <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-amazon"></i> Amazon</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="bio">
+        <div class="container">
+          <div class="panel" style="padding:28px;">
+            <div class="about-grid">
+              <div class="about-image" aria-label="Profile Picture">
+                <img
+                  class="about-profile-img"
+                  src="assets/URHEIM GOLDEN PROFILE.png"
+                  alt="URHEIM Golden Profile"
+                  decoding="async"
+                  loading="eager"
+                  fetchpriority="high"
+                >
+              </div>
+
+              <div class="about-copy">
+                <h3>About URHEIM</h3>
+                <div class="about-tags">Pop / Rock / Ethnic / Electronic / Dance</div>
+                <p>
+                  Creates music across multiple genres, with a strong love for pop at the core, while often exploring rock influences, EDM energy, rap elements, and stripped-back arrangements built around guitar or piano. Deeply inspired by Arabic, Egyptian, and other ethnic instruments, he blends these influences into a broader musical identity. URHEIM represents a multi-genre artistic vision where emotion, atmosphere, rhythm, and cultural texture come together in a distinctive and constantly evolving sound.
+                </p>
+                <a class="btn" href="/video" data-view="video-page"><i class="fa-solid fa-book-open"></i> Read More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="videos">
+        <div class="container">
+          <h2 class="section-title">Videos</h2>
+
+          <div class="video-grid">
+            <article class="panel video-card">
+              <a href="#" class="video-thumb">
+                <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
+              </a>
+              <div class="video-info">
+                <h4>Official Video</h4>
+              </div>
+            </article>
+
+            <article class="panel video-card">
+              <a href="#" class="video-thumb">
+                <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
+              </a>
+              <div class="video-info">
+                <h4>Live Performance</h4>
+              </div>
+            </article>
+
+            <article class="panel video-card" id="collabs">
+              <a href="#" class="video-thumb">
+                <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
+              </a>
+              <div class="video-info">
+                <h4>Collab Project</h4>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div id="subpageBio" class="subpage-shell">
+      <section>
+        <div class="container">
+          <div class="panel subpage-card">
+            <div class="about-grid">
+              <div class="about-image" aria-label="Profile Picture">
+                <img
+                  class="about-profile-img"
+                  src="assets/URHEIM GOLDEN PROFILE.png"
+                  alt="URHEIM Golden Profile"
+                  decoding="async"
+                  loading="eager"
+                  fetchpriority="high"
+                >
+              </div>
+
+              <div class="about-copy">
+                <h3>About URHEIM</h3>
+                <div class="about-tags">Pop / Rock / Ethnic / Electronic / Dance</div>
+                <p>
+                  Creates music across multiple genres, with a strong love for pop at the core, while often exploring rock influences, EDM energy, rap elements, and stripped-back arrangements built around guitar or piano. Deeply inspired by Arabic, Egyptian, and other ethnic instruments, he blends these influences into a broader musical identity. URHEIM represents a multi-genre artistic vision where emotion, atmosphere, rhythm, and cultural texture come together in a distinctive and constantly evolving sound.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div id="subpageMusic" class="subpage-shell">
+      <section>
+        <div class="container">
+          <div class="panel subpage-card">
+            <h2 class="section-title">Latest Release</h2>
+
+            <article class="panel release-card" style="margin-top:16px;">
+              <div class="media-cover" aria-label="Cover placeholder"></div>
+
+              <div class="release-meta">
+                <h3>[Title Song]</h3>
+                <p>[Song description]</p>
+
+                <div class="audio-bar">
+                  <button class="play" id="subPlayButton" type="button" aria-label="Play preview">
+                    <i class="fa-solid fa-play" id="subPlayIcon"></i>
+                  </button>
+
+                  <div class="track">
+                    <div class="track-title">
+                      <span>Preview Track</span>
+                    </div>
+
+                    <div class="progress" id="subProgressBar" aria-label="Audio progress">
+                      <span id="subProgressFill"></span>
+                    </div>
+
+                    <div class="track-time">
+                      <span id="subCurrentTime">0:00</span> / <span id="subDuration">0:00</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <div class="subpage-small-grid">
+              <div class="subpage-small-item subpage-card">
+                <h4>Spotify</h4>
+                <a class="subpage-link" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-spotify"></i> Open</a>
+              </div>
+              <div class="subpage-small-item subpage-card">
+                <h4>SoundCloud</h4>
+                <a class="subpage-link" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-soundcloud"></i> Open</a>
+              </div>
+              <div class="subpage-small-item subpage-card">
+                <h4>Apple Music</h4>
+                <a class="subpage-link" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-apple"></i> Open</a>
+              </div>
+              <div class="subpage-small-item subpage-card">
+                <h4>Amazon</h4>
+                <a class="subpage-link" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-amazon"></i> Open</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div id="subpageVideo" class="subpage-shell">
+      <section>
+        <div class="container">
+          <div class="panel subpage-card">
+            <h2 class="section-title">Videos</h2>
+
+            <div class="subpage-video-grid">
+              <article class="panel video-card">
+                <a href="#" class="video-thumb">
+                  <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
+                </a>
+                <div class="video-info">
+                  <h4>Official Video</h4>
+                </div>
+              </article>
+
+              <article class="panel video-card">
+                <a href="#" class="video-thumb">
+                  <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
+                </a>
+                <div class="video-info">
+                  <h4>Live Performance</h4>
+                </div>
+              </article>
+
+              <article class="panel video-card">
+                <a href="#" class="video-thumb">
+                  <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
+                </a>
+                <div class="video-info">
+                  <h4>Collab Project</h4>
+                </div>
+              </article>
+            </div>
+
+            <div class="subpage-youtube-grid">
+              <div class="subpage-youtube-item subpage-card">
+                <i class="fa-brands fa-youtube"></i>
+                <h4>YouTube Video 1</h4>
+                <a class="subpage-link" href="#" target="_blank" rel="noopener">Watch</a>
+              </div>
+              <div class="subpage-youtube-item subpage-card">
+                <i class="fa-brands fa-youtube"></i>
+                <h4>YouTube Video 2</h4>
+                <a class="subpage-link" href="#" target="_blank" rel="noopener">Watch</a>
+              </div>
+              <div class="subpage-youtube-item subpage-card">
+                <i class="fa-brands fa-youtube"></i>
+                <h4>YouTube Video 3</h4>
+                <a class="subpage-link" href="#" target="_blank" rel="noopener">Watch</a>
+              </div>
+            </div>
+
+            <div class="subpage-youtube-grid">
+              <div class="subpage-youtube-item subpage-card">
+                <i class="fa-brands fa-youtube"></i>
+                <h4>YouTube Video 4</h4>
+                <a class="subpage-link" href="#" target="_blank" rel="noopener">Watch</a>
+              </div>
+              <div class="subpage-youtube-item subpage-card">
+                <i class="fa-brands fa-youtube"></i>
+                <h4>YouTube Video 5</h4>
+                <a class="subpage-link" href="#" target="_blank" rel="noopener">Watch</a>
+              </div>
+              <div class="subpage-youtube-item subpage-card">
+                <i class="fa-brands fa-youtube"></i>
+                <h4>YouTube Video 6</h4>
+                <a class="subpage-link" href="#" target="_blank" rel="noopener">Watch</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div id="subpageCollabs" class="subpage-shell">
+      <section>
+        <div class="container">
+          <div class="panel subpage-card">
+            <h2 class="section-title">Collabs</h2>
+
+            <article class="panel video-card" style="margin-top:16px;">
+              <a href="#" class="video-thumb">
+                <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
+              </a>
+              <div class="video-info">
+                <h4>Collab Project</h4>
+              </div>
+            </article>
+
+            <div class="subpage-join-grid">
+              <div class="subpage-join-item subpage-card">
+                <i class="fa-brands fa-discord"></i>
+                <h4>Discord</h4>
+                <a class="subpage-link" href="https://discordapp.com/users/1204486293132808252" target="_blank" rel="noopener">Join</a>
+              </div>
+
+              <div class="subpage-join-item subpage-card">
+                <i class="fa-brands fa-reddit"></i>
+                <h4>Reddit</h4>
+                <a class="subpage-link" href="https://www.reddit.com/r/imurheimofficial/" target="_blank" rel="noopener">Join</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div id="subpageContact" class="subpage-shell">
+      <section>
+        <div class="container">
+          <div class="contact-subpage-wrap">
+            <div class="contact-subpage panel">
+              <h2>Contact</h2>
+
+              <div class="contact-subpage-list">
+                <div class="contact-subpage-item">
+                  <h4>Management</h4>
+                  <p>management@imurheimofficial.com</p>
+                </div>
+
+                <div class="contact-subpage-item">
+                  <h4>General Info</h4>
+                  <p>info@imurheimofficial.com</p>
+                </div>
+
+                <div class="contact-subpage-item">
+                  <h4>Partnerships / Inquiries</h4>
+                  <p>collab@imurheimofficial.com</p>
+                  <p>business@imurheimofficial.com</p>
+                </div>
+
+                <div class="contact-subpage-item">
+                  <h4>Media</h4>
+                  <p>press@imurheimofficial.com</p>
+                </div>
+
+                <div class="contact-subpage-item">
+                  <h4>Special Contacts</h4>
+                  <p>official@imurheimofficial.com</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section id="contact">
       <div class="container">
         <div class="panel" style="padding:30px 24px;">
           <h2 class="section-title" style="margin-top:0;">Connect</h2>
@@ -1233,10 +1616,6 @@
       <div class="footer-copy">© <span id="year"></span> URHEIM</div>
     </div>
   </footer>
-
-  <audio id="releaseAudio" class="hidden-audio" preload="metadata">
-    <source src="" type="audio/mpeg">
-  </audio>
 
   <script>
     const WEEKDAYS = [
@@ -1276,6 +1655,7 @@
 
     function updateHeaderClockAndTheme() {
       const now = new Date();
+
       applyThemeByLocalTime(now);
 
       const hours = pad(now.getHours());
@@ -1290,378 +1670,49 @@
       }
     }
 
-    function normalizePath(pathname) {
-      if (!pathname || pathname === '') return '/';
-      if (pathname !== '/' && pathname.endsWith('/')) {
-        return pathname.slice(0, -1);
-      }
-      return pathname;
-    }
+    updateHeaderClockAndTheme();
+    setInterval(updateHeaderClockAndTheme, 1000);
 
-    function homeMarkup() {
-      return `
-        <div class="page-shell">
-          <section id="music-home">
-            <h2 class="section-title">Latest Release</h2>
-            <article class="panel release-card">
-              <div class="media-cover" aria-label="Cover placeholder"></div>
+    const toggle = document.getElementById('mobileToggle');
+    const navLinks = document.getElementById('navLinks');
 
-              <div class="release-meta">
-                <h3>[Title Song]</h3>
-                <p>[Song description]</p>
+    if (toggle && navLinks) {
+      toggle.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+      });
 
-                <div class="audio-bar">
-                  <button class="play" id="playButton" type="button" aria-label="Play preview">
-                    <i class="fa-solid fa-play" id="playIcon"></i>
-                  </button>
-
-                  <div class="track">
-                    <div class="track-title">
-                      <span>Preview Track</span>
-                    </div>
-
-                    <div class="progress" id="progressBar" aria-label="Audio progress">
-                      <span id="progressFill"></span>
-                    </div>
-
-                    <div class="track-time">
-                      <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="platforms">
-                  <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-spotify"></i> Spotify</a>
-                  <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-apple"></i> Apple Music</a>
-                  <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i> YouTube</a>
-                  <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-soundcloud"></i> SoundCloud</a>
-                  <a class="platform" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-amazon"></i> Amazon</a>
-                </div>
-              </div>
-            </article>
-          </section>
-
-          <section id="bio-home">
-            <div class="panel" style="padding:28px;">
-              <div class="about-grid">
-                <div class="about-image" aria-label="Profile Picture">
-                  <img
-                    class="about-profile-img"
-                    src="assets/URHEIM GOLDEN PROFILE.png"
-                    alt="URHEIM Golden Profile"
-                    decoding="async"
-                    loading="eager"
-                    fetchpriority="high"
-                  >
-                </div>
-
-                <div class="about-copy">
-                  <h3>About URHEIM</h3>
-                  <div class="about-tags">Pop / Rock / Ethnic / Electronic / Dance</div>
-                  <p>
-                    Creates music across multiple genres, with a strong love for pop at the core, while often exploring rock influences, EDM energy, rap elements, and stripped-back arrangements built around guitar or piano. Deeply inspired by Arabic, Egyptian, and other ethnic instruments, he blends these influences into a broader musical identity. URHEIM represents a multi-genre artistic vision where emotion, atmosphere, rhythm, and cultural texture come together in a distinctive and constantly evolving sound.
-                  </p>
-                  <a class="btn" href="/bio" data-route="/bio"><i class="fa-solid fa-book-open"></i> Read More</a>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section id="videos-home">
-            <h2 class="section-title">Videos</h2>
-            <div class="video-grid">
-              <article class="panel video-card">
-                <a href="/video" data-route="/video" class="video-thumb">
-                  <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
-                </a>
-                <div class="video-info">
-                  <h4>Official Video</h4>
-                </div>
-              </article>
-
-              <article class="panel video-card">
-                <a href="/video" data-route="/video" class="video-thumb">
-                  <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
-                </a>
-                <div class="video-info">
-                  <h4>Live Performance</h4>
-                </div>
-              </article>
-
-              <article class="panel video-card">
-                <a href="/collabs" data-route="/collabs" class="video-thumb">
-                  <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
-                </a>
-                <div class="video-info">
-                  <h4>Collab Project</h4>
-                </div>
-              </article>
-            </div>
-          </section>
-        </div>
-      `;
-    }
-
-    function bioMarkup() {
-      return `
-        <div class="page-shell">
-          <div class="panel page-card">
-            <div class="about-grid">
-              <div class="about-image" aria-label="Profile Picture">
-                <img
-                  class="about-profile-img"
-                  src="assets/URHEIM GOLDEN PROFILE.png"
-                  alt="URHEIM Golden Profile"
-                  decoding="async"
-                  loading="eager"
-                  fetchpriority="high"
-                >
-              </div>
-
-              <div class="about-copy">
-                <h3>About URHEIM</h3>
-                <div class="about-tags">Pop / Rock / Ethnic / Electronic / Dance</div>
-                <p>
-                  Creates music across multiple genres, with a strong love for pop at the core, while often exploring rock influences, EDM energy, rap elements, and stripped-back arrangements built around guitar or piano. Deeply inspired by Arabic, Egyptian, and other ethnic instruments, he blends these influences into a broader musical identity. URHEIM represents a multi-genre artistic vision where emotion, atmosphere, rhythm, and cultural texture come together in a distinctive and constantly evolving sound.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      `;
-    }
-
-    function musicMarkup() {
-      return `
-        <div class="page-shell">
-          <div class="panel page-card">
-            <h2 class="section-title">Latest Release</h2>
-
-            <article class="panel release-card" style="margin-top:16px;">
-              <div class="media-cover" aria-label="Cover placeholder"></div>
-
-              <div class="release-meta">
-                <h3>[Title Song]</h3>
-                <p>[Song description]</p>
-
-                <div class="audio-bar">
-                  <button class="play" id="playButton" type="button" aria-label="Play preview">
-                    <i class="fa-solid fa-play" id="playIcon"></i>
-                  </button>
-
-                  <div class="track">
-                    <div class="track-title">
-                      <span>Preview Track</span>
-                    </div>
-
-                    <div class="progress" id="progressBar" aria-label="Audio progress">
-                      <span id="progressFill"></span>
-                    </div>
-
-                    <div class="track-time">
-                      <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            <div class="small-grid">
-              <div class="small-card">
-                <h4>Spotify</h4>
-                <a class="small-link" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-spotify"></i> Open</a>
-              </div>
-              <div class="small-card">
-                <h4>SoundCloud</h4>
-                <a class="small-link" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-soundcloud"></i> Open</a>
-              </div>
-              <div class="small-card">
-                <h4>Apple Music</h4>
-                <a class="small-link" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-apple"></i> Open</a>
-              </div>
-              <div class="small-card">
-                <h4>Amazon</h4>
-                <a class="small-link" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-amazon"></i> Open</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      `;
-    }
-
-    function videoMarkup() {
-      const mainCards = ['Official Video', 'Live Performance', 'Collab Project'];
-      const ytCardsTop = ['YouTube Video 1', 'YouTube Video 2', 'YouTube Video 3'];
-      const ytCardsBottom = ['YouTube Video 4', 'YouTube Video 5', 'YouTube Video 6'];
-
-      return `
-        <div class="page-shell">
-          <div class="panel page-card">
-            <h2 class="section-title">Videos</h2>
-
-            <div class="video-page-grid">
-              ${mainCards.map(title => `
-                <article class="panel video-card">
-                  <a href="#" class="video-thumb">
-                    <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
-                  </a>
-                  <div class="video-info">
-                    <h4>${title}</h4>
-                  </div>
-                </article>
-              `).join('')}
-            </div>
-
-            <div class="youtube-grid">
-              ${ytCardsTop.map(title => `
-                <div class="small-card youtube-card">
-                  <i class="fa-brands fa-youtube"></i>
-                  <h4>${title}</h4>
-                  <a class="small-link" href="#" target="_blank" rel="noopener">Watch</a>
-                </div>
-              `).join('')}
-            </div>
-
-            <div class="youtube-grid">
-              ${ytCardsBottom.map(title => `
-                <div class="small-card youtube-card">
-                  <i class="fa-brands fa-youtube"></i>
-                  <h4>${title}</h4>
-                  <a class="small-link" href="#" target="_blank" rel="noopener">Watch</a>
-                </div>
-              `).join('')}
-            </div>
-          </div>
-        </div>
-      `;
-    }
-
-    function collabsMarkup() {
-      return `
-        <div class="page-shell">
-          <div class="panel page-card">
-            <h2 class="section-title">Collabs</h2>
-
-            <div class="panel video-card" style="margin-top:16px;">
-              <a href="#" class="video-thumb">
-                <div class="play-large"><i class="fa-regular fa-circle-play"></i></div>
-              </a>
-              <div class="video-info">
-                <h4>Collab Project</h4>
-              </div>
-            </div>
-
-            <div class="join-grid">
-              <div class="join-card">
-                <i class="fa-brands fa-discord"></i>
-                <h4>Discord</h4>
-                <a class="join-link" href="https://discordapp.com/users/1204486293132808252" target="_blank" rel="noopener">Join</a>
-              </div>
-
-              <div class="join-card">
-                <i class="fa-brands fa-reddit"></i>
-                <h4>Reddit</h4>
-                <a class="join-link" href="https://www.reddit.com/r/imurheimofficial/" target="_blank" rel="noopener">Join</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      `;
-    }
-
-    function contactMarkup() {
-      return `
-        <div class="page-shell">
-          <div class="contact-wrap">
-            <div class="contact-card panel">
-              <h2 class="contact-title">Contact</h2>
-
-              <div class="contact-list">
-                <div class="contact-item">
-                  <h4>Management</h4>
-                  <p>management@imurheimofficial.com</p>
-                </div>
-
-                <div class="contact-item">
-                  <h4>General Info</h4>
-                  <p>info@imurheimofficial.com</p>
-                </div>
-
-                <div class="contact-item">
-                  <h4>Partnerships / Inquiries</h4>
-                  <p>collab@imurheimofficial.com</p>
-                  <p>business@imurheimofficial.com</p>
-                </div>
-
-                <div class="contact-item">
-                  <h4>Media</h4>
-                  <p>press@imurheimofficial.com</p>
-                </div>
-
-                <div class="contact-item">
-                  <h4>Special Contacts</h4>
-                  <p>official@imurheimofficial.com</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      `;
-    }
-
-    function getMarkupByPath(path) {
-      switch (path) {
-        case '/bio':
-          return bioMarkup();
-        case '/music':
-          return musicMarkup();
-        case '/video':
-          return videoMarkup();
-        case '/collabs':
-          return collabsMarkup();
-        case '/contact':
-          return contactMarkup();
-        case '/':
-        default:
-          return homeMarkup();
-      }
-    }
-
-    function setActiveNav(path) {
-      document.querySelectorAll('[data-route]').forEach(link => {
-        if (link.dataset.route === path) {
-          link.classList.add('active');
-        } else {
-          link.classList.remove('active');
-        }
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => navLinks.classList.remove('open'));
       });
     }
 
-    function mountAudioLogic() {
-      const audio = document.getElementById('releaseAudio');
-      const playButton = document.getElementById('playButton');
-      const playIcon = document.getElementById('playIcon');
-      const progressBar = document.getElementById('progressBar');
-      const progressFill = document.getElementById('progressFill');
-      const currentTimeEl = document.getElementById('currentTime');
-      const durationEl = document.getElementById('duration');
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-      if (!audio || !playButton || !playIcon || !progressBar || !progressFill || !currentTimeEl || !durationEl) {
-        return;
+    const audio = document.getElementById('releaseAudio');
+    const playButton = document.getElementById('playButton');
+    const playIcon = document.getElementById('playIcon');
+    const progressBar = document.getElementById('progressBar');
+    const progressFill = document.getElementById('progressFill');
+    const currentTimeEl = document.getElementById('currentTime');
+    const durationEl = document.getElementById('duration');
+
+    function formatTime(seconds) {
+      if (!isFinite(seconds)) return '0:00';
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+      return `${mins}:${secs.toString().padStart(2, '0')}`;
+    }
+
+    function updatePlayIcon() {
+      if (audio.paused) {
+        playIcon.className = 'fa-solid fa-play';
+      } else {
+        playIcon.className = 'fa-solid fa-pause';
       }
+    }
 
-      function formatTime(seconds) {
-        if (!isFinite(seconds)) return '0:00';
-        const mins = Math.floor(seconds / 60);
-        const secs = Math.floor(seconds % 60);
-        return `${mins}:${secs.toString().padStart(2, '0')}`;
-      }
-
-      function updatePlayIcon() {
-        playIcon.className = audio.paused ? 'fa-solid fa-play' : 'fa-solid fa-pause';
-      }
-
-      playButton.onclick = () => {
+    if (playButton && audio) {
+      playButton.addEventListener('click', () => {
         const source = audio.querySelector('source');
         if (!source || !source.getAttribute('src')) {
           alert('Sem potom vlož cestu k audio souboru do <source src="">.');
@@ -1673,85 +1724,167 @@
         } else {
           audio.pause();
         }
-      };
+      });
 
-      audio.onloadedmetadata = () => {
+      audio.addEventListener('loadedmetadata', () => {
         durationEl.textContent = formatTime(audio.duration);
-      };
+      });
 
-      audio.ontimeupdate = () => {
+      audio.addEventListener('timeupdate', () => {
         currentTimeEl.textContent = formatTime(audio.currentTime);
+
         if (audio.duration) {
           const percent = (audio.currentTime / audio.duration) * 100;
           progressFill.style.width = `${percent}%`;
         }
-      };
+      });
 
-      audio.onplay = updatePlayIcon;
-      audio.onpause = updatePlayIcon;
-      audio.onended = updatePlayIcon;
+      audio.addEventListener('play', updatePlayIcon);
+      audio.addEventListener('pause', updatePlayIcon);
+      audio.addEventListener('ended', updatePlayIcon);
 
-      progressBar.onclick = (event) => {
+      progressBar.addEventListener('click', (event) => {
         if (!audio.duration) return;
+
         const rect = progressBar.getBoundingClientRect();
         const clickX = event.clientX - rect.left;
         const ratio = clickX / rect.width;
         audio.currentTime = ratio * audio.duration;
-      };
-
-      updatePlayIcon();
+      });
     }
 
-    function renderRoute(path, pushState = false) {
-      const normalized = normalizePath(path);
-      const pageContent = document.getElementById('pageContent');
-      pageContent.innerHTML = getMarkupByPath(normalized);
-      setActiveNav(normalized);
-      mountAudioLogic();
+    const subAudioButton = document.getElementById('subPlayButton');
+    const subPlayIcon = document.getElementById('subPlayIcon');
+    const subProgressBar = document.getElementById('subProgressBar');
+    const subProgressFill = document.getElementById('subProgressFill');
+    const subCurrentTimeEl = document.getElementById('subCurrentTime');
+    const subDurationEl = document.getElementById('subDuration');
 
-      if (pushState) {
-        history.pushState({}, '', normalized);
+    function updateSubPlayIcon() {
+      if (subPlayIcon) {
+        subPlayIcon.className = audio.paused ? 'fa-solid fa-play' : 'fa-solid fa-pause';
+      }
+    }
+
+    if (subAudioButton && audio) {
+      subAudioButton.addEventListener('click', () => {
+        const source = audio.querySelector('source');
+        if (!source || !source.getAttribute('src')) {
+          alert('Sem potom vlož cestu k audio souboru do <source src="">.');
+          return;
+        }
+
+        if (audio.paused) {
+          audio.play();
+        } else {
+          audio.pause();
+        }
+      });
+
+      audio.addEventListener('loadedmetadata', () => {
+        if (subDurationEl) subDurationEl.textContent = formatTime(audio.duration);
+      });
+
+      audio.addEventListener('timeupdate', () => {
+        if (subCurrentTimeEl) subCurrentTimeEl.textContent = formatTime(audio.currentTime);
+
+        if (audio.duration && subProgressFill) {
+          const percent = (audio.currentTime / audio.duration) * 100;
+          subProgressFill.style.width = `${percent}%`;
+        }
+      });
+
+      audio.addEventListener('play', updateSubPlayIcon);
+      audio.addEventListener('pause', updateSubPlayIcon);
+      audio.addEventListener('ended', updateSubPlayIcon);
+
+      subProgressBar.addEventListener('click', (event) => {
+        if (!audio.duration) return;
+
+        const rect = subProgressBar.getBoundingClientRect();
+        const clickX = event.clientX - rect.left;
+        const ratio = clickX / rect.width;
+        audio.currentTime = ratio * audio.duration;
+      });
+    }
+
+    const homeContent = document.getElementById('homeContent');
+    const subpages = {
+      'bio-page': document.getElementById('subpageBio'),
+      'music-page': document.getElementById('subpageMusic'),
+      'video-page': document.getElementById('subpageVideo'),
+      'collabs-page': document.getElementById('subpageCollabs'),
+      'contact-page': document.getElementById('subpageContact')
+    };
+
+    function setActiveNavByView(viewName) {
+      document.querySelectorAll('.nav-links a[data-view]').forEach(link => {
+        if (link.dataset.view === viewName || (viewName === 'home' && link.dataset.view === 'home')) {
+          link.classList.add('nav-active');
+        } else {
+          link.classList.remove('nav-active');
+        }
+      });
+    }
+
+    function showView(viewName, pushUrl = true) {
+      Object.values(subpages).forEach(page => {
+        page.classList.remove('active');
+      });
+
+      if (viewName === 'home') {
+        homeContent.style.display = '';
+      } else {
+        homeContent.style.display = 'none';
+        if (subpages[viewName]) {
+          subpages[viewName].classList.add('active');
+        }
+      }
+
+      setActiveNavByView(viewName);
+
+      if (pushUrl) {
+        const pathMap = {
+          'home': '/',
+          'bio-page': '/bio',
+          'music-page': '/music',
+          'video-page': '/video',
+          'collabs-page': '/collabs',
+          'contact-page': '/contact'
+        };
+        history.pushState({ view: viewName }, '', pathMap[viewName] || '/');
       }
 
       window.scrollTo({ top: 0, behavior: 'auto' });
     }
 
-    document.addEventListener('click', (event) => {
-      const routeLink = event.target.closest('[data-route]');
-      if (!routeLink) return;
-
-      const href = routeLink.getAttribute('href');
-      if (!href) return;
-
-      const url = new URL(href, window.location.origin);
-      if (url.origin !== window.location.origin) return;
-
-      event.preventDefault();
-      renderRoute(url.pathname, true);
-
-      const navLinks = document.getElementById('navLinks');
-      if (navLinks) navLinks.classList.remove('open');
+    document.querySelectorAll('[data-view]').forEach(link => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        const viewName = link.dataset.view;
+        showView(viewName, true);
+      });
     });
 
     window.addEventListener('popstate', () => {
-      renderRoute(window.location.pathname, false);
+      const path = window.location.pathname.toLowerCase();
+      if (path === '/bio') showView('bio-page', false);
+      else if (path === '/music') showView('music-page', false);
+      else if (path === '/video') showView('video-page', false);
+      else if (path === '/collabs') showView('collabs-page', false);
+      else if (path === '/contact') showView('contact-page', false);
+      else showView('home', false);
     });
 
-    const toggle = document.getElementById('mobileToggle');
-    const navLinks = document.getElementById('navLinks');
-
-    if (toggle && navLinks) {
-      toggle.addEventListener('click', () => {
-        navLinks.classList.toggle('open');
-      });
-    }
-
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    updateHeaderClockAndTheme();
-    setInterval(updateHeaderClockAndTheme, 1000);
-
-    renderRoute(window.location.pathname, false);
+    (function initViewFromPath() {
+      const path = window.location.pathname.toLowerCase();
+      if (path === '/bio') showView('bio-page', false);
+      else if (path === '/music') showView('music-page', false);
+      else if (path === '/video') showView('video-page', false);
+      else if (path === '/collabs') showView('collabs-page', false);
+      else if (path === '/contact') showView('contact-page', false);
+      else showView('home', false);
+    })();
   </script>
 </body>
 </html>
