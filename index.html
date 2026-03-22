@@ -20,10 +20,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 
-  <!-- fallback favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="assets/URHEIM GOLDEN PROFILE.png" id="dynamicFavicon">
-  <link rel="shortcut icon" href="assets/URHEIM GOLDEN PROFILE.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/URHEIM GOLDEN PROFILE.png">
+  <link rel="shortcut icon" href="assets/URHEIM GOLDEN PROFILE.png" id="shortcutFavicon">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/URHEIM GOLDEN PROFILE.png" id="appleTouchIcon">
   <link rel="mask-icon" href="assets/URHEIM GOLDEN PROFILE.png" color="#f4c76f">
 
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -365,6 +364,13 @@
       transition:opacity .24s ease, filter .24s ease;
     }
 
+    body.smart-link-mode::after{
+      opacity:0 !important;
+      filter:none !important;
+      -webkit-mask-image:none !important;
+      mask-image:none !important;
+    }
+
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block}
     .container{width:min(var(--container), calc(100% - 32px));margin-inline:auto}
@@ -404,6 +410,10 @@
       border-bottom:1px solid var(--header-border);
       box-shadow:inset 0 -1px 0 var(--header-inset), var(--header-shadow);
       transition:background .24s ease, border-color .24s ease, box-shadow .24s ease;
+    }
+
+    body.smart-link-mode header{
+      display:none !important;
     }
 
     .nav{
@@ -573,94 +583,195 @@
     .smart-link-shell.active{display:block;}
 
     .smart-link-page{
-      position:relative; min-height:calc(100vh - 74px); display:flex; align-items:center; justify-content:center;
-      padding:48px 0 64px; overflow:hidden;
+      position:relative;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:72px 0 52px;
+      overflow:hidden;
     }
 
     .smart-link-page::before{
-      content:""; position:absolute; inset:0; background:url("assets/Background Profile Web.png") center center / cover no-repeat;
-      filter:blur(26px) saturate(1.05) brightness(.58); opacity:.58; transform:scale(1.08); pointer-events:none;
+      content:"";
+      position:absolute;
+      inset:0;
+      background:url("assets/Background Profile Web.png") center center / cover no-repeat;
+      filter:blur(34px) saturate(1.02) brightness(.56);
+      opacity:.92;
+      transform:scale(1.16);
+      pointer-events:none;
     }
 
     body.theme-night .smart-link-page::before{
-      filter:blur(28px) hue-rotate(180deg) saturate(1.08) brightness(.50) contrast(1.06); opacity:.62;
+      filter:blur(36px) hue-rotate(180deg) saturate(1.08) brightness(.48) contrast(1.06);
+      opacity:.96;
     }
 
-    .smart-link-inner{position:relative; z-index:2; width:min(520px, 100%); margin:0 auto;}
-    .smart-link-card{
-      position:relative; padding:28px 24px 22px; border-radius:28px; border:1px solid var(--panel-border);
-      background:var(--smart-card-bg); box-shadow:var(--shadow); overflow:hidden;
+    .smart-link-inner{
+      position:relative;
+      z-index:2;
+      width:min(560px, 100%);
+      margin:0 auto;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
     }
 
-    .smart-link-card::before{
-      content:""; position:absolute; inset:0; pointer-events:none;
-      background:radial-gradient(circle at 20% 18%, rgba(255,184,77,.08), transparent 24%),radial-gradient(circle at 82% 78%, rgba(255,184,77,.05), transparent 24%);
-    }
-
-    body.theme-night .smart-link-card::before{
-      background:radial-gradient(circle at 20% 18%, rgba(140,196,255,.08), transparent 24%),radial-gradient(circle at 82% 78%, rgba(140,196,255,.05), transparent 24%);
+    .smart-link-top{
+      margin-bottom:26px;
+      width:100%;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
     }
 
     .smart-profile-link{
-      width:132px; height:132px; margin:0 auto 18px; position:relative; border-radius:28px; overflow:hidden;
-      border:1px solid var(--media-border); box-shadow:var(--media-shadow); display:block;
+      width:214px;
+      height:214px;
+      margin:0 auto 20px;
+      position:relative;
+      border-radius:42px;
+      overflow:hidden;
+      border:1px solid var(--media-border);
+      box-shadow:
+        0 0 0 1px rgba(244,199,111,.14),
+        0 18px 40px rgba(0,0,0,.34);
+      display:block;
       transition:transform .18s ease, box-shadow .18s ease, border-color .24s ease;
+      background:rgba(0,0,0,.14);
     }
 
     .smart-profile-link:hover{
-      transform:translateY(-2px); border-color:var(--platform-border-hover); box-shadow:var(--cell-glow);
+      transform:translateY(-3px);
+      border-color:var(--platform-border-hover);
+      box-shadow:var(--cell-glow);
     }
 
     .smart-profile-link img{
-      width:100%; height:100%; object-fit:cover; filter:var(--profile-image-filter);
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      filter:var(--profile-image-filter);
     }
 
     .smart-profile-play{
-      position:absolute; inset:0; display:grid; place-items:center;
-      background:linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.28));
-      color:#fff0d8; font-size:2.4rem; text-shadow:0 8px 20px rgba(0,0,0,.45); pointer-events:none;
+      position:absolute;
+      inset:0;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.20));
+      color:#fff0d8;
+      font-size:3rem;
+      text-shadow:0 8px 20px rgba(0,0,0,.45);
+      pointer-events:none;
     }
 
     body.theme-night .smart-profile-play{color:#e6f4ff;}
 
     .smart-title{
-      margin:0; text-align:center; font-family:Cinzel, serif; font-size:1.9rem; line-height:1.2;
+      margin:0;
+      text-align:center;
+      font-family:Cinzel, serif;
+      font-size:2.2rem;
+      line-height:1.18;
+      max-width:100%;
     }
 
     .smart-available{
-      margin:8px 0 22px; text-align:center; color:var(--smart-subtext); font-size:.98rem; font-weight:600;
+      margin:10px 0 0;
+      text-align:center;
+      color:var(--smart-subtext);
+      font-size:1.02rem;
+      font-weight:600;
     }
 
-    .smart-platform-list{display:grid; gap:12px;}
+    .smart-link-card{
+      position:relative;
+      width:100%;
+      padding:22px 20px 20px;
+      border-radius:28px;
+      border:1px solid var(--panel-border);
+      background:var(--smart-card-bg);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .smart-link-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      background:
+        radial-gradient(circle at 20% 18%, rgba(255,184,77,.08), transparent 24%),
+        radial-gradient(circle at 82% 78%, rgba(255,184,77,.05), transparent 24%);
+    }
+
+    body.theme-night .smart-link-card::before{
+      background:
+        radial-gradient(circle at 20% 18%, rgba(140,196,255,.08), transparent 24%),
+        radial-gradient(circle at 82% 78%, rgba(140,196,255,.05), transparent 24%);
+    }
+
+    .smart-platform-list{display:grid; gap:14px;}
 
     .smart-platform-row{
-      display:grid; grid-template-columns:1fr auto; align-items:center; gap:14px; min-height:58px; padding:0 0 0 16px;
-      border-radius:18px; border:1px solid var(--media-border); background:var(--smart-row-bg); box-shadow:var(--media-shadow);
-      overflow:hidden; transition:border-color .22s ease, box-shadow .22s ease;
+      display:grid;
+      grid-template-columns:1fr auto;
+      align-items:center;
+      gap:14px;
+      min-height:72px;
+      padding:0 0 0 20px;
+      border-radius:20px;
+      border:1px solid var(--media-border);
+      background:var(--smart-row-bg);
+      box-shadow:var(--media-shadow);
+      overflow:hidden;
+      transition:border-color .22s ease, box-shadow .22s ease;
     }
 
     .smart-platform-row:hover{
-      border-color:var(--platform-border-hover); box-shadow:var(--cell-glow);
+      border-color:var(--platform-border-hover);
+      box-shadow:var(--cell-glow);
     }
 
     .smart-platform-name{
-      display:flex; align-items:center; gap:12px; font-weight:700; color:var(--text);
+      display:flex;
+      align-items:center;
+      gap:14px;
+      font-weight:700;
+      color:var(--text);
+      font-size:1.05rem;
     }
 
     .smart-platform-name i{
-      width:20px; text-align:center; color:var(--gold);
+      width:28px;
+      text-align:center;
+      color:var(--gold);
+      font-size:1.6rem;
     }
 
     .smart-play-btn{
-      min-width:98px; height:58px; border-left:1px solid var(--platform-border);
-      background:var(--smart-row-play-bg); color:var(--smart-row-play-color); font-weight:800;
-      letter-spacing:.04em; display:inline-flex; align-items:center; justify-content:center;
-      transition:filter .18s ease, background .24s ease, color .24s ease; cursor:pointer;
+      min-width:112px;
+      height:72px;
+      border-left:1px solid var(--platform-border);
+      background:var(--smart-row-play-bg);
+      color:var(--smart-row-play-color);
+      font-weight:800;
+      letter-spacing:.04em;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      transition:filter .18s ease, background .24s ease, color .24s ease;
+      cursor:pointer;
+      font-size:1rem;
     }
 
     .smart-play-btn:hover{filter:brightness(1.04);}
     .smart-play-btn.disabled{cursor:default; opacity:.74; filter:saturate(.92);}
-    .smart-note{margin:14px 0 0; text-align:center; font-size:.78rem; color:var(--smart-subtext);}
 
     section{
       padding:40px 0; content-visibility:auto; contain-intrinsic-size:800px;
@@ -973,8 +1084,16 @@
       margin-top:auto; width:100%; position:relative; z-index:5; flex-shrink:0;
     }
 
+    body.smart-link-mode .bottom-fixed-wrap{
+      background:transparent;
+    }
+
     .social-panel{
       padding:12px 18px; opacity:0; transform:translateY(22px);
+    }
+
+    body.smart-link-mode #contact{
+      display:none !important;
     }
 
     .socials{
@@ -1050,12 +1169,27 @@
       padding:18px 0 46px; text-align:center; color:var(--footer-color); flex-shrink:0; margin-top:0;
     }
 
+    body.smart-link-mode footer{
+      padding:10px 0 28px;
+    }
+
     .footer-line{
       width:min(920px, 100%); margin:0 auto 18px; height:1px; background:var(--footer-line);
     }
 
+    body.smart-link-mode .footer-line{
+      display:none;
+    }
+
     .footer-copy{
       font-family:Cinzel, serif; letter-spacing:.06em; font-size:.9rem;
+    }
+
+    body.smart-link-mode .footer-copy{
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      letter-spacing:0;
+      font-size:.82rem;
+      color:var(--smart-subtext);
     }
 
     .hidden-audio{display:none;}
@@ -1204,11 +1338,28 @@
       .contact-subpage{padding:22px 18px;}
 
       .smart-link-page{
-        min-height:calc(100vh - 64px);
-        padding:34px 0 44px;
+        min-height:100vh;
+        padding:46px 0 34px;
       }
 
-      .smart-link-card{padding:24px 18px 18px;}
+      .smart-profile-link{
+        width:182px;
+        height:182px;
+        border-radius:34px;
+      }
+
+      .smart-link-card{
+        padding:18px 16px 16px;
+      }
+
+      .smart-platform-row{
+        min-height:64px;
+      }
+
+      .smart-play-btn{
+        height:64px;
+        min-width:98px;
+      }
 
       section{padding:28px 0;}
       .social-panel{transform:translateY(18px);}
@@ -1293,17 +1444,54 @@
         gap:8px;
       }
 
-      .smart-title{font-size:1.42rem;}
-      .smart-available{font-size:.88rem;}
+      .smart-link-page{
+        padding:34px 0 24px;
+      }
+
+      .smart-profile-link{
+        width:154px;
+        height:154px;
+        border-radius:30px;
+        margin-bottom:16px;
+      }
+
+      .smart-profile-play{
+        font-size:2.5rem;
+      }
+
+      .smart-title{
+        font-size:1.6rem;
+      }
+
+      .smart-available{
+        font-size:.9rem;
+      }
+
+      .smart-link-card{
+        border-radius:22px;
+      }
 
       .smart-platform-row{
-        min-height:52px;
+        min-height:58px;
+        padding-left:14px;
+        gap:10px;
         border-radius:16px;
       }
 
+      .smart-platform-name{
+        font-size:.95rem;
+        gap:10px;
+      }
+
+      .smart-platform-name i{
+        width:24px;
+        font-size:1.35rem;
+      }
+
       .smart-play-btn{
-        min-width:86px;
-        height:52px;
+        min-width:84px;
+        height:58px;
+        font-size:.92rem;
       }
 
       .social{
@@ -1381,6 +1569,7 @@
       .footer-copy{font-size:.8rem;}
 
       footer{padding:14px 0 34px;}
+      body.smart-link-mode footer{padding:6px 0 18px;}
       .footer-line{margin:0 auto 14px;}
 
       .dust-orb{filter:blur(8px);}
@@ -1756,7 +1945,7 @@
           <section class="smart-link-page">
             <div class="container">
               <div class="smart-link-inner animate-in delay-2">
-                <div class="smart-link-card">
+                <div class="smart-link-top">
                   <a
                     class="smart-profile-link"
                     id="smartLatestVideoLink"
@@ -1771,7 +1960,9 @@
 
                   <h1 class="smart-title" id="smartLatestTitle">[Song Title]</h1>
                   <div class="smart-available">Available Now</div>
+                </div>
 
+                <div class="smart-link-card">
                   <div class="smart-platform-list">
                     <div class="smart-platform-row">
                       <div class="smart-platform-name"><i class="fa-brands fa-youtube"></i> YouTube</div>
@@ -1798,8 +1989,6 @@
                       <a class="smart-play-btn" href="https://soundcloud.com/imurheimofficial" target="_blank" rel="noopener">Play</a>
                     </div>
                   </div>
-
-                  <div class="smart-note">This page may contain affiliate links.</div>
                 </div>
               </div>
             </div>
@@ -1833,7 +2022,7 @@
       <footer>
         <div class="container">
           <div class="footer-line"></div>
-          <div class="footer-copy">© <span id="year"></span> URHEIM</div>
+          <div class="footer-copy" id="footerCopy">© <span id="year"></span> URHEIM</div>
         </div>
       </footer>
     </div>
@@ -2022,9 +2211,8 @@
       }
     }
 
-    async function generateRoundedFavicon() {
+    function generateRoundedFavicon(sourcePath) {
       try {
-        const source = "assets/URHEIM GOLDEN PROFILE.png";
         const img = new Image();
         img.crossOrigin = "anonymous";
 
@@ -2041,22 +2229,20 @@
           roundedRect(ctx, 0, 0, size, size, radius);
           ctx.closePath();
           ctx.clip();
-
           ctx.drawImage(img, 0, 0, size, size);
 
           const dataUrl = canvas.toDataURL("image/png");
-          let favicon = document.getElementById("dynamicFavicon");
-          if (!favicon) {
-            favicon = document.createElement("link");
-            favicon.id = "dynamicFavicon";
-            favicon.rel = "icon";
-            favicon.type = "image/png";
-            document.head.appendChild(favicon);
-          }
-          favicon.href = dataUrl;
+
+          const favicon = document.getElementById("dynamicFavicon");
+          const shortcut = document.getElementById("shortcutFavicon");
+          const apple = document.getElementById("appleTouchIcon");
+
+          if (favicon) favicon.href = dataUrl;
+          if (shortcut) shortcut.href = dataUrl;
+          if (apple) apple.href = dataUrl;
         };
 
-        img.src = source;
+        img.src = sourcePath;
       } catch (e) {}
     }
 
@@ -2070,6 +2256,26 @@
       ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
       ctx.lineTo(x, y + radius);
       ctx.quadraticCurveTo(x, y, x + radius, y);
+    }
+
+    function updateSmartModeUI(viewName) {
+      const isSmart = viewName === 'smart-link';
+      document.body.classList.toggle('smart-link-mode', isSmart);
+
+      const footerCopy = document.getElementById('footerCopy');
+      if (footerCopy) {
+        if (isSmart) {
+          footerCopy.textContent = 'This page may contain affiliate links.';
+        } else {
+          footerCopy.innerHTML = `© <span id="year">${new Date().getFullYear()}</span> URHEIM`;
+        }
+      }
+
+      if (isSmart) {
+        generateRoundedFavicon("assets/URHEIM GOLDEN WATERMARK.png");
+      } else {
+        generateRoundedFavicon("assets/URHEIM GOLDEN PROFILE.png");
+      }
     }
 
     const themeSwitch = document.getElementById('themeSwitch');
@@ -2087,7 +2293,7 @@
     fetchLatestVideoData();
     setInterval(fetchLatestVideoData, 30000);
 
-    generateRoundedFavicon();
+    generateRoundedFavicon("assets/URHEIM GOLDEN PROFILE.png");
 
     const toggle = document.getElementById('mobileToggle');
     const navLinks = document.getElementById('navLinks');
@@ -2101,8 +2307,6 @@
         link.addEventListener('click', () => navLinks.classList.remove('open'));
       });
     }
-
-    document.getElementById('year').textContent = new Date().getFullYear();
 
     const audio = document.getElementById('releaseAudio') || (() => {
       const audioEl = document.createElement('audio');
@@ -2238,6 +2442,8 @@
       } else {
         setActiveNavByView(viewName);
       }
+
+      updateSmartModeUI(viewName);
 
       if (pushUrl) {
         const pathMap = {
