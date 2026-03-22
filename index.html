@@ -638,11 +638,11 @@
     }
 
     .smart-profile-link{
-      width:228px;
-      height:228px;
+      width:244px;
+      height:244px;
       margin:0 auto 20px;
       position:relative;
-      border-radius:42px;
+      border-radius:44px;
       overflow:hidden;
       border:1px solid var(--media-border);
       box-shadow:
@@ -741,19 +741,21 @@
     .smart-platform-name{
       display:flex;
       align-items:center;
-      gap:14px;
+      justify-content:center;
       font-weight:600;
       color:var(--smart-static-text);
       font-size:1rem;
       letter-spacing:0;
     }
 
-    .smart-platform-name i{
-      width:26px;
-      text-align:center;
-      color:var(--smart-brand-icon);
-      font-size:1.34rem;
+    .smart-platform-icon{
+      width:30px;
+      height:30px;
+      object-fit:contain;
+      display:block;
       filter:none !important;
+      mix-blend-mode:normal !important;
+      opacity:1;
     }
 
     .smart-play-btn{
@@ -1355,9 +1357,9 @@
       }
 
       .smart-profile-link{
-        width:192px;
-        height:192px;
-        border-radius:34px;
+        width:204px;
+        height:204px;
+        border-radius:36px;
       }
 
       .smart-link-card{
@@ -1461,9 +1463,9 @@
       }
 
       .smart-profile-link{
-        width:164px;
-        height:164px;
-        border-radius:30px;
+        width:176px;
+        height:176px;
+        border-radius:32px;
         margin-bottom:16px;
       }
 
@@ -1489,14 +1491,9 @@
         gap:10px;
       }
 
-      .smart-platform-name{
-        font-size:.94rem;
-        gap:10px;
-      }
-
-      .smart-platform-name i{
-        width:22px;
-        font-size:1.18rem;
+      .smart-platform-icon{
+        width:24px;
+        height:24px;
       }
 
       .smart-play-btn{
@@ -1976,37 +1973,51 @@
                 <div class="smart-link-card">
                   <div class="smart-platform-list">
                     <div class="smart-platform-row">
-                      <div class="smart-platform-name"><i class="fa-brands fa-youtube"></i> YouTube</div>
+                      <div class="smart-platform-name">
+                        <img class="smart-platform-icon" src="assets/YouTube.svg" alt="YouTube">
+                      </div>
                       <a class="smart-play-btn" href="https://www.youtube.com/@imurheimofficial" target="_blank" rel="noopener">Play</a>
                     </div>
 
                     <div class="smart-platform-row">
-                      <div class="smart-platform-name"><i class="fa-brands fa-spotify"></i> Spotify</div>
+                      <div class="smart-platform-name">
+                        <img class="smart-platform-icon" src="assets/Spotify.svg" alt="Spotify">
+                      </div>
                       <a class="smart-play-btn" href="https://open.spotify.com/artist/53KpmHShdf1iZssxYIli3t" target="_blank" rel="noopener">Play</a>
                     </div>
 
                     <div class="smart-platform-row">
-                      <div class="smart-platform-name"><i class="fa-brands fa-apple"></i> Apple Music</div>
+                      <div class="smart-platform-name">
+                        <img class="smart-platform-icon" src="assets/Apple Music.svg" alt="Apple Music">
+                      </div>
                       <span class="smart-play-btn disabled">Play</span>
                     </div>
 
                     <div class="smart-platform-row">
-                      <div class="smart-platform-name"><i class="fa-brands fa-amazon"></i> Amazon</div>
+                      <div class="smart-platform-name">
+                        <img class="smart-platform-icon" src="assets/Amazon Music.svg" alt="Amazon Music">
+                      </div>
                       <span class="smart-play-btn disabled">Play</span>
                     </div>
 
                     <div class="smart-platform-row">
-                      <div class="smart-platform-name"><i class="fa-brands fa-soundcloud"></i> SoundCloud</div>
+                      <div class="smart-platform-name">
+                        <img class="smart-platform-icon" src="assets/SoundCloud.svg" alt="SoundCloud">
+                      </div>
                       <a class="smart-play-btn" href="https://soundcloud.com/imurheimofficial" target="_blank" rel="noopener">Play</a>
                     </div>
 
                     <div class="smart-platform-row">
-                      <div class="smart-platform-name"><i class="fa-brands fa-youtube"></i> YouTube Music</div>
+                      <div class="smart-platform-name">
+                        <img class="smart-platform-icon" src="assets/YouTube Music.svg" alt="YouTube Music">
+                      </div>
                       <span class="smart-play-btn disabled">Play</span>
                     </div>
 
                     <div class="smart-platform-row">
-                      <div class="smart-platform-name"><i class="fa-solid fa-music"></i> Deezer</div>
+                      <div class="smart-platform-name">
+                        <img class="smart-platform-icon" src="assets/Deezer.svg" alt="Deezer">
+                      </div>
                       <span class="smart-play-btn disabled">Play</span>
                     </div>
                   </div>
@@ -2128,9 +2139,9 @@
 
     function updateDocumentTitleForView(viewName) {
       if (viewName === 'smart-link') {
-        document.title = latestState.title && latestState.title !== "[Song Title]"
+        document.title = latestState.title && latestState.title.trim()
           ? latestState.title
-          : "URHEIM";
+          : "[Song Title]";
       } else {
         document.title = "URHEIM";
       }
