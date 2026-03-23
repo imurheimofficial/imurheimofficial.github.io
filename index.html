@@ -1229,8 +1229,7 @@
     .gift.g1{left:30px;background:linear-gradient(180deg,#ff6174,#c82642);}
     .gift.g2{left:74px;background:linear-gradient(180deg,#7db8ff,#4b7ddb);}
     .gift.g3{left:116px;background:linear-gradient(180deg,#7ef2b1,#2fa861);}
-
-    /* =========================================================
+        /* =========================================================
        15) NEW YEAR – FIREWORKS
        ========================================================= */
     .firework{
@@ -1483,7 +1482,8 @@
 
     .pomlazka::before{left:-8px; transform:rotate(-18deg);}
     .pomlazka::after{right:-8px; transform:rotate(18deg);}
-        /* =========================================================
+
+    /* =========================================================
        19) SPOLEČNÉ PRVKY / HEADER / NAV
        ========================================================= */
     header{
@@ -1696,7 +1696,7 @@
       position:absolute;
       inset:0;
       display:grid;
-      grid-template-columns:repeat(5, 1fr);
+      grid-template-columns:repeat(6, 1fr);
       align-items:center;
       justify-items:center;
       padding:0 8px;
@@ -1743,6 +1743,12 @@
 
     body.smart-link-mode .smart-theme-switch-wrap{
       display:flex;
+    }
+
+    .smart-theme-controls{
+      display:flex;
+      align-items:center;
+      gap:10px;
     }
 
     /* =========================================================
@@ -2300,8 +2306,7 @@
 
     .smart-play-btn:hover{background:rgba(255,255,255,.03);}
     .smart-play-btn.disabled{cursor:default; opacity:.56;}
-
-    /* =========================================================
+        /* =========================================================
        24) SEKCE / PANELY / KARTY
        ========================================================= */
     section{
@@ -2605,7 +2610,8 @@
       opacity:1;
       filter:none;
     }
-        /* =========================================================
+
+    /* =========================================================
        25) ABOUT / BIO
        ========================================================= */
     .about-grid{
@@ -3652,28 +3658,23 @@
       .pumpkin-left{left:10px;}
       .pumpkin-right{right:10px;}
 
-      .tree{
+      .xmas-tree{
         width:124px;
-        height:164px;
-        top:auto;
+        height:182px;
         bottom:14px;
-        transform:none;
       }
 
-      .tree-left{left:8px;}
-      .tree-right{right:8px;}
+      .xmas-tree.left{left:8px;}
+      .xmas-tree.right{right:8px;}
 
-      .easter-bunny,
-      .easter-hare{
+      .easter-bunny{
         width:96px;
         height:132px;
-        top:auto;
         bottom:12px;
-        transform:none;
       }
 
-      .easter-bunny{left:8px;}
-      .easter-hare{right:8px;}
+      .easter-bunny.left{left:8px;}
+      .easter-bunny.right{right:8px;}
 
       section{padding:28px 0;}
       .social-panel{transform:translateY(18px);}
@@ -3820,33 +3821,23 @@
         bottom:20px;
       }
 
-      .tree{
+      .xmas-tree{
         width:78px;
-        height:112px;
+        height:118px;
         bottom:6px;
-        top:auto;
-        transform:none;
       }
 
-      .tree-left{left:4px;}
-      .tree-right{right:4px;}
+      .xmas-tree.left{left:4px;}
+      .xmas-tree.right{right:4px;}
 
-      .tree-gifts{
-        width:50px;
-        bottom:-2px;
-      }
-
-      .easter-bunny,
-      .easter-hare{
+      .easter-bunny{
         width:68px;
         height:98px;
         bottom:4px;
-        top:auto;
-        transform:none;
       }
 
-      .easter-bunny{left:4px;}
-      .easter-hare{right:4px;}
+      .easter-bunny.left{left:4px;}
+      .easter-bunny.right{right:4px;}
 
       .newyear-countdown-box,
       .newyear-message-box{
@@ -3856,7 +3847,7 @@
 
       .dust-orb{filter:blur(8px);}
     }
-      </style>
+  </style>
 </head>
 
 <body class="theme-day">
@@ -3901,34 +3892,20 @@
 
   <!-- Halloween pumpkins -->
   <div class="pumpkin pumpkin-left" aria-hidden="true">
-    <div class="pumpkin-stem"></div>
     <div class="pumpkin-body">
-      <div class="pumpkin-rib rib-1"></div>
-      <div class="pumpkin-rib rib-2"></div>
-      <div class="pumpkin-rib rib-3"></div>
       <span class="pumpkin-eye left"></span>
       <span class="pumpkin-eye right"></span>
       <span class="pumpkin-nose"></span>
       <span class="pumpkin-mouth"></span>
-      <span class="pumpkin-fire pumpkin-fire-1"></span>
-      <span class="pumpkin-fire pumpkin-fire-2"></span>
-      <span class="pumpkin-fire pumpkin-fire-3"></span>
     </div>
   </div>
 
   <div class="pumpkin pumpkin-right" aria-hidden="true">
-    <div class="pumpkin-stem"></div>
     <div class="pumpkin-body">
-      <div class="pumpkin-rib rib-1"></div>
-      <div class="pumpkin-rib rib-2"></div>
-      <div class="pumpkin-rib rib-3"></div>
       <span class="pumpkin-eye left"></span>
       <span class="pumpkin-eye right"></span>
       <span class="pumpkin-nose"></span>
       <span class="pumpkin-mouth"></span>
-      <span class="pumpkin-fire pumpkin-fire-1"></span>
-      <span class="pumpkin-fire pumpkin-fire-2"></span>
-      <span class="pumpkin-fire pumpkin-fire-3"></span>
     </div>
   </div>
 
@@ -3936,102 +3913,101 @@
   <div class="snow-layer" aria-hidden="true" id="snowLayer"></div>
 
   <!-- Christmas trees -->
-  <div class="tree tree-left" aria-hidden="true">
-    <div class="tree-top"></div>
-    <div class="tree-middle"></div>
-    <div class="tree-bottom"></div>
+  <div class="xmas-tree left" aria-hidden="true">
+    <div class="tree-star"></div>
+    <div class="tree-body"></div>
     <div class="tree-trunk"></div>
 
-    <span class="tree-light light-blue l1"></span>
-    <span class="tree-light light-red l2"></span>
-    <span class="tree-light light-green l3"></span>
-    <span class="tree-light light-white l4"></span>
-    <span class="tree-light light-blue l5"></span>
-    <span class="tree-light light-red l6"></span>
-    <span class="tree-light light-green l7"></span>
-    <span class="tree-light light-white l8"></span>
+    <span class="tree-light red" style="top:56px; left:54px; animation-delay:0s;"></span>
+    <span class="tree-light blue" style="top:74px; left:84px; animation-delay:.2s;"></span>
+    <span class="tree-light green" style="top:96px; left:46px; animation-delay:.4s;"></span>
+    <span class="tree-light white" style="top:110px; left:94px; animation-delay:.6s;"></span>
+    <span class="tree-light red" style="top:132px; left:62px; animation-delay:.8s;"></span>
+    <span class="tree-light blue" style="top:148px; left:100px; animation-delay:1s;"></span>
 
-    <div class="tree-gifts">
-      <span class="gift gift-1"></span>
-      <span class="gift gift-2"></span>
-      <span class="gift gift-3"></span>
-    </div>
+    <div class="gift g1"></div>
+    <div class="gift g2"></div>
+    <div class="gift g3"></div>
   </div>
 
-  <div class="tree tree-right" aria-hidden="true">
-    <div class="tree-top"></div>
-    <div class="tree-middle"></div>
-    <div class="tree-bottom"></div>
+  <div class="xmas-tree right" aria-hidden="true">
+    <div class="tree-star"></div>
+    <div class="tree-body"></div>
     <div class="tree-trunk"></div>
 
-    <span class="tree-light light-blue l1"></span>
-    <span class="tree-light light-red l2"></span>
-    <span class="tree-light light-green l3"></span>
-    <span class="tree-light light-white l4"></span>
-    <span class="tree-light light-blue l5"></span>
-    <span class="tree-light light-red l6"></span>
-    <span class="tree-light light-green l7"></span>
-    <span class="tree-light light-white l8"></span>
+    <span class="tree-light red" style="top:56px; left:54px; animation-delay:.1s;"></span>
+    <span class="tree-light blue" style="top:74px; left:84px; animation-delay:.3s;"></span>
+    <span class="tree-light green" style="top:96px; left:46px; animation-delay:.5s;"></span>
+    <span class="tree-light white" style="top:110px; left:94px; animation-delay:.7s;"></span>
+    <span class="tree-light red" style="top:132px; left:62px; animation-delay:.9s;"></span>
+    <span class="tree-light blue" style="top:148px; left:100px; animation-delay:1.1s;"></span>
 
-    <div class="tree-gifts">
-      <span class="gift gift-1"></span>
-      <span class="gift gift-2"></span>
-      <span class="gift gift-3"></span>
-    </div>
+    <div class="gift g1"></div>
+    <div class="gift g2"></div>
+    <div class="gift g3"></div>
   </div>
 
-  <!-- Christmas garland přes header -->
+  <!-- Christmas garland -->
   <div class="garland" aria-hidden="true">
-    <span class="garland-bulb bulb-1"></span>
-    <span class="garland-bulb bulb-2"></span>
-    <span class="garland-bulb bulb-3"></span>
-    <span class="garland-bulb bulb-4"></span>
-    <span class="garland-bulb bulb-5"></span>
-    <span class="garland-bulb bulb-6"></span>
-    <span class="garland-bulb bulb-7"></span>
-    <span class="garland-bulb bulb-8"></span>
-    <span class="garland-bow bow-1"></span>
-    <span class="garland-bow bow-2"></span>
-    <span class="garland-bow bow-3"></span>
+    <svg viewBox="0 0 1600 120" preserveAspectRatio="none">
+      <path d="M0,26 C120,88 260,88 380,26 C500,-12 640,-12 760,26 C880,88 1020,88 1140,26 C1260,-12 1400,-12 1600,30" fill="none" stroke="#275b2e" stroke-width="10" stroke-linecap="round"/>
+      <path d="M0,34 C120,96 260,96 380,34 C500,-4 640,-4 760,34 C880,96 1020,96 1140,34 C1260,-4 1400,-4 1600,38" fill="none" stroke="#1d4624" stroke-width="14" stroke-linecap="round" opacity=".88"/>
+
+      <circle cx="90" cy="56" r="5" fill="#fff5cc"/>
+      <circle cx="220" cy="70" r="5" fill="#fff5cc"/>
+      <circle cx="352" cy="56" r="5" fill="#fff5cc"/>
+      <circle cx="492" cy="26" r="5" fill="#fff5cc"/>
+      <circle cx="628" cy="22" r="5" fill="#fff5cc"/>
+      <circle cx="760" cy="34" r="5" fill="#fff5cc"/>
+      <circle cx="900" cy="70" r="5" fill="#fff5cc"/>
+      <circle cx="1032" cy="56" r="5" fill="#fff5cc"/>
+      <circle cx="1172" cy="26" r="5" fill="#fff5cc"/>
+      <circle cx="1306" cy="22" r="5" fill="#fff5cc"/>
+      <circle cx="1440" cy="40" r="5" fill="#fff5cc"/>
+
+      <g fill="#b81e4c">
+        <path d="M360,18 c-14,4 -20,18 -6,28 c6,-6 11,-12 12,-18 c1,6 6,12 12,18 c14,-10 8,-24 -6,-28 c-3,2 -4,4 -6,7 c-2,-3 -3,-5 -6,-7z"/>
+        <path d="M760,26 c-14,4 -20,18 -6,28 c6,-6 11,-12 12,-18 c1,6 6,12 12,18 c14,-10 8,-24 -6,-28 c-3,2 -4,4 -6,7 c-2,-3 -3,-5 -6,-7z"/>
+        <path d="M1160,18 c-14,4 -20,18 -6,28 c6,-6 11,-12 12,-18 c1,6 6,12 12,18 c14,-10 8,-24 -6,-28 c-3,2 -4,4 -6,7 c-2,-3 -3,-5 -6,-7z"/>
+      </g>
+    </svg>
   </div>
 
   <!-- New Year fireworks -->
   <div class="fireworks-layer" aria-hidden="true" id="fireworksLayer"></div>
 
   <!-- Easter grass -->
-  <div class="grass-layer" aria-hidden="true">
-    <div class="grass-line grass-line-1"></div>
-    <div class="grass-line grass-line-2"></div>
+  <div class="easter-grass" aria-hidden="true"></div>
+
+  <!-- Easter bunnies -->
+  <div class="easter-bunny left" aria-hidden="true">
+    <div class="bunny-ear left"></div>
+    <div class="bunny-ear right"></div>
+    <div class="bunny-head">
+      <span class="bunny-eye left"></span>
+      <span class="bunny-eye right"></span>
+      <span class="bunny-nose"></span>
+    </div>
+    <div class="bunny-body"></div>
+    <div class="bunny-paw left"></div>
+    <div class="bunny-paw right"></div>
   </div>
 
-  <!-- Easter rabbit left -->
-  <div class="easter-bunny" aria-hidden="true">
-    <div class="ear ear-left"></div>
-    <div class="ear ear-right"></div>
-    <div class="head"></div>
-    <div class="body"></div>
-    <div class="tail"></div>
-  </div>
-
-  <!-- Easter hare right -->
-  <div class="easter-hare" aria-hidden="true">
-    <div class="ear ear-left"></div>
-    <div class="ear ear-right"></div>
-    <div class="head"></div>
-    <div class="body"></div>
-    <div class="tail"></div>
+  <div class="easter-bunny right" aria-hidden="true">
+    <div class="bunny-ear left"></div>
+    <div class="bunny-ear right"></div>
+    <div class="bunny-head">
+      <span class="bunny-eye left"></span>
+      <span class="bunny-eye right"></span>
+      <span class="bunny-nose"></span>
+    </div>
+    <div class="bunny-body"></div>
+    <div class="bunny-paw left"></div>
+    <div class="bunny-paw right"></div>
   </div>
 
   <!-- Easter floating eggs / pomlázky -->
-  <div class="easter-float-layer" aria-hidden="true">
-    <span class="easter-float egg egg-1"></span>
-    <span class="easter-float egg egg-2"></span>
-    <span class="easter-float egg egg-3"></span>
-    <span class="easter-float egg egg-4"></span>
-    <span class="easter-float stick stick-1"></span>
-    <span class="easter-float stick stick-2"></span>
-    <span class="easter-float stick stick-3"></span>
-  </div>
+  <div class="easter-float-layer" aria-hidden="true" id="easterFloatLayer"></div>
 
   <!-- Smart link fixed switch -->
   <div class="smart-theme-switch-wrap">
@@ -4127,31 +4103,6 @@
                   fetchpriority="high"
                   loading="eager"
                 >
-                <span class="watermark-fire-layer" aria-hidden="true">
-                  <span class="wm-fire wm-fire-1"></span>
-                  <span class="wm-fire wm-fire-2"></span>
-                  <span class="wm-fire wm-fire-3"></span>
-                  <span class="wm-fire wm-fire-4"></span>
-                  <span class="wm-fire wm-fire-5"></span>
-                </span>
-
-                <span class="watermark-spark-layer" aria-hidden="true">
-                  <span class="wm-spark wm-spark-1"></span>
-                  <span class="wm-spark wm-spark-2"></span>
-                  <span class="wm-spark wm-spark-3"></span>
-                  <span class="wm-spark wm-spark-4"></span>
-                  <span class="wm-spark wm-spark-5"></span>
-                  <span class="wm-spark wm-spark-6"></span>
-                </span>
-
-                <span class="watermark-ribbon-layer" aria-hidden="true">
-                  <span class="wm-ribbon rb-1"></span>
-                  <span class="wm-ribbon rb-2"></span>
-                  <span class="wm-ribbon rb-3"></span>
-                  <span class="wm-ribbon rb-4"></span>
-                  <span class="wm-ribbon rb-5"></span>
-                  <span class="wm-ribbon rb-6"></span>
-                </span>
               </div>
 
               <div class="headline-rule"></div>
@@ -4303,8 +4254,7 @@
             </div>
           </section>
         </div>
-
-        <!-- COLLABS -->
+                <!-- COLLABS -->
         <div id="subpageCollabs" class="subpage-shell">
           <section>
             <div class="container">
@@ -4495,6 +4445,7 @@
     let lastAutoTheme = null;
     let newYearCountdownTimer = null;
     let newYearMessageTimer = null;
+    let fireworksLoop = null;
     const activeTypewriters = new Map();
 
     const latestState = {
@@ -4520,7 +4471,6 @@
 
     /* =========================================================
        4) EASTER DATE (Gregorian algorithm)
-       Použito pro Easter date v USA
        ========================================================= */
     function getEasterDate(year) {
       const a = year % 19;
@@ -4535,9 +4485,8 @@
       const k = c % 4;
       const l = (32 + 2 * e + 2 * i - h - k) % 7;
       const m = Math.floor((a + 11 * h + 22 * l) / 451);
-      const month = Math.floor((h + l - 7 * m + 114) / 31); // 3=March, 4=April
+      const month = Math.floor((h + l - 7 * m + 114) / 31);
       const day = ((h + l - 7 * m + 114) % 31) + 1;
-
       return new Date(year, month - 1, day);
     }
 
@@ -4549,31 +4498,18 @@
 
     /* =========================================================
        5) THEME SCHEDULING
-       Priorita:
-       Halloween
-       Christmas
-       New Year
-       Easter
-       jinak day/night
        ========================================================= */
     function getScheduledTheme(dateObj) {
-      const month = dateObj.getMonth(); // 0-based
+      const month = dateObj.getMonth();
       const day = dateObj.getDate();
 
-      // Halloween: October 31
       if (month === 9 && day === 31) return 'halloween';
-
-      // Christmas: December 1–30
       if (month === 11 && day >= 1 && day <= 30) return 'christmas';
-
-      // New Year: December 31 – January 1
       if ((month === 11 && day === 31) || (month === 0 && day === 1)) return 'newyear';
 
-      // Easter: podle výpočtu
       const easterDate = getEasterDate(dateObj.getFullYear());
       if (isSameDate(dateObj, easterDate)) return 'easter';
 
-      // Jinak day / night
       const hour = dateObj.getHours();
       return (hour >= 5 && hour < 17) ? 'day' : 'night';
     }
@@ -4790,15 +4726,30 @@
       const firework = document.createElement('div');
       firework.className = 'firework';
       firework.style.left = `${xPercent}%`;
+      firework.style.bottom = '0';
+      firework.style.animation = `rocketRise 1s ease-out forwards`;
       firework.style.animationDelay = `${delay}ms`;
 
       const rocket = document.createElement('span');
-      rocket.className = 'firework-rocket';
-      rocket.style.background = `linear-gradient(180deg, hsl(${hue}, 100%, 76%), hsl(${hue}, 100%, 56%))`;
+      rocket.style.position = 'absolute';
+      rocket.style.left = '50%';
+      rocket.style.bottom = '0';
+      rocket.style.width = '4px';
+      rocket.style.height = '70px';
+      rocket.style.transform = 'translateX(-50%)';
+      rocket.style.borderRadius = '999px';
+      rocket.style.background = `linear-gradient(180deg, rgba(255,255,255,0), hsl(${hue}, 100%, 62%))`;
+      rocket.style.boxShadow = `0 0 12px hsla(${hue}, 100%, 70%, .55)`;
 
-      const burst = document.createElement('span');
-      burst.className = 'firework-burst';
-      burst.style.setProperty('--fw-color', `hsla(${hue}, 100%, 66%, .95)`);
+      const burst = document.createElement('div');
+      burst.style.position = 'absolute';
+      burst.style.left = '50%';
+      burst.style.bottom = '52vh';
+      burst.style.width = '0';
+      burst.style.height = '0';
+      burst.style.transform = 'translate(-50%, 0)';
+      burst.style.animation = `fireworkBurst 1.2s ease-out forwards`;
+      burst.style.animationDelay = `${1000 + delay}ms`;
 
       const particleVectors = [
         [0, -72], [24, -56], [46, -22], [62, 0], [44, 28], [22, 54],
@@ -4807,11 +4758,18 @@
 
       particleVectors.forEach(([tx, ty], index) => {
         const p = document.createElement('span');
-        p.className = 'firework-particle';
+        p.style.position = 'absolute';
+        p.style.left = '0';
+        p.style.top = '0';
+        p.style.width = '4px';
+        p.style.height = '20px';
+        p.style.borderRadius = '999px';
+        p.style.background = `linear-gradient(180deg, rgba(255,255,255,1), hsl(${(hue + index * 10) % 360}, 100%, 62%))`;
+        p.style.boxShadow = `0 0 12px hsla(${(hue + index * 10) % 360}, 100%, 70%, .65)`;
         p.style.setProperty('--tx', `${tx}px`);
         p.style.setProperty('--ty', `${ty}px`);
-        p.style.background = `hsl(${(hue + index * 8) % 360}, 100%, 70%)`;
-        p.style.animationDelay = `${900 + (index * 12)}ms`;
+        p.style.animation = `fireworkParticle 1s ease-out forwards`;
+        p.style.animationDelay = `${1000 + delay}ms`;
         burst.appendChild(p);
       });
 
@@ -4821,10 +4779,8 @@
 
       setTimeout(() => {
         firework.remove();
-      }, 2600);
+      }, 2600 + delay);
     }
-
-    let fireworksLoop = null;
 
     function refreshSeasonalEffects(themeName) {
       if (fireworksLoop) {
@@ -4860,9 +4816,9 @@
       for (let i = 0; i < count; i++) {
         const flake = document.createElement('span');
         flake.className = 'snowflake';
+        flake.textContent = '❄';
         flake.style.left = `${Math.random() * 100}%`;
-        flake.style.width = `${4 + Math.random() * 7}px`;
-        flake.style.height = flake.style.width;
+        flake.style.fontSize = `${8 + Math.random() * 12}px`;
         flake.style.animationDuration = `${2.8 + Math.random() * 2.4}s`;
         flake.style.animationDelay = `${Math.random() * 3}s`;
         flake.style.opacity = `${0.45 + Math.random() * 0.45}`;
@@ -4872,10 +4828,43 @@
       layer.dataset.ready = '1';
     }
 
+    /* =========================================================
+       12) EASTER FLOAT ITEMS
+       ========================================================= */
+    function buildEasterFloatItems() {
+      const layer = document.getElementById('easterFloatLayer');
+      if (!layer || layer.dataset.ready === '1') return;
+
+      const items = [
+        { cls: 'egg a', left: '8%', top: '18%', duration: '5.2s', delay: '.1s' },
+        { cls: 'egg b', left: '22%', top: '60%', duration: '5.8s', delay: '.7s' },
+        { cls: 'egg c', left: '38%', top: '24%', duration: '5.1s', delay: '1.1s' },
+        { cls: 'egg a', left: '56%', top: '66%', duration: '6s', delay: '.4s' },
+        { cls: 'egg b', left: '74%', top: '20%', duration: '5.6s', delay: '1.4s' },
+        { cls: 'egg c', left: '90%', top: '64%', duration: '5.4s', delay: '.9s' },
+        { cls: 'pomlazka', left: '14%', top: '42%', duration: '6.2s', delay: '.3s' },
+        { cls: 'pomlazka', left: '48%', top: '14%', duration: '5.7s', delay: '1.2s' },
+        { cls: 'pomlazka', left: '82%', top: '46%', duration: '6.4s', delay: '.8s' }
+      ];
+
+      items.forEach(item => {
+        const span = document.createElement('span');
+        span.className = `easter-item ${item.cls}`;
+        span.style.left = item.left;
+        span.style.top = item.top;
+        span.style.animationDuration = item.duration;
+        span.style.animationDelay = item.delay;
+        layer.appendChild(span);
+      });
+
+      layer.dataset.ready = '1';
+    }
+
     buildSnowflakes();
+    buildEasterFloatItems();
 
     /* =========================================================
-       12) TITLE / VIDEO DATA
+       13) TITLE / VIDEO DATA
        ========================================================= */
     function updateDocumentTitleForView(viewName) {
       if (viewName === 'smart-link') {
@@ -5013,7 +5002,7 @@
     }
 
     /* =========================================================
-       13) TYPEWRITER / FADE
+       14) TYPEWRITER / FADE
        ========================================================= */
     function clearTypewriterMap(mapKeyPrefix) {
       [...activeTypewriters.keys()].forEach(key => {
@@ -5100,7 +5089,7 @@
     }
 
     /* =========================================================
-       14) FAVICON
+       15) FAVICON
        ========================================================= */
     function generateRoundedFavicon(sourcePath, radius = 58, scale = 1) {
       try {
@@ -5152,7 +5141,7 @@
     }
 
     /* =========================================================
-       15) SMART MODE UI
+       16) SMART MODE UI
        ========================================================= */
     function updateSmartModeUI(viewName) {
       const isSmart = viewName === 'smart-link';
@@ -5177,7 +5166,7 @@
     }
 
     /* =========================================================
-       16) CONTROLS / BUTTONS
+       17) CONTROLS / BUTTONS
        ========================================================= */
     const themeSwitch = document.getElementById('themeSwitch');
     const smartThemeSwitch = document.getElementById('smartThemeSwitch');
@@ -5201,7 +5190,7 @@
     }
 
     /* =========================================================
-       17) INIT INTERVALS
+       18) INIT INTERVALS
        ========================================================= */
     updateHeaderClockAndTheme();
     setInterval(updateHeaderClockAndTheme, 1000);
@@ -5212,7 +5201,7 @@
     generateRoundedFavicon("assets/URHEIM GOLDEN PROFILE.png", 58, 1);
 
     /* =========================================================
-       18) MOBILE NAV
+       19) MOBILE NAV
        ========================================================= */
     const toggle = document.getElementById('mobileToggle');
     const navLinks = document.getElementById('navLinks');
@@ -5228,7 +5217,7 @@
     }
 
     /* =========================================================
-       19) ROUTING
+       20) ROUTING
        ========================================================= */
     const heroSection = document.getElementById('heroSection');
     const homeContent = document.getElementById('homeContent');
